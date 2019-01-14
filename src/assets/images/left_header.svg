@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="716px" height="50px" viewBox="0 0 716 50" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51 (57462) - http://www.bohemiancoding.com/sketch -->
+    <title>酒店检修云平台背景@1x</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="89.5863915%" y1="50%" x2="0%" y2="50%" id="linearGradient-1">
+            <stop stop-color="#376A75" stop-opacity="0.388388813" offset="0%"></stop>
+            <stop stop-color="#4DA1A3" stop-opacity="0.997452446" offset="51.8628071%"></stop>
+            <stop stop-color="#376A75" stop-opacity="0.427026721" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="0929工程部主管" transform="translate(-32.000000, -38.000000)">
+            <rect x="0" y="0" width="1920" height="1079"></rect>
+            <g id="酒店检修云平台背景" transform="translate(32.000000, 38.000000)">
+                <path d="M0.70283883,1.17007171 L0.70283883,49.2971612 L620.82319,49.2971612 L543.3361,1.17007171 L0.70283883,1.17007171 Z" id="Rectangle-31-Copy-2" stroke="url(#linearGradient-1)" stroke-width="1.40567766" fill-opacity="0.2" fill="#0F3B45"></path>
+                <!-- <g id="Group-7-Copy-7" transform="translate(1254.000000, 12.500000) scale(-1, -1) translate(-1254.000000, -12.500000) translate(1237.000000, 7.000000)" fill-rule="nonzero">
+                    <rect id="Rectangle-17-Copy-15" fill="#75B2B0" x="0" y="6.875" width="4.25" height="4.125"></rect>
+                    <rect id="Rectangle-17-Copy-17" fill="#75B2B0" x="9.91666667" y="6.875" width="4.25" height="4.125"></rect>
+                    <rect id="Rectangle-17-Copy-19" fill="#75B2B0" x="19.8333333" y="6.875" width="4.25" height="4.125"></rect>
+                    <rect id="Rectangle-17-Copy-16" fill-opacity="0.391927083" fill="#1C6C6C" x="9.91666667" y="0" width="4.25" height="4.125"></rect>
+                    <rect id="Rectangle-17-Copy-18" fill-opacity="0.391927083" fill="#1C6C6C" x="19.8333333" y="0" width="4.25" height="4.125"></rect>
+                    <rect id="Rectangle-17-Copy-20" fill-opacity="0.391927083" fill="#1C6C6C" x="29.75" y="0" width="4.25" height="4.125"></rect>
+                </g>
+                <g id="Group-7-Copy-6" transform="translate(1094.500000, 33.500000) scale(-1, 1) translate(-1094.500000, -33.500000) translate(1030.000000, 28.000000)" fill="#94B8E7" fill-rule="nonzero">
+                    <rect id="Rectangle-17" fill-opacity="0.514294611" x="56.0869565" y="6.875" width="4.20652174" height="4.125"></rect>
+                    <rect id="Rectangle-17-Copy-15" fill-opacity="0.514294611" x="0" y="6.875" width="4.20652174" height="4.125"></rect>
+                    <rect id="Rectangle-17-Copy-17" fill-opacity="0.514294611" x="9.81521739" y="6.875" width="4.20652174" height="4.125"></rect>
+                    <rect id="Rectangle-17-Copy-2" fill-opacity="0.514294611" x="75.7173913" y="6.875" width="4.20652174" height="4.125"></rect>
+                    <rect id="Rectangle-17-Copy-8" fill-opacity="0.206238678" x="75.7173913" y="0" width="4.20652174" height="4.125"></rect>
+                    <rect id="Rectangle-17-Copy-4" fill-opacity="0.514294611" x="95.3478261" y="6.875" width="4.20652174" height="4.125"></rect>
+                    <rect id="Rectangle-17-Copy-9" fill-opacity="0.206238678" x="95.3478261" y="0" width="4.20652174" height="4.125"></rect>
+                    <rect id="Rectangle-17-Copy-6" fill-opacity="0.514294611" x="114.978261" y="6.875" width="4.20652174" height="4.125"></rect>
+                    <rect id="Rectangle-17-Copy-7" fill-opacity="0.514294611" x="124.793478" y="6.875" width="4.20652174" height="4.125"></rect>
+                    <rect id="Rectangle-17-Copy-10" fill-opacity="0.206238678" x="114.978261" y="0" width="4.20652174" height="4.125"></rect>
+                    <rect id="Rectangle-17-Copy" fill-opacity="0.514294611" x="65.9021739" y="6.875" width="4.20652174" height="4.125"></rect>
+                    <rect id="Rectangle-17-Copy-11" fill-opacity="0.206238678" x="65.9021739" y="0" width="4.20652174" height="4.125"></rect>
+                    <rect id="Rectangle-17-Copy-16" fill-opacity="0.206238678" x="9.81521739" y="0" width="4.20652174" height="4.125"></rect>
+                    <rect id="Rectangle-17-Copy-18" fill-opacity="0.206238678" x="19.6304348" y="0" width="4.20652174" height="4.125"></rect>
+                    <rect id="Rectangle-17-Copy-3" fill-opacity="0.514294611" x="85.5326087" y="6.875" width="4.20652174" height="4.125"></rect>
+                    <rect id="Rectangle-17-Copy-12" fill-opacity="0.206238678" x="85.5326087" y="0" width="4.20652174" height="4.125"></rect>
+                    <rect id="Rectangle-17-Copy-5" fill-opacity="0.514294611" x="105.163043" y="6.875" width="4.20652174" height="4.125"></rect>
+                    <rect id="Rectangle-17-Copy-13" fill-opacity="0.206238678" x="105.163043" y="0" width="4.20652174" height="4.125"></rect>
+                    <rect id="Rectangle-17-Copy-14" fill-opacity="0.206238678" x="124.793478" y="0" width="4.20652174" height="4.125"></rect>
+                </g> -->
+            </g>
+        </g>
+    </g>
+</svg>

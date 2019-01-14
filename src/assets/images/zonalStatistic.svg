@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="811px" height="382px" viewBox="0 0 811 382" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51 (57462) - http://www.bohemiancoding.com/sketch -->
+    <title>区域统计-背景@1x</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="0929酒店经理" transform="translate(-531.000000, -646.000000)">
+            <rect x="0" y="0" width="1920" height="1080"></rect>
+            <g id="区域统计-背景" transform="translate(531.000000, 647.000000)" fill-rule="nonzero">
+                <polygon id="Path-18" stroke="#4C7A79" fill-opacity="0.5" fill="#080F0C" points="8 0 224.089165 0 261.402644 42.7221895 803.099329 42.7221895 803.099329 373.042651 8 373.042651"></polygon>
+                <path d="M260.858478,21.5 L271.347708,32.5 L802.83886,32.5 L802.83886,21.5 L260.858478,21.5 Z" id="Rectangle-6" stroke-opacity="0.699190444" stroke="#75B2B0" fill-opacity="0.391927083" fill="#1C6C6C"></path>
+                <g id="Group-7" transform="translate(739.000000, 21.000000)">
+                    <rect id="Rectangle-17" fill-opacity="0.514294611" fill="#94DBE7" x="7" y="5" width="3" height="3"></rect>
+                    <rect id="Rectangle-17-Copy-2" fill-opacity="0.514294611" fill="#94DBE7" x="21" y="5" width="3" height="3"></rect>
+                    <rect id="Rectangle-17-Copy-8" fill-opacity="0.206238678" fill="#94D7E7" x="21" y="1" width="3" height="2"></rect>
+                    <rect id="Rectangle-17-Copy-21" fill-opacity="0.206238678" fill="#94D7E7" x="7" y="0.996470714" width="3" height="2.00352929"></rect>
+                    <rect id="Rectangle-17-Copy-4" fill-opacity="0.514294611" fill="#94DBE7" x="35" y="5" width="3" height="3"></rect>
+                    <rect id="Rectangle-17-Copy-9" fill-opacity="0.206238678" fill="#94D7E7" x="35" y="1" width="3" height="2"></rect>
+                    <rect id="Rectangle-17-Copy-6" fill-opacity="0.514294611" fill="#94DBE7" x="49" y="5" width="3" height="3"></rect>
+                    <rect id="Rectangle-17-Copy-7" fill-opacity="0.514294611" fill="#94DBE7" x="56" y="5" width="3" height="3"></rect>
+                    <rect id="Rectangle-17-Copy-10" fill-opacity="0.206238678" fill="#94D7E7" x="49" y="1" width="3" height="2"></rect>
+                    <rect id="Rectangle-17-Copy" fill-opacity="0.514294611" fill="#94DBE7" x="14" y="5" width="3" height="3"></rect>
+                    <rect id="Rectangle-17-Copy-11" fill-opacity="0.206238678" fill="#94D7E7" x="14" y="1" width="3" height="2"></rect>
+                    <rect id="Rectangle-17-Copy-22" fill-opacity="0.206238678" fill="#94D7E7" x="0" y="1" width="3" height="2"></rect>
+                    <rect id="Rectangle-17-Copy-3" fill-opacity="0.514294611" fill="#94DBE7" x="28" y="5" width="3" height="3"></rect>
+                    <rect id="Rectangle-17-Copy-12" fill-opacity="0.206238678" fill="#94D7E7" x="28" y="1" width="3" height="2"></rect>
+                    <rect id="Rectangle-17-Copy-5" fill-opacity="0.514294611" fill="#94DBE7" x="42" y="5" width="3" height="3"></rect>
+                    <rect id="Rectangle-17-Copy-13" fill-opacity="0.206238678" fill="#94D7E7" x="42" y="1" width="3" height="2"></rect>
+                    <rect id="Rectangle-17-Copy-14" fill-opacity="0.206238678" fill="#94D7E7" x="56" y="1" width="3" height="2"></rect>
+                </g>
+                <path d="M5.5499425,376.420341 L2.33701585,378.684706 L4.60138096,375.47178 C5.62802093,374.015072 5.62802093,372.07023 4.60138096,370.613522 L2.33701585,367.400596 L5.5499425,369.664961 C7.00665057,370.691601 8.95149183,370.691601 10.4081999,369.664961 L13.6211265,367.400596 L11.3567614,370.613522 C10.3301215,372.07023 10.3301215,374.015072 11.3567614,375.47178 L13.6211265,378.684706 L10.4081999,376.420341 C8.95149183,375.393701 7.00665057,375.393701 5.5499425,376.420341 Z" id="Star-Copy-2" fill="#538687" transform="translate(7.979071, 373.042651) rotate(-315.000000) translate(-7.979071, -373.042651) "></path>
+                <path d="M800.549942,376.356761 L797.337016,378.621127 L799.601381,375.4082 C800.628021,373.951492 800.628021,372.006651 799.601381,370.549942 L797.337016,367.337016 L800.549942,369.601381 C802.006651,370.628021 803.951492,370.628021 805.4082,369.601381 L808.621127,367.337016 L806.356761,370.549942 C805.330121,372.006651 805.330121,373.951492 806.356761,375.4082 L808.621127,378.621127 L805.4082,376.356761 C803.951492,375.330121 802.006651,375.330121 800.549942,376.356761 Z" id="Star-Copy" fill="#538687" transform="translate(802.979071, 372.979071) rotate(-315.000000) translate(-802.979071, -372.979071) "></path>
+                <path d="M800.212927,46.3567614 L797,48.6211265 L799.264365,45.4081999 C800.291005,43.9514918 800.291005,42.0066506 799.264365,40.5499425 L797,37.3370158 L800.212927,39.601381 C801.669635,40.6280209 803.614476,40.6280209 805.071184,39.601381 L808.284111,37.3370158 L806.019746,40.5499425 C804.993106,42.0066506 804.993106,43.9514918 806.019746,45.4081999 L808.284111,48.6211265 L805.071184,46.3567614 C803.614476,45.3301215 801.669635,45.3301215 800.212927,46.3567614 Z" id="Star-Copy-3" fill="#538687" transform="translate(802.642055, 42.979071) rotate(-315.000000) translate(-802.642055, -42.979071) "></path>
+            </g>
+        </g>
+    </g>
+</svg>

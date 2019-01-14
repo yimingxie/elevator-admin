@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="788px" height="52px" viewBox="0 0 788 52" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51 (57462) - http://www.bohemiancoding.com/sketch -->
+    <title>账号切换背景@1x</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="89.5863915%" y1="50%" x2="0%" y2="50%" id="linearGradient-1">
+            <stop stop-color="#376A75" stop-opacity="0.388388813" offset="0%"></stop>
+            <stop stop-color="#376A75" stop-opacity="0.997452446" offset="51.8628071%"></stop>
+            <stop stop-color="#376A75" stop-opacity="0.427026721" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="0929工程部主管" transform="translate(-1303.000000, -37.000000)">
+            <rect x="0" y="0" width="1920" height="1079"></rect>
+            <g id="账号切换背景" transform="translate(1305.000000, 38.000000)" fill-rule="nonzero">
+                <path d="M70.70283883,1.17007171 L0.70283883,49.2971612 L620.3361,49.2971612 L620.3361,1.17007171 L70.70283883,1.17007171 Z" id="Rectangle-31-Copy-2" stroke="url(#linearGradient-1)" stroke-width="1.40567766" fill-opacity="0.2" fill="#0F3B45"></path>
+                <g id="Group-7-Copy-8" transform="translate(71.000000, 21.500000) scale(-1, -1) translate(-71.000000, -21.500000) translate(54.000000, 16.000000)">
+                    <rect id="Rectangle-17-Copy-15" fill="#75B2B0" x="0" y="6.875" width="4.25" height="4.125"></rect>
+                    <rect id="Rectangle-17-Copy-17" fill="#75B2B0" x="9.91666667" y="6.875" width="4.25" height="4.125"></rect>
+                    <rect id="Rectangle-17-Copy-19" fill="#75B2B0" x="19.8333333" y="6.875" width="4.25" height="4.125"></rect>
+                    <rect id="Rectangle-17-Copy-16" fill-opacity="0.391927083" fill="#1C6C6C" x="9.91666667" y="0" width="4.25" height="4.125"></rect>
+                    <rect id="Rectangle-17-Copy-18" fill-opacity="0.391927083" fill="#1C6C6C" x="19.8333333" y="0" width="4.25" height="4.125"></rect>
+                    <rect id="Rectangle-17-Copy-20" fill-opacity="0.391927083" fill="#1C6C6C" x="29.75" y="0" width="4.25" height="4.125"></rect>
+                </g>
+                <g id="Group-7-Copy-9" transform="translate(50.000000, 34.500000) scale(-1, -1) translate(-50.000000, -34.500000) translate(33.000000, 29.000000)">
+                    <rect id="Rectangle-17-Copy-15" fill="#75B2B0" x="0" y="6.875" width="4.25" height="4.125"></rect>
+                    <rect id="Rectangle-17-Copy-17" fill="#75B2B0" x="9.91666667" y="6.875" width="4.25" height="4.125"></rect>
+                    <rect id="Rectangle-17-Copy-19" fill="#75B2B0" x="19.8333333" y="6.875" width="4.25" height="4.125"></rect>
+                    <rect id="Rectangle-17-Copy-16" fill-opacity="0.391927083" fill="#1C6C6C" x="9.91666667" y="0" width="4.25" height="4.125"></rect>
+                    <rect id="Rectangle-17-Copy-18" fill-opacity="0.391927083" fill="#1C6C6C" x="19.8333333" y="0" width="4.25" height="4.125"></rect>
+                    <rect id="Rectangle-17-Copy-20" fill-opacity="0.391927083" fill="#1C6C6C" x="29.75" y="0" width="4.25" height="4.125"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

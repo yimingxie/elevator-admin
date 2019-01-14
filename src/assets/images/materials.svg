@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="560px" height="711px" viewBox="0 0 560 711" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51 (57462) - http://www.bohemiancoding.com/sketch -->
+    <title>重要物料-背景@1x</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="100%" y1="1.71607793%" x2="0%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#C6DDF5" stop-opacity="0.134567482" offset="0%"></stop>
+            <stop stop-color="#94E7DE" stop-opacity="0.95" offset="35.1517341%"></stop>
+            <stop stop-color="#94E7E0" stop-opacity="0.95" offset="61.2897399%"></stop>
+            <stop stop-color="#94B8E7" stop-opacity="0.261973505" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="0929酒店经理" transform="translate(-1360.000000, -317.000000)">
+            <rect x="0" y="0" width="1920" height="1080"></rect>
+            <g id="重要物料-背景" transform="translate(1360.000000, 317.000000)">
+                <polygon id="Path-6-Copy-6" fill="#75B2B0" fill-rule="nonzero" transform="translate(542.825099, 86.833571) scale(-1, 1) translate(-542.825099, -86.833571) " points="526 70 559.650198 98.5690835 559.650198 103.667142 526 75.0735526"></polygon>
+                <polygon id="Path-6-Copy-7" fill="#75B2B0" fill-rule="nonzero" transform="translate(542.825099, 552.833571) scale(-1, 1) translate(-542.825099, -552.833571) " points="526 536 559.650198 564.569084 559.650198 569.667142 526 541.073553"></polygon>
+                <polygon id="Path-6-Copy-10" fill="#20505A" fill-rule="nonzero" transform="translate(536.541728, 571.547036) scale(-1, 1) translate(-536.541728, -571.547036) " points="526 561 547.083455 578.899895 547.083455 582.094072 526 564.178823"></polygon>
+                <polyline id="Path-19" stroke="#376A75" fill-rule="nonzero" points="544.988944 98 532 109.352646 532 167.674765"></polyline>
+                <polygon id="Triangle-Copy-10" stroke="#75B2B0" points="28.6190193 0.657393851 7.61346999 11.5882089 7.61346999 0.657393851"></polygon>
+                <polygon id="Triangle-Copy-11" stroke="#75B2B0" points="505 703.930815 526.005549 693 526.005549 703.930815"></polygon>
+                <path d="M8.11346999,21.7144736 L8.11346999,703.10873 L491.329828,703.10873 L525.766471,684.523221 L525.766471,1.15739385 L40.4152715,1.15739385 L8.11346999,21.7144736 Z" id="Rectangle-4" stroke="url(#linearGradient-1)" fill-opacity="0.6" fill="#080F0C" fill-rule="nonzero"></path>
+                <path d="M5.5499425,706.356761 L2.33701585,708.621127 L4.60138096,705.4082 C5.62802093,703.951492 5.62802093,702.006651 4.60138096,700.549942 L2.33701585,697.337016 L5.5499425,699.601381 C7.00665057,700.628021 8.95149183,700.628021 10.4081999,699.601381 L13.6211265,697.337016 L11.3567614,700.549942 C10.3301215,702.006651 10.3301215,703.951492 11.3567614,705.4082 L13.6211265,708.621127 L10.4081999,706.356761 C8.95149183,705.330121 7.00665057,705.330121 5.5499425,706.356761 Z" id="Star-Copy-4" fill="#31414C" fill-rule="nonzero" transform="translate(7.979071, 702.979071) rotate(-315.000000) translate(-7.979071, -702.979071) "></path>
+            </g>
+        </g>
+    </g>
+</svg>

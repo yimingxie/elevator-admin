@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="49px" height="907px" viewBox="0 0 49 907" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51 (57462) - http://www.bohemiancoding.com/sketch -->
+    <title>统计-右侧@1x</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="0929工程部主管" transform="translate(-663.000000, -119.000000)">
+            <rect x="0" y="0" width="1920" height="1079"></rect>
+            <g id="统计-右侧" transform="translate(663.000000, 119.000000)">
+                <g id="Group-12" transform="translate(32.754026, 219.740849)"></g>
+                <path d="M48.2628384,237.152256 L48.2628384,711.295461 L46.1544929,711.295461 L46.1544929,512.057599 L32.7540264,501.710449 L32.7540264,496.636896 L46.1544929,506.961606 L46.1544929,235.474986 L32.7540264,224.814402 L32.7540264,219.740849 L48.3018519,232.085234 L48.3018519,237.183292 L48.2628384,237.152256 Z" id="Combined-Shape" fill="#4C7A79" fill-rule="nonzero"></path>
+                <polygon id="Path-5" fill="#4C7A79" fill-rule="nonzero" points="31.7783567 712.840674 31.7783567 14.2555527 20.7036638 5.57394372 20.7036638 0.309228104 35.8290482 12.2938642 35.8290482 712.840674"></polygon>
+                <polygon id="Triangle-Copy-5" stroke="#75B2B0" points="0.194729136 905.976203 21.2002785 895.045388 21.2002785 905.976203"></polygon>
+                <g id="Group-5-Copy" transform="translate(8.859444, 1.450952)" fill-rule="nonzero">
+                    <path d="M12.7569546,56 L12.7569546,76.3806735" id="Path-31-Copy" stroke="#4C7A79" stroke-width="3"></path>
+                    <path d="M13.2928258,77 L13.2928258,97.3806735" id="Path-31-Copy-2" stroke-opacity="0.568953804" stroke="#4C7A79" stroke-width="3"></path>
+                    <rect id="Rectangle-24" fill="#75B2B0" x="11" y="113" width="3" height="3"></rect>
+                    <path d="M13.1083455,0.702781845 L12.7569546,38.8557746" id="Path-31" stroke="#75B2B0" stroke-width="3"></path>
+                    <path d="M14.7584187,1.40556369 L0.702781845,1.40556369" id="Path-31" stroke="#75B2B0" stroke-width="3"></path>
+                </g>
+                <path d="M21.7437775,902.844802 C21.7437775,902.844802 21.7437775,818.510981 21.7437775,649.843338" id="Path-27" stroke="#75B2B0" fill-rule="nonzero"></path>
+            </g>
+        </g>
+    </g>
+</svg>

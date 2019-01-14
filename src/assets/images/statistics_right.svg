@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="167px" height="497px" viewBox="0 0 167 497" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51 (57462) - http://www.bohemiancoding.com/sketch -->
+    <title>统计-右侧@1x</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="0929酒店经理" transform="translate(-358.000000, -121.000000)">
+            <rect x="0" y="0" width="1920" height="1080"></rect>
+            <g id="统计-右侧" transform="translate(358.000000, 121.036760)" fill-rule="nonzero">
+                <path d="M147.25,28 L147.25,42.5" id="Path-31-Copy" stroke="#4C7A79" stroke-width="3"></path>
+                <path d="M147.208333,43 L147.208333,57.5" id="Path-31-Copy-2" stroke-opacity="0.568953804" stroke="#4C7A79" stroke-width="3"></path>
+                <rect id="Rectangle-24" fill="#75B2B0" x="146" y="68" width="5" height="5"></rect>
+                <path d="M147.5,0.5 L147.25,27.6442646" id="Path-31" stroke="#75B2B0" stroke-width="3"></path>
+                <path d="M148.5,2 L138.5,2" id="Path-31" stroke="#75B2B0" stroke-width="3"></path>
+                <polygon id="Path-5" fill="#4C7A79" points="154.305852 417.112143 154.305852 20.011159 146.426669 13.834556 146.426669 10.0889302 157.18775 18.6154994 157.18775 417.112143"></polygon>
+                <path d="M166.033874,136.38749 L166.033874,417.449083 L164.533874,417.449083 L164.533874,331.971188 L155,324.609621 L155,321 L164.533874,328.345601 L164.533874,135.194183 L155,127.609621 L155,124 L166.06163,132.782516 L166.06163,136.409572 L166.033874,136.38749 Z" id="Combined-Shape" fill="#4C7A79"></path>
+                <path d="M0.25,495 L13.5,495" id="Path-31-Copy-8" stroke="#4C7A79" stroke-width="3"></path>
+                <path d="M13.5,494.46324 L86.5,494.46324" id="Path-31-Copy-9" stroke-opacity="0.568953804" stroke="#4C7A79" stroke-width="3"></path>
+                <path d="M147.166667,496.46324 L147.166667,316.96324" id="Path-27" stroke="#75B2B0"></path>
+            </g>
+        </g>
+    </g>
+</svg>

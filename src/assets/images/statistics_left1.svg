@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="167px" height="912px" viewBox="0 0 167 912" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51 (57462) - http://www.bohemiancoding.com/sketch -->
+    <title>统计-左@1x</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="0%" y1="0%" x2="100%" y2="0%" id="linearGradient-1">
+            <stop stop-color="#8EDDDB" offset="0%"></stop>
+            <stop stop-color="#50E9B4" offset="19.1225614%"></stop>
+            <stop stop-color="#8EB0DE" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="0929平台管理员" transform="translate(-44.000000, -117.000000)">
+            <rect x="0" y="0" width="1920" height="1080"></rect>
+            <g id="统计-左" transform="translate(44.000000, 118.000000)">
+                <g id="Group-24" transform="translate(0.572474, 55.540264)" fill-rule="nonzero">
+                    <path d="M4.75695461,128 L4.75695461,339.537335" id="Path-31-Copy-3" stroke="#75B2B0" stroke-width="3"></path>
+                    <path d="M3.50951684,370.459736 L3.50951684,688.77306" id="Path-31-Copy-4" stroke-opacity="0.568953804" stroke="#4C7A79"></path>
+                    <g id="Group-5" transform="translate(2.000000, 0.000000)">
+                        <path d="M3.35139092,0 L3.35139092,36.0446472" id="Path-31" stroke="#75B2B0" stroke-width="3"></path>
+                        <path d="M2.75695461,36 L2.75695461,56.3806735" id="Path-31-Copy" stroke="#4C7A79" stroke-width="3"></path>
+                        <path d="M3.29282577,57 L3.29282577,77.3806735" id="Path-31-Copy-2" stroke-opacity="0.568953804" stroke="#4C7A79" stroke-width="3"></path>
+                        <rect id="Rectangle-24" fill="#75B2B0" x="0" y="92" width="4" height="4"></rect>
+                    </g>
+                    <g id="Group-4" transform="translate(4.405564, 768.882138) scale(1, -1) translate(-4.405564, -768.882138) translate(0.405564, 720.382138)">
+                        <path d="M4.56808199,0 L4.56808199,36.0446472" id="Path-31-Copy-5" stroke="#75B2B0" stroke-width="3"></path>
+                        <path d="M4.56808199,36.5446559 L4.56808199,56.9253294" id="Path-31-Copy-6" stroke="#4C7A79" stroke-width="3"></path>
+                        <path d="M4.50951684,57.6281113 L4.50951684,78.0087848" id="Path-31-Copy-7" stroke-opacity="0.568953804" stroke="#4C7A79" stroke-width="3"></path>
+                        <rect id="Rectangle-24-Copy" fill="#75B2B0" x="0" y="92.7672035" width="4" height="4"></rect>
+                    </g>
+                    <path d="M3.91947291,843.77262 L11.3766617,850.412884 L17.1555038,850.412884 L3.91947291,838.626843 L3.91947291,843.77262 Z" id="Rectangle-25" stroke="#75B2B0" stroke-width="1.40556369" fill="#94B8E7"></path>
+                    <g id="Group-4" transform="translate(88.355783, 851.332357) scale(-1, -1) rotate(90.000000) translate(-88.355783, -851.332357) translate(84.355783, 801.332357)">
+                        <path d="M4.56808199,0 L4.56808199,36.0446472" id="Path-31-Copy-5" stroke="#75B2B0" stroke-width="3"></path>
+                        <path d="M4.56808199,36.5446559 L4.56808199,56.9253294" id="Path-31-Copy-6" stroke="#4C7A79" stroke-width="3"></path>
+                        <path d="M4.50951684,57.6281113 L4.50951684,78.0087848" id="Path-31-Copy-7" stroke-opacity="0.568953804" stroke="#4C7A79" stroke-width="3"></path>
+                        <rect id="Rectangle-24-Copy" fill="#75B2B0" x="0" y="92.7672035" width="7" height="7"></rect>
+                    </g>
+                </g>
+                <polygon id="Triangle-Copy-4" stroke="#75B2B0" points="26.2002785 0.0453879941 5.19472914 10.976203 5.19472914 0.0453879941"></polygon>
+                <path d="M7.70907471,18.6761491 L7.70907471,38.3239581 L5.19472914,38.3239581 L5.19472914,18.4578647 L5.82012003,18.4578647 L38.6873584,0.0548510939 L38.6873584,1.44859428 L7.94461619,18.6761491 L7.70907471,18.6761491 Z M38.7193369,0.0453879941 L166.950961,0.0453879941 L166.950961,1.49900458 L38.7193369,1.49900458 L38.7193369,0.0453879941 Z" id="Combined-Shape-Copy-4" fill="url(#linearGradient-1)"></path>
+            </g>
+        </g>
+    </g>
+</svg>
