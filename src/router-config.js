@@ -3,7 +3,7 @@ import Router from 'vue-router'
 // import login1 from './views/login1'
 import login from './views/login'
 import mapGI from './views/mapGI'
-import testXym from './views/test-xym'
+import TestMap from './views/xym/TestMap'
 
 
 Vue.use(Router)
@@ -24,9 +24,9 @@ export default new Router({
       component: mapGI
     },
     {
-      path: '/testXym',
-      name: 'testXym',
-      component: testXym
+      path: '/test-map',
+      name: 'TestMap',
+      component: TestMap
     },
   ]
 })

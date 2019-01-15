@@ -27,7 +27,7 @@ export default {
     var marker = new AMap.Marker({
       position: new AMap.LngLat(116.39,39.9),
       offset: new AMap.Pixel(-20, -20),
-      icon: require('../assets/images/160109.png'), // 添加 Icon 图标 URL
+      icon: require('../../assets/images/160109.png'), // 添加 Icon 图标 URL
       title: '北京'
     });
 
