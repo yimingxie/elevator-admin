@@ -1,7 +1,7 @@
 <template>
   <div id="page-container">
     <div id="header">
-      电梯行业监管战情室 
+      电梯行业监管战情室 1
     </div>
     <router-view></router-view>
   </div>
