@@ -1,13 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// import login1 from './views/login1'
 import login from './views/login'
 import mapGI from './views/mapGI'
 import linkInfo from './views/linkInfo'
 import linkMa from './views/linkMa'
-import moreInfo from './views/moreInfo'
-import ddd from './views/ddd'
-
+import TestMap from './views/xym/TestMap'
 
 
 Vue.use(Router)
@@ -38,14 +35,9 @@ export default new Router({
       component: linkMa
     },
     {
-      path: '/c',
-      name: 'moreInfo',
-      component: moreInfo
-    },
-    {
-      path: '/d',
-      name: 'd',
-      component: ddd
+      path: '/test-map',
+      name: 'TestMap',
+      component: TestMap
     },
   ]
 })
