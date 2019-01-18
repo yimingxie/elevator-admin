@@ -1,8 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import login from './views/login'
-import mapGI from './views/mapGI'
-import linkInfo from './views/linkInfo'
 import linkMa from './views/linkMa'
 import TestMap from './views/xym/TestMap'
 import TestMap2 from './views/xym/TestMap2'
@@ -22,16 +20,7 @@ export default new Router({
       path: '/',
       component: login
     },
-    {
-      path: '/mapGI',
-      name: 'mapGI',
-      component: mapGI
-    },
-    {
-      path: '/b',
-      name: 'linkInfo',
-      component: linkInfo
-    },
+
     {
       path: '/a',
       name: 'linkMa',
