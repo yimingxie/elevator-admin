@@ -9,6 +9,8 @@ import i18nobject from 'vue-i18n'
 import VueForm from 'vue-form'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
+import echarts from 'echarts'
+
 
 Vue.use(ElementUI)
 // 多语言配置文件
@@ -42,6 +44,9 @@ Vue.use(vuex)
 // 加载表单验证插件
 // 详见：https://github.com/fergaldoyle/vue-form
 Vue.use(VueForm)
+
+// 全局挂在echarts
+Vue.prototype.$echarts = echarts
 
 Vue.config.productionTip = false
 
