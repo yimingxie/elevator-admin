@@ -40,7 +40,7 @@
     </div>
 
     <!-- Start: 侧栏 -->
-    <div class="nav_wrap" v-if="layout === 'admin'">
+    <div class="nav_wrap" v-if="layout === 'admin'" style="display: none;">
       <!-- <transition name="sidebar1" mode="out-in"> -->
         <section class="sidebar" >
           <!-- <a to="{ path: '/' }" class="logo"></a> -->
@@ -77,8 +77,12 @@
       <!-- </transition> -->
     </div>
     <!-- End: 侧栏 -->
+
+
+
+
     <router-view></router-view>
-    <div class="footer" v-if="layout === 'admin'"></div>
+    <!-- <div class="footer" v-if="layout === 'admin'"></div> -->
   </div>
 </template>
 

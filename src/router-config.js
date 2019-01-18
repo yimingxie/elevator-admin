@@ -4,6 +4,9 @@ import Router from 'vue-router'
 import login from './views/login'
 import mapGI from './views/mapGI'
 import TestMap from './views/xym/TestMap'
+import TestMap2 from './views/xym/TestMap2'
+import ElevatorDetail from './views/xym/ElevatorDetail'
+
 
 
 Vue.use(Router)
@@ -28,5 +31,15 @@ export default new Router({
       name: 'TestMap',
       component: TestMap
     },
+    {
+      path: '/test-map2',
+      name: 'TestMap2',
+      component: TestMap2
+    },
+    {
+      path: '/detail',
+      name: 'ElevatorDetail',
+      component: ElevatorDetail
+    }
   ]
 })

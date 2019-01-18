@@ -117,17 +117,17 @@ export default {
 
       var json = [
         {
-          id: '',
-          title: '建筑1', 
+          id: '111',
+          title: '电梯A', 
           lng: '116.397428', 
           lat: '39.90923', 
+          state: '状态良好',
           address: '北京市', 
-          elevators: [
-            {name: '电梯A', id: '111'}, {name: '电梯B', id: '222'}
-          ]
+          // elevators: [
+          //   {name: '电梯A', id: '111'}, {name: '电梯B', id: '222'}
+          // ]
         },
-
-        {title: '建筑2', lng: '113.46', lat: '22.27', address: '深圳市', elevators: [{name: '电梯C', id: '111'}, {name: '电梯D', id: '222'}]}
+        {id: '222',title: '电梯B', lng: '114.02', lat: '22.53', state: '故障',address: '北京市'}
       ]
 
       var jsonEleA = {
@@ -146,17 +146,19 @@ export default {
 
 
       this.list = json
-      var center = []
-      center.push(this.list[0].lng)
-      center.push(this.list[0].lat)
+      // var center = []
+      // center.push(this.list[0].lng)
+      // center.push(this.list[0].lat)
 
       let map = new AMap.Map('container', {
-        // mapStyle: 'amap://styles/darkblue',
-        // zoom:11,//级别
-        center: center, //中心点坐标
+        mapStyle: 'amap://styles/dark',
+        zoom: 10,//级别
+        // center: center, //中心点坐标
+        center: [114.03, 22.61], //中心点坐标
         // zooms: [4,18],//设置地图级别范围
         // pitch: 30,
-        viewMode: "3D" //使用3D视图
+        viewMode: "3D", //使用3D视图
+        features: ['bg', 'building', 'point']
       });
 
       // 搜索输入提示
@@ -203,34 +205,39 @@ export default {
         var MyComponent = Vue.extend({
           data() {
             return {
-              list: [],
-              value: '',
-              info: {
-                id: '',
-                name: '',
-                state: '',
-                address: ''
-              }
+              id: '',
+              title: '',
+              lng: '',
+              lat: '',
+              state: '',
+              address: ''
             }
           },
           mounted() {
-            this.list = item.elevators
+            // this.list = item.elevators
             // 默认选中第一个，并查询第一个电梯数据
-            this.value = this.list[0].name
-            this.getInfo(this.list[0].id)
+            // this.value = this.list[0].name
+            // this.getInfo(this.list[0].id)
+            //   <el-select v-model="value" placeholder="请选择" @change="selectChange">
+            //   <el-option v-for="item in list" :label="item.name" :value="item.id" :key="item.id"></el-option>
+            // </el-select>
+
+            this.id = item.id
+            this.title = item.title
+            this.lng = item.lng
+            this.lat = item.lat
+            this.state = item.state
+            this.address = item.address
           },
           template:  
           `
           <div class="info-box">
             <a href="javascript:;" v-on:click="closeWindow()">×</a>
-            <el-select v-model="value" placeholder="请选择" @change="selectChange">
-              <el-option v-for="item in list" :label="item.name" :value="item.id" :key="item.id"></el-option>
-            </el-select>
-            <p>id: {{this.info.id}}</p>
-            <p>name: {{this.info.name}}</p>
-            <p>state: {{this.info.state}}</p>
-            <p>address: {{this.info.address}}</p>
-            <span class="info-link" @click="goDetail(info.id)">详细信息</span>
+            <p>id: {{id}}</p>
+            <p>title: {{title}}</p>
+            <p>state: {{state}}</p>
+            <p>address: {{address}}</p>
+            <span class="info-link" @click="goDetail(id)">详细信息</span>
           </div>
           ` ,
           methods:{
@@ -238,24 +245,24 @@ export default {
               infoWindow.close();
             },
             // 改变下拉菜单时触发
-            selectChange(val) {
-              this.getInfo(val)
-            },
+            // selectChange(val) {
+            //   this.getInfo(val)
+            // },
             // 获取电梯详细信息
-            getInfo(id) {
-              console.log(id)
-              if (id == jsonEleA.id) {
-                this.info.id = jsonEleA.id
-                this.info.name = jsonEleA.name
-                this.info.state = jsonEleA.state
-                this.info.address = jsonEleA.address
-              } else {
-                this.info.id = jsonEleB.id
-                this.info.name = jsonEleB.name
-                this.info.state = jsonEleB.state
-                this.info.address = jsonEleB.address
-              }
-            },
+            // getInfo(id) {
+            //   console.log(id)
+            //   if (id == jsonEleA.id) {
+            //     this.info.id = jsonEleA.id
+            //     this.info.name = jsonEleA.name
+            //     this.info.state = jsonEleA.state
+            //     this.info.address = jsonEleA.address
+            //   } else {
+            //     this.info.id = jsonEleB.id
+            //     this.info.name = jsonEleB.name
+            //     this.info.state = jsonEleB.state
+            //     this.info.address = jsonEleB.address
+            //   }
+            // },
             // 详细信息跳转传参
             goDetail(id) {
               that.$router.push({
@@ -292,6 +299,33 @@ export default {
       //     infoWindow.open(map, marker1.getPosition());
       // });
 
+
+    var colors = {};
+    var getColorByAdcode = function (adcode) {
+        if (!colors[adcode]) {
+            var gb = Math.random() * 155 + 50;
+            colors[adcode] = 'rgb(0,' + gb + ',0)';
+        }
+
+        return colors[adcode];
+    };
+
+      var disProvince = new AMap.DistrictLayer.Province({
+          zIndex:12,
+          adcode:['440300'],
+          depth:2,
+          styles:{
+              'fill':function(properties){
+                  var adcode = properties.adcode;
+                  return getColorByAdcode(adcode);
+              },
+              'province-stroke':'cornflowerblue',
+              'city-stroke': 'white',//中国地级市边界
+              'county-stroke': 'rgba(255,255,255,0.5)'//中国区县边界  
+          }
+      })
+
+      disProvince.setMap(map);
 
     },
 
