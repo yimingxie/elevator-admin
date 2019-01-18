@@ -88,10 +88,10 @@
                     myWidth=0
                 }
 
-                if(this.myPosition.isBtn == 1){//判断焦点
+                if(this.myPosition.isBtn === 1){//判断焦点
                     this.myPosition.left = myWidth
                     rightBtn.style.left = myWidth+'%' 
-                }else if(this.myPosition.isBtn == 2){
+                }else if(this.myPosition.isBtn === 2){
                     this.myPosition.right = myWidth
                     leftBtn.style.left = myWidth+'%' 
                 }

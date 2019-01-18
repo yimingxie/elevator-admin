@@ -5,7 +5,7 @@ import mapGI from './views/mapGI'
 import linkInfo from './views/linkInfo'
 import linkMa from './views/linkMa'
 import TestMap from './views/xym/TestMap'
-
+// import HelloWorld from './views/HelloWorld'
 
 Vue.use(Router)
 
@@ -39,5 +39,10 @@ export default new Router({
       name: 'TestMap',
       component: TestMap
     },
+    // {
+    //   path: '/HelloWorld',
+    //   name: 'HelloWorld',
+    //   component: HelloWorld
+    // },
   ]
 })
