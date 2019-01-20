@@ -27,3 +27,6 @@ table { border-collapse:collapse; border-spacing:0; }
 
 /*超出*/
 .cut{overflow : hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;}
+
+
+/* 滚动条 */
