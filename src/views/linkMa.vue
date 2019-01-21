@@ -1,7 +1,56 @@
 <template>
     <div class="main-wrap">
+        <canvas id = "MyCanvas" width="1000" height="400"></canvas>
+        <div style="z-index:1;width:200px;height:300px">
+        <canvas id="canvas" style="z-index:1;width:400px;height:300px"></canvas></div>
+
         <!-- <el-select v-model="selectValue" placeholder="请选择"><el-option v-for="(item, index) in options" :key="index" :label="item.label" :value="item.value"></el-option></el-select> -->
-        <div id="container"></div>
+        <el-row class="">
+            <el-col :span="24" >
+                <div class="title panel">
+                    <span class="label1">地区统计</span>
+                    <span class="label2">| Regional statistics |</span>
+                </div>
+            </el-col>
+        </el-row>
+        
+        <el-row class="">
+            <el-col :span="6">
+                <div class="panel summary">
+                    <div><span class="info-number" id='time1'>0</span><span class="unit">%</span></div>
+                    <div class="info-label">总设备数</div>
+                </div>
+            </el-col>
+            <el-col :span="6" >
+                <div class="panel summary">
+                    <div><span class="info-number" id='time1'>0</span><span class="unit">%</span></div>
+                    <div class="info-label">总设备数</div>
+                </div>
+            </el-col>
+            <el-col :span="6">
+                <div class="panel summary">
+                    <div><span class="info-number" id='time1'>0</span><span class="unit">%</span></div>
+                    <div class="info-label">总设备数</div>
+                </div>
+            </el-col>
+            <el-col :span="6">
+                <div class="panel summary">
+                    <div><span class="info-number" id='time1'>0</span><span class="unit">%</span></div>
+                    <div class="info-label">总设备数</div>
+                </div>
+            </el-col>
+        </el-row>
+        <el-row class="">
+            <el-col :span="24" >
+                <div class="title panel">
+                    <span class="label1">热点分布</span>
+                    <span class="label2">| Regional statistics |</span>
+                </div>
+            </el-col>
+        </el-row>
+        <el-row>
+            <div id="container" class="panel"></div>
+        </el-row>
         <table>
             <tr>
                 <td>
@@ -29,12 +78,131 @@
             }
         },
         mounted() {
+            // this.draw("MyCanvas")
+    //             // 带有绘制过程的动画
+    //    var i = 1;
+    //    var x = 1;
+    //    var y = 200;
+    //    function moveSin(){
+    //        var my_canvas = document.getElementById( "MyCanvas" );
+    //        var content = my_canvas.getContext( "2d" );
+    //        content.beginPath();
+    //        content.moveTo( x, y );
+    //        i += 0.1;
+    //        x = i * 10;
+    //        y = Math.sin( i ) * 20 + 200;
+    //        content.lineTo( x, y );
+    //        content.stroke();
+    //        content.closePath();
+    //        console.log(x);
+    //        if(x>=1000){
+    //            console.log("end");
+    //            window.clearInterval(myTime);
+    //        }
+    //    }
+    //    var myTime =  setInterval( moveSin, 10 );
+
+    //     function draw(){
+    //         var my_canvas = document.getElementById( "MyCanvas" );
+    //         var content = my_canvas.getContext( "2d" );
+    //         content.beginPath();
+    //         content.moveTo( 1, 100 );
+    //         for( var i = 1; i < 100; i += 0.1 ){ // x 应该等于canvas的 width/10
+    //             var x = i * 10;
+    //             var y = Math.sin( i ) * 10 + 100;
+    //             content.lineTo( x, y );
+    //             console.log(x);
+    //         }
+    //         content.stroke();
+    //         content.closePath();
+
+    //     }
+
+            var canvas = document.getElementById('canvas'); 
+  var ctx = canvas.getContext('2d'); 
+  canvas.width = canvas.parentNode.offsetWidth; 
+  canvas.height = canvas.parentNode.offsetHeight;
+  //如果浏览器支持requestAnimFrame则使用requestAnimFrame否则使用setTimeout 
+  window.requestAnimFrame = (function(){
+  return window.requestAnimationFrame  || 
+    window.webkitRequestAnimationFrame || 
+    window.mozRequestAnimationFrame || 
+    function( callback ){ 
+     window.setTimeout(callback, 1000 / 60); 
+    }; 
+  })(); 
+  // 波浪大小
+  var boHeight = canvas.height / 5;
+  var posHeight = canvas.height / 1.2;
+  //初始角度为0 
+  var step = 8; 
+  //定义三条不同波浪的颜色 
+  var lines = ["rgba(0,222,255, 0.2)",
+      "rgba(13,186,127,0.40) 100%)",
+      "rgba(0,168,255, 0.2)"]; 
+  function loop(){ 
+   ctx.clearRect(0,0,canvas.width,canvas.height); 
+   step++; 
+   //画3个不同颜色的矩形 
+   for(var j = lines.length - 1; j >= 0; j--) { 
+    ctx.fillStyle = lines[j]; 
+    //每个矩形的角度都不同，每个之间相差45度 
+    var angle = (step+j*45)*Math.PI/180; 
+    var deltaHeight = Math.sin(angle) * boHeight;
+    var deltaHeightRight = Math.cos(angle) * boHeight; 
+    ctx.beginPath();
+    ctx.moveTo(0, posHeight+deltaHeight);
+    ctx.bezierCurveTo(canvas.width /2, posHeight + deltaHeight-boHeight, canvas.width / 2, posHeight+deltaHeightRight-boHeight, canvas.width, posHeight + deltaHeightRight); 
+    ctx.lineTo(canvas.width, canvas.height); 
+    ctx.lineTo(0, canvas.height); 
+    ctx.lineTo(0, posHeight + deltaHeight); 
+    ctx.closePath(); 
+    ctx.fill(); 
+   }
+   requestAnimFrame(loop);
+  } 
+  loop(); 
             this.initMap()
             // this.initPro()
             document.createElement("ssaa").addEventListener("change", function(){
             });
         },
         methods: {
+        //             draw(id){
+        //    var canvas=document.getElementById(id);
+        //    if(canvas==null)
+        //    {
+        //        return false;
+        //    }
+        //    var context=canvas.getContext("2d");
+        //    context.fillRect(0,0,300,400);
+        //    var dx=150;
+        //    var dy=150;
+        //    var s=100;
+        //    context.beginPath();
+        //    context.fillStyle="rgb(100,255,100)";
+        //    var x=Math.sin(0);
+        //    var y=Math.cos(0);
+        //    var dig=Math.PI/15*11;
+        //    context.moveTo(dx,dy);//设置原点位置,开始点
+        //    for(var i=0;i<30;i++)
+        //    {
+        //        var x=Math.sin(i*dig);
+        //        var y=Math.cos(i*dig);
+               
+        //        //moveTo(dx,dy);//设置原点位置,开始点
+        //        //控制点1:dx+x*s,dy+y*s-100
+        //        //控制点2:dx+x*s+100,dy+y*s
+        //        //结束点:dx+x*s,dy+y*s
+        //        context.bezierCurveTo(dx+x*s,dy+y*s-100,dx+x*s+100,dy+y*s,dx+x*s,dy+y*s);
+        //    }
+        //    context.closePath();
+        //    context.fill();
+        //    context.stroke();
+
+
+
+        // },
             initMap(){
                 var sel = '<el-select v-model="selectValue" placeholder="请选择"><el-option v-for="(item, index) in options" :key="index" :label="item.label" :value="item.value"></el-option></el-select>'
                 console.log('sel===' + sel)
@@ -73,10 +241,11 @@
                 var map = new AMap.Map("container", {
                     resizeEnable: true,
                     center: this.center,
-                    zoom: 12,
+                    zoom: 10,
+                    mapStyle: "amap://styles/1bfbe59619e6c0b9f07090f826d40521"
                     // mapStyle: "amap://styles/grey", //设置地图的显示样式
                 });
-                map.setFeatures(['point','building']);
+                // map.setFeatures(['point','building']);
                 // var disProvince
                 // disProvince && disProvince.setMap(null);
 
@@ -251,13 +420,39 @@
 </script>
 
 <style lang="stylus">
-    html,
-    body,
-    #container
-        margin: 0;
-        padding: 0;
-        width: 100%;
-
+@import './../assets/stylus/panel'
+    // .wrap__uc-waves{
+    //     overflow:hidden;height:1rem;width:100%;
+    //     position:absolute;
+    //     bottom:0;
+    // }
+    // .wrap__uc-waves .wave{
+    //     width:15rem; transform-origin:center bottom; position:absolute;
+    //     left:0;
+    //     bottom:0;
+    // }
+    // .wrap__uc-waves .w1{
+    //     // background:url(../images/icon__uc-hd-waves01.png) no-repeat;
+    //     background-size:cover; height:.5rem; 
+    //     animation:anim_wave 5s linear infinite;
+    // }
+    // .wrap__uc-waves .w2{
+    //     // background:url(../images/icon__uc-hd-waves02.png) no-repeat;
+    //     background-size:cover; 
+    //     height:.7rem; 
+    //     animation:anim_wave 6s linear infinite;
+    // }
+    // @keyframes anim_wave {
+    //     0% {
+    //         transform: translateX(0) translateZ(0) scaleY(1)
+    //     }
+    //     50% {
+    //         transform: translateX(-25%) translateZ(0) scaleY(0.55)
+    //     }
+    //     100% {
+    //         transform: translateX(-50%) translateZ(0) scaleY(1)
+    //     }
+    // }
     #container
         height:500px
     .amap-info-content {
@@ -265,76 +460,80 @@
     .amap-icon img
         width: 34px;
         height: 34px;
-    .content-window-card {
-        position: relative;
-        box-shadow: none;
-        bottom: 0;
-        left: 0;
-        width: auto;
-        padding: 0;
-    }
+    // .content-window-card {
+    //     position: relative;
+    //     box-shadow: none;
+    //     bottom: 0;
+    //     left: 0;
+    //     width: auto;
+    //     padding: 0;
+    // }
 
-    .content-window-card p {
-        height: 2rem;
-    }
+    // .content-window-card p {
+    //     height: 2rem;
+    // }
 
-    .custom-info {
-        border: solid 1px silver;
-    }
+    // .custom-info {
+    //     border: solid 1px silver;
+    // }
 
-    div.info-top {
-        position: relative;
-        background: none repeat scroll 0 0 #F9F9F9;
-        border-bottom: 1px solid #CCC;
-        border-radius: 5px 5px 0 0;
-    }
+    // div.info-top {
+    //     position: relative;
+    //     background: none repeat scroll 0 0 #F9F9F9;
+    //     border-bottom: 1px solid #CCC;
+    //     border-radius: 5px 5px 0 0;
+    // }
 
-    div.info-top div {
-        display: inline-block;
-        color: #333333;
-        font-size: 14px;
-        font-weight: bold;
-        line-height: 31px;
-        padding: 0 10px;
-    }
+    // div.info-top div {
+    //     display: inline-block;
+    //     color: #333333;
+    //     font-size: 14px;
+    //     font-weight: bold;
+    //     line-height: 31px;
+    //     padding: 0 10px;
+    // }
 
-    div.info-top img {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        transition-duration: 0.25s;
-    }
+    // div.info-top img {
+    //     position: absolute;
+    //     top: 10px;
+    //     right: 10px;
+    //     transition-duration: 0.25s;
+    // }
 
-    div.info-top img:hover {
-        box-shadow: 0px 0px 5px #000;
-    }
+    // div.info-top img:hover {
+    //     box-shadow: 0px 0px 5px #000;
+    // }
 
-    div.info-middle {
-        font-size: 12px;
-        padding: 10px 6px;
-        line-height: 20px;
-        color #000000
-    }
+    // div.info-middle {
+    //     font-size: 12px;
+    //     padding: 10px 6px;
+    //     line-height: 20px;
+    //     color #000000
+    // }
 
-    div.info-bottom {
-        height: 0px;
-        width: 100%;
-        clear: both;
-        text-align: center;
-    }
+    // div.info-bottom {
+    //     height: 0px;
+    //     width: 100%;
+    //     clear: both;
+    //     text-align: center;
+    // }
 
-    div.info-bottom img {
-        position: relative;
-        z-index: 104;
-    }
+    // div.info-bottom img {
+    //     position: relative;
+    //     z-index: 104;
+    // }
 
-    span {
-        margin-left: 5px;
-        font-size: 11px;
-    }
+    // span {
+    //     margin-left: 5px;
+    //     font-size: 11px;
+    // }
 
-    .info-middle img {
-        float: left;
-        margin-right: 6px;
-    }
+    // .info-middle img {
+    //     float: left;
+    //     margin-right: 6px;
+    // }
+    // .title
+    //     color #fff
+    //     height 60px
+    //     line-height 60px
   </style>

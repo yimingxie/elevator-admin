@@ -1,8 +1,15 @@
 <template>
   <div id="page-container">
     <div id="header">
-      电梯行业监管战情室 1
+      电梯行业监管战情室
     </div>
+    <span class="right_header">
+      <i class="headPic"></i>
+      <span>Whung</span>
+      <i class="split"></i>
+      <i class="quit"></i>
+    </span>
+    
     <router-view></router-view>
   </div>
 </template>
@@ -17,6 +24,7 @@
     },
     
     mounted () {
+      
     },
 
     methods: {
@@ -34,7 +42,7 @@
 #page-container{
 
   #header{
-    height 80px
+    size 100% 80px
     line-height 80px
     background: #24242F;
     box-shadow: 0 0 10px 0 rgba(0,0,0,0.21);
@@ -42,7 +50,49 @@
     color: #FFFFFF;
     letter-spacing: 0.04px;
     text-align: center;
+    fixed top 0
+    z-index 999
   }
+  .right_header{
+    z-index 999
+    size 220px 80px 
+    font-size 0
+    line-height 80px
+    text-align right
+    line-height 80px
+    white-space nowrap
+    fixed right 30px top 0
+    color #fff
+    .headPic{
+      vertical-align middle
+      size 46px 80px
+      display inline-block
+      background:url("./assets/images/hs/header.png") no-repeat 0 10px
+    }
+    span{
+      font-size: 14px;
+      color: #66667F;
+      margin-left 20px
+    }
+    .split {
+      display: inline-block;
+      width: 2px;
+      height: 30px;
+      background-color: #66667F;
+      margin 0 33px
+      vertical-align -11px
+      // position: absolute;
+      // top: 19px;
+      // left: 447px;
+    }
+    .quit{
+      vertical-align middle
+      size 28px
+      display inline-block
+      background:url("./assets/images/hs/quit.png") no-repeat 
+    }
+  }
+    
 }
 </style>
 

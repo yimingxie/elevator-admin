@@ -6,7 +6,7 @@
             <div>
               <i v-for = "n in totalFloor" :key = n v-bind:style = "{'background' : n === floor ? '#33CFA8':'#5C6C77'}"  class="circle"> </i>
             </div>
-          <img  src="./../assets/images/电梯.png"/>
+          <img src="./../assets/images/hs/电梯.png"/>
         </div>
       </div>
       <div class="right">
@@ -29,7 +29,7 @@
         <el-row >
           <el-col :span="12">
             <div class="panel rect">
-              <img src="./../assets/images/距离传感器.png"/>
+              <!-- <img src="./../assets/images/距离传感器.png"/> -->
               <div><span class="number">{{ distance }}</span><span class="unit">m</span></div>
               <div><span class="label">轿厢与底坑距离</span></div>
             </div>
@@ -37,7 +37,7 @@
           </el-col>
           <el-col :span="12">
             <div class="panel rect">
-              <img src="./../assets/images/楼层.png"/>
+              <!-- <img src="./../assets/images/楼层.png"/> -->
               <div><span class="number">{{ floor }}</span><span class="unit">F</span></div>
               <div><span class="label">电梯位置</span></div>
             </div>
@@ -47,27 +47,27 @@
         <el-row>
           <el-col :span="12">
             <div class="panel rect">
-              <img src="./../assets/images/temp.png"/>
+              <!-- <img src="./../assets/images/temp.png"/> -->
               <div><span class="number">{{ temp }}</span><span class="unit">{{ tempUnit }}</span></div>
               <div><span class="label">电机温度</span></div>
             </div>
           </el-col>
           <el-col :span="12">
             <div class="panel rect">
-              <img src="./../assets/images/su.png"/>
+              <!-- <img src="./../assets/images/su.png"/> -->
               <div><span class="number">{{ speed }}</span><span class="unit">{{ speedUnit }}</span></div>
               <div><span class="label">限速器转速</span></div>
             </div>
           </el-col>
         </el-row>
       </div>
-      <div class="bottomIcon"><img src="./../assets/images/顶部-logo.png"/></div>
+      <!-- <div class="bottomIcon"><img src="./../assets/images/顶部-logo.png"/></div> -->
     </div>
   </div>
 </template>
 
 <script>
-  import $axios from './api'
+  import $axios from './../api'
   // import {createWebSocket, closeWebSocket, dataFromWs, ws, heartCheck} from '../api/socket.js'
   export default {
     name: 'LoginForm',
@@ -240,7 +240,7 @@
 
 <style lang="stylus">
 
-// @import '../assets/stylus/utilities'
+@import '../assets/stylus/base'
 
 body,html
   margin 0
@@ -254,13 +254,13 @@ body,html
     absolute left 0
     width 35%
     height 100%
-    background: #222229 url("./../assets/images/guidao.png") no-repeat center;
+    background: #24242F url("./../assets/images/hs/guidao_left.png") no-repeat center;
     background-size: 27px 100%;
     box-shadow: 0 0 10px 0 rgba(0,0,0,0.21);
     text-align center
     .ele
       width 100%
-      absolute bottom 0%
+      // absolute bottom 0%
       transition 0.5s
       -moz-transition: 0.5s /* Firefox 4 */
       -webkit-transition: 0.5s /* Safari 和 Chrome */
