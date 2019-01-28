@@ -1,7 +1,21 @@
-// 一些公用样式
-// img
-//   z-index: 99;
-//   position: absolute;
+button.btn {
+    border: none;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    white-space: nowrap
+}
+.fontSize12{
+  font-size: 12px!important
+}
+.fontSize14{
+  font-size: 14px!important
+}
+.fontSize18{
+  font-size: 18px!important
+  line-height: 30px!important
+}
 
 /*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
 ::-webkit-scrollbar {
@@ -31,12 +45,18 @@
 }
 .main-wrap
   padding 50px 10px 10px 10px
-  background: #313549
+  // background: #313549
+  // position: relative;
+  margin-top: 80px;
+  letter-spacing: 0.03px;
 .panel
   // padding: 32px 0 0 0
   box-sizing: border-box;
   margin: 0 10px 20px;
-  border-radius: 10px;
+  margin-bottom:  30px
+  background: #24242F;
+  box-shadow: 0 21px 20px -14px rgba(10,23,63,0.15);
+  border-radius: 0 10px 10px 0;
 .title
   line-height: 40px
   height 40px
@@ -45,7 +65,6 @@
     font-size: 20px
     color: #fff
     letter-spacing: 0.04px
-    
   .label2
     float left
     // line-height 20px
@@ -60,25 +79,238 @@
     float: right
     margin-right: 10px
 .summary
-  margin-bottom:  30px
-  background: #383D50
-  padding: 12px 8px 12px 12px
+  padding: 30px 0 0 0 
+  background: #2C2D3B;
+  box-shadow: 0 21px 20px -14px rgba(10,23,63,0.15);
+  border-radius: 10px 0 0 10px;
+  width:206px !important
   .info-number
     font-family: myFirstFont;
-    line-height 50px
-    font-size: 42px;
+    line-height 39px
+    font-size: 24px;
     color: #FFFFFF;
     letter-spacing: 0.08px;
   .info-label
+    font-family: PingFangSC-Regular;
     font-size: 14px;
-    color: #ccc;
+    color: #66667F;
+    line-height 21px
     letter-spacing: 0.03px;
+    img 
+      margin-right:  6.8px
   .unit
-    margin-left 10px
+    margin-left 8px
     color: #ccc;
   .summaryItem
+    margin-right: 23px;
     // text-align: center
-    padding 0 0 0 46px
+    padding 15px 22px 14px 22px
+  .tab
+    .tabTitle
+      margin-bottom: 10px
+      .info-number
+        font-family: myFirstFont;
+        font-size: 20px;
+        color: #FFFFFF;
+        letter-spacing: 0.08px;
+        line-height: 28px
+    .info-label
+      font-size: 12px;
+      color: rgba(255,255,255,0.60);
+      letter-spacing: 0.02px;
+//图表面板
+.charts
+  padding  33px 22px 19px 22px
+  .chart_Total_title
+    margin-bottom: 15px
+    .chart_title
+      font-size: 18px
+      margin-right 18px
+      .unit
+        font-size: 12px;
+        color: #66667F;
+        letter-spacing: 0.02px;
+        margin-left: 7px
+
+  .chart_title_right
+    float right 
+    .rank
+      // size 68px 28px 
+      padding: 5px 18px
+      color: #fff
+      background: #0DBA7F;
+      border-radius: 16.5px;
+// 下拉菜单 end
+//  select--start
+.el-select-dropdown
+  background: rgba(8,15,12,1)!important
+  border: 1px solid #416663!important
+  border-radius: 0!important
+  &:after
+    content: ''
+    size: 20px
+    absolute bottom 6px left 6px
+    display inline-block
+    // background: url("./assets/images/下拉菜单小方块@1x.svg") no-repeat 0 0px
+.el-select-dropdown__list
+  max-height: 175px!important
+.el-scrollbar__thumb
+  background-color #6AE7C7!important
+.el-scrollbar__thumb:hover
+  background-color #6AE7C7!important
+.el-select-dropdown__item
+  font-size: 20px!important
+  color: #376A75!important
+  padding: 0 0 0 40px!important
+.el-select-dropdown__item.hover, .el-select-dropdown__item:hover
+  background: none!important
+  color: blue!important
+.el-select-dropdown__item.selected
+  color: blue!important
+.el-input__inner
+  border: 1px solid rgba(56,61,80,0.60)!important;
+  border-radius: 16.5px!important;
+  background: rgba(0,0,0,0)
+  // font-size: 20px!important
+  color: #fff!important
+  letter-spacing: 1px;
+  border-radius: 20px!important;
+  width: 120px;
+  height:28px;
+  line-height: 28px
+  // padding: 0 0 0 40px!important;
+.el-scrollbar__bar
+  right 10px!important
+.el-select .el-input .el-select__caret
+  color: #fff!important
+.el-date-editor.el-input, .el-date-editor.el-input__inner
+  width: 120px;
+// .el-icon-arrow-up:before {
+//   content: "\E60C"!important;
+// }
+.el-icon--right
+  color #BBFFBC!important
+.el-input__icon
+  line-height: 28px;
+// .el-icon-date:before {
+//     content: "\E60C"!important;
+// }
+// .el-icon-arrow-down:before {
+//   content: "\E60B"!important;
+// }
+// [class*=" el-icon-"], [class^=el-icon-]
+//   line-height: inherit!important;
+// select--end
+// 进度条
+.progress
+  height: 6px;
+  line-height: 6px;
+  background: #1B302D;
+  box-shadow: none;
+  margin:0;
+  overflow: visible;
+  border-radius: 5px;
+  width:260px;
+  position: relative;
+  transition: transform 0.2s
+  cursor pointer
+  margin: 33px 0 42px 113px
+  &:hover
+    span:nth-child(1)
+      color: blue!important
+    span,span.orange
+      text-shadow:0px 0px 3px #888;
+  .progress-bar
+    border-radius: 5px;
+    animation: animate-positive 3s;
+    background-image: linear-gradient(90deg, #1DAB83, #4AF9D1);
+    float: left;
+    width: 0;
+    height: 100%;
+    font-size: 12px;
+    line-height: 20px;
+    color: #fff;
+    text-align: center;
+    transition: transform 0.2s
+    &:hover
+      box-shadow: 0 0 15px #888888;
+      transform: scale(1, 1.3)
+  .progress-bar.orange
+    background: orange
+   
+  span
+    position: absolute;
+    top: -19px
+    display: block;
+    font-size: 14px;
+  span.orange
+    color orange!important
+  span:nth-child(1)
+    top: 0
+    left: -55px;
+    color: #356670;
+    letter-spacing: 0.03px;
+  span:nth-child(2)
+    color: #AFC3DD;
+    right: 0;
+    font-size: 14px;
+    i 
+      font-family: myFirstFont;
+      font-size: 28px;
+      color: #4AF9D1;
+      margin-right: 5px;
+@-webkit-keyframes animate-positive {
+  0% {
+    width: 0%;
+  }
+}
+@keyframes animate-positive {
+  0% {
+    width:0%;
+  }
+}
+@keyframes fade {
+    from { box-shadow: 0 0 11px 0 rgba(251,87,48,0) }
+    50% { box-shadow: 0 0 11px 0 rgba(251,87,48,0.84), 0 0 11px 0 rgba(251,87,48,0.84) }
+    to {box-shadow: 0 0 11px 0 rgba(251,87,48,0) }
+}
+ 
+@-webkit-keyframes fade {
+    from { box-shadow: 0 0 11px 0 rgba(251,87,48,0) }
+    50% { box-shadow: 0 0 11px 0 rgba(251,87,48,0.84), 0 0 11px 0 rgba(251,87,48,0.84)}
+    to { box-shadow: 0 0 11px 0 rgba(251,87,48,0.2) }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //   .title2
 //     font-size: 16px;
 //     color: #376A75;
