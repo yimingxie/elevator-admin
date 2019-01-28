@@ -661,6 +661,7 @@ export default {
 .eled-box-p p {
   font-size: 14px;
   color: #66667f;
+  margin-top: 6px;
 }
 .elevator-warn{
   float: left;
