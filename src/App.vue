@@ -40,7 +40,8 @@
 // 配置
 @import 'assets/stylus/base'
 #page-container{
-
+  width: 100%;
+  height: 100%;
   #header{
     size 100% 80px
     line-height 80px

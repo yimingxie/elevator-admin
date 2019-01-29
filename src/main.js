@@ -11,12 +11,6 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import echarts from 'echarts'
 
-
-import VueResource from 'vue-resource'
-
-/*使用VueResource插件*/
-Vue.use(VueResource)
-
 Vue.use(ElementUI)
 // 多语言配置文件
 import locales from './consts/locales/index'

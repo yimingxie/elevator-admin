@@ -84,6 +84,8 @@ let protocol = process.env.NODE_ENV !== 'production' ? 'http:' : window.location
 // 环境的切换
 if (process.env.NODE_ENV == 'development') { 
   axios.defaults.baseURL = `${protocol}//iot.gidomino.com`
+  // axios.defaults.baseURL = `${protocol}//192.168.100.11:8080`
+  // axios.defaults.baseURL = `${protocol}//127.0.0.1/`
  } else if (process.env.NODE_ENV == 'debug') { 
   axios.defaults.baseURL = '';
  } else if (process.env.NODE_ENV == 'production') { 
@@ -92,7 +94,9 @@ if (process.env.NODE_ENV == 'development') {
 
 //设置默认请求头
 axios.defaults.headers = {
-  'Content-Type': 'application/json',
+  'Content-Type':'application/json',
+  // 'X-Requested-With': 'XMLHttpRequest',
+  // 'Access-Token': window.localStorage.getItem('accessToken')
 }
 // post请求头
 // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';

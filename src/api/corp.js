@@ -9,9 +9,9 @@ export default  {
      * @param  {Object} 告警规则参数
      * @return {Promise}
      */
-  apiAddress (params) {
-    return http.post(
-      `/alert/rule`, params
+  elevator (offst,limit) {
+    return http.get(
+      `http://127.0.0.1/elevator/building?offset=${offst}&limit=${limit}`
     )
   },
 }
