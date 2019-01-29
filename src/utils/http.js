@@ -77,22 +77,22 @@ const CancelToken = axios.CancelToken;
 //       return Promise.resolve(err.response)
 // })
 
+
 let protocol = process.env.NODE_ENV !== 'production' ? 'http:' : window.location.protocol
 // axios.defaults.baseURL = '/api'
 
 // 环境的切换
 if (process.env.NODE_ENV == 'development') { 
-  axios.defaults.baseURL = `${protocol}//iot.gidomino.com/gi-api`
+  axios.defaults.baseURL = `${protocol}//iot.gidomino.com`
  } else if (process.env.NODE_ENV == 'debug') { 
   axios.defaults.baseURL = '';
  } else if (process.env.NODE_ENV == 'production') { 
-  axios.defaults.baseURL = `${protocol}//iot.gidomino.com/gi-api`
+  axios.defaults.baseURL = `${protocol}//iot.gidomino.com`
  }
 
 //设置默认请求头
 axios.defaults.headers = {
-  'X-Requested-With': 'XMLHttpRequest',
-  'Access-Token': window.localStorage.getItem('accessToken')
+  'Content-Type': 'application/json',
 }
 // post请求头
 // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';

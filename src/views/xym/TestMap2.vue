@@ -6,178 +6,363 @@
       <div class="chart" id="chart3" ref="chart3"></div>
     </div>
     <div class="tip-container">
-      <input id='tipinput' type="text">
+      <input id="tipinput" type="text">
     </div>
     <div id="container"></div>
+
+    <!-- 正式模拟 -->
+    <div id="chart4" ref="chart4"></div>
+    <div id="chart5" ref="chart5"></div>
+
+    <div id="chart6" ref="chart6"></div>
+    <div id="chart7" ref="chart7"></div>
+
+    <!-- 日历 -->
+    <div class="calendar-container">
+      <div class="calendar-header">
+        <div class="left btn">&lt;</div>
+        <div class="year"></div>
+        <div class="right btn">&gt;</div>
+      </div>
+      <div class="calendar-body">
+        <div class="week-row">
+          <div class="week box">日</div>
+          <div class="week box">一</div>
+          <div class="week box">二</div>
+          <div class="week box">三</div>
+          <div class="week box">四</div>
+          <div class="week box">五</div>
+          <div class="week box">六</div>
+        </div>
+
+        <div class="day-rows">
+          <!--日期的渲染的地方-->
+        </div>
+      </div>
+    </div>
+
+    <div id="chart8" ref="chart8"></div>
+
   </div>
 </template>
 
 <script>
-import Vue from 'vue'
-import AMap from "AMap"
-import Loca from "Loca"
-export default {
+import Vue from "vue";
+import AMap from "AMap";
+import Loca from "Loca";
 
+export default {
   data() {
     return {
-      list: ''
-
-    }
+      list: "",
+      testData: "123",
+      testList: [1, 2, 3, 4, 5],
+      pieData: ""
+    };
   },
   mounted() {
-  
-    this.drawChart1()
-    this.drawChart2()
-    this.drawChart3()
+    this.drawChart1();
+    this.drawChart2();
+    this.drawChart3();
+    this.drawChart4();
+    this.drawChart5();
+    // this.drawChart6();
+    // this.drawChart7();
+    this.getCalendar()
+    this.drawChart8();
 
     // 图表自适应
-    let chart1 = this.$echarts.getInstanceByDom(document.getElementById('chart1'))
-    let chart2 = this.$echarts.getInstanceByDom(document.getElementById('chart2'))
-    let chart3 = this.$echarts.getInstanceByDom(document.getElementById('chart3'))
-    window.addEventListener('resize', function () {
-      chart1.resize()
-      chart2.resize()
-      chart3.resize()
-    })
+    let chart1 = this.$echarts.getInstanceByDom(
+      document.getElementById("chart1")
+    );
+    let chart2 = this.$echarts.getInstanceByDom(
+      document.getElementById("chart2")
+    );
+    let chart3 = this.$echarts.getInstanceByDom(
+      document.getElementById("chart3")
+    );
+    window.addEventListener("resize", function() {
+      chart1.resize();
+      chart2.resize();
+      chart3.resize();
+    });
 
-    this.getMapData()
+    this.getMapData();
   },
   methods: {
     drawChart1() {
-      let lineChart1 = this.$echarts.init(document.getElementById('chart1'))
+      let lineChart1 = this.$echarts.init(document.getElementById("chart1"));
       let options = {
+        backgroundColor: "black",
         title: {
-          text: '电梯总数'
+          text: "维保"
         },
-        tooltip: {},
+        tooltip: {
+          trigger: "axis",
+          axisPointer: {
+            type: "shadow"
+          }
+        },
         legend: {
-          data: ['Tok']
+          itemHeight: 6,
+          top: "bottom",
+          textStyle: {
+            color: "red"
+          }
         },
         xAxis: {
-          data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun']
+          // data: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"]
+          data: ["1日", "2日", "3日", "4日", "5日", "6日", "7日"],
+          axisLabel: {
+            color: "#fff"
+          }
         },
-        yAxis: {},
-        series: [{
-          name: 'Tok',
-          type: 'line',
-          smooth: true,
-          data: ['66', '77', '66', '77', '66', '77']
-        }]
+        yAxis: {
+          splitLine: {
+            lineStyle: {
+              type: "dashed"
+            }
+          },
+          axisLabel: {
+            color: "#fff"
+          }
+        },
+        series: [
+          {
+            name: "已维保",
+            type: "bar",
+            stack: "repair",
+            itemStyle: {
+              color: "green"
+            },
+            data: ["66", "77", "66", "77", "66", "77"]
+          },
+          {
+            name: "已维保",
+            type: "line",
+            smooth: true,
+            itemStyle: {
+              color: "green"
+            },
+            data: ["66", "77", "66", "77", "66", "77"]
+          },
+          {
+            name: "待维保",
+            type: "bar",
+            stack: "repair",
+            itemStyle: {
+              color: "blue"
+            },
+            data: ["34", "99", "100", "77", "66", "77"]
+          }
+        ]
       };
-      lineChart1.setOption(options)
+      lineChart1.setOption(options);
     },
     drawChart2() {
-      let lineChart2 = this.$echarts.init(document.getElementById('chart2'))
+      let lineChart2 = this.$echarts.init(document.getElementById("chart2"));
       let options = {
         title: {
-          text: '故障总数'
+          text: "故障总数"
         },
         tooltip: {},
         legend: {
-          data: ['Tok']
+          itemWidth: 10,
+          itemHeight: 10, // 改图例图标高度
+          textStyle: {
+            height: 9,
+            rich: {}
+          },
+          // 改变图例图标
+          data: [
+            { name: "A类", icon: "roundRect" },
+            { name: "B类", icon: "circle" }
+          ]
+        },
+        tooltip: {
+          trigger: "axis",
+          axisPointer: {
+            type: "cross",
+            label: {
+              backgroundColor: "#6a7985"
+            }
+          }
         },
         xAxis: {
-          data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun']
+          boundaryGap: false,
+          data: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"]
         },
         yAxis: {},
-        series: [{
-          name: 'Tok',
-          type: 'line',
-          smooth: true,
-          data: ['66', '77', '66', '77', '66', '77']
-        }]
+        series: [
+          {
+            name: "A类",
+            type: "line",
+            stack: "总量1",
+            itemStyle: {
+              color: "#6B50D0",
+              border: "#6B50D0"
+            },
+            areaStyle: {
+              color: "#6B50D0",
+              opacity: 1
+            },
+            data: ["66", "77", "66", "77", "66", "77"]
+          },
+          {
+            name: "B类",
+            type: "line",
+            stack: "总量1",
+            areaStyle: {},
+            data: ["11", "22", "33", "55", "11", "33"]
+          }
+        ]
       };
-      lineChart2.setOption(options)
+      lineChart2.setOption(options);
     },
     drawChart3() {
-      let lineChart3 = this.$echarts.init(document.getElementById('chart3'))
+      let lineChart3 = this.$echarts.init(document.getElementById("chart3"));
       let options = {
         title: {
-          text: '事故总数'
+          text: "维保人员维保电梯数"
         },
-        tooltip: {},
+        tooltip: {
+          trigger: "item",
+          formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
         legend: {
-          data: ['Tok']
+          orient: "vertical",
+          top: 0,
+          right: 0,
+          data: [
+            { name: "15以下", icon: "circle" },
+            { name: "15-20", icon: "circle" },
+            { name: "20-25", icon: "circle" },
+            { name: "25-30", icon: "circle" },
+            { name: "30以上", icon: "circle" }
+          ]
         },
+        radius: [20, 110],
+        roseType: "radius",
         xAxis: {
-          data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun']
+          show: false
         },
-        yAxis: {},
-        series: [{
-          name: 'Tok',
-          type: 'line',
-          smooth: true,
-          data: ['66', '77', '66', '77', '66', '77']
-        }]
+        yAxis: {
+          show: false
+        },
+        series: [
+          {
+            name: "面积模式",
+            type: "pie",
+            radius: [20, 100],
+            center: ["50%", "50%"],
+            roseType: "area",
+            data: [
+              {
+                value: 9,
+                name: "15以下",
+                itemStyle: {
+                  color: {
+                    type: "linear",
+                    x: 0,
+                    y: 0,
+                    x2: 0,
+                    y2: 1,
+                    colorStops: [
+                      {
+                        offset: 0,
+                        color: "red" // 0% 处的颜色
+                      },
+                      {
+                        offset: 1,
+                        color: "#7A2B55" // 100% 处的颜色
+                      }
+                    ],
+                    globalCoord: false // 缺省为 false
+                  }
+                }
+              },
+              { value: 13, name: "15-20" },
+              { value: 17, name: "20-25" },
+              { value: 21, name: "25-30" },
+              { value: 40, name: "30以上" }
+            ]
+          }
+        ]
       };
-      lineChart3.setOption(options)
+      lineChart3.setOption(options);
     },
     getMapData() {
-      var that = this
+      var that = this;
 
       var json = [
         {
-          id: '111',
-          title: '电梯A', 
-          lng: '116.397428', 
-          lat: '39.90923', 
-          state: '状态良好',
-          address: '北京市', 
+          id: "111",
+          title: "电梯A",
+          lng: "116.397428",
+          lat: "39.90923",
+          state: "状态良好",
+          address: "北京市"
           // elevators: [
           //   {name: '电梯A', id: '111'}, {name: '电梯B', id: '222'}
           // ]
         },
-        {id: '222',title: '电梯B', lng: '114.02', lat: '22.53', state: '故障',address: '北京市'}
-      ]
+        {
+          id: "222",
+          title: "电梯B",
+          lng: "114.02",
+          lat: "22.53",
+          state: "故障",
+          address: "北京市"
+        }
+      ];
 
       var jsonEleA = {
-        id: '111',
-        name: '电梯A',
-        state: '状态良好',
-        address: '北京市故宫'
-      }
+        id: "111",
+        name: "电梯A",
+        state: "状态良好",
+        address: "北京市故宫"
+      };
 
       var jsonEleB = {
-        id: '222',
-        name: '电梯B',
-        state: '故障',
-        address: '广州'
-      }
+        id: "222",
+        name: "电梯B",
+        state: "故障",
+        address: "广州"
+      };
 
-
-      this.list = json
+      this.list = json;
       // var center = []
       // center.push(this.list[0].lng)
       // center.push(this.list[0].lat)
 
-      let map = new AMap.Map('container', {
-        mapStyle: 'amap://styles/dark',
-        zoom: 10,//级别
+      let map = new AMap.Map("container", {
+        mapStyle: "amap://styles/dark",
+        zoom: 10, //级别
         // center: center, //中心点坐标
         center: [114.03, 22.61], //中心点坐标
         // zooms: [4,18],//设置地图级别范围
         // pitch: 30,
         viewMode: "3D", //使用3D视图
-        features: ['bg', 'building', 'point']
+        features: ["bg", "building", "point"]
       });
 
       // 搜索输入提示
-      AMap.plugin(['AMap.Autocomplete','AMap.PlaceSearch'],function(){
+      AMap.plugin(["AMap.Autocomplete", "AMap.PlaceSearch"], function() {
         var autoOptions = {
-          // 城市，默认全国 
+          // 城市，默认全国
           city: "全国",
           // 使用联想输入的input的id
           input: "tipinput"
-        }
-        var autocomplete= new AMap.Autocomplete(autoOptions)
+        };
+        var autocomplete = new AMap.Autocomplete(autoOptions);
 
         var placeSearch = new AMap.PlaceSearch({
-          city:'全国',
-          map:map
-        })
-        AMap.event.addListener(autocomplete, 'select', function(e){
+          city: "全国",
+          map: map
+        });
+        AMap.event.addListener(autocomplete, "select", function(e) {
           //针对选中的poi实现自己的功能
-          placeSearch.search(e.poi.name)
+          placeSearch.search(e.poi.name);
 
           // 移动中心点不显示蓝点
           // console.log(e.poi)
@@ -185,33 +370,32 @@ export default {
           // position.push(e.poi.location.lng)
           // position.push(e.poi.location.lat)
           // map.setCenter(position)
-        })
-      })
-
+        });
+      });
 
       // marker容器
-      var markerList = []
+      var markerList = [];
 
       // 遍历数据并创建多个marker
       json.forEach((item, i) => {
         var marker = new AMap.Marker({
-          position: new AMap.LngLat(`${item.lng}`,`${item.lat}`),
+          position: new AMap.LngLat(`${item.lng}`, `${item.lat}`),
           offset: new AMap.Pixel(-20, -20),
-          icon: require('../../assets/images/160109.png'), // 添加 Icon 图标 URL
+          icon: require("../../assets/images/160109.png"), // 添加 Icon 图标 URL
           title: `${item.title}`
-        })
+        });
 
         //创建信息窗口
         var MyComponent = Vue.extend({
           data() {
             return {
-              id: '',
-              title: '',
-              lng: '',
-              lat: '',
-              state: '',
-              address: ''
-            }
+              id: "",
+              title: "",
+              lng: "",
+              lat: "",
+              state: "",
+              address: ""
+            };
           },
           mounted() {
             // this.list = item.elevators
@@ -222,15 +406,14 @@ export default {
             //   <el-option v-for="item in list" :label="item.name" :value="item.id" :key="item.id"></el-option>
             // </el-select>
 
-            this.id = item.id
-            this.title = item.title
-            this.lng = item.lng
-            this.lat = item.lat
-            this.state = item.state
-            this.address = item.address
+            this.id = item.id;
+            this.title = item.title;
+            this.lng = item.lng;
+            this.lat = item.lat;
+            this.state = item.state;
+            this.address = item.address;
           },
-          template:  
-          `
+          template: `
           <div class="info-box">
             <a href="javascript:;" v-on:click="closeWindow()">×</a>
             <p>id: {{id}}</p>
@@ -239,8 +422,8 @@ export default {
             <p>address: {{address}}</p>
             <span class="info-link" @click="goDetail(id)">详细信息</span>
           </div>
-          ` ,
-          methods:{
+          `,
+          methods: {
             closeWindow() {
               infoWindow.close();
             },
@@ -266,130 +449,762 @@ export default {
             // 详细信息跳转传参
             goDetail(id) {
               that.$router.push({
-                path: '/detail',
+                path: "/detail",
                 query: {
                   id: id
                 }
-              })
+              });
             }
           }
         });
 
-        var component= new MyComponent().$mount();
-       
- 
-        // 创建 infoWindow 实例 
+        var component = new MyComponent().$mount();
+
+        // 创建 infoWindow 实例
         var infoWindow = new AMap.InfoWindow({
-          isCustom: true,  //使用自定义窗体
+          isCustom: true, //使用自定义窗体
           // content: createInfoWindow(content.join("<br/>")),
           content: component.$el,
           offset: new AMap.Pixel(16, -45)
         });
-        AMap.event.addListener(marker, 'click', function () {
+        AMap.event.addListener(marker, "click", function() {
           infoWindow.open(map, marker.getPosition());
         });
-        markerList.push(marker)
-      })
- 
-      console.log(markerList)
-      map.add(markerList)
+        markerList.push(marker);
+      });
+
+      console.log(markerList);
+      map.add(markerList);
 
       //鼠标点击marker弹出自定义的信息窗体
       // AMap.event.addListener(marker1, 'click', function () {
       //     infoWindow.open(map, marker1.getPosition());
       // });
 
-
-    var colors = {};
-    var getColorByAdcode = function (adcode) {
+      var colors = {};
+      var getColorByAdcode = function(adcode) {
         if (!colors[adcode]) {
-            var gb = Math.random() * 155 + 50;
-            colors[adcode] = 'rgb(0,' + gb + ',0)';
+          var gb = Math.random() * 155 + 50;
+          colors[adcode] = "rgb(0," + gb + ",0)";
         }
 
         return colors[adcode];
-    };
+      };
 
       var disProvince = new AMap.DistrictLayer.Province({
-          zIndex:12,
-          adcode:['440300'],
-          depth:2,
-          styles:{
-              'fill':function(properties){
-                  var adcode = properties.adcode;
-                  return getColorByAdcode(adcode);
-              },
-              'province-stroke':'cornflowerblue',
-              'city-stroke': 'white',//中国地级市边界
-              'county-stroke': 'rgba(255,255,255,0.5)'//中国区县边界  
-          }
-      })
+        zIndex: 12,
+        adcode: ["440300"],
+        depth: 2,
+        styles: {
+          fill: function(properties) {
+            var adcode = properties.adcode;
+            return getColorByAdcode(adcode);
+          },
+          "province-stroke": "cornflowerblue",
+          "city-stroke": "white", //中国地级市边界
+          "county-stroke": "rgba(255,255,255,0.5)" //中国区县边界
+        }
+      });
 
       disProvince.setMap(map);
 
+      map.on("click", function(e) {
+        // document.getElementById("lnglat").value = e.lnglat.getLng() + ',' + e.lnglat.getLat()
+        // console.log(e.lnglat.getLng())
+      });
     },
 
+    // 正式模拟
+    drawChart4() {
+      let chart4 = this.$echarts.init(document.getElementById("chart4"));
+      let options = {
+        backgroundColor: "#24242F",
+        title: {
+          text: "维保及时率",
+          textStyle: {
+            color: "#fff"
+          }
+        },
+        tooltip: {
+          trigger: "axis",
+          axisPointer: {
+            type: "shadow"
+          }
+        },
+        legend: {
+          itemHeight: 10,
+          top: "bottom",
+          textStyle: {
+            color: "#5B5B72",
+            height: 9,
+            rich: {}
+          },
+          // 更改图例图标
+          data: [
+            { name: "已维保", icon: "circle" },
+            { name: "待维保", icon: "circle" }
+          ]
+        },
 
+        xAxis: {
+          data: ["1日", "2日", "3日", "4日", "5日", "6日", "7日"],
+          // boundaryGap: false, // 刻度在中间
+          boundaryGap: ["30%", "30%"],
+          axisLabel: {
+            color: "#5B5B72"
+          },
+          axisTick: {
+            show: false
+          },
+          axisLine: {
+            lineStyle: {
+              color: "#36363F"
+            }
+          }
+        },
+        yAxis: {
+          axisLine: {
+            show: false
+          },
+          splitLine: {
+            lineStyle: {
+              type: "dashed",
+              color: "#3F3F48"
+            }
+          },
+          axisLabel: {
+            color: "#5B5B72"
+          }
+        },
+        series: [
+          {
+            name: "已维保",
+            type: "bar",
+            stack: "repair",
+            itemStyle: {
+              color: "#0DBA7F"
+            },
+            data: ["66", "77", "66", "77", "66", "77"]
+          },
+          {
+            name: "待维保",
+            type: "bar",
+            stack: "repair",
+            itemStyle: {
+              color: "#F1C101"
+            },
+            data: ["34", "99", "100", "77", "66", "77"]
+          }
+        ]
+      };
+      chart4.setOption(options);
+    },
+
+    drawChart5() {
+      var that = this;
+      let chart5 = this.$echarts.init(document.getElementById("chart5"));
+
+      // 模拟数据
+      this.pieData = [
+        {
+          value: 9,
+          name: "15以下",
+          itemStyle: {
+            color: {
+              type: "linear",
+              x: 0,
+              y: 0,
+              x2: 0,
+              y2: 1,
+              colorStops: [
+                {
+                  offset: 0,
+                  color: "#F75F5F" // 0% 处的颜色
+                },
+                {
+                  offset: 1,
+                  color: "#7A2B55" // 100% 处的颜色
+                }
+              ],
+              globalCoord: false // 缺省为 false
+            }
+          }
+        },
+        {
+          value: 13,
+          name: "15-20",
+          itemStyle: {
+            color: {
+              type: "linear",
+              x: 0,
+              y: 0,
+              x2: 0,
+              y2: 1,
+              colorStops: [
+                {
+                  offset: 0,
+                  color: "#FCBF01" // 0% 处的颜色
+                },
+                {
+                  offset: 1,
+                  color: "#735430" // 100% 处的颜色
+                }
+              ],
+              globalCoord: false // 缺省为 false
+            }
+          }
+        },
+        {
+          value: 17,
+          name: "20-25",
+          itemStyle: {
+            color: {
+              type: "linear",
+              x: 0,
+              y: 0,
+              x2: 0,
+              y2: 1,
+              colorStops: [
+                {
+                  offset: 0,
+                  color: "#FCBF01" // 0% 处的颜色
+                },
+                {
+                  offset: 1,
+                  color: "#735430" // 100% 处的颜色
+                }
+              ],
+              globalCoord: false // 缺省为 false
+            }
+          }
+        },
+        { value: 21, name: "25-30" },
+        { value: 40, name: "30以上" }
+      ];
+
+      // 动态生成图例legend
+      let legendData = [];
+      this.pieData.forEach((item, i) => {
+        var obj = { name: item.name, icon: "circle" };
+        legendData.push(obj);
+      });
+
+      let options = {
+        title: {
+          text: "维保人员维保电梯数"
+        },
+        tooltip: {
+          trigger: "item",
+          formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+          orient: "vertical",
+          top: "middle",
+          // 格式化图例（动态）
+          formatter: function(name) {
+            for (var i = 0; i < that.pieData.length; i++) {
+              if (name == that.pieData[i].name) {
+                return name + ": " + that.pieData[i].value;
+              }
+            }
+          },
+          right: 0,
+          data: legendData
+        },
+        roseType: "radius",
+        xAxis: {
+          show: false
+        },
+        yAxis: {
+          show: false
+        },
+        series: [
+          {
+            name: "面积模式",
+            type: "pie",
+            radius: [90, 150],
+            center: ["50%", "50%"],
+            roseType: "area",
+            data: this.pieData
+          }
+        ]
+      };
+      that.testData = "111";
+      chart5.setOption(options);
+    },
+
+    drawChart6() {
+      var myChart = this.$echarts.init(document.getElementById("chart6"));
+      var base = +new Date(2017, 3, 8);
+      var oneDay = 24 * 3600 * 1000;
+      var date = [];
+      var data = [Math.random() * 150];
+      var now = new Date(base);
+      var day = 30;
+      function addData(shift) {
+        now = [now.getFullYear(), now.getMonth() + 1, now.getDate()].join("/");
+        date.push(now);
+        data.push((Math.random() - 0.5) * 10 + data[data.length - 1]);
+        if (shift) {
+          console.log(data);
+          date.shift();
+          data.shift();
+        }
+        now = new Date(+new Date(now) + oneDay);
+      }
+
+      for (var i = 0; i < day; i++) {
+        addData();
+      }
+      //设置图标配置项
+      myChart.setOption({
+        title: {
+          text: "ECharts 30天内数据实时更新"
+        },
+        xAxis: {
+          type: "category",
+          boundaryGap: false,
+          data: date
+        },
+        yAxis: {
+          boundaryGap: [0, "100%"],
+          type: "value"
+        },
+        series: [
+          {
+            name: "成交",
+            type: "line",
+            smooth: true, //数据光滑过度
+            symbol: "none", //下一个数据点
+            stack: "a",
+            areaStyle: {
+              normal: {
+                color: "red"
+              }
+            },
+            data: data
+          }
+        ]
+      });
+      setInterval(function() {
+        addData(true);
+        myChart.setOption({
+          xAxis: {
+            data: date
+          },
+          series: [
+            {
+              name: "成交",
+              data: data
+            }
+          ]
+        });
+      }, 1000);
+    },
+
+    drawChart7() {
+      let data = ["66", "77"];
+      let date = ["132", "321"];
+
+      let chart7 = this.$echarts.init(document.getElementById("chart7"));
+      let options = {
+        title: {
+          text: "动态更新数据"
+        },
+        tooltip: {
+          trigger: "axis",
+          axisPointer: {
+            type: "shadow"
+          }
+        },
+        xAxis: {
+          data: date
+        },
+        yAxis: {},
+        symbol: "none", //下一个数据点
+        series: [
+          {
+            name: "历史数据",
+            areaStyle: {},
+            type: "line",
+            smooth: true,
+            data: data
+          }
+        ]
+      };
+
+      chart7.setOption(options);
+
+      // 定时动态更新数据
+      setInterval(() => {
+        let random = Math.floor(Math.random() * 100);
+        let dateTime = Date.now();
+        data.push(random);
+        date.push(dateTime);
+        if (data.length > 7) {
+          data.shift();
+          date.shift();
+        }
+        console.log(date);
+        chart7.setOption({
+          xAxis: {
+            data: date
+          },
+          series: [
+            {
+              name: "历史数据",
+              type: "line",
+              areaStyle: {},
+              smooth: true,
+              data: data
+            }
+          ]
+        });
+      }, 2000);
+    },
+
+    getCalendar() {
+      // 获取今天日期
+      let curTime = new Date(),
+        curYear = curTime.getFullYear(),
+        curMonth = curTime.getMonth(),
+        curDate = curTime.getDate();
+
+      let localTime = new Date(),
+        localMonth = localTime.getMonth();
+
+      console.log(curTime, curYear, curMonth, curDate);
+
+      // 判断平年还是闰年
+      function isLeapYear(year) {
+        return year % 400 === 0 || (year % 4 === 0 && year % 100 !== 0);
+      }
+
+      // 渲染日历
+      function render(curYear, curMonth) {
+        document.querySelector(".year").innerHTML = `${curYear}年${curMonth + 1}月`;
+
+        // 判断今年是平年还是闰年，并确定今年的每个月有多少天
+        let daysInMonth = [31, isLeapYear(curYear) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+        // 确定今天日期所在月的第一天是星期几
+        let firstDayInMonth = new Date(curYear, curMonth, 1),
+          firstDayWeek = firstDayInMonth.getDay(); // 2
+
+        console.log(firstDayInMonth + '===' + firstDayWeek)
+
+        // 根据当前月的天数和当前月第一天星期几来确定当前月的行数，向上取整
+        let calendarRows = Math.ceil(
+          (firstDayWeek + daysInMonth[curMonth]) / 7
+        );
+
+        // 将每一行的日期放入到rows数组中
+        let rows = [];
+
+        // 外循环渲染日历的每一行
+        for (let i = 0; i < calendarRows; i++) {
+          rows[i] = `<p class="day-row">`;
+
+          // 内循环渲染日历的每一天
+
+          for (let j = 0; j < 7; j++) {
+            // 内外循环构成了一个calendarRows*7的表格，为当前月的每个表格设置idx索引；
+
+            // 利用idx索引与当前月第一天星期几来确定当前月的日期
+
+            let idx = i * 7 + j,
+              date = idx - firstDayWeek + 1;
+
+            // 过滤掉无效日期、渲染有效日期
+            console.log(localMonth)
+
+            if (date <= 0 || date > daysInMonth[curMonth]) {
+              rows[i] += `<p class="day box"></p>`;
+            } else if (date === curDate) {
+              // 判断是否是当前日期
+              if (curMonth === localMonth) {
+                rows[i] += `<p class="day box curday">${date}</p>`;
+              } else {
+                rows[i] += `<p class="day box">${date}</p>`;
+              }
+
+            } else {
+              rows[i] += `<p class="day box">${date}</p>`;
+            }
+          }
+
+          rows[i] += `</p>`;
+        }
+        let dateStr = rows.join("");
+
+        document.querySelector(".day-rows").innerHTML = dateStr;
+      }
+
+      // 首次调用render函数
+
+      render(curYear, curMonth);
+
+      let leftBtn = document.querySelector(".left"),
+        rightBtn = document.querySelector(".right");
+
+      // 向左切换月份
+
+      leftBtn.addEventListener("click", function() {
+        curMonth--;
+
+        if (curMonth < 0) {
+          curYear -= 1;
+
+          curMonth = 11;
+        }
+
+        render(curYear, curMonth);
+      });
+
+      // 向右切换月份
+
+      rightBtn.addEventListener("click", function() {
+        curMonth++;
+
+        if (curMonth > 11) {
+          curYear += 1;
+
+          curMonth = 0;
+        }
+
+        render(curYear, curMonth);
+      });
+    },
+
+    drawChart8() {
+      let chart8 = this.$echarts.init(document.getElementById('chart8'))
+      let options = {
+        tooltip: {},
+        backgroundColor: 'black',
+        tooltip: {
+          trigger: "axis",
+          axisPointer: {
+            type: "cross",
+          }
+        },
+        xAxis: {
+          boundaryGap: false,
+          data: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"]
+        },
+        yAxis: {},
+        visualMap: { //区间内控制显示颜色
+          show: true,
+          type: 'continuous',
+          // dimension: 1,
+          min: 0,
+          max: 100,
+          range: [0, 60],
+          inRange: {
+            color: ['transparent', '#00cc00', '#00ff00']
+          },
+          outOfRange: {
+            color: ['#00ff00', 'red']
+          }
+        },
+        series: [
+          {
+            name: "A类",
+            type: "line",
+            smooth: true,
+            itemStyle: {
+              color: "green",
+              border: "#6B50D0"
+            },
+            areaStyle: {
+              // color: {
+              //   type: 'linear',
+              //   x: 0,
+              //   y: 0,
+              //   x2: 0,
+              //   y2: 1,
+              //   colorStops: [{
+              //       offset: 0, color: 'green' // 0% 处的颜色
+              //   }, {
+              //       offset: 1, color: 'transparent' // 100% 处的颜色
+              //   }],
+              //   global: false // 缺省为 false
+              // },
+            },
+            data: [10, 20, 60, 80, 30, 50]
+          },
+          // {
+          //   name: "B类",
+          //   type: "line",
+          //   itemStyle: {
+          //     // color: "green",
+          //     // border: "#6B50D0"
+          //   },
+          //   areaStyle: {
+          //     color: {
+          //       type: 'linear',
+          //       x: 0,
+          //       y: 0,
+          //       x2: 0,
+          //       y2: 1,
+          //       colorStops: [{
+          //           offset: 0, color: 'red' // 0% 处的颜色
+          //       }, {
+          //           offset: 1, color: 'transparent' // 100% 处的颜色
+          //       }],
+          //       global: false // 缺省为 false
+          //     },
+          //   },
+          //   data: ["0", "0", "60", "80", "0", "0"]
+          // }
+        ]
+      };
+      chart8.setOption(options)
+    }
   },
-  components: {
-
-  }
-}
+  components: {}
+};
 </script>
 
 
-<style>
-body{
-  color: black;
-}
-</style>
 
 
-<style lang="stylus">
-#test{
-  color: #000 !important;
-  padding: 20px;
 
-  .chart-container{
+<style lang="stylus" scope>
+@import url("../../assets/stylus/css-reset.css");
+
+#test {
+  // color: #000 !important;
+  padding: 80px 20px;
+
+  .chart-container {
     // overflow: hidden;
   }
-  .chart{
+
+  .chart {
     float: left;
     width: 32%;
     height: 200px;
     margin-left: 1.6%;
     border: 1px solid white;
   }
-  .chart-container .chart:first-child{
+
+  .chart-container .chart:first-child {
     margin-left: 0;
   }
 
-  .tip-container{
+  .tip-container {
     position: relative;
   }
-  #tipinput{
+
+  #tipinput {
     position: absolute;
     top: 40px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5)
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     left: 20px;
     z-index: 100;
     padding: 5px;
   }
-  #container{
+
+  #container {
     width: 100%;
     height: 500px;
     margin-top: 20px;
   }
-  .info-box{
-    background: rgba(0,0,0,0.8);
+
+  .info-box {
+    background: rgba(0, 0, 0, 0.8);
     color: #fff;
     padding: 20px;
-    width: 300px
+    width: 300px;
   }
-  .info-link:hover{
+
+  .info-link:hover {
     color: blue;
     cursor: pointer;
   }
-}
 
+  #chart4 {
+    width: 800px;
+    height: 600px;
+    border: 1px solid red;
+  }
+
+  #chart5 {
+    width: 800px;
+    height: 600px;
+    border: 1px solid red;
+  }
+
+  #chart6 {
+    width: 800px;
+    height: 600px;
+    border: 1px solid red;
+  }
+
+  #chart7 {
+    width: 100%;
+    height: 600px;
+    border: 1px solid red;
+  }
+
+  #chart8 {
+    width: 800px;
+    height: 600px;
+    border: 1px solid red;
+  }
+
+  // 日历
+  .calendar-container {
+    width: calc(31px * 7 + 1px);
+  }
+
+  .calendar-header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .year {
+    text-align: center;
+    line-height: 30px;
+  }
+
+  .btn {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    cursor: pointer;
+  }
+
+  .calendar-body {
+    border-right: 1px solid #9e9e9e;
+    border-bottom: 1px solid #9e9e9e;
+  }
+
+  .week-row, .day-rows, .day-row {
+    overflow: hidden;
+  }
+
+  .box {
+    float: left;
+    width: 30px;
+    height: 30px;
+    border-top: 1px solid #9e9e9e;
+    border-left: 1px solid #9e9e9e;
+    text-align: center;
+    line-height: 30px;
+  }
+
+  .week {
+    background: #00bcd4;
+  }
+
+  .day {
+    background: #ffeb3b;
+  }
+
+  .curday {
+    background: #ff5722;
+  }
+}
 </style>
