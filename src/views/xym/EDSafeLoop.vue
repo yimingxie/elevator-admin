@@ -1,83 +1,96 @@
 <template>
-  <div id="EDMotorRoom">
-    <!-- 环境组件 -->
-    
-    <div class="ed-item">
-      <div class="ed-item-title">环境</div>
-
-      <div class="ed-item-chart-box clearfix">
-        <!-- <div class="ed-item-warn">告警记录</div> -->
-        <div class="ed-item-chart-data clearfix">
-          <div class="edic-data-icon edic-data-icon1"></div>
-          <div class="edic-data-p">
-            <h4>{{tempValue}}<span>{{tempUnit}}</span></h4>
-            <p>机房温度</p>
-          </div>
-        </div>
-        <div class="ed-item-chart">
-          <div class="item-chart" id="room-temp-chart" ref="room-temp-chart"></div>
-        </div>
-      </div>
-
-      <div class="ed-item-chart-box clearfix">
-        <!-- <div class="ed-item-warn">告警记录</div> -->
-        <div class="ed-item-chart-data clearfix">
-          <div class="edic-data-icon edic-data-icon2"></div>
-          <div class="edic-data-p">
-            <h4>{{westValue}}<span>{{westUnit}}</span></h4>
-            <p>机房湿度</p>
-          </div>
-        </div>
-        <div class="ed-item-chart">
-          <div class="item-chart" id="west-chart" ref="west-chart"></div>
-        </div>
-      </div>
-
-      <div class="ed-item-chart-box clearfix">
-        <!-- <div class="ed-item-warn">告警记录</div> -->
-        <div class="ed-item-chart-data clearfix">
-          <div class="edic-data-icon edic-data-icon3"></div>
-          <div class="edic-data-p">
-            <h4>{{windValue}}<span>{{windUnit}}</span></h4>
-            <p>机房风速</p>
-          </div>
-        </div>
-        <div class="ed-item-chart">
-          <div class="item-chart" id="room-wind-chart" ref="room-wind-chart"></div>
-        </div>
-      </div>
-
-      <div class="ed-item-chart-box clearfix">
-        <!-- <div class="ed-item-warn">告警记录</div> -->
-        <div class="ed-item-chart-data clearfix">
-          <div class="edic-data-icon edic-data-icon4"></div>
-          <div class="edic-data-p">
-            <h4><em>{{roomWaterValue}}</em><span></span></h4>
-            <p>机房水浸</p>
-          </div>
-        </div>
-        <div class="ed-item-chart">
-          <div class="item-chart" id="room-water-chart" ref="room-water-chart"></div>
-        </div>
-      </div>
-
-      <div class="ed-item-chart-box clearfix">
-        <!-- <div class="ed-item-warn">告警记录</div> -->
-        <div class="ed-item-chart-data clearfix">
-          <div class="edic-data-icon edic-data-icon5"></div>
-          <div class="edic-data-p">
-            <h4><em>{{airValue}}</em><span></span></h4>
-            <p>空调/排气扇</p>
-          </div>
-        </div>
-        <div class="ed-item-chart">
-          <div class="item-chart" id="air-chart" ref="air-chart"></div>
-        </div>
-      </div>
-
-  
+  <div>
+    <div class="ed-item-time-change clearfix">
+      <span :class="{on : timeOn == 'now'}" @click="changeTime('now')">现在</span>
+      <span :class="{on : timeOn == 'day'}" @click="changeTime('day')">今日</span>
+      <span :class="{on : timeOn == 'month'}" @click="changeTime('month')">本月</span>
+      <span :class="{on : timeOn == 'year'}" @click="changeTime('year')">本年</span>
     </div>
 
+    <div class="ed-item">
+      <div class="ed-item-title">机房回路</div>
+      <div class="ed-item-chart-box clearfix">
+        <!-- <div class="ed-item-warn">告警记录</div> -->
+        <div class="ed-item-chart-data clearfix">
+          <div class="edic-data-icon edic-data-icon21"></div>
+          <div class="edic-data-p">
+            <h4><em>{{roomSafeValue}}</em><span></span></h4>
+            <p>机房安全回路</p>
+          </div>
+        </div>
+        <div class="ed-item-chart">
+          <div class="item-chart" id="room-safe-chart" ref="room-safe-chart"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ed-item">
+      <div class="ed-item-title">轿顶回路</div>
+      <div class="ed-item-chart-box clearfix">
+        <!-- <div class="ed-item-warn">告警记录</div> -->
+        <div class="ed-item-chart-data clearfix">
+          <div class="edic-data-icon edic-data-icon22"></div>
+          <div class="edic-data-p">
+            <h4><em>{{boxTopSafeValue}}</em><span></span></h4>
+            <p>轿顶安全回路</p>
+          </div>
+        </div>
+        <div class="ed-item-chart">
+          <div class="item-chart" id="box-top-safe-chart" ref="box-top-safe-chart"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ed-item">
+      <div class="ed-item-title">轿门回路</div>
+      <div class="ed-item-chart-box clearfix">
+        <!-- <div class="ed-item-warn">告警记录</div> -->
+        <div class="ed-item-chart-data clearfix">
+          <div class="edic-data-icon edic-data-icon23"></div>
+          <div class="edic-data-p">
+            <h4><em>{{boxDoorSafeValue}}</em><span></span></h4>
+            <p>轿顶安全回路</p>
+          </div>
+        </div>
+        <div class="ed-item-chart">
+          <div class="item-chart" id="box-door-safe-chart" ref="box-door-safe-chart"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ed-item">
+      <div class="ed-item-title">层门回路</div>
+      <div class="ed-item-chart-box clearfix">
+        <!-- <div class="ed-item-warn">告警记录</div> -->
+        <div class="ed-item-chart-data clearfix">
+          <div class="edic-data-icon edic-data-icon24"></div>
+          <div class="edic-data-p">
+            <h4><em>{{floorDoorSafeValue}}</em><span></span></h4>
+            <p>层门安全回路</p>
+          </div>
+        </div>
+        <div class="ed-item-chart">
+          <div class="item-chart" id="floor-door-safe-chart" ref="floor-door-safe-chart"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ed-item">
+      <div class="ed-item-title">底坑回路</div>
+      <div class="ed-item-chart-box clearfix">
+        <!-- <div class="ed-item-warn">告警记录</div> -->
+        <div class="ed-item-chart-data clearfix">
+          <div class="edic-data-icon edic-data-icon25"></div>
+          <div class="edic-data-p">
+            <h4><em>{{boxBottomSafeValue}}</em><span></span></h4>
+            <p>底坑安全回路</p>
+          </div>
+        </div>
+        <div class="ed-item-chart">
+          <div class="item-chart" id="box-bottom-safe-chart" ref="box-bottom-safe-chart"></div>
+        </div>
+      </div>
+    </div>
 
 
   </div>
@@ -86,26 +99,23 @@
 <script>
 import api from '../../api.js'
 
-
 export default {
-
   data() {
     return {
       dtID: 'dt001',
       timeOn: 'now',
       dataX: ['60s', '55s', '50s', '45s', '40s', '35s', '30s', '25s', '20s', '15s', '10s', '5s', '0s'],
       dataValue: [],
-
-      tempValue: '0',
-      tempUnit: '℃',
-      westValue: '0',
-      westUnit: '%',
-      windValue: '0',
-      windUnit: 'm/s',
-      roomWaterValue: '正常',
-      roomWaterValueNum: '1',
-      airValue: '开',
-      airValueNum: '1',
+      roomSafeValue: '通',
+      roomSafeValueNum: '1',
+      boxTopSafeValue: '通',
+      boxTopSafeValueNum: '1',
+      boxDoorSafeValue: '通',
+      boxDoorSafeValueNum: '1',
+      floorDoorSafeValue: '通',
+      floorDoorSafeValueNum: '1',
+      boxBottomSafeValue: '通',
+      boxBottomSafeValueNum: '1',
 
       // 温湿度配置
       options: {
@@ -116,7 +126,7 @@ export default {
               color: '#1D1B25',
             }
           },
-          formatter: '{a}: {c}℃'
+          formatter: '{a}: {c}℃<br /> '
         },
         xAxis: {
           boundaryGap: false,
@@ -259,10 +269,10 @@ export default {
             color: '#66667F',
             formatter: function (value, index) {
               if (value == 0) {
-                return '异常'
+                return '合'
               }
               if (value == 1) {
-                return '正常'
+                return '开'
               }
               // return '异常'
             }
@@ -328,26 +338,15 @@ export default {
           
         ]
       }
-      
+
+
     }
   },
   mounted() {
-
     this.getRealTime()
 
   },
   methods: {
-    GMTToStr(time){
-        let date = new Date(time)
-        let Str=date.getFullYear() + '-' +
-        (date.getMonth() + 1) + '-' + 
-        date.getDate() + ' ' + 
-        date.getHours() + ':' + 
-        date.getMinutes() + ':' + 
-        date.getSeconds()
-        return Str
-    },
-
     // 切换时间
     changeTime(name) {
       // this.timeOn = name
@@ -356,116 +355,71 @@ export default {
     // 获取实时数据
     getRealTime() {
       api.detail.getCurrent(this.dtID).then(res => {
-  
-        // 机房温度
-        if (res.data[1]) {
-          this.tempValue = res.data[1].value
-          // this.tempUnit = res.data[1].unit
-        }
-        this.drawTemp(this.tempValue)
-
-        // 机房湿度
-        if (res.data[2]) {
-          this.westValue = res.data[2].value
-          this.westUnit = res.data[2].unit
-        }
-        this.drawWest(this.westValue)
-
-        // 机房风速
-        if (res.data[3]) {
-          this.windValue = res.data[3].value
-          this.windUnit = res.data[3].unit
-        }
-        this.drawWind(this.windValue)
-
-        // 水浸（？）
-        if (res.data[4]) {
-          if (res.data[4].unit == 'V') {
-            this.roomWaterValue = '正常'
+        // 机房安全回路
+        if (res.data[21]) {
+          if (res.data[21].unit == 'V') {
+            this.roomSafeValue = '通'
           } else {
-            this.roomWaterValue = '异常'
+            this.roomSafeValue = '断'
           }
-          this.roomWaterValueNum = res.data[4].value
+          this.roomSafeValueNum = res.data[21].value
         }
-        this.drawRoomWater(this.roomWaterValueNum)
+        this.drawRoomSafe(this.roomSafeValueNum)
 
-        // 风扇
-        if (res.data[5]) {
-          if (res.data[5].unit == 'V') {
-            this.airValue = '开'
+        // 轿顶安全回路
+        if (res.data[22]) {
+          if (res.data[22].unit == 'V') {
+            this.boxTopSafeValue = '通'
           } else {
-            this.airValue = '关'
+            this.boxTopSafeValue = '断'
           }
-          this.airValueNum = res.data[5].value
+          this.boxTopSafeValueNum = res.data[22].value
         }
-        this.drawAir(this.airValueNum)
+        this.drawBoxTopSafe(this.boxTopSafeValueNum)
+
+        // 轿门安全回路
+        if (res.data[23]) {
+          if (res.data[23].unit == 'V') {
+            this.boxDoorSafeValue = '通'
+          } else {
+            this.boxDoorSafeValue = '断'
+          }
+          this.boxDoorSafeValueNum = res.data[23].value
+        }
+        this.drawBoxDoorSafe(this.boxDoorSafeValueNum)
+
+        // 层门安全回路
+        if (res.data[24]) {
+          if (res.data[24].unit == 'V') {
+            this.floorDoorSafeValue = '通'
+          } else {
+            this.floorDoorSafeValue = '断'
+          }
+          this.floorDoorSafeValueNum = res.data[24].value
+        }
+        this.drawFloorDoorSafe(this.floorDoorSafeValueNum)
+
+        // 底坑安全回路
+        if (res.data[25]) {
+          if (res.data[25].unit == 'V') {
+            this.boxBottomSafeValue = '通'
+          } else {
+            this.boxBottomSafeValue = '断'
+          }
+          this.boxBottomSafeValueNum = res.data[25].value
+        }
+        this.drawBoxBottomSafe(this.boxBottomSafeValueNum)
 
       })
-
-
-
 
     },
 
-    // 机房温度
-    drawTemp(currentVal) {
-      let that = this
-      let dataValue = []
-      let timeArr = []
-
-
-      api.detail.getD1(this.dtID).then(res => {
-        res.data.result.forEach((item, i) => {
-          dataValue.unshift(item.value)
-        })
-        dataValue.push(currentVal)
-        motorVChart(dataValue)
-      })
-
-      function motorVChart(dataValue) {
-        let chart = that.$echarts.init(document.getElementById('room-temp-chart'))
-
-        // console.log(that.options.tooltip.formatter)
-        that.options.xAxis.data = that.dataX
-        that.options.series[0].data = dataValue
-    
-        chart.setOption(that.options)
-      }
-
-
-
-    },
-
-    // 机房湿度
-    drawWest(currentVal) {
+    // 机房安全回路
+    drawRoomSafe(currentVal) {
       let that = this
       let dataValue = []
 
-      api.detail.getD2(this.dtID).then(res => {
-        res.data.result.forEach((item, i) => {
-          dataValue.unshift(item.value)
-        })
-        dataValue.push(currentVal)
-        motorVChart(dataValue)
-      })
-      .catch(err => {
-        motorVChart(dataValue)
-      })
-
-      function motorVChart(dataValue) {
-        let chart = that.$echarts.init(document.getElementById('west-chart'))
-        that.options.xAxis.data = that.dataX
-        that.options.series[0].data = dataValue
-        chart.setOption(that.options)
-      }
-    },
-
-    // 机房风速
-    drawWind(currentVal) {
-      let that = this
-      let dataValue = []
-
-      api.detail.getD3(this.dtID).then(res => {
+      api.detail.getD21(this.dtID).then(res => {
         res.data.result.forEach((item, i) => {
           dataValue.unshift(item.value)
         })
@@ -477,43 +431,19 @@ export default {
       })
 
       function motorVChart(dataValue) {
-        let chart = that.$echarts.init(document.getElementById('room-wind-chart'))
-        that.options.xAxis.data = that.dataX
-        that.options.series[0].data = dataValue
-        chart.setOption(that.options)
-      }
-    },
-
-    // 机房水浸
-    drawRoomWater(currentVal) {
-      let that = this
-      let dataValue = []
-
-      api.detail.getD4(this.dtID).then(res => {
-        res.data.result.forEach((item, i) => {
-          dataValue.unshift(item.value)
-        })
-        dataValue.push(currentVal)
-        motorVChart(dataValue)
-      })
-      .catch(err => {
-        motorVChart(dataValue)
-      })
-
-      function motorVChart(dataValue) {
-        let chart = that.$echarts.init(document.getElementById('room-water-chart'))
+        let chart = that.$echarts.init(document.getElementById('room-safe-chart'))
         that.options2.xAxis.data = that.dataX
         that.options2.series[0].data = dataValue
         chart.setOption(that.options2)
       }
     },
 
-    // 空调
-    drawAir(currentVal) {
+    // 轿顶安全回路
+    drawBoxTopSafe(currentVal) {
       let that = this
       let dataValue = []
 
-      api.detail.getD5(this.dtID).then(res => {
+      api.detail.getD22(this.dtID).then(res => {
         res.data.result.forEach((item, i) => {
           dataValue.unshift(item.value)
         })
@@ -525,13 +455,85 @@ export default {
       })
 
       function motorVChart(dataValue) {
-        let chart = that.$echarts.init(document.getElementById('air-chart'))
+        let chart = that.$echarts.init(document.getElementById('box-top-safe-chart'))
         that.options2.xAxis.data = that.dataX
         that.options2.series[0].data = dataValue
         chart.setOption(that.options2)
       }
     },
-    
+
+    // 轿门安全回路
+    drawBoxDoorSafe(currentVal) {
+      let that = this
+      let dataValue = []
+
+      api.detail.getD23(this.dtID).then(res => {
+        res.data.result.forEach((item, i) => {
+          dataValue.unshift(item.value)
+        })
+        dataValue.push(currentVal)
+        motorVChart(dataValue)
+      })
+      .catch(err => {
+        motorVChart(dataValue)
+      })
+
+      function motorVChart(dataValue) {
+        let chart = that.$echarts.init(document.getElementById('box-door-safe-chart'))
+        that.options2.xAxis.data = that.dataX
+        that.options2.series[0].data = dataValue
+        chart.setOption(that.options2)
+      }
+    },
+
+    // 层门安全回路
+    drawFloorDoorSafe(currentVal) {
+      let that = this
+      let dataValue = []
+
+      api.detail.getD24(this.dtID).then(res => {
+        res.data.result.forEach((item, i) => {
+          dataValue.unshift(item.value)
+        })
+        dataValue.push(currentVal)
+        motorVChart(dataValue)
+      })
+      .catch(err => {
+        motorVChart(dataValue)
+      })
+
+      function motorVChart(dataValue) {
+        let chart = that.$echarts.init(document.getElementById('floor-door-safe-chart'))
+        that.options2.xAxis.data = that.dataX
+        that.options2.series[0].data = dataValue
+        chart.setOption(that.options2)
+      }
+    },
+
+    // 底坑安全回路
+    drawBoxBottomSafe(currentVal) {
+      let that = this
+      let dataValue = []
+
+      api.detail.getD25(this.dtID).then(res => {
+        res.data.result.forEach((item, i) => {
+          dataValue.unshift(item.value)
+        })
+        dataValue.push(currentVal)
+        motorVChart(dataValue)
+      })
+      .catch(err => {
+        motorVChart(dataValue)
+      })
+
+      function motorVChart(dataValue) {
+        let chart = that.$echarts.init(document.getElementById('box-bottom-safe-chart'))
+        that.options2.xAxis.data = that.dataX
+        that.options2.series[0].data = dataValue
+        chart.setOption(that.options2)
+      }
+    },
+
 
   },
   components: {
@@ -540,26 +542,6 @@ export default {
 }
 </script>
 
-<style>
-  @import url("../../assets/stylus/css-reset.css");
-
-  /* .beifen{
-    -webkit-appearance none
-    background-color #fff
-    background-image none
-    border-radius 4px
-    border 1px solid #dcdfe6
-    box-sizing border-box
-    color #606266
-    display inline-block
-    font-size inherit
-    height 40px
-    line-height 40px
-    outline none
-    padding 0 15px
-    transition border-color .2s cubic-bezier(.645,.045,.355,1)
-    width 100%
-  } */
-
+<style scoped>
 
 </style>

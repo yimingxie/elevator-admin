@@ -581,6 +581,18 @@ export default {
           this.batteryUnit = '℃'
         }
 
+        // 制动器电压
+        if (res.data[12]) {
+          this.vBrakeValue = res.data[12].value
+          this.vBrakeUnit = res.data[12].unit
+        }
+
+        // 制动器电流
+        if (res.data[13]) {
+          this.iBrakeValue = res.data[13].value
+          this.iBrakeUnit = res.data[13].unit
+        }
+
         // 限速轮转速
         if (res.data[15]) {
           this.rpmValue = res.data[15].value
@@ -594,6 +606,12 @@ export default {
           } else {
             this.floorDoorValue = '关'
           }
+        }
+
+        // 限速轮转速
+        if (res.data[18]) {
+          this.boxVibrateValue = res.data[18].value
+          this.boxVibrateUnit = res.data[18].unit
         }
 
         // 电梯当前楼层、速度、状态
@@ -610,6 +628,26 @@ export default {
             this.direction = '停'
           }
         }
+
+        // 安全回路
+        if (res.data[24]) {
+          if (res.data[24].unit == 'V') {
+            this.safeLoopValue = '合'
+          } else {
+            this.safeLoopValue = '开'
+          }
+        }
+
+        // 门锁回路
+        if (res.data[26]) {
+          if (res.data[26].unit == 'V') {
+            this.lockLoopValue = '合'
+          } else {
+            this.lockLoopValue = '开'
+          }
+        }
+
+
 
 
       })
@@ -659,7 +697,7 @@ export default {
 
 /* TODO 适配 */
 #elevator-detail{
-  min-width: 1800px;
+  min-width: 1900px;
 }
 
 #elevator-detail{

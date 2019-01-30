@@ -436,6 +436,7 @@
     import api from 'api'
     import echarts from 'echarts'
     import gcoord from 'gcoord'
+    import AMapUI from 'AMapUI'
     var _this = this
     var sel = '<el-select v-model="selectValue" placeholder="请选择"><el-option v-for="(item, index) in options" :key="index" :label="item.label" :value="item.value"></el-option></el-select>'
     console.log('sel===' + sel)
@@ -528,9 +529,9 @@
             }
         },
         mounted(){
-            api.corp.elevator(1,5).then(res => {
-                console.log(JSON.stringify(res))
-            })
+            // api.corp.elevator(1,5).then(res => {
+            //     console.log(JSON.stringify(res))
+            // })
             this.drawMap()
             console.log('result====' + this.data)
             // 维保及时率统计
@@ -4011,27 +4012,35 @@
 @import '../assets/stylus/base'
 @import '../assets/stylus/panel'
 
-@media screen and (max-width: 1910px) {
-    #MapContainer{
-        width: 100%!important
-        position relative !important
-        top auto !important
-        left auto !important
-        bottom auto!important
-        box-sizing: border-box;
-        padding-top 0!important
-    }
-    #container{
-        height 500px!important
-    }
-    .right{
-        width: 100%!important
-        position relative !important
-        top auto !important
-        left auto !important
-        bottom auto!important
-    }
+// 修改适配
+.main-wrap {
+    min-width 1830px
 }
+.right {
+    width 1260px
+}
+
+// @media screen and (max-width: 1910px) {
+//     #MapContainer{
+//         width: 100%!important
+//         position relative !important
+//         top auto !important
+//         left auto !important
+//         bottom auto!important
+//         box-sizing: border-box;
+//         padding-top 0!important
+//     }
+//     #container{
+//         height 500px!important
+//     }
+//     .right{
+//         width: 100%!important
+//         position relative !important
+//         top auto !important
+//         left auto !important
+//         bottom auto!important
+//     }
+// }
 #MapContainer {
     width: 642px;
     margin: 0px;
@@ -4080,7 +4089,9 @@
     padding 30px 10px 0 10px
     box-sizing: border-box;
     #chartbar1
-        size 100% 220px
+        // size 100% 220px
+        width 100%
+        height 220px
     #chartbar2
         size 100% 235px
     #chartpie

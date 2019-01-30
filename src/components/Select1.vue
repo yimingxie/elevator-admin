@@ -391,22 +391,7 @@
     cursor pointer
     padding-right 35px
 
-  .el-input__inner
-    -webkit-appearance none
-    background-color #fff
-    background-image none
-    border-radius 4px
-    border 1px solid #dcdfe6
-    box-sizing border-box
-    color #606266
-    display inline-block
-    font-size inherit
-    height 40px
-    line-height 40px
-    outline none
-    padding 0 15px
-    transition border-color .2s cubic-bezier(.645,.045,.355,1)
-    width 100%
+
 
 .el-input__suffix
     position absolute
@@ -434,7 +419,7 @@
 
   .el-input__icon
     width 25px
-    line-height 40px
+    line-height 1!important
 
   .el-input__icon, .el-input__prefix
     height 100%
@@ -448,7 +433,7 @@
     font-weight 400
     font-variant normal
     text-transform none
-    line-height 1
+    line-height 1!important
     vertical-align baseline
     display inline-block
     -webkit-font-smoothing antialiased

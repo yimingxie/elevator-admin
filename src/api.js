@@ -17,6 +17,7 @@
 
 // import sms from './api/sms'
 import corp from './api/corp'
+import detail from './api/detail'
 // import dataStorage from './api/data-storage'
 // import device from './api/device'
 // import email from './api/email'
@@ -41,6 +42,7 @@ import corp from './api/corp'
 export default {
   // sms,
   corp,
+  detail,
   // dataStorage,
   // device,
   // email,
