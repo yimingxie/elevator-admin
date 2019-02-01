@@ -1,11 +1,11 @@
 <template>
   <div>
-    <div class="ed-item-time-change clearfix">
+    <!-- <div class="ed-item-time-change clearfix">
       <span :class="{on : timeOn == 'now'}" @click="changeTime('now')">现在</span>
       <span :class="{on : timeOn == 'day'}" @click="changeTime('day')">今日</span>
       <span :class="{on : timeOn == 'month'}" @click="changeTime('month')">本月</span>
       <span :class="{on : timeOn == 'year'}" @click="changeTime('year')">本年</span>
-    </div>
+    </div> -->
 
     <div class="ed-item">
       <div class="ed-item-title">限速器</div>
@@ -185,6 +185,7 @@ export default {
         },
         yAxis: {
           interval: 1,
+          splitNumber: 1,
           axisTick: {
             show: false
           },
@@ -267,6 +268,19 @@ export default {
   },
   mounted() {
     this.getRealTime()
+    setInterval(() => {
+      this.getRealTime()
+    }, 2000)
+
+    setTimeout(() => {
+      let rpm_chart = this.$echarts.getInstanceByDom(document.getElementById("rpm-chart"));
+  
+      window.addEventListener("resize", function() {
+        rpm_chart.resize();
+      
+      });
+    }, 300)
+
 
   },
   methods: {
@@ -307,6 +321,9 @@ export default {
         let chart = that.$echarts.init(document.getElementById('rpm-chart'))
         that.options.xAxis.data = that.dataX
         that.options.series[0].data = dataValue
+        that.options.xAxis.name = '(rpm)'
+        that.options.series[0].name = '限速轮'
+        that.options.tooltip.formatter = '{a}: {c}rpm<br /> '
         chart.setOption(that.options)
       }
     }

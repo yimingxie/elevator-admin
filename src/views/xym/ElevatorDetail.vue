@@ -5,7 +5,7 @@
         <div class="ed-elevator">
           <div class="ed-elevator-name">2号电梯</div>
           <div class="ed-ebox-title clearfix">
-            <h3>94 <span>今天健康指数（2019.01.26）</span></h3>
+            <h3>94 <span>今天健康指数（{{dateNow}}）</span></h3>
           </div>
           <div class="ed-ebox"></div>
           <div class="ed-ebox-data">
@@ -22,7 +22,7 @@
               <p>当前人数</p>
             </div>
             <div class="ed-ebox-sc">
-              <h4>开</h4>
+              <h4>关</h4>
               <p>轿门状态</p>
             </div>
 
@@ -55,53 +55,43 @@
             <el-scrollbar style="height: 100%;">
               <table class="ed-elist-table">
                 <tr>
-                  <th>维保人员</th>
-                  <th>录像记录</th>
-                  <th>状态</th>
+                  <th width="22%">维保人员</th>
+                  <th width="36%">录像记录</th>
+                  <th width="42%">状态</th>
                 </tr>
                 <tr>
                   <td>陈辉</td>
                   <td>
-                    <i class="elist-video"></i>1小时21分
-                  </td>
-                  <td>例行维保
-                    <span class="elist-standard">合格</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>陈辉</td>
-                  <td>
-                    <i class="elist-video"></i>1小时21分
-                  </td>
-                  <td>例行维保
-                    <span class="elist-standard">合格</span>
+                    <i class="elist-video"></i>1小时21分</td>
+                  <td>例行维保<span class="elist-standard">合格</span>
                   </td>
                 </tr>
                 <tr>
                   <td>陈辉</td>
                   <td>
-                    <i class="elist-video"></i>1小时21分
-                  </td>
-                  <td>例行维保
-                    <span class="elist-standard elist-standard-non">不合格</span>
+                    <i class="elist-video"></i>1小时21分</td>
+                  <td>例行维保<span class="elist-standard">合格</span>
                   </td>
                 </tr>
                 <tr>
                   <td>陈辉</td>
                   <td>
-                    <i class="elist-video"></i>1小时21分
-                  </td>
-                  <td>例行维保
-                    <span class="elist-standard">合格</span>
+                    <i class="elist-video"></i>1小时21分</td>
+                  <td>例行维保<span class="elist-standard elist-standard-non">不合格</span>
                   </td>
                 </tr>
                 <tr>
                   <td>陈辉</td>
                   <td>
-                    <i class="elist-video"></i>1小时21分
+                    <i class="elist-video"></i>1小时21分</td>
+                  <td>例行维保<span class="elist-standard">合格</span>
                   </td>
-                  <td>例行维保
-                    <span class="elist-standard elist-standard-non">不合格</span>
+                </tr>
+                <tr>
+                  <td>陈辉</td>
+                  <td>
+                    <i class="elist-video"></i>1小时21分</td>
+                  <td>例行维保<span class="elist-standard elist-standard-non">不合格</span>
                   </td>
                 </tr>
               </table>
@@ -273,6 +263,7 @@ import api from '../../api.js'
 export default {
   data() {
     return {
+      dateNow: '',
       dtID: 'dt001',
       timeOn: 'now',
       currentView: "EDMotorRoom",
@@ -284,11 +275,29 @@ export default {
   },
   mounted() {
     this.getCurrentData()
+    this.dateNow = this.formatDate()
+
     setInterval(() => {
       this.getCurrentData()
+      this.dateNow = this.formatDate()
     }, 2000);
   },
   methods: {
+    // 封装时间
+    formatDate(){
+        // date = new Date(date);
+        var date = new Date(Date.now())
+        var y = date.getFullYear();
+        var m = date.getMonth() + 1;
+        var d = date.getDate();
+        var h = date.getHours();
+        var m1 = date.getMinutes();
+        var s = date.getSeconds();
+        m = m < 10 ? ("0" + m) : m;
+        d = d < 10 ? ("0" + d) : d;
+        // return y+"-"+m+"-"+d+" "+h+":"+m1+":"+s;
+        return y + "." + m + "." + d
+    },
     switchNav(name) {
       this.navActive = name
       if (name == '机房') {
@@ -316,7 +325,7 @@ export default {
 
     getCurrentData() {
       api.detail.getCurrent(this.dtID).then(res => {
-        // console.log(res)
+        // console.log(res.data)
         
         // 电梯当前楼层、速度、状态
         if (res.data[19]) {
@@ -354,11 +363,11 @@ export default {
   height: 100%;
 }
 .el-scrollbar__wrap {
-  overflow-x: hidden;
+  overflow-x: hidden !important;
 }
 .el-scrollbar__thumb {
   background: rgba(13, 186, 127, 0.2);
-  border: 1px solid #0dba7f;
+  border: none !important;
   border-radius: 8px;
 }
 .el-scrollbar__bar.is-vertical {
@@ -373,14 +382,24 @@ export default {
 .el-scrollbar__bar.is-horizontal {
   opacity: 0 !important;
 }
+.el-scrollbar__bar.is-vertical {
+  /* top: 0px; */
+}
+</style>
+
+<style lang="stylus">
+@import "../../assets/stylus/panel"
+
 </style>
 
 <style>
 @import url("../../assets/stylus/css-reset.css");
 
+
+
 #ed {
   /* TODO 适配 */
-  min-width: 1830px;
+  /* min-width: 1830px; */
 
   background: #000;
   padding: 80px 36px 20px;
@@ -447,6 +466,7 @@ export default {
   font-size: 58px;
   color: #FFFFFF;
   margin: 10px 0;
+  line-height: 1 !important;
 }
 .ed-ebox-data-floor span {
   font-size: 14px;
@@ -508,7 +528,8 @@ export default {
   box-shadow: 0 21px 20px -14px rgba(10, 23, 63, 0.15);
   border-radius: 10px;
   margin-top: 10px;
-  padding: 0 25px;
+  /* padding: 0 25px; */
+  padding: 0 0 0 25px;
 }
 .ed-elist-title {
   font-size: 18px;
@@ -516,25 +537,28 @@ export default {
   padding-top: 15px;
 }
 .ed-elist-table-container {
-  height: 120px;
+  height: 126px;
+  margin-top: 10px;
 }
 .ed-elist-table {
-  width: 100%;
+  box-sizing: border-box;
+  width: 96%;
+  
 }
 .ed-elist-table th {
   font-size: 12px;
   line-height: 20px;
   color: #66667f;
   font-weight: normal;
-  padding: 10px 0;
+  padding: 6px 0;
   text-align: left;
 }
 .ed-elist-table td {
   font-size: 14px;
   color: #ffffff;
   line-height: 20px;
-  padding: 15px 0;
-  border-top: 1px solid #303240;
+  padding: 6px 0;
+  /* border-top: 1px solid #303240; */
 }
 .elist-video {
   display: inline-block;
@@ -680,8 +704,7 @@ export default {
   background: #12151c;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
   border-radius: 10px;
-  padding: 30px;
-  padding-right: 10px;
+  padding: 20px 0 20px 30px;
   z-index: 10;
 }
 .ed-item {
@@ -695,6 +718,7 @@ export default {
 }
 .ed-item-time-change{
  text-align: right;
+ padding-right: 20px;
 }
 .ed-item-time-change span{
   display: inline-block;
@@ -888,7 +912,7 @@ export default {
   /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); */
   border-radius: 10px;
   padding: 20px;
-  padding-right: 5px;
+  padding-right: 0;
   margin-left: 30px;
 }
 
@@ -904,7 +928,7 @@ export default {
 }
 .warn-list-li{
   padding: 10px 0;
-  padding-right: 10px;
+  padding-right: 20px;
 }
 .wai-p{
   float: left;
@@ -926,6 +950,7 @@ export default {
   font-weight: normal;
   font-size: 32px;
   color: #FFFFFF;
+  line-height: 1;
 }
 .ed-ebox-sc h4 span {
   font-size: 14px;
@@ -935,5 +960,43 @@ export default {
   font-size: 12px;
   color: #66667F;
   margin-top: 10px;
+  line-height: 1;
 }
+
+
+
+
+/* 适配 */
+@media screen and (max-width: 1910px) {
+  .ed-right1{width: 42%;padding: 14px 0 20px 30px;}
+  .ed-item-chart{width: 68%;}
+  .ed-item-chart-data{width: 150px;}
+  .edic-data-p{margin-left: 10px;}
+  .ed-left{width: 30%;}
+  #ed{padding: 80px 20px 20px;}
+  .ed-mid{width: 80px;margin-left: 20px;}
+  .ed-nav-box p{font-size: 14px;}
+  .ed-right2{width: 18%;margin-left: 20px;padding: 14px 0 14px 14px;}
+  .wai-p{font-size: 12px;}
+  .wai-time{font-size: 10px;}
+  .ed-ebox-title h3{line-height: 60px;margin-top: 10px;}
+  .ed-ebox-title h3 span{display: block;}
+  .ed-ebox-data-floor{font-size: 24px;}
+  .ed-ebox-sc h4{font-size: 24px;}
+  .ed-ebox-data{right: 17px;}
+  .ed-ebox{background-size: 200px auto;}
+  .ede-sum-box h4{font-size: 18px;}
+  .ede-sum-box h4 span{font-size: 12px;}
+  .ede-sum-box p{font-size: 10px;}
+  .edic-data-p{width: 90px;}
+  .edic-data-p h4{font-size: 23px;}
+  .edic-data-p h4 span{font-size: 12px;}
+  /* .edic-data-p p{width: 60px;line-height: 1.3;} */
+  
+
+}
+@media screen and (max-width: 1350px) {
+  #ed{min-width: 1350px;}
+}
+
 </style>

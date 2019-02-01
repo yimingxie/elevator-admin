@@ -50,10 +50,12 @@
 import Vue from "vue";
 import AMap from "AMap";
 import Loca from "Loca";
+import api from '../../api.js'
 
 export default {
   data() {
     return {
+      dtID: 'dt001',
       list: "",
       testData: "123",
       testList: [1, 2, 3, 4, 5],
@@ -61,6 +63,22 @@ export default {
     };
   },
   mounted() {
+    let dataValue = []
+    api.detail.getD27(this.dtID).then(res => {
+      // if (res.data) return
+      console.log(res)
+      res.data.result.forEach((item, i) => {
+          dataValue.unshift(item.value)
+        })
+      dataValue.push(currentVal)
+  
+    })
+    .catch(err => {
+      console.log(666)
+    })
+
+
+
     this.drawChart1();
     this.drawChart2();
     this.drawChart3();

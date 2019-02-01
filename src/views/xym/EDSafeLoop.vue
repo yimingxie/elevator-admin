@@ -1,11 +1,11 @@
 <template>
   <div>
-    <div class="ed-item-time-change clearfix">
+    <!-- <div class="ed-item-time-change clearfix">
       <span :class="{on : timeOn == 'now'}" @click="changeTime('now')">现在</span>
       <span :class="{on : timeOn == 'day'}" @click="changeTime('day')">今日</span>
       <span :class="{on : timeOn == 'month'}" @click="changeTime('month')">本月</span>
       <span :class="{on : timeOn == 'year'}" @click="changeTime('year')">本年</span>
-    </div>
+    </div> -->
 
     <div class="ed-item">
       <div class="ed-item-title">机房回路</div>
@@ -260,7 +260,8 @@ export default {
           data: []
         },
         yAxis: {
-          interval: 1,
+          // interval: 1,
+          splitNumber: 1,
           axisTick: {
             show: false
           },
@@ -268,11 +269,11 @@ export default {
             // show: true,
             color: '#66667F',
             formatter: function (value, index) {
-              if (value == 0) {
-                return '合'
+              if (value <= 0) {
+                return '断'
               }
-              if (value == 1) {
-                return '开'
+              if (value >= 1) {
+                return '通'
               }
               // return '异常'
             }
@@ -344,6 +345,28 @@ export default {
   },
   mounted() {
     this.getRealTime()
+    setInterval(() => {
+      this.getRealTime()
+    }, 2000)
+
+    setTimeout(() => {
+      let room_safe_chart = this.$echarts.getInstanceByDom(document.getElementById("room-safe-chart"));
+      let box_top_safe_chart = this.$echarts.getInstanceByDom(document.getElementById("box-top-safe-chart"));
+      let box_door_safe_chart = this.$echarts.getInstanceByDom(document.getElementById("box-door-safe-chart"));
+      let floor_door_safe_chart = this.$echarts.getInstanceByDom(document.getElementById("floor-door-safe-chart"));
+      let box_bottom_safe_chart = this.$echarts.getInstanceByDom(document.getElementById("box-bottom-safe-chart"));
+   
+  
+      window.addEventListener("resize", function() {
+        room_safe_chart.resize();
+        box_top_safe_chart.resize();
+        box_door_safe_chart.resize();
+        floor_door_safe_chart.resize();
+        box_bottom_safe_chart.resize();
+
+      
+      });
+    }, 300)
 
   },
   methods: {
@@ -506,6 +529,9 @@ export default {
         let chart = that.$echarts.init(document.getElementById('floor-door-safe-chart'))
         that.options2.xAxis.data = that.dataX
         that.options2.series[0].data = dataValue
+        that.options2.xAxis.name = ''
+        that.options2.series[0].name = '层门安全回路'
+        that.options2.tooltip.formatter = '{a}: {c}<br /> '
         chart.setOption(that.options2)
       }
     },

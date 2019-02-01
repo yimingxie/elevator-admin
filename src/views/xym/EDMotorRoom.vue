@@ -57,7 +57,7 @@
           </div>
         </div>
         <div class="ed-item-chart">
-          <div class="item-chart" id="room-water-chart" ref="room-water-chart"></div>
+          <div class="item-chart" id="room-water-chart" ref="roomWaterChart"></div>
         </div>
       </div>
 
@@ -85,6 +85,7 @@
 
 <script>
 import api from '../../api.js'
+import { setTimeout } from 'timers';
 
 
 export default {
@@ -251,6 +252,7 @@ export default {
         },
         yAxis: {
           interval: 1,
+          splitNumber: 1,
           axisTick: {
             show: false
           },
@@ -332,9 +334,29 @@ export default {
     }
   },
   mounted() {
+    setTimeout(() => {
+      let room_temp_chart = this.$echarts.getInstanceByDom(document.getElementById("room-temp-chart"));
+      let west_chart = this.$echarts.getInstanceByDom(document.getElementById("west-chart"));
+      let room_wind_chart = this.$echarts.getInstanceByDom(document.getElementById("room-wind-chart"));
+      let room_water_chart = this.$echarts.getInstanceByDom(document.getElementById("room-water-chart"));
+      let air_chart = this.$echarts.getInstanceByDom(document.getElementById("air-chart"));
+      
+      window.addEventListener("resize", function() {
+        room_temp_chart.resize();
+        west_chart.resize();
+        room_wind_chart.resize();
+        room_water_chart.resize();
+        air_chart.resize();
+      });
 
-    this.getRealTime()
+    }, 300)
 
+    // this.getRealTime()
+    // setInterval(() => {
+    //   this.getRealTime()
+    // }, 2000)
+
+    
   },
   methods: {
     GMTToStr(time){
@@ -428,7 +450,9 @@ export default {
         // console.log(that.options.tooltip.formatter)
         that.options.xAxis.data = that.dataX
         that.options.series[0].data = dataValue
-    
+        that.options.xAxis.name = '(℃)'
+        that.options.series[0].name = '机房温度'
+        that.options.tooltip.formatter = '{a}: {c}℃<br /> '
         chart.setOption(that.options)
       }
 
@@ -456,6 +480,9 @@ export default {
         let chart = that.$echarts.init(document.getElementById('west-chart'))
         that.options.xAxis.data = that.dataX
         that.options.series[0].data = dataValue
+        that.options.xAxis.name = '(%)'
+        that.options.series[0].name = '机房湿度'
+        that.options.tooltip.formatter = '{a}: {c}%<br /> '
         chart.setOption(that.options)
       }
     },
@@ -480,6 +507,11 @@ export default {
         let chart = that.$echarts.init(document.getElementById('room-wind-chart'))
         that.options.xAxis.data = that.dataX
         that.options.series[0].data = dataValue
+
+        that.options.xAxis.name = '(m/s)'
+        that.options.series[0].name = '机房风速'
+        that.options.tooltip.formatter = '{a}: {c}m/s<br /> '
+
         chart.setOption(that.options)
       }
     },
@@ -504,6 +536,9 @@ export default {
         let chart = that.$echarts.init(document.getElementById('room-water-chart'))
         that.options2.xAxis.data = that.dataX
         that.options2.series[0].data = dataValue
+        that.options.xAxis.name = ''
+        that.options.series[0].name = '机房水浸'
+        that.options.tooltip.formatter = '{a}: {c}<br /> '
         chart.setOption(that.options2)
       }
     },
@@ -528,6 +563,9 @@ export default {
         let chart = that.$echarts.init(document.getElementById('air-chart'))
         that.options2.xAxis.data = that.dataX
         that.options2.series[0].data = dataValue
+        that.options.xAxis.name = ''
+        that.options.series[0].name = '空调/排气扇'
+        that.options.tooltip.formatter = '{a}: {c}<br /> '
         chart.setOption(that.options2)
       }
     },

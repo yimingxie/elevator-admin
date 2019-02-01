@@ -1,11 +1,11 @@
 <template>
   <div>
-    <div class="ed-item-time-change clearfix">
+    <!-- <div class="ed-item-time-change clearfix">
       <span :class="{on : timeOn == 'now'}" @click="changeTime('now')">现在</span>
       <span :class="{on : timeOn == 'day'}" @click="changeTime('day')">今日</span>
       <span :class="{on : timeOn == 'month'}" @click="changeTime('month')">本月</span>
       <span :class="{on : timeOn == 'year'}" @click="changeTime('year')">本年</span>
-    </div>
+    </div> -->
 
     <div class="ed-item">
       <div class="ed-item-title">层门回路</div>
@@ -204,6 +204,7 @@ export default {
         },
         yAxis: {
           interval: 1,
+          splitNumber: 1,
           axisTick: {
             show: false
           },
@@ -287,6 +288,21 @@ export default {
   },
   mounted() {
     this.getRealTime()
+    setInterval(() => {
+      this.getRealTime()
+    }, 2000)
+
+    setTimeout(() => {
+      let floor_lock_chart = this.$echarts.getInstanceByDom(document.getElementById("floor-lock-chart"));
+      let box_lock_chart = this.$echarts.getInstanceByDom(document.getElementById("box-lock-chart"));
+    
+  
+      window.addEventListener("resize", function() {
+        floor_lock_chart.resize();
+        box_lock_chart.resize();
+
+      });
+    }, 300)
 
   },
   methods: {
@@ -331,15 +347,19 @@ export default {
       let dataValue = []
 
       api.detail.getD26(this.dtID).then(res => {
-        res.data.result.forEach((item, i) => {
-          dataValue.unshift(item.value)
-        })
-        dataValue.push(currentVal)
+        if (res.data) {
+          res.data.result.forEach((item, i) => {
+            dataValue.unshift(item.value)
+          })
+          dataValue.push(currentVal)
+        }
+    
         motorVChart(dataValue)
+        
       })
-      .catch(err => {
-        motorVChart(dataValue)
-      })
+      // .catch(err => {
+      //   motorVChart(dataValue)
+      // })
 
       function motorVChart(dataValue) {
         let chart = that.$echarts.init(document.getElementById('floor-lock-chart'))
@@ -355,10 +375,12 @@ export default {
       let dataValue = []
 
       api.detail.getD27(this.dtID).then(res => {
-        res.data.result.forEach((item, i) => {
-          dataValue.unshift(item.value)
-        })
-        dataValue.push(currentVal)
+        if (res.data) {
+          res.data.result.forEach((item, i) => {
+            dataValue.unshift(item.value)
+          })
+          dataValue.push(currentVal)
+        }
         motorVChart(dataValue)
       })
       .catch(err => {

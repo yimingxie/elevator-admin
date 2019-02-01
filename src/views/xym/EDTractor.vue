@@ -1,11 +1,11 @@
 <template>
   <div>
-    <div class="ed-item-time-change clearfix">
+    <!-- <div class="ed-item-time-change clearfix">
       <span :class="{on : timeOn == 'now'}" @click="changeTime('now')">现在</span>
       <span :class="{on : timeOn == 'day'}" @click="changeTime('day')">今日</span>
       <span :class="{on : timeOn == 'month'}" @click="changeTime('month')">本月</span>
       <span :class="{on : timeOn == 'year'}" @click="changeTime('year')">本年</span>
-    </div>
+    </div> -->
 
     <div class="ed-item">
       <div class="ed-item-title">电动机</div>
@@ -320,6 +320,7 @@ export default {
         },
         yAxis: {
           interval: 1,
+          splitNumber: 1,
           axisTick: {
             show: false
           },
@@ -404,9 +405,34 @@ export default {
 
     this.getRealTime()
 
-    // setInterval(() => {
-    //   this.getRealTime()
-    // }, 2000)
+    setInterval(() => {
+      this.getRealTime()
+    }, 2000)
+    setTimeout(() => {
+      let motor_v_chart = this.$echarts.getInstanceByDom(document.getElementById("motor-v-chart"));
+      let motor_i_chart = this.$echarts.getInstanceByDom(document.getElementById("motor-i-chart"));
+      let motor_temp_chart = this.$echarts.getInstanceByDom(document.getElementById("motor-temp-chart"));
+      let motor_vibrate_chart = this.$echarts.getInstanceByDom(document.getElementById("motor-vibrate-chart"));
+      let brake_temp_chart = this.$echarts.getInstanceByDom(document.getElementById("brake-temp-chart"));
+      let brake_skr_chart = this.$echarts.getInstanceByDom(document.getElementById("brake-skr-chart"));
+      let v_brake_chart = this.$echarts.getInstanceByDom(document.getElementById("v-brake-chart"));
+      let i_brake_chart = this.$echarts.getInstanceByDom(document.getElementById("i-brake-chart"));
+      let drive_chart = this.$echarts.getInstanceByDom(document.getElementById("drive-chart"));
+      
+      window.addEventListener("resize", function() {
+        motor_v_chart.resize();
+        motor_i_chart.resize();
+        motor_temp_chart.resize();
+        motor_vibrate_chart.resize();
+        brake_temp_chart.resize();
+        brake_skr_chart.resize();
+        v_brake_chart.resize();
+        i_brake_chart.resize();
+        drive_chart.resize();
+      });
+    }, 300)
+
+      
 
 
 
@@ -507,6 +533,9 @@ export default {
         let chart = that.$echarts.init(document.getElementById('motor-v-chart'))
         that.options.xAxis.data = that.dataX
         that.options.series[0].data = dataValue
+        that.options.xAxis.name = '(V)'
+        that.options.series[0].name = '电动机电压'
+        that.options.tooltip.formatter = '{a}: {c}V<br /> '
         chart.setOption(that.options)
       }
     },
@@ -528,6 +557,9 @@ export default {
         let chart = that.$echarts.init(document.getElementById('motor-i-chart'))
         that.options.xAxis.data = that.dataX
         that.options.series[0].data = dataValue
+        that.options.xAxis.name = '(A)'
+        that.options.series[0].name = '电动机电流'
+        that.options.tooltip.formatter = '{a}: {c}A<br /> '
         chart.setOption(that.options)
       }
     },
@@ -549,6 +581,9 @@ export default {
         let chart = that.$echarts.init(document.getElementById('motor-temp-chart'))
         that.options.xAxis.data = that.dataX
         that.options.series[0].data = dataValue
+        that.options.xAxis.name = '(℃)'
+        that.options.series[0].name = '电动机温度'
+        that.options.tooltip.formatter = '{a}: {c}℃<br /> '
         chart.setOption(that.options)
       }
     },
@@ -578,6 +613,9 @@ export default {
         let chart = that.$echarts.init(document.getElementById('motor-vibrate-chart'))
         that.options.xAxis.data = that.dataX
         that.options.series[0].data = dataValue
+        that.options.xAxis.name = '(m/s²)'
+        that.options.series[0].name = '电动机振动'
+        that.options.tooltip.formatter = '{a}: {c}m/s^2<br /> '
         chart.setOption(that.options)
       }
     },
@@ -599,6 +637,9 @@ export default {
         let chart = that.$echarts.init(document.getElementById('brake-temp-chart'))
         that.options.xAxis.data = that.dataX
         that.options.series[0].data = dataValue
+        that.options.xAxis.name = '(℃)'
+        that.options.series[0].name = '制动器温度'
+        that.options.tooltip.formatter = '{a}: {c}℃<br /> '
         chart.setOption(that.options)
       }
     },
@@ -620,6 +661,9 @@ export default {
         let chart = that.$echarts.init(document.getElementById('brake-skr-chart'))
         that.options.xAxis.data = that.dataX
         that.options.series[0].data = dataValue
+        that.options.xAxis.name = '(℃)'
+        that.options.series[0].name = '制动器刹车片温度'
+        that.options.tooltip.formatter = '{a}: {c}℃<br /> '
         chart.setOption(that.options)
       }
     },
@@ -641,6 +685,9 @@ export default {
         let chart = that.$echarts.init(document.getElementById('v-brake-chart'))
         that.options.xAxis.data = that.dataX
         that.options.series[0].data = dataValue
+        that.options.xAxis.name = '(V)'
+        that.options.series[0].name = '制动器电压'
+        that.options.tooltip.formatter = '{a}: {c}V<br /> '
         chart.setOption(that.options)
       }
     },
@@ -662,6 +709,9 @@ export default {
         let chart = that.$echarts.init(document.getElementById('i-brake-chart'))
         that.options.xAxis.data = that.dataX
         that.options.series[0].data = dataValue
+        that.options.xAxis.name = '(A)'
+        that.options.series[0].name = '制动器电流'
+        that.options.tooltip.formatter = '{a}: {c}A<br /> '
         chart.setOption(that.options)
       }
     },
@@ -685,6 +735,9 @@ export default {
         let chart = that.$echarts.init(document.getElementById('drive-chart'))
         that.options.xAxis.data = that.dataX
         that.options.series[0].data = dataValue
+        that.options.xAxis.name = ''
+        that.options.series[0].name = '曳引轮磨损'
+        that.options.tooltip.formatter = '{a}: {c}<br /> '
         console.log(dataValue)
         chart.setOption(that.options)
       }

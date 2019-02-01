@@ -1,6 +1,5 @@
 import http from '../utils/http'
 export default {
-
   // 电梯实时数据
   getCurrent(id) {
     return http.get(`/iotsqu/liftposition/${id}`)
@@ -106,42 +105,38 @@ export default {
     return http.get(`/iotsqu/lift/${id}/historyData/20?time=${time}`)
   },
 
-  // 机房安全回路1
+  // 机房安全回路
   getD21(id, time) {
     return http.get(`/iotsqu/lift/${id}/historyData/21?time=${time}`)
   },
 
-  // 机房安全回路2
+  // 轿顶安全回路
   getD22(id, time) {
     return http.get(`/iotsqu/lift/${id}/historyData/22?time=${time}`)
   },
 
-  // 机房安全回路3
+  // 轿门安全回路
   getD23(id, time) {
     return http.get(`/iotsqu/lift/${id}/historyData/23?time=${time}`)
   },
 
-  // 机房安全回路4
+  // 层门安全回路
   getD24(id, time) {
     return http.get(`/iotsqu/lift/${id}/historyData/24?time=${time}`)
   },
 
-  // 机房安全回路5
+  // 底坑安全回路
   getD25(id, time) {
     return http.get(`/iotsqu/lift/${id}/historyData/25?time=${time}`)
   },
 
-  // 机房安全回路6
+  // 层门门锁回路
   getD26(id, time) {
     return http.get(`/iotsqu/lift/${id}/historyData/26?time=${time}`)
   },
 
-  // 机房安全回路7
+  // 轿门门锁回路
   getD27(id, time) {
     return http.get(`/iotsqu/lift/${id}/historyData/27?time=${time}`)
-  },
-
-  getD9(id, time) {
-    return http.get(`/iotsqu/lift/${id}/historyData/9?time=${time}`)
   }
 }

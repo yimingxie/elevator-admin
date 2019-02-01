@@ -69,11 +69,16 @@
                     </el-col>
                     <el-col :span="20" >
                         <div class=" charts">
-                            <div class="chart_Total_title">
+                            <div class="chart_Total_title chart_Total_title_x">
                                 <span class="chart_title">维保及时率统计</span>
-                                <span class="chart_title">91582<span class="unit">维保电梯数</span></span>
+                                <div class="chart-x-title">
+                                    <span class="chart_title">91582<span class="unit">维保电梯数</span></span>
+                                    <span class="chart_title">2356<span class="unit">维保及时数</span></span>
+                                    <span class="chart_title">2356<span class="unit">维保及时率</span></span>
+                                </div>
+                                <!-- <span class="chart_title">91582<span class="unit">维保电梯数</span></span>
                                 <span class="chart_title">2356<span class="unit">维保及时数</span></span>
-                                <span class="chart_title">2356<span class="unit">维保及时率</span></span>
+                                <span class="chart_title">2356<span class="unit">维保及时率</span></span> -->
                                 <span class="chart_title_right">
                                     <el-date-picker
                                         v-model="value1"
@@ -121,11 +126,16 @@
                     </el-col>
                     <el-col :span="20" >
                         <div class="charts">
-                            <div class="chart_Total_title">
+                            <div class="chart_Total_title chart_Total_title_x">
                                 <span class="chart_title">人均维保梯数统计</span>
-                                <span class="chart_title">91582<span class="unit">维保电梯数</span></span>
+                                <div class="chart-x-title">
+                                    <span class="chart_title">91582<span class="unit">维保电梯数</span></span>
+                                    <span class="chart_title">20梯/月<span class="unit">维保人员</span></span>
+                                    <span class="chart_title">60梯/月<span class="unit">维保人员</span></span>
+                                </div>
+                                <!-- <span class="chart_title">91582<span class="unit">维保电梯数</span></span>
                                 <span class="chart_title">20梯/月<span class="unit">维保人员</span></span>
-                                <span class="chart_title">60梯/月<span class="unit">维保人员</span></span>
+                                <span class="chart_title">60梯/月<span class="unit">维保人员</span></span> -->
                                 <span class="chart_title_right">
                                     <el-date-picker
                                         v-model="value1"
@@ -180,11 +190,16 @@
                     </el-col>
                     <el-col :span="20">
                         <div class="charts">
-                            <div class="chart_Total_title">
+                            <div class="chart_Total_title chart_Total_title_x">
                                 <span class="chart_title">维保时长<span class="unit">/ 分钟</span></span>
-                                <span class="chart_title">3.5h<span class="unit">平均时长</span></span>
+                                <div class="chart-x-title">
+                                    <span class="chart_title">3.5h<span class="unit">平均时长</span></span>
+                                    <span class="chart_title">20%<span class="unit">低于40分钟</span></span>
+                                    <span class="chart_title">20%<span class="unit">低于50分钟</span></span>
+                                </div>
+                                <!-- <span class="chart_title">3.5h<span class="unit">平均时长</span></span>
                                 <span class="chart_title">20%<span class="unit">低于40分钟</span></span>
-                                <span class="chart_title">20%<span class="unit">低于50分钟</span></span>
+                                <span class="chart_title">20%<span class="unit">低于50分钟</span></span> -->
                                 <span class="chart_title_right">
                                     <el-date-picker
                                         v-model="value1"
@@ -217,7 +232,7 @@
                                 <div class="info-label"><img src="../assets/images/hs/today.png" alt=""/>今天</div>
                                 <div class="info-label"><img src="../assets/images/hs/quyu.png" alt=""/>深圳市{{ region }}</div>
                             </div>
-                            <div class="summaryItem summaryItemList" style="padding-bottom: 213px;">
+                            <div class="summaryItem summaryItemList summaryItemList_x" style="padding-bottom: 213px;">
                                 <div class=""><span class="info-number" id='time1' style="color: #0DBA7F;">1687</span><span class="unit"> km</span></div>
                                 <div class="info-label">2019年累计运行里程</div>
                                 <div><span class="info-number fontSize18" id='time1'>300</span><span class="unit"> km/梯</span></div>
@@ -244,7 +259,7 @@
                                 </span>
                             </div>
                             <el-row class="" style="border-bottom: 1px solid rgba(48,52,72,0.80);">
-                                <el-col :span="16" >
+                                <el-col :span="16" style="border-right: 1px solid rgba(48, 52, 72, 0.8);">
                                     <div id="chartbar3"></div>
                                 </el-col>
                                 <el-col :span="8">
@@ -349,11 +364,15 @@
                         </div>
                     </el-col>
                     <el-col :span="20" >
-                        <div class=" charts">
-                            <div class="chart_Total_title">
+                        <div class=" charts" style="padding-bottom: 30px;">
+                            <div class="chart_Total_title chart_Total_title_x">
                                 <span class="chart_title">电梯实时故障预测统计</span>
-                                <span class="chart_title">95325<span class="unit">年度预警数</span></span>
-                                <span class="chart_title">31200<span class="unit">月度预警数</span></span>
+                                <div class="chart-x-title">
+                                    <span class="chart_title">95325<span class="unit">年度预警数</span></span>
+                                    <span class="chart_title">31200<span class="unit">月度预警数</span></span>
+                                </div>
+                                <!-- <span class="chart_title">95325<span class="unit">年度预警数</span></span>
+                                <span class="chart_title">31200<span class="unit">月度预警数</span></span> -->
                                 <span class="chart_title_right">
                                     <el-date-picker
                                         v-model="value1"
@@ -453,7 +472,7 @@
             <div class="infoWindows_data">{{ name }}</div>
             <div class="infoWindows_info"> 使用地点：</div>
             <div class="infoWindows_data">{{ name }}</div>
-            <div class="infoWindows_details">查看详情</div>
+            <div class="infoWindows_details"><a href="/lift/gov/#/detail">查看详情</a></div>
             <i class="detailIcon"></i>
             <span class="bottomImg"></span>
         </div>`,
@@ -529,10 +548,19 @@
             }
         },
         mounted(){
+            let _this = this
             // api.corp.elevator(1,5).then(res => {
             //     console.log(JSON.stringify(res))
             // })
-            this.drawMap()
+
+            // 地图缩放适配
+            let zoom_x = 10
+            let windowWeight = document.body.offsetWidth
+            if (windowWeight < 1800) {
+                zoom_x = 9
+            }
+
+            this.drawMap(zoom_x)
             console.log('result====' + this.data)
             // 维保及时率统计
             this.drawBarChart()
@@ -560,11 +588,66 @@
             // 图表 end---
             this.drawLine()
             this.today = this.getCurrentDate(1)
+
+            // 图表自适应
+            let chartbar1 = this.$echarts.getInstanceByDom(document.getElementById("chartbar1"));
+            let chartbar2 = this.$echarts.getInstanceByDom(document.getElementById("chartbar2"));
+            let chartpie = this.$echarts.getInstanceByDom(document.getElementById("chartpie"));
+            let chartbar4 = this.$echarts.getInstanceByDom(document.getElementById("chartbar4"));
+            let chartpie3 = this.$echarts.getInstanceByDom(document.getElementById("chartpie3"));
+            let chartbar3 = this.$echarts.getInstanceByDom(document.getElementById("chartbar3"));
+            let chartpie2 = this.$echarts.getInstanceByDom(document.getElementById("chartpie2"));
+            let lineChart = this.$echarts.getInstanceByDom(document.getElementById("lineChart"));
+            let lineChart2 = this.$echarts.getInstanceByDom(document.getElementById("lineChart2"));
+            let chartbar5 = this.$echarts.getInstanceByDom(document.getElementById("chartbar5"));
+            let lineChart3 = this.$echarts.getInstanceByDom(document.getElementById("lineChart3"));
+            let lineChart4 = this.$echarts.getInstanceByDom(document.getElementById("lineChart4"));
+            let lineChart5 = this.$echarts.getInstanceByDom(document.getElementById("lineChart5"));
+            let lineChart6 = this.$echarts.getInstanceByDom(document.getElementById("lineChart6"));
+            let lineChart7 = this.$echarts.getInstanceByDom(document.getElementById("lineChart7"));
+            let lineChart8 = this.$echarts.getInstanceByDom(document.getElementById("lineChart8"));
+            let lineChart9 = this.$echarts.getInstanceByDom(document.getElementById("lineChart9"));
+            let lineChart10 = this.$echarts.getInstanceByDom(document.getElementById("lineChart10"));
+
+
+            window.addEventListener("resize", function() {
+                chartbar1.resize();
+                chartbar2.resize();
+                chartpie.resize();
+                chartbar4.resize();
+                chartpie3.resize();
+                chartbar3.resize();
+                chartpie2.resize();
+                lineChart.resize();
+                lineChart2.resize();
+                chartbar5.resize();
+                lineChart3.resize();
+                lineChart4.resize();
+                lineChart5.resize();
+                lineChart6.resize();
+                lineChart7.resize();
+                lineChart8.resize();
+                lineChart9.resize();
+                lineChart10.resize();
+
+                let windowWeight = document.body.offsetWidth
+                if (windowWeight < 1800) {
+                    zoom_x = 9
+                } else {
+                    zoom_x = 10
+                }
+
+                _this.drawMap(zoom_x)
+
+            });
             
         },
 
 
         methods: {
+            // goDetail() {
+            //     console.log(11)
+            // },
             toAmap(location){
                 return gcoord.transform(
                     location,    // 经纬度坐标
@@ -581,14 +664,15 @@
                 );
                 // return result
             },
-            drawMap(){
+            drawMap(zoom_x){
                 var _this = this
                 _this.isAllMap = false
                 _this.isEnlargeMap = false
                 //创建地图
                 var map = new AMap.Map('container', {
                     cursor: 'default',
-                    zoom: 10,
+                    // zoom: 10,
+                    zoom: zoom_x,
                     center: [114.191998,22.641178],
                     mapStyle: "amap://styles/1bfbe59619e6c0b9f07090f826d40521"
                 });
@@ -1377,6 +1461,7 @@
                     ]
                 }
                 var trendChart = echarts.init(document.getElementById('chartbar1'))
+                
                 trendChart.setOption(option)
             },
              // 柱状图2
@@ -1536,6 +1621,13 @@
                         trigger: 'item',
                         formatter: "{a} <br/>{b} : {c} ({d}%)"
                     },
+                    grid: {
+                        // top:'6%',
+                        // left: '0%',
+                        right: '0%',
+                        // bottom: '11%',
+                        // containLabel: true
+                    },
                     legend: {
                         show: true,
                         x2 : '0',
@@ -1573,7 +1665,7 @@
                                     index = i;
                                 }
                             });
-                            return name + "     " + "{white|" + clientcounts[index] + '%}';
+                            return name + "   " + "{white|" + clientcounts[index] + '%}';
                         }
 
                     },
@@ -1893,6 +1985,9 @@
                         subtext: '',
                         x:'center'
                     },
+                    // grid: {
+                    //     left: '20%'
+                    // },
                     tooltip : {
                         trigger: 'item',
                         formatter: "{a} <br/>{b} : {c} ({d}%)"
@@ -1927,14 +2022,14 @@
                         // data:['30以上','25-30','cc'],
                         formatter: function(name) {
                             var index = 0;
-                            var clientlabels = ['A类（75%-100%）','B类（50%-75%）','C类（25%-50%）','D类（0-25%）'];
+                            var clientlabels = ['A类(75-100%)','B类（50%-75%）','C类（25%-50%）','D类（0-25%）'];
                             var clientcounts = [41,27,19,13];
                             clientlabels.forEach(function(value,i){
                                 if(value == name){
                                     index = i;
                                 }
                             });
-                            return name + "     " + "{white|" + clientcounts[index] + '%}';
+                            return name + "  " + "{white|" + clientcounts[index] + '%}';
                         }
 
                     },
@@ -1958,8 +2053,10 @@
                             name:'电梯运行里程',
                             type:'pie',
                             // radius : [28, 75],
-                            radius : [40, 60],
-                            center : ['19%', '50%'],
+                            // radius : [40, 60],
+                            // center : ['19%', '50%'],
+                            radius : [45, 65],
+                            center : ['27%', '50%'],
                             // roseType : 'radius',
                             label: {
                                 normal: {
@@ -1969,7 +2066,7 @@
                             },
                             data:[{
                                 value:41,
-                                name:'A类（75%-100%）',
+                                name:'A类(75%以上)',
                                 itemStyle:{
                                     color: {
                                         type: 'linear',
@@ -1993,7 +2090,7 @@
                                 },
                             }, {
                                 value:27, 
-                                name:'B类（50%-75%）',
+                                name:'B类(50-75%)',
                                 itemStyle: {
                                     normal: {
                                         color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
@@ -2007,7 +2104,7 @@
                                 },
                             }, {
                                 value:19, 
-                                name:'C类（25%-50%）',
+                                name:'C类(25-50%)',
                                 itemStyle: {
                                     normal: {
                                         color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
@@ -2030,7 +2127,7 @@
                                 },
                             }, {
                                 value:13, 
-                                name:'D类（0-25%）',
+                                name:'D类(0-25%)',
                                 itemStyle: {
                                     normal: {
                                         color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
@@ -2084,7 +2181,7 @@
                     legend: {
                         data:['40分钟以上','30-40分钟','20-30分钟','20分钟以下','搜索引擎','百度','谷歌','必应','其他'],
                         show: true,
-                        itemGap: 30,
+                        // itemGap: 30,
                         // x : '90',
                         bottom : '0',
                         // right:'-50',
@@ -2206,6 +2303,8 @@
                         },
                     ]
                 }
+
+ 
                 var trendChart = echarts.init(document.getElementById('chartbar4'))
                 trendChart.setOption(option)
             },
@@ -2259,7 +2358,7 @@
                                     index = i;
                                 }
                             });
-                            return name + "     " + "{white|" + clientcounts[index] + '%}';
+                            return name + "  " + "{white|" + clientcounts[index] + '%}';
                         }
 
                     },
@@ -2285,6 +2384,7 @@
                             // radius : [36, 85],
                             radius : [45, 65],
                             center : ['27%', '50%'],
+                          
                             // roseType : 'radius',
                             label: {
                                 normal: {
@@ -3764,7 +3864,8 @@
                 grid: {
                     right: '3%', //相当于距离左边效果:padding-left
                     left: '3%', //相当于距离上边效果:padding-top
-                    bottom: '15%',
+                    // bottom: '15%',
+                    bottom: '20%',
                     top: '10%',
                     containLabel: true
                 },
@@ -3919,7 +4020,8 @@
                 grid: {
                     right: '3%', //相当于距离左边效果:padding-left
                     left: '3%', //相当于距离上边效果:padding-top
-                    bottom: '15%',
+                    // bottom: '15%',
+                    bottom: '20%',
                     top: '10%',
                     containLabel: true
                 },
@@ -4012,13 +4114,81 @@
 @import '../assets/stylus/base'
 @import '../assets/stylus/panel'
 
+@media screen and (max-width: 1910px) {
+
+  #MapContainer{
+    width: 30% !important;
+  }
+  .right{
+    left: 30% !important;
+  }
+  #chartbar1,#chartbar2,#chartbar3,#chartbar4,#chartbar6,#chartpie,#chartpie2,#chartpie3,#chartpie4{
+    height: 170px !important;
+  }
+  #chartpie,#chartpie2,#chartpie3,#chartpie4{
+    margin-top: -20px;
+  }
+  #chartbar5{
+    height: 220px !important;
+  }
+
+  .charts{
+    padding: 24px 12px 5px 70px;
+  }
+  .el-col-16{
+    width: 58% !important;
+  }
+  .el-col-8{
+    width: 41% !important;
+  }
+  .chart_Total_title.chart_Total_title_x{
+    padding-bottom: 60px;
+  }
+  .chart-x-title{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: block !important;
+    overflow: hidden;
+  }
+  .chart-x-title .chart_title{
+    display: block;
+    float: left;
+  }
+  .chart-x-title .chart_title .unit{
+    display: block !important;
+    margin-left: 0px !important;
+  }
+  .summaryItemList_x{
+    padding-bottom: 166px !important;
+  }
+}
+.chart_Total_title{
+  position: relative;
+}
+.chart-x-title{
+  display: inline-block;
+}
+div{
+  outline: none;
+}
+@media screen and (max-width: 1340px) {
+    .main-wrap {
+        min-width 1340px;
+    }
+    .right {
+        width 961px !important;
+    }
+}
+
+
 // 修改适配
-.main-wrap {
-    min-width 1830px
-}
-.right {
-    width 1260px
-}
+// .main-wrap {
+//     min-width 1830px
+// }
+// .right {
+//     width 1260px
+// }
 
 // @media screen and (max-width: 1910px) {
 //     #MapContainer{
@@ -4048,6 +4218,8 @@
     padding-top 80px
     box-sizing: border-box;
     // background #1B1B26
+
+    
     .MapTitle{
         size 100% 62px
         line-height 62px
@@ -4270,12 +4442,21 @@
         margin-bottom 6px
         word-wrap : break-word 
     .infoWindows_details
+        
         width 100%
         text-align right
         margin-top 13px
         padding: 8px 22px;
         box-sizing: border-box;
         border-top 1px solid #fff
+        
+        a
+            position relative
+            z-index 1111
+            display inline-block
+            color white
+        a:hover
+            text-decoration none
     .detailIcon
         background url("../assets/images/hs/detailsIcon.png") no-repeat
         size 20px

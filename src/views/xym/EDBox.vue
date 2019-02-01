@@ -1,11 +1,11 @@
 <template>
   <div>
-    <div class="ed-item-time-change clearfix">
+    <!-- <div class="ed-item-time-change clearfix">
       <span :class="{on : timeOn == 'now'}" @click="changeTime('now')">现在</span>
       <span :class="{on : timeOn == 'day'}" @click="changeTime('day')">今日</span>
       <span :class="{on : timeOn == 'month'}" @click="changeTime('month')">本月</span>
       <span :class="{on : timeOn == 'year'}" @click="changeTime('year')">本年</span>
-    </div>
+    </div> -->
 
     <div class="ed-item">
       <div class="ed-item-title">厢体</div>
@@ -223,6 +223,7 @@ export default {
         },
         yAxis: {
           interval: 1,
+          splitNumber: 1,
           axisTick: {
             show: false
           },
@@ -306,10 +307,22 @@ export default {
   },
   mounted() {
     this.getRealTime()
-    // setInterval(() => {
-    //   this.getRealTime()
-    // }, 2000)
+    setInterval(() => {
+      this.getRealTime()
+    }, 2000)
 
+    setTimeout(() => {
+      let box_vibrate_chart = this.$echarts.getInstanceByDom(document.getElementById("box-vibrate-chart"));
+      let box_position_chart = this.$echarts.getInstanceByDom(document.getElementById("box-position-chart"));
+      let box_weight_chart = this.$echarts.getInstanceByDom(document.getElementById("box-weight-chart"));
+  
+      window.addEventListener("resize", function() {
+        box_vibrate_chart.resize();
+        box_position_chart.resize();
+        box_weight_chart.resize();
+      
+      });
+    }, 300)
 
   },
   methods: {
@@ -372,6 +385,9 @@ export default {
         let chart = that.$echarts.init(document.getElementById('box-vibrate-chart'))
         that.options.xAxis.data = that.dataX
         that.options.series[0].data = dataValue
+        that.options.xAxis.name = '(m/s²)'
+        that.options.series[0].name = '轿厢振动'
+        that.options.tooltip.formatter = '{a}: {c}m/s^2<br /> '
         chart.setOption(that.options)
       }
     },
@@ -393,6 +409,9 @@ export default {
         let chart = that.$echarts.init(document.getElementById('box-position-chart'))
         that.options.xAxis.data = that.dataX
         that.options.series[0].data = dataValue
+        that.options.xAxis.name = '(F)'
+        that.options.series[0].name = '轿厢位置'
+        that.options.tooltip.formatter = '{a}: {c}F<br /> '
         chart.setOption(that.options)
       }
     },
@@ -414,6 +433,9 @@ export default {
         let chart = that.$echarts.init(document.getElementById('box-weight-chart'))
         that.options.xAxis.data = that.dataX
         that.options.series[0].data = dataValue
+        that.options.xAxis.name = '(kg)'
+        that.options.series[0].name = '轿厢荷载'
+        that.options.tooltip.formatter = '{a}: {c}kg<br /> '
         chart.setOption(that.options)
       }
     }

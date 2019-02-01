@@ -1,11 +1,11 @@
 <template>
   <div>
-    <div class="ed-item-time-change clearfix">
+    <!-- <div class="ed-item-time-change clearfix">
       <span :class="{on : timeOn == 'now'}" @click="changeTime('now')">现在</span>
       <span :class="{on : timeOn == 'day'}" @click="changeTime('day')">今日</span>
       <span :class="{on : timeOn == 'month'}" @click="changeTime('month')">本月</span>
       <span :class="{on : timeOn == 'year'}" @click="changeTime('year')">本年</span>
-    </div>
+    </div> -->
 
     <div class="ed-item">
       <div class="ed-item-title">层门</div>
@@ -204,6 +204,7 @@ export default {
         },
         yAxis: {
           interval: 1,
+          splitNumber: 1,
           axisTick: {
             show: false
           },
@@ -286,9 +287,21 @@ export default {
   },
   mounted() {
     this.getRealTime()
-    // setInterval(() => {
-    //   this.getRealTime()
-    // }, 2000)
+    setInterval(() => {
+      this.getRealTime()
+    }, 2000)
+
+    setTimeout(() => {
+      let floor_door_chart = this.$echarts.getInstanceByDom(document.getElementById("floor-door-chart"));
+      let ele_door_chart = this.$echarts.getInstanceByDom(document.getElementById("ele-door-chart"));
+  
+      window.addEventListener("resize", function() {
+        floor_door_chart.resize();
+        ele_door_chart.resize();
+      
+      });
+    }, 300)
+
 
 
   },
@@ -343,6 +356,9 @@ export default {
         let chart = that.$echarts.init(document.getElementById('floor-door-chart'))
         that.options2.xAxis.data = that.dataX
         that.options2.series[0].data = dataValue
+        // that.options.xAxis.name = '(℃)'
+        that.options2.series[0].name = '层门开关'
+        that.options2.tooltip.formatter = '{a}: {c}<br /> '
         chart.setOption(that.options2)
       }
     },
@@ -364,6 +380,9 @@ export default {
         let chart = that.$echarts.init(document.getElementById('ele-door-chart'))
         that.options2.xAxis.data = that.dataX
         that.options2.series[0].data = dataValue
+        // that.options.xAxis.name = '(℃)'
+        that.options2.series[0].name = '层门开关'
+        that.options2.tooltip.formatter = '{a}: {c}<br /> '
         chart.setOption(that.options2)
       }
     }
