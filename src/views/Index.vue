@@ -4114,6 +4114,7 @@
 @import '../assets/stylus/base'
 @import '../assets/stylus/panel'
 
+// 适配
 @media screen and (max-width: 1910px) {
 
   #MapContainer{

@@ -85,7 +85,7 @@
 
 <script>
 import api from '../../api.js'
-import { setTimeout } from 'timers';
+
 
 
 export default {
@@ -351,10 +351,10 @@ export default {
 
     }, 300)
 
-    // this.getRealTime()
-    // setInterval(() => {
-    //   this.getRealTime()
-    // }, 2000)
+    this.getRealTime()
+    setInterval(() => {
+      this.getRealTime()
+    }, 2000)
 
     
   },

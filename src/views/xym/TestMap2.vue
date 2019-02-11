@@ -43,6 +43,34 @@
 
     <div id="chart8" ref="chart8"></div>
 
+
+    <div id="test_scroll" ref="testScroll">
+      <div class="test_scroll_nav">
+        <span :class="{on : navActive == 'A'}" @click="jump(0)">A</span>
+        <span :class="{on : navActive == 'B'}" @click="jump(1)">B</span>
+        <span :class="{on : navActive == 'C'}" @click="jump(2)">C</span>
+        <span :class="{on : navActive == 'D'}" @click="jump(3)">D</span>
+      </div>
+      <div class="test_content" id="testContent" ref="testContent">
+        
+        <div class="test_scroll_floor">
+          <div class="test_scroll_box" id="boxA">
+            <h3>A</h3>
+            <p>lsdfjlksdfj <br>lksdjflskdjflksdjf <br>lsjfdlksjdfl</p>
+          </div>
+          <div class="test_scroll_box" id="boxB">
+            <h3>B</h3>
+            <p>lsdfjlksdfj <br>lksdjflskdjflksdjf <br>lsjfdlksjdfl</p>
+          </div>
+          <div class="test_scroll_box" id="boxC">
+            <h3>C</h3>
+            <p>lsdfjlksdfj <br>lksdjflskdjflksdjf <br>lsjfdlksjdfl</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
   </div>
 </template>
 
@@ -51,12 +79,15 @@ import Vue from "vue";
 import AMap from "AMap";
 import Loca from "Loca";
 import api from '../../api.js'
+import { clearTimeout } from 'timers';
 
 export default {
   data() {
     return {
       dtID: 'dt001',
       list: "",
+      flag: true,
+      navActive: 'A',
       testData: "123",
       testList: [1, 2, 3, 4, 5],
       pieData: ""
@@ -106,6 +137,37 @@ export default {
     });
 
     this.getMapData();
+
+
+    // 滚动高亮
+    let test_scroll = this.$refs.testScroll
+    let testContent = document.getElementById('testContent')
+    let boxA = document.getElementById('boxA')
+    let boxB = document.getElementById('boxB')
+    let boxC = document.getElementById('boxC')
+    let testContentTop = testContent.offsetTop
+    let boxATop = boxA.offsetTop - testContentTop
+    let boxBTop = boxB.offsetTop - testContentTop
+    let boxCTop = boxC.offsetTop - testContentTop
+    testContent.addEventListener('scroll', () => {
+      var current_offset_top = testContent.scrollTop;
+      // console.log(boxATop)
+      if (current_offset_top < boxBTop) {
+        this.navActive = 'A'
+      } else if (current_offset_top >= boxBTop && current_offset_top < boxCTop) {
+        this.navActive = 'B'
+      } else if (current_offset_top >= boxCTop) {
+        this.navActive = 'C'
+      }
+
+    })
+
+
+
+
+
+
+
   },
   methods: {
     drawChart1() {
@@ -1077,6 +1139,64 @@ export default {
         ]
       };
       chart8.setOption(options)
+    },
+
+    // 锚点平滑跳转
+    jump(index) {
+      console.log(index)
+      let that = this
+      // this.activeStep = index
+      // 用 class="step-jump" 添加锚点
+      let jumpArr = document.querySelectorAll('.test_scroll_box')
+      let testContent = document.getElementById('testContent')
+      if (this.flag) {
+        that.flag = false
+        console.log(testContent.scrollTop)
+
+        let testContentTop = testContent.offsetTop
+
+        let total = jumpArr[index].offsetTop - testContentTop // 目标卷曲位置
+        let currentDistance = testContent.scrollTop // 当前卷曲位置
+        let step = Math.floor(total / 10)
+        console.log(total, '222')
+        if (total > currentDistance) {
+          smoothDown()
+        } else {
+          let newTotal = currentDistance - total
+          step = Math.floor(newTotal / 50)
+          smoothUp()
+        }
+
+        // 向下
+        function smoothDown() {
+          if (currentDistance < total) {
+            clearTimeout(timer)
+            currentDistance += step
+            testContent.scrollTop = currentDistance
+            let timer = setTimeout(smoothDown, 10)
+          } else {
+            testContent.scrollTop = total
+            that.flag = true
+          }
+        }
+
+        // 向上
+        function smoothUp () {
+          if (currentDistance > total) {
+            clearTimeout(timer)
+            currentDistance -= step
+            testContent.scrollTop = currentDistance
+            let timer = setTimeout(smoothUp, 10)
+          } else {
+            testContent.scrollTop = total
+            that.flag = true
+          }
+        }
+      }
+      
+
+
+
     }
   },
   components: {}
@@ -1087,16 +1207,14 @@ export default {
 
 
 
-<style lang="stylus" scope>
+<style lang="scss" scope>
 @import url("../../assets/stylus/css-reset.css");
 
 #test {
   // color: #000 !important;
   padding: 80px 20px;
 
-  .chart-container {
-    // overflow: hidden;
-  }
+
 
   .chart {
     float: left;
@@ -1224,5 +1342,49 @@ export default {
   .curday {
     background: #ff5722;
   }
+
+
+
+  #test_scroll{
+    position: relative;
+    height: 600px;
+    width: 800px;
+    background: #fff;
+    margin-top: 100px;
+    color: #000;
+    border: 1px solid red;
+  }
+  .test_content{
+    height: 400px;
+    overflow-y: scroll;
+    margin-top: 100px;
+    border-top: 1px solid red;
+  }
+  .test_scroll_nav{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+  .test_scroll_nav span{
+    display: inline-block;
+    padding: 5px;
+    color: #000;
+    margin: 0 5px;
+    cursor: pointer;
+  }
+  .test_scroll_nav span.on{
+    background: red;
+    color: #fff;
+  }
+  .test_scroll_floor{
+    height: 1000px;
+  }
+  .test_scroll_box{
+    margin-top: 20px;
+  }
+
+
+
 }
 </style>
