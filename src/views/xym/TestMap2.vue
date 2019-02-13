@@ -44,6 +44,7 @@
     <div id="chart8" ref="chart8"></div>
 
 
+    <!-- 滚动高亮 -->
     <div id="test_scroll" ref="testScroll">
       <div class="test_scroll_nav">
         <span :class="{on : navActive == 'A'}" @click="jump(0)">A</span>
@@ -70,6 +71,10 @@
       </div>
 
     </div>
+
+
+    <!-- 测试时序 -->
+    <div id="chart9" ref="chart9"></div>
 
   </div>
 </template>
@@ -119,6 +124,7 @@ export default {
     // this.drawChart7();
     this.getCalendar()
     this.drawChart8();
+    this.drawChart9();
 
     // 图表自适应
     let chart1 = this.$echarts.getInstanceByDom(
@@ -1197,7 +1203,47 @@ export default {
 
 
 
-    }
+    },
+
+    drawChart9() {
+      let lineChart9 = this.$echarts.init(document.getElementById("chart9"));
+      let options = {
+        title: {
+          text: "故障总数"
+        },
+        tooltip: {
+          trigger: "axis",
+          axisPointer: {
+            type: "cross",
+            label: {
+              backgroundColor: "#6a7985"
+            }
+          }
+        },
+        xAxis: {
+          boundaryGap: false,
+          // data: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"]
+        },
+        yAxis: {},
+        series: [
+          {
+            name: "A类",
+            type: "line",
+            stack: "总量1",
+            itemStyle: {
+              color: "#6B50D0",
+              border: "#6B50D0"
+            },
+            areaStyle: {
+              color: "#6B50D0",
+              opacity: 1
+            },
+            data: [[0, 66], [10, 88], [25, 100], [40, 200], [55, 60]]
+          }
+        ]
+      };
+      lineChart9.setOption(options);
+    },
   },
   components: {}
 };
@@ -1284,6 +1330,12 @@ export default {
   }
 
   #chart8 {
+    width: 800px;
+    height: 600px;
+    border: 1px solid red;
+  }
+
+  #chart9 {
     width: 800px;
     height: 600px;
     border: 1px solid red;

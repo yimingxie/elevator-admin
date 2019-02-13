@@ -45,18 +45,23 @@
                <el-row class="">
                     <el-col :span="4">
                         <div class=" summary summary1">
+                            <div class="sum-gradient"></div>
                             <div class="summaryItem tab" style="background-image: linear-gradient(90deg, #0DBA7F 0%, rgba(13,186,127,0.40) 100%);">
                                 <div class="tabTitle"><span class="info-number" id='time1'>电梯维保统计</span></div>
                                 <div class="info-label"><img src="../assets/images/hs/today.png" alt=""/>今天</div>
                                 <div class="info-label"><img src="../assets/images/hs/quyu.png" alt=""/>深圳市{{ region }}</div>
                             </div>
-                            <div class="summaryItem" style="margin-top:8px;background: rgba(102,102,127,0.17);box-shadow: 0 21px 20px -14px rgba(10,23,63,0.15);">
-                                <div><span class="info-number" id='time1'>30%</span></div>
+                            <div class="summaryItem" style="margin-top:8px;background: #1D1D26;box-shadow: 0 21px 20px -14px rgba(10,23,63,0.15);">
+                                <div><span class="info-number" id='time1' style="color: #DF4B4B;">30%</span></div>
                                 <div class="info-label">维保超时率</div>
                                 <span class="aside-border-line"></span>
                                 <el-row>
-                                    <el-col :span="12" >
-                                       <div><span class="info-number fontSize18" style="color: #0DBA7F;" id='time1'>11854</span></div>
+                                    <el-col :span="12" style="position: relative;">
+                                       <div style="position: relative;">
+                                          <!-- <div style="position: absolute;right: 10px;top: 8px;background: #18181e;width: 1px;height: 38px;"></div> -->
+
+                                           <span class="info-number fontSize18" style="color: #0DBA7F;" id='time1'>11854</span>
+                                           </div>
                                         <div class="info-label fontSize12">已维保数</div>
                                     </el-col>
                                     <el-col :span="12" >
@@ -95,13 +100,14 @@
                 </el-row>
                 <el-row class="">
                     <el-col :span="24">
-                        <div class="spiltBar" style="height:12px;background: rgba(27,27,35,0.60);"></div>
+                        <div class="spiltBar" style="height:12px;background: #111116;"></div>
                     </el-col>
                 </el-row>
                 <el-row class="">
                     <el-col :span="4">
                         <div class=" summary summary2">
-                            <div style="border-bottom:2px solid #292A37">
+                            <div class="sum-gradient"></div>
+                            <div style="border-bottom:2px solid #131319">
                                 <span  class="rect" ></span>
                                 <span class="iconImg iconImg1"></span>
                                 <div class="summaryItem" >
@@ -163,13 +169,14 @@
                 </el-row>
                 <el-row class="">
                     <el-col :span="24">
-                        <div class="spiltBar" style="height:12px;background: rgba(27,27,35,0.60);"></div>
+                        <div class="spiltBar" style="height:12px;background: #111116;"></div>
                     </el-col>
                 </el-row>
                  <el-row class="">
                     <el-col :span="4">
                         <div class=" summary summary2">
-                            <div style="border-bottom:2px solid #292A37">
+                            <div class="sum-gradient"></div>
+                            <div style="border-bottom:2px solid #131319">
                                 <span  class="rect" ></span>
                                 <span class="iconImg iconImg3"></span>
                                 <div class="summaryItem" style="padding: 51px 0 20px 49px;">
@@ -227,6 +234,7 @@
                <el-row class="">
                     <el-col :span="4">
                         <div class="summary summary3">
+                            <div class="sum-gradient"></div>
                             <div class="summaryItem tab" style="background-image: linear-gradient(90deg, #0DBA7F 0%, rgba(13,186,127,0.40) 100%);">
                                 <div class="tabTitle"><span class="info-number" id='time1'>电梯运行里程</span></div>
                                 <div class="info-label"><img src="../assets/images/hs/today.png" alt=""/>今天</div>
@@ -288,6 +296,7 @@
                <el-row class="">
                     <el-col :span="4">
                         <div class="summary summary3">
+                            <div class="sum-gradient sum-gradient-last"></div>
                             <div class="summaryItem tab" style="background-image: linear-gradient(90deg, rgba(254,56,143,0.40) 0%, #F75F5F 100%);">
                                 <div class="tabTitle"><span class="info-number" id='time1'>电梯实时故障预测健康管理</span></div>
                                 <div class="info-label"><img src="../assets/images/hs/today.png" alt=""/>今天</div>
@@ -334,26 +343,26 @@
                                             <div class="info-label">限速器</div>
                                         </div>
                                         <div class="proportionInfo_item">
-                                            <span class="line" style="background: #CB500F;"></span>
-                                            <i class="circle" style="background: #CB500F;"></i>
+                                            <span class="line" style="background: #FEC101;"></span>
+                                            <i class="circle" style="background: #FEC101;"></i>
                                             <div><span class="info-number fontSize18" id='time1'>{{ ratio[4] }}%</span></div>
                                             <div class="info-label">制动器</div>
                                         </div>
                                         <div class="proportionInfo_item">
-                                            <span class="line" style="background: #FB7027;"></span>
-                                            <i class="circle" style="background: #FB7027;"></i>
+                                            <span class="line" style="background: #F9D562;"></span>
+                                            <i class="circle" style="background: #F9D562;"></i>
                                             <div><span class="info-number fontSize18" id='time1'>{{ ratio[5] }}%</span></div>
                                             <div class="info-label">控制轿厢柜</div>
                                         </div>
                                         <div class="proportionInfo_item">
-                                            <span class="line" style="background:#FEC101;"></span>
-                                            <i class="circle" style="background:#FEC101;"></i>
+                                            <span class="line" style="background:#CB500F;"></span>
+                                            <i class="circle" style="background:#CB500F;"></i>
                                             <div><span class="info-number fontSize18" id='time1'>{{ ratio[6] }}%</span></div>
                                             <div class="info-label">安全回路</div>
                                         </div>
                                         <div class="proportionInfo_item">
-                                            <span class="line" style="background:#F9D562;"></span>
-                                            <i class="circle" style="background:#F9D562;"></i>
+                                            <span class="line" style="background:#FE7D01;"></span>
+                                            <i class="circle" style="background:#FE7D01;"></i>
                                             <div><span class="info-number fontSize18" id='time1'>{{ ratio[7] }}%</span></div>
                                             <div class="info-label">门锁回路</div>
                                         </div>
@@ -364,7 +373,7 @@
                         </div>
                     </el-col>
                     <el-col :span="20" >
-                        <div class=" charts" style="padding-bottom: 30px;">
+                        <div class=" charts" style="padding-bottom: 30px;position: relative;">
                             <div class="chart_Total_title chart_Total_title_x">
                                 <span class="chart_title">电梯实时故障预测统计</span>
                                 <div class="chart-x-title">
@@ -1260,28 +1269,32 @@
                 ctx.stroke();
                 //第五条线
                 var y5 = ( this.ratio[0] + this.ratio[1] + this.ratio[2] + this.ratio[3] + this.ratio[4] / 2 ) * 3.97
-                ctx.strokeStyle = '#CB500F';
+                // ctx.strokeStyle = '#CB500F';
+                ctx.strokeStyle = '#FEC101';
                 ctx.beginPath();
                 ctx.moveTo(0, y5);//起始位置
                 ctx.lineTo(42, 221);//停止位置
                 ctx.stroke();
                 //第六条线
                 var y6 = ( this.ratio[0] + this.ratio[1] + this.ratio[2] + this.ratio[3] + this.ratio[4] + this.ratio[5] / 2 ) * 3.97
-                ctx.strokeStyle = '#FB7027';
+                // ctx.strokeStyle = '#FB7027';
+                ctx.strokeStyle = '#F9D562';
                 ctx.beginPath();
                 ctx.moveTo(0, y6);//起始位置
                 ctx.lineTo(42, 273);//停止位置
                 ctx.stroke();
                 //第七条线
                 var y7 = ( this.ratio[0] + this.ratio[1] + this.ratio[2] + this.ratio[3] + this.ratio[4] + this.ratio[5] + this.ratio[6] / 2 ) * 3.97
-                ctx.strokeStyle = '#FEC101';
+                // ctx.strokeStyle = '#FEC101';
+                ctx.strokeStyle = '#CB500F';
                 ctx.beginPath();
                 ctx.moveTo(0, y7);//起始位置
                 ctx.lineTo(42, 324);//停止位置
                 ctx.stroke();
                 //第八条线
                 var y8 = ( this.ratio[0] + this.ratio[1] + this.ratio[2] + this.ratio[3] + this.ratio[4] + this.ratio[5] + this.ratio[6] + this.ratio[7] / 2 ) * 3.97
-                ctx.strokeStyle = '#F9D562';
+                // ctx.strokeStyle = '#F9D562';
+                ctx.strokeStyle = '#FE7D01';
                 ctx.beginPath();
                 ctx.moveTo(0, y8);//起始位置
                 ctx.lineTo(42, 374);//停止位置
@@ -1336,7 +1349,8 @@
             drawBarChart() {
                 
                 var option = {
-                    color: ['#59B785', '#F3C242', '#4cabce', '#e5323e'],
+                    // color: ['#59B785', '#F3C242', '#4cabce', '#e5323e'],
+                    color: ['#DF4B4B', '#0DBA7F', '#4cabce', '#e5323e'],
                     tooltip : {
                         trigger: 'axis',
                         axisPointer : {            // 坐标轴指示器，坐标轴触发有效
@@ -1802,10 +1816,14 @@
                                     normal: {
                                         color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
                                             // 0% 处的颜色
-                                        offset: 0, color: 'rgba(254,168,56,0.3)'},
+                                        offset: 0, 
+                                        // color: 'rgba(254,168,56,0.3)'},
+                                        color: 'rgba(254,125,1,0.3)'},
                                         {
                                             // 100% 处的颜色
-                                        offset: 1, color: '#FEC101' 
+                                        offset: 1, 
+                                        // color: '#FEC101',
+                                        color: 'rgba(254,125,1,1)',
                                         }], false)
                                     },
                                     // emphasis:{
@@ -2171,7 +2189,8 @@
                 }();
                 var data = [this.selectfrom(13, 30),this.selectfrom(13, 30), this.selectfrom(18, 40), this.selectfrom(30, 70), this.selectfrom(15, 40)]
                 var option = {
-                    color: ['#F56F6F', '#FEC101', '#6B50D0', '#0DBA7F','#e5323e'],
+                    // color: ['#F56F6F', '#FEC101', '#6B50D0', '#0DBA7F','#e5323e'],
+                    color: ['#BC3535', '#FE7D01', '#6B50D0', '#0DBA7F','#e5323e'],
                     tooltip : {
                         trigger: 'axis',
                         axisPointer : {            // 坐标轴指示器，坐标轴触发有效
@@ -2474,10 +2493,14 @@
                                     normal: {
                                         color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
                                             // 0% 处的颜色
-                                        offset: 0, color: 'rgba(254,168,56,0.3)'},
+                                        offset: 0, 
+                                        // color: 'rgba(254,168,56,0.3)'},
+                                        color: 'rgba(254,125,1,0.3)'},
                                         {
                                             // 100% 处的颜色
-                                        offset: 1, color: '#FEC101' 
+                                        offset: 1, 
+                                        // color: '#FEC101',
+                                        color: 'rgba(254,125,1,1)',
                                         }], false)
                                     },
                                     // emphasis:{
@@ -3007,7 +3030,8 @@
                     itemWidth:8,
                     // backgroundColor:'red'
                 },
-                color:['#F9D562','#FB7027','#CB500F',' #F56F6F','#E22340','#5A39D5'],
+                // color:['#F9D562','#FB7027','#CB500F',' #F56F6F','#E22340','#5A39D5'],
+                color:['#FE7D01','#CB500F','#FEC101',' #F56F6F','#E22340','#5A39D5'],
                 //工具栏
                 toolbox: {
                     show : false ,
@@ -3172,7 +3196,8 @@
                     itemWidth: 8,
                     // backgroundColor:'red'
                 },
-                color:['#F9D562','#FB7027','#E22340','#6B50D0'],
+                // color:['#F9D562','#FB7027','#E22340','#6B50D0'],
+                color:['#FE7D01','#FEC101','#E22340','#6B50D0'],
                 //工具栏
                 toolbox: {
                     show : false ,
@@ -3316,7 +3341,8 @@
                     icon:'circle',
                     // backgroundColor:'red'
                 },
-                color:['#F9D562','#E22340','#6B50D0'],
+                // color:['#F9D562','#E22340','#6B50D0'],
+                color:['#FE7D01','#E22340','#6B50D0'],
                 //工具栏
                 toolbox: {
                     show : false ,
@@ -3449,7 +3475,8 @@
                     icon:'circle',
                     // backgroundColor:'red'
                 },
-                color:['#F9D562'],
+                // color:['#F9D562'],
+                color:['#FE7D01'],
                 //工具栏
                 toolbox: {
                     show : false ,
@@ -3560,7 +3587,8 @@
                     icon:'circle',
                     // backgroundColor:'red'
                 },
-                color:['#F9D562','#FB7027','#E22340','#6B50D0'],
+                // color:['#F9D562','#FB7027','#E22340','#6B50D0'],
+                color:['#FE7D01','#FEC101','#E22340','#6B50D0'],
                 //工具栏
                 toolbox: {
                     show : false ,
@@ -3705,7 +3733,8 @@
                     icon:'circle',
                     // backgroundColor:'red'
                 },
-                color:['#F9D562','#FB7027','#E22340','#6B50D0'],
+                // color:['#F9D562','#FB7027','#E22340','#6B50D0'],
+                color:['#FE7D01','#FEC101','#E22340','#6B50D0'],
                 //工具栏
                 toolbox: {
                     show : false ,
@@ -3849,7 +3878,8 @@
                     icon:'circle',
                     // backgroundColor:'red'
                 },
-                color:['#FEC101','#FB7027','#CB500F','#E22340','#6B50D0'],
+                // color:['#FEC101','#FB7027','#CB500F','#E22340','#6B50D0'],
+                color:['#FE7D01','#CB500F','#FEC101','#E22340','#6B50D0'],
                 //工具栏
                 toolbox: {
                     show : false ,
@@ -4005,7 +4035,8 @@
                     icon:'circle',
                     // backgroundColor:'red'
                 },
-                color:['#FEC101','#6B50D0'],
+                // color:['#FEC101','#6B50D0'],
+                color:['#FE7D01','#6B50D0'],
                 //工具栏
                 toolbox: {
                     show : false ,
@@ -4163,12 +4194,18 @@
   .summaryItemList_x{
     padding-bottom: 166px !important;
   }
+  .sum-gradient-last{
+    height: 1541px;
+  }
 }
 .chart_Total_title{
   position: relative;
 }
 .chart-x-title{
   display: inline-block;
+}
+.charts .chart-x-title .chart_title{
+  font-size: 16px;
 }
 div{
   outline: none;
@@ -4292,7 +4329,7 @@ div{
             display: inline-block;
             width: 100%;
             height: 2px;
-            border-bottom: 2px solid #2C2D3B;
+            border-bottom: 2px solid #18181E;
             float: left;
             margin: 12px 0
         }
@@ -4372,13 +4409,17 @@ div{
     :nth-child(4)
         background: #F56F6F;
     :nth-child(5)
-        background: #CB500F;
-    :nth-child(6)
-        background: #FB7027;
-    :nth-child(7)
+        // background: #CB500F;
         background: #FEC101;
-    :nth-child(8)
+    :nth-child(6)
+        // background: #FB7027;
         background: #F9D562;
+    :nth-child(7)
+        // background: #FEC101;
+        background: #CB500F;
+    :nth-child(8)
+        // background: #F9D562;
+        background: #FE7D01;
 .proportionInfo
     size 78px 397px
     display inline-block

@@ -352,9 +352,13 @@ export default {
     }, 300)
 
     this.getRealTime()
-    setInterval(() => {
+    const intervalTimer = setInterval(() => {
       this.getRealTime()
     }, 2000)
+    // 通过$once来监听定时器，在beforeDestroy钩子可以被清除。
+    this.$once('hook:beforeDestroy', () => {            
+      clearInterval(intervalTimer);                                    
+    })
 
     
   },

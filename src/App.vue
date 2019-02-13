@@ -45,7 +45,7 @@
   #header{
     size 100% 80px
     line-height 80px
-    background: #24242F;
+    background: #16161C;
     box-shadow: 0 0 10px 0 rgba(0,0,0,0.21);
     font-size: 24px;
     color: #FFFFFF;

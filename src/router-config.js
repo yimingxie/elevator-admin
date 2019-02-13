@@ -4,6 +4,7 @@ import TestMap from './views/xym/TestMap'
 import TestMap2 from './views/xym/TestMap2'
 import ElevatorDetail from './views/xym/ElevatorDetail'
 import ElevatorDetail2 from './views/xym/ElevatorDetail2'
+import ElevatorDetail3 from './views/xym/ElevatorDetail3'
 import ElevatorDetailNew from './views/xym/ElevatorDetailNew'
 import Index from './views/Index'
 
@@ -37,7 +38,12 @@ export default new Router({
       path: "/detail-new",
       name: "ElevatorDetailNew",
       component: ElevatorDetailNew
-    }
+    },
+    {
+      path: "/detail3",
+      name: "ElevatorDetail3",
+      component: ElevatorDetail3
+    },
    
   
   ]

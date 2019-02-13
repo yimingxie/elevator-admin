@@ -157,6 +157,9 @@ export default {
       timeOn: 'now',
       dataX: ['60s', '55s', '50s', '45s', '40s', '35s', '30s', '25s', '20s', '15s', '10s', '5s', '0s'],
       dataValue: [],
+      intervalTimer: null,
+
+
       vControlValue: '0',
       vControlUnit: 'V',
       iControlValue: '0',
@@ -434,13 +437,12 @@ export default {
         i_brake_chart.resize();
         drive_chart.resize();
       });
-    }, 300)
-
-      
-
-
+    }, 300)   
 
   },
+  // beforeDestroy() {
+  //   clearInterval(this.intervalTimer)
+  // },
   methods: {
     // 切换时间
     changeTime(name) {
