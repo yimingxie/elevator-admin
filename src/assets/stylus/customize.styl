@@ -3,7 +3,7 @@
 // ==================================================
 @import 'utilities'
 
-
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td { margin:0; padding:0; }
 html
 body
   margin 0
@@ -91,4 +91,18 @@ pre
   div
     &:hover
       background #F3F3F3
-
+button, input, select, textarea{
+  margin: 0;
+  padding: 0;
+  border: 1px solid transparent;  //自定义边框
+  outline: none;    //消除默认点击蓝色边框效果
+}
+table{
+  text-align:center;/*文本居中*/
+  border-collapse:collapse; /*表格的边框合并，如果相邻，则共用一个边框*/
+  border-spacing:0; /*设置行与单元格边框的间距。当表格边框独立（即border-collapse:separate;）此属性才起作用*/
+} 
+table td{
+  word-break: break-all; /*允许在字内换行,即单词可分*/
+  word-wrap:break-word;/*允许长单词或URL地址换行*/
+}

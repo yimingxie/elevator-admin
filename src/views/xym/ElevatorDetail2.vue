@@ -693,7 +693,7 @@ export default {
 
 
 <style scoped>
-@import url("../../assets/stylus/css-reset.css");
+/* @import url("../../assets/stylus/css-reset.css"); */
 
 /* TODO 适配 */
 #elevator-detail{

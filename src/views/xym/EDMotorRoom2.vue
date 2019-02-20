@@ -595,7 +595,7 @@ export default {
 </script>
 
 <style>
-  @import url("../../assets/stylus/css-reset.css");
+  /* @import url("../../assets/stylus/css-reset.css"); */
 
   /* .beifen{
     -webkit-appearance none

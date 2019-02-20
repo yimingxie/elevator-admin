@@ -1440,7 +1440,7 @@ export default {
 <style lang="scss">
 
 #ed {
-  @import url("../../assets/stylus/css-reset.css");
+  // @import url("../../assets/stylus/css-reset.css");
 
   background: #000;
   padding: 80px 36px 20px;

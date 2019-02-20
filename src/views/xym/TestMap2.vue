@@ -1254,7 +1254,7 @@ export default {
 
 
 <style lang="scss" scope>
-@import url("../../assets/stylus/css-reset.css");
+// @import url("../../assets/stylus/css-reset.css");
 
 #test {
   // color: #000 !important;

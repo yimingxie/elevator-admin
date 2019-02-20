@@ -1,7 +1,7 @@
 <template>
   <div id="page-container">
     <div id="header">
-      电梯行业监管战情室
+      {{ title }}
     </div>
     <span class="right_header">
       <i class="headPic"></i>
@@ -19,14 +19,28 @@
     name: 'App',
     data () {
       return {
-        
+        title:'电梯行业监管战情室'
       }
     },
     
     mounted () {
-      
+      console.log('1111111' + this.$route.name)
+      if(this.$route.name === 'maintenance'){
+        this.title = '电梯维保监管战情室'
+      } else {
+        this.title = '电梯行业监管战情室'
+      }
     },
-
+    watch: {
+      $route(to,from){
+        console.log('1111111' + to.path);
+        if(to.path === 'maintenance'){
+          this.title = '电梯维保监管战情室'
+        } else {
+          this.title = '电梯行业监管战情室'
+        }
+      }
+    },
     methods: {
       quit(){
         this.$router.push('/')
@@ -39,6 +53,8 @@
 <style lang="stylus">
 // 配置
 @import 'assets/stylus/base'
+@import 'assets/stylus/elementRe'
+
 #page-container{
   width: 100%;
   height: 100%;

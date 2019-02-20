@@ -19,126 +19,47 @@
            <div class="panel">
                <el-row class="">
                     <el-col :span="4">
-                        <div class=" summary summary1">
-                            <div class="sum-gradient"></div>
+                        <div class="summary">
+                            <div class="sum-gradient" style="height:800px;z-index: 5;"></div>
                             <div class="summaryItem tab" style="background-image: linear-gradient(90deg, #0DBA7F 0%, rgba(13,186,127,0.40) 100%);">
-                                <div class="tabTitle"><span class="info-number" id='time1'>电梯维保统计</span></div>
+                                <div class="tabTitle"><span class="info-number" id='time1'>维保作业统计</span></div>
                                 <div class="info-label"><img src="../assets/images/hs/today.png" alt=""/>今天</div>
                                 <div class="info-label"><img src="../assets/images/hs/quyu.png" alt=""/>深圳市{{ region }}</div>
                             </div>
-                            <div class="summaryItem" style="margin-top:8px;background: #1D1D26;box-shadow: 0 21px 20px -14px rgba(10,23,63,0.15);">
-                                <div><span class="info-number" id='time1' style="color: #DF4B4B;">30%</span></div>
+                            <div class="summaryItem">
+                                <div><span class="info-number" id='time1' style="color: #0DBA7F;">11854</span></div>
+                                <div class="info-label" style="margin-bottom:15px;">已维保数</div>
+                                <div><span class="info-number" id='time1' >17300</span></div>
+                                <div class="info-label">总需维保数</div>
+                            </div>
+                            <div class="splitBar" ></div>
+                            <div class="summaryItem summaryItem_img" >
+                                <span class="iconImg check_iconImg1"></span>
+                                <div><span class="info-number" id='time1'>89</span><span class="unit">%</span></div>
+                                <div class="info-label">维保完成率</div>
+                                <span class="border-line"></span>
+                            </div>
+                            <div class="summaryItem summaryItem_img" >
+                                <span class="iconImg check_iconImg2"></span>
+                                <div ><span class="info-number" id='time1' style="color: #DF4B4B;">15</span><span style="color: #DF4B4B;" class="unit">%</span></div>
                                 <div class="info-label">维保超时率</div>
-                                <span class="aside-border-line"></span>
-                                <el-row>
-                                    <el-col :span="12" style="position: relative;">
-                                       <div style="position: relative;">
-                                          <!-- <div style="position: absolute;right: 10px;top: 8px;background: #18181e;width: 1px;height: 38px;"></div> -->
-
-                                           <span class="info-number fontSize18" style="color: #0DBA7F;" id='time1'>11854</span>
-                                           </div>
-                                        <div class="info-label fontSize12">已维保数</div>
-                                    </el-col>
-                                    <el-col :span="12" >
-                                       <div><span class="info-number fontSize18" id='time1'>17300</span></div>
-                                        <div class="info-label fontSize12">总需维保数</div>
-                                    </el-col>
-                                </el-row>
+                                <span class="border-line"></span>
+                            </div>
+                            <div class="summaryItem summaryItem_img" >
+                                <span class="iconImg check_iconImg3"></span>
+                                <div><span class="info-number" id='time1'>160</span><span class="unit">min/梯</span></div>
+                                <div class="info-label">平均维保时长</div>
+                                <span class="border-line"></span>
                             </div>
                         </div>
                     </el-col>
                     <el-col :span="20" >
                         <div class=" charts">
-                            <div class="chart_Total_title chart_Total_title_x">
-                                <span class="chart_title">维保及时率统计</span>
-                                <div class="chart-x-title">
-                                    <span class="chart_title">91582<span class="unit">维保电梯数</span></span>
-                                    <span class="chart_title">2356<span class="unit">维保及时数</span></span>
-                                    <span class="chart_title">2356<span class="unit">维保及时率</span></span>
-                                </div>
-                                <!-- <span class="chart_title">91582<span class="unit">维保电梯数</span></span>
-                                <span class="chart_title">2356<span class="unit">维保及时数</span></span>
-                                <span class="chart_title">2356<span class="unit">维保及时率</span></span> -->
-                                <span class="chart_title_right">
-                                    <el-date-picker
-                                        v-model="value1"
-                                        type="month"
-                                        placeholder="选择月">
-                                    </el-date-picker>
-                                    <el-select v-model="selectValue" placeholder="请选择"><el-option v-for="(item, index) in options" :key="index" :label="item.label" :value="item.value"></el-option></el-select>
-                                    <button class="rank btn" disabled>公司排名</button>
-                                </span>
+                            <div class="chart_Total_title chart_Total_title_x" style="padding-bottom: 0;">
+                                <span class="chart_title">任务列表</span>
+                                <span class="add"></span>
                             </div>
-                            <div id="chartbar1"></div>
-                        </div>
-                    </el-col>
-                </el-row>
-                <el-row class="">
-                    <el-col :span="24">
-                        <div class="spiltBar" style="height:12px;background: #111116;"></div>
-                    </el-col>
-                </el-row>
-                <el-row class="">
-                    <el-col :span="4">
-                        <div class=" summary summary2">
-                            <div class="sum-gradient"></div>
-                            <div style="border-bottom:2px solid #131319">
-                                <span  class="rect" ></span>
-                                <span class="iconImg iconImg1"></span>
-                                <div class="summaryItem" >
-                                    <div><span class="info-number" id='time1'>1854</span></div>
-                                    <div class="info-label">维保人员数</div>
-                                    <span class="border-line"></span>
-                                    <div class="chart_title">2356<span class="unit">梯/天</span></div>
-                                </div>
-                                <div style="clear:both"></div>
-                            </div>
-                            <div>
-                                <span class="rect"></span>
-                                <span class="iconImg iconImg2"></span>
-                                <div class="summaryItem" >
-                                    <div><span class="info-number" id='time1'>1854</span></div>
-                                    <div class="info-label">维保企业数</div>
-                                    <span class="border-line"></span>
-                                    <div class="chart_title">2356<span class="unit">梯/天</span></div>
-                                </div>
-                            </div>
-                        </div>
-                    </el-col>
-                    <el-col :span="20" >
-                        <div class="charts">
-                            <div class="chart_Total_title chart_Total_title_x">
-                                <span class="chart_title">人均维保梯数统计</span>
-                                <div class="chart-x-title">
-                                    <span class="chart_title">91582<span class="unit">维保电梯数</span></span>
-                                    <span class="chart_title">20梯/月<span class="unit">维保人员</span></span>
-                                    <span class="chart_title">60梯/月<span class="unit">维保人员</span></span>
-                                </div>
-                                <!-- <span class="chart_title">91582<span class="unit">维保电梯数</span></span>
-                                <span class="chart_title">20梯/月<span class="unit">维保人员</span></span>
-                                <span class="chart_title">60梯/月<span class="unit">维保人员</span></span> -->
-                                <span class="chart_title_right">
-                                    <el-date-picker
-                                        v-model="value1"
-                                        type="month"
-                                        placeholder="选择月">
-                                    </el-date-picker>
-                                    <el-select v-model="selectValue" placeholder="请选择"><el-option v-for="(item, index) in options" :key="index" :label="item.label" :value="item.value"></el-option></el-select>
-                                    <button class="rank btn" disabled>公司排名</button>
-                                </span>
-                            </div>
-                            <el-row class="" >
-                                <el-col :span="16" style="border-right: rgba(48,52,72,0.80) 1px solid;">
-                                    <div id="chartbar2"></div>
-                                </el-col>
-                                <el-col :span="8">
-                                    <div class="chart_Total_title" style="padding-left:20px">
-                                        <span class="chart_title fontSize14"><span style="display:inline-block;width:4px;height:12px;background:#fff9f9;border-radius: 2px;margin-right:8px"></span>维保人员月均维保梯数</span>
-                                    </div>
-                                    <div id="chartpie"></div>
-                                </el-col>
-                            </el-row>
-                            
+                            <dateContainer></dateContainer>
                         </div>
                     </el-col>
                 </el-row>
@@ -149,124 +70,97 @@
                 </el-row>
                  <el-row class="">
                     <el-col :span="4">
-                        <div class=" summary summary2">
-                            <div class="sum-gradient"></div>
-                            <div style="border-bottom:2px solid #131319">
-                                <span  class="rect" ></span>
-                                <span class="iconImg iconImg3"></span>
-                                <div class="summaryItem" style="padding: 51px 0 20px 49px;">
-                                    <div><span class="info-number" id='time1'>1854</span></div>
-                                    <div class="info-label">维保平均时长</div>
-                                </div>
-                                <div style="clear:both"></div>
+                        <div class="summary">
+                            <div class="sum-gradient" :style="{height: barHeight2 + 'px'}"></div>
+                            <div class="thisMonth">本月</div>
+                            <div class="splitBar" ></div>
+                            <div class="summaryItem summaryItem_img" >
+                                <span class="iconImg check_iconImg4"></span>
+                                <div><span class="info-number" id='time1'>93</span><span class="unit">%</span></div>
+                                <div class="info-label">维保完成率</div>
+                                <span class="border-line"></span>
                             </div>
-                            <div>
-                                <span class="rect"></span>
-                                <span class="iconImg iconImg4"></span>
-                                <div class="summaryItem" style="padding: 51px 0 20px 49px;">
-                                    <div><span class="info-number" id='time1'>1854</span></div>
-                                    <div class="info-label">低于40分钟</div>
-                                </div>
+                            <div class="summaryItem summaryItem_img" >
+                                <span class="iconImg check_iconImg2"></span>
+                                <div ><span class="info-number" id='time1' style="color: #DF4B4B;">12</span><span style="color: #DF4B4B;" class="unit">%</span></div>
+                                <div class="info-label">维保超时率</div>
+                                <span class="border-line"></span>
                             </div>
-                        </div>
-                    </el-col>
-                    <el-col :span="20">
-                        <div class="charts">
-                            <div class="chart_Total_title chart_Total_title_x">
-                                <span class="chart_title">维保时长<span class="unit">/ 分钟</span></span>
-                                <div class="chart-x-title">
-                                    <span class="chart_title">3.5h<span class="unit">平均时长</span></span>
-                                    <span class="chart_title">20%<span class="unit">低于40分钟</span></span>
-                                    <span class="chart_title">20%<span class="unit">低于50分钟</span></span>
-                                </div>
-                                <!-- <span class="chart_title">3.5h<span class="unit">平均时长</span></span>
-                                <span class="chart_title">20%<span class="unit">低于40分钟</span></span>
-                                <span class="chart_title">20%<span class="unit">低于50分钟</span></span> -->
-                                <span class="chart_title_right">
-                                    <el-date-picker
-                                        v-model="value1"
-                                        type="month"
-                                        placeholder="选择月">
-                                    </el-date-picker>
-                                    <el-select v-model="selectValue" placeholder="请选择"><el-option v-for="(item, index) in options" :key="index" :label="item.label" :value="item.value"></el-option></el-select>
-                                    <button class="rank btn" disabled>公司排名</button>
-                                </span>
-                            </div>
-                            <el-row class="" >
-                                <el-col :span="16" style="border-right: rgba(48,52,72,0.80) 1px solid;">
-                                    <div id="chartbar4"></div>
-                                </el-col>
-                                <el-col :span="8">
-                                    <div id="chartpie3"></div>
-                                </el-col>
-                            </el-row>
-                            
-                        </div>
-                    </el-col>
-                </el-row>
-           </div>
-           <div class="panel">
-               <el-row class="">
-                    <el-col :span="4">
-                        <div class="summary summary3">
-                            <div class="sum-gradient"></div>
-                            <div class="summaryItem tab" style="background-image: linear-gradient(90deg, #0DBA7F 0%, rgba(13,186,127,0.40) 100%);">
-                                <div class="tabTitle"><span class="info-number" id='time1'>电梯运行里程</span></div>
-                                <div class="info-label"><img src="../assets/images/hs/today.png" alt=""/>今天</div>
-                                <div class="info-label"><img src="../assets/images/hs/quyu.png" alt=""/>深圳市{{ region }}</div>
-                            </div>
-                            <div class="summaryItem summaryItemList summaryItemList_x" style="padding-bottom: 213px;">
-                                <div class=""><span class="info-number" id='time1' style="color: #0DBA7F;">1687</span><span class="unit"> km</span></div>
-                                <div class="info-label">2019年累计运行里程</div>
-                                <div><span class="info-number fontSize18" id='time1'>300</span><span class="unit"> km/梯</span></div>
-                                <div class="info-label">当月累计里程平均值</div>
-                                <div><span class="info-number fontSize18" id='time1'>787</span><span class="unit"> km/梯</span></div>
-                                <div class="info-label">半年累计里程平均值</div>
-                                <div><span class="info-number fontSize18" id='time1'>1600</span><span class="unit"> km/梯</span></div>
-                                <div class="info-label">年度累计里程平均值</div>
+                            <div class="summaryItem summaryItem_img" >
+                                <span class="iconImg check_iconImg5"></span>
+                                <div><span class="info-number" id='time1'>155</span><span class="unit">min/梯</span></div>
+                                <div class="info-label">平均维保时长</div>
+                                <span class="border-line"></span>
                             </div>
                         </div>
                     </el-col>
                     <el-col :span="20" >
-                        <div class=" charts">
-                            <div class="chart_Total_title">
-                                <span class="chart_title">电梯运行里程<span class="unit">/ km</span></span>
-                                <span class="chart_title_right">
-                                    <el-date-picker
-                                        v-model="value1"
-                                        type="year"
-                                        placeholder="选择年">
-                                    </el-date-picker>
-                                    <el-select v-model="selectValue" placeholder="请选择"><el-option v-for="(item, index) in options" :key="index" :label="item.label" :value="item.value"></el-option></el-select>
-                                    <button class="rank btn" disabled>电梯品牌维保公司质量排名</button>
-                                </span>
+                        <!-- <div class="charts" style="padding: 25px 22px 19px 22px;"> -->
+                        <div class="charts">
+                            <div class="chart_Total_title chart_Total_title_x" style="padding-bottom: 0;margin-bottom: 10px;">
+                                <span class="chart_title">维保人员列表</span>
+                                <div class="search">
+                                    <input class="search_input" placeholder="请输入维保人员姓名" />
+                                    <span class="search_btn"></span>
+                                </div>
                             </div>
-                            <el-row class="" style="border-bottom: 1px solid rgba(48,52,72,0.80);">
-                                <el-col :span="16" style="border-right: 1px solid rgba(48, 52, 72, 0.8);">
-                                    <div id="chartbar3"></div>
-                                </el-col>
-                                <el-col :span="8">
-                                    <div id="chartpie2"></div>
-                                </el-col>
-                            </el-row>
-                            <el-row class="" style="margin-top:20px">
-                                <el-col :span="12" >
-                                    <div class="chart_Total_title">
-                                        <span class="chart_title fontSize14">配件成本<span class="unit">/ 元</span></span>
-                                    </div>
-                                    <div id="lineChart"></div>
-                                </el-col>
-                                <el-col :span="12">
-                                    <div class="chart_Total_title">
-                                        <span class="chart_title fontSize14" style="margin-left:12px;">故障数<span class="unit">/ 次</span></span>
-                                    </div>
-                                    <div id="lineChart2"></div>
-                                </el-col>
-                            </el-row>
+                            <el-table
+                                
+                                :data="personnelLists"
+                                height="280"
+                                border
+                                style="width: 100%">
+                                <el-table-column
+                                    prop="name"
+                                    label="维保人员姓名"
+                                    class-name="underline_td"
+                                    min-width='100'
+                                >
+                                </el-table-column>
+                                <el-table-column
+                                    prop="overtimeRate"
+                                    label="超时率"
+                                    sortable
+                                    >
+                                </el-table-column>
+                                <el-table-column
+                                    prop="averageMil"
+                                    label="月均里程/km"
+                                    min-width='110'
+                                    sortable>
+                                </el-table-column>
+                                <el-table-column
+                                    prop="maintenanceTime"
+                                    label="维保时长/min"
+                                    min-width='110'
+                                    sortable
+                                    >
+                                </el-table-column>
+                                <el-table-column
+                                    label="已维保数/计划数/月"
+                                    min-width='120'>
+                                    <template slot-scope="scope">
+                                        <span >
+                                            {{scope.row.maintenanceNumber}} 
+                                        </span>
+                                        <span style="color:#66667F">
+                                            &nbsp;/&nbsp;&nbsp;{{scope.row.planNumber}}
+                                        </span>
+                                    </template>
+                                </el-table-column>
+                                <el-table-column 
+                                    label="操作"
+                                    min-width='100'>
+                                    <span class="tableJob">作业轨迹</span>
+                                    <span class='tableLast'>任务</span>
+                                </el-table-column>
+                            </el-table>
                         </div>
                     </el-col>
                 </el-row>
            </div>
+
+           
             <div class="panel">
                <el-row class="">
                     <el-col :span="4">
@@ -430,6 +324,124 @@
                     </el-col>
                 </el-row>
            </div>
+           <div class="panel">
+               <el-row class="">
+                    <el-col :span="4">
+                        <div class="summary summary3">
+                            <div class="sum-gradient" :style="{height: barHeight + 'px'}"></div>
+                            <div class="summaryItem tab" style="background-image: linear-gradient(90deg, #0DBA7F 0%, rgba(13,186,127,0.40) 100%);">
+                                <div class="tabTitle"><span class="info-number" id='time1'>电梯运行里程</span></div>
+                                <div class="info-label"><img src="../assets/images/hs/today.png" alt=""/>今天</div>
+                                <div class="info-label"><img src="../assets/images/hs/quyu.png" alt=""/>深圳市{{ region }}</div>
+                            </div>
+                            <div class="summaryItem summaryItemList summaryItemList_x" style="padding-bottom: 213px;">
+                                <div class=""><span class="info-number" id='time1' style="color: #0DBA7F;">1687</span><span class="unit"> km</span></div>
+                                <div class="info-label">2019年累计运行里程</div>
+                                <div><span class="info-number fontSize18" id='time1'>300</span><span class="unit"> km/梯</span></div>
+                                <div class="info-label">当月累计里程平均值</div>
+                                <div><span class="info-number fontSize18" id='time1'>787</span><span class="unit"> km/梯</span></div>
+                                <div class="info-label">半年累计里程平均值</div>
+                                <div><span class="info-number fontSize18" id='time1'>1600</span><span class="unit"> km/梯</span></div>
+                                <div class="info-label">年度累计里程平均值</div>
+                            </div>
+                        </div>
+                    </el-col>
+                    <el-col :span="20" >
+                        <div class=" charts">
+                            <div class="chart_Total_title">
+                                <span class="chart_title">电梯运行里程<span class="unit">/ km</span></span>
+                                <span class="chart_title_right">
+                                    <el-date-picker
+                                        v-model="value1"
+                                        type="year"
+                                        placeholder="选择年">
+                                    </el-date-picker>
+                                    <el-select v-model="selectValue" placeholder="请选择"><el-option v-for="(item, index) in options" :key="index" :label="item.label" :value="item.value"></el-option></el-select>
+                                    <button class="rank btn" disabled>电梯品牌维保公司质量排名</button>
+                                </span>
+                            </div>
+                            <el-row class="" style="border-bottom: 1px solid rgba(48,52,72,0.80);">
+                                <el-col :span="16" style="border-right: 1px solid rgba(48, 52, 72, 0.8);">
+                                    <div id="chartbar3"></div>
+                                </el-col>
+                                <el-col :span="8">
+                                    <div id="chartpie2"></div>
+                                </el-col>
+                            </el-row>
+                            <el-row class="" style="margin-top:20px">
+                                <el-col :span="12" >
+                                    <div class="chart_Total_title">
+                                        <span class="chart_title fontSize14">配件成本<span class="unit">/ 元</span></span>
+                                    </div>
+                                    <div id="lineChart"></div>
+                                </el-col>
+                                <el-col :span="12">
+                                    <div class="chart_Total_title">
+                                        <span class="chart_title fontSize14" style="margin-left:12px;">故障数<span class="unit">/ 次</span></span>
+                                    </div>
+                                    <div id="lineChart2"></div>
+                                </el-col>
+                            </el-row>
+                            <el-row class="" style="margin-top:20px">
+                                <el-col :span="12" >
+                                    <div class="chart_Total_title">
+                                        <span class="chart_title fontSize14">A类</span>
+                                    </div>
+                                    <div id="lineChart11"></div>
+                                </el-col>
+                                <el-col :span="12">
+                                    <div class="chart_Total_title">
+                                        <span class="chart_title fontSize14" style="margin-left:12px;">A类</span>
+                                    </div>
+                                    <div id="lineChart12"></div>
+                                </el-col>
+                            </el-row>
+                            <el-row class="" style="margin-top:20px">
+                                <el-col :span="12" >
+                                    <div class="chart_Total_title">
+                                        <span class="chart_title fontSize14">B类</span>
+                                    </div>
+                                    <div id="lineChart13"></div>
+                                </el-col>
+                                <el-col :span="12">
+                                    <div class="chart_Total_title">
+                                        <span class="chart_title fontSize14" style="margin-left:12px;">B类</span>
+                                    </div>
+                                    <div id="lineChart14"></div>
+                                </el-col>
+                            </el-row>
+                            <el-row class="" style="margin-top:20px">
+                                <el-col :span="12" >
+                                    <div class="chart_Total_title">
+                                        <span class="chart_title fontSize14">C类</span>
+                                    </div>
+                                    <div id="lineChart15"></div>
+                                </el-col>
+                                <el-col :span="12">
+                                    <div class="chart_Total_title">
+                                        <span class="chart_title fontSize14" style="margin-left:12px;">C类</span>
+                                    </div>
+                                    <div id="lineChart16"></div>
+                                </el-col>
+                            </el-row>
+                            <el-row class="" style="margin-top:20px">
+                                <el-col :span="12" >
+                                    <div class="chart_Total_title">
+                                        <span class="chart_title fontSize14">D类</span>
+                                    </div>
+                                    <div id="lineChart17"></div>
+                                </el-col>
+                                <el-col :span="12">
+                                    <div class="chart_Total_title">
+                                        <span class="chart_title fontSize14" style="margin-left:12px;">D类</span>
+                                    </div>
+                                    <div id="lineChart18"></div>
+                                </el-col>
+                            </el-row>
+                        </div>
+                    </el-col>
+                </el-row>
+           </div>
        </div>
     </div>
 
@@ -441,13 +453,17 @@
     import gcoord from 'gcoord'
     import AMapUI from 'AMapUI'
     import china_map from "./china_map";
+    import dateContainer from "./dateContainer";
     export default {
         name: 'HelloWorld',
         components: {
             'chinaMap': china_map,
+            'dateContainer': dateContainer,
         },
         data () {
             return {
+                barHeight:1537,
+                barHeight2:370,
                 value1:'2',
                 selectValue:'',
                 options: [{
@@ -481,28 +497,84 @@
                 ratio:[20,15,15,10,10,10,10,10],
                 // isAllMap: false,
                 region:'',
-                Xdata: [this.selectfrom(0, 2000),this.selectfrom(0, 2000),this.selectfrom(0, 2000),this.selectfrom(0, 2000),this.selectfrom(0, 2000),this.selectfrom(0, 2000),this.selectfrom(0, 2000),this.selectfrom(0, 2000),this.selectfrom(0, 2000),this.selectfrom(0, 2000),this.selectfrom(0, 2000),this.selectfrom(0, 2000),this.selectfrom(0, 2000),this.selectfrom(0, 2000),this.selectfrom(0, 2000),this.selectfrom(0, 2000),this.selectfrom(0, 2000),this.selectfrom(0, 2000),this.selectfrom(0, 2000),this.selectfrom(0, 2000),this.selectfrom(0, 2000),this.selectfrom(0, 2000),this.selectfrom(0, 2000),this.selectfrom(0, 2000),this.selectfrom(0, 2000),this.selectfrom(0, 2000),this.selectfrom(0, 2000),this.selectfrom(0, 2000),this.selectfrom(0, 2000),this.selectfrom(0, 2000)]
+                Xdata: [this.selectfrom(0, 2000),this.selectfrom(0, 2000),this.selectfrom(0, 2000),this.selectfrom(0, 2000),this.selectfrom(0, 2000),this.selectfrom(0, 2000),this.selectfrom(0, 2000),this.selectfrom(0, 2000),this.selectfrom(0, 2000),this.selectfrom(0, 2000),this.selectfrom(0, 2000),this.selectfrom(0, 2000),this.selectfrom(0, 2000),this.selectfrom(0, 2000),this.selectfrom(0, 2000),this.selectfrom(0, 2000),this.selectfrom(0, 2000),this.selectfrom(0, 2000),this.selectfrom(0, 2000),this.selectfrom(0, 2000),this.selectfrom(0, 2000),this.selectfrom(0, 2000),this.selectfrom(0, 2000),this.selectfrom(0, 2000),this.selectfrom(0, 2000),this.selectfrom(0, 2000),this.selectfrom(0, 2000),this.selectfrom(0, 2000),this.selectfrom(0, 2000),this.selectfrom(0, 2000)],
+                personnelLists : 
+                [{ // 数据
+                    id: 'DT2',
+                    name:'孟勇',
+                    overtimeRate: '24%',
+                    averageMil:3567,
+                    maintenanceTime:9252,
+                    maintenanceNumber:876,
+                    planNumber:2363
+                },{
+                    id: 'DT2',
+                    name:'米谢',
+                    overtimeRate: '2%',
+                    averageMil:2179,
+                    maintenanceTime:6756,
+                    maintenanceNumber:342,
+                    planNumber:7890
+                },{
+                    id: 'DT2',
+                    name:'罗已杰',
+                    overtimeRate: '20%',
+                    averageMil:2000,
+                    maintenanceTime:3452,
+                    maintenanceNumber:345,
+                    planNumber:5672
+                },{
+                    id: 'DT2',
+                    name:'潘强',
+                    overtimeRate: '24%',
+                    averageMil:1285,
+                    maintenanceTime:1525,
+                    maintenanceNumber:2345,
+                    planNumber:3767
+                },{
+                    id: 'DT2',
+                    name:'王武',
+                    overtimeRate: '24%',
+                    averageMil:1300,
+                    maintenanceTime:9254,
+                    maintenanceNumber:635,
+                    planNumber:8965
+                },{
+                    id: 'DT2',
+                    name:'李明',
+                    overtimeRate: '24%',
+                    averageMil:1800,
+                    maintenanceTime:2272,
+                    maintenanceNumber:456,
+                    planNumber:3562
+                },{
+                    id: 'DT2',
+                    name:'雷军',
+                    overtimeRate: '24%',
+                    averageMil:2300,
+                    maintenanceTime:2552,
+                    maintenanceNumber:621,
+                    planNumber:4574
+                }]
+
             }
         },
         mounted(){
             let _this = this
-            // api.corp.elevator(1,5).then(res => {
-            //     console.log(JSON.stringify(res))
-            // })
-            console.log('result====' + this.data)
-            // 维保及时率统计
-            this.drawBarChart()
-            // 人均维保梯数统计
-            this.drawBarChart2()
-            this.drawPieChart()
+           
+            // // 维保及时率统计
+            // this.drawBarChart()
+            // // 人均维保梯数统计
+            // this.drawBarChart2()
+            // this.drawPieChart()
             // 电梯运行里程
             this.drawBarChart3()
             this.drawPieChart2()
             this.drawLineChart()
             this.drawLineChart2()
             // 维保时长
-            this.drawBarChart4()
-            this.drawPieChart3()
+            // this.drawBarChart4()
+            // this.drawPieChart3()
             // 电梯实时故障预测统计
             this.drawBarChart5()
             this.drawLineChart3()
@@ -513,16 +585,24 @@
             this.drawLineChart8()
             this.drawLineChart9()
             this.drawLineChart10()
+            this.drawLineChart11()
+            this.drawLineChart12()
+            this.drawLineChart13()
+            this.drawLineChart14()
+            this.drawLineChart15()
+            this.drawLineChart16()
+            this.drawLineChart17()
+            this.drawLineChart18()
             // 图表 end---
             this.drawLine()
-            this.today = this.getCurrentDate(1)
+            // this.today = this.getCurrentDate(1)
 
             // 图表自适应
-            let chartbar1 = this.$echarts.getInstanceByDom(document.getElementById("chartbar1"));
-            let chartbar2 = this.$echarts.getInstanceByDom(document.getElementById("chartbar2"));
-            let chartpie = this.$echarts.getInstanceByDom(document.getElementById("chartpie"));
-            let chartbar4 = this.$echarts.getInstanceByDom(document.getElementById("chartbar4"));
-            let chartpie3 = this.$echarts.getInstanceByDom(document.getElementById("chartpie3"));
+            // let chartbar1 = this.$echarts.getInstanceByDom(document.getElementById("chartbar1"));
+            // let chartbar2 = this.$echarts.getInstanceByDom(document.getElementById("chartbar2"));
+            // let chartpie = this.$echarts.getInstanceByDom(document.getElementById("chartpie"));
+            // let chartbar4 = this.$echarts.getInstanceByDom(document.getElementById("chartbar4"));
+            // let chartpie3 = this.$echarts.getInstanceByDom(document.getElementById("chartpie3"));
             let chartbar3 = this.$echarts.getInstanceByDom(document.getElementById("chartbar3"));
             let chartpie2 = this.$echarts.getInstanceByDom(document.getElementById("chartpie2"));
             let lineChart = this.$echarts.getInstanceByDom(document.getElementById("lineChart"));
@@ -536,14 +616,21 @@
             let lineChart8 = this.$echarts.getInstanceByDom(document.getElementById("lineChart8"));
             let lineChart9 = this.$echarts.getInstanceByDom(document.getElementById("lineChart9"));
             let lineChart10 = this.$echarts.getInstanceByDom(document.getElementById("lineChart10"));
-
+            let lineChart11 = this.$echarts.getInstanceByDom(document.getElementById("lineChart11"));
+            let lineChart12 = this.$echarts.getInstanceByDom(document.getElementById("lineChart12"));
+            let lineChart13 = this.$echarts.getInstanceByDom(document.getElementById("lineChart13"));
+            let lineChart14 = this.$echarts.getInstanceByDom(document.getElementById("lineChart14"));
+            let lineChart15 = this.$echarts.getInstanceByDom(document.getElementById("lineChart15"));
+            let lineChart16 = this.$echarts.getInstanceByDom(document.getElementById("lineChart16"));
+            let lineChart17 = this.$echarts.getInstanceByDom(document.getElementById("lineChart17"));
+            let lineChart18 = this.$echarts.getInstanceByDom(document.getElementById("lineChart18"));
 
             window.addEventListener("resize", function() {
-                chartbar1.resize();
-                chartbar2.resize();
-                chartpie.resize();
-                chartbar4.resize();
-                chartpie3.resize();
+                // chartbar1.resize();
+                // chartbar2.resize();
+                // chartpie.resize();
+                // chartbar4.resize();
+                // chartpie3.resize();
                 chartbar3.resize();
                 chartpie2.resize();
                 lineChart.resize();
@@ -557,12 +644,43 @@
                 lineChart8.resize();
                 lineChart9.resize();
                 lineChart10.resize();
+                lineChart11.resize();
+                lineChart12.resize();
+                lineChart13.resize();
+                lineChart14.resize();
+                lineChart15.resize();
+                lineChart16.resize();
+                lineChart17.resize();
+                lineChart18.resize();
+
             });
+            let windowWeight = document.body.offsetWidth
+            if (windowWeight < 1920) {
+                this.barHeight = 1537
+                this.barHeight2 = 346
+            } else {
+                this.barHeight = 1625
+                this.barHeight2 = 370
+            }
+            window.addEventListener("resize", function() {
+                let windowWeight = document.body.offsetWidth
+                if (windowWeight < 1920) {
+                    _this.barHeight = 1537
+                    _this.barHeight2 = 346
+                } else {
+                    _this.barHeight = 1625
+                    _this.barHeight2 = 370
+                }
+            })
+            _this.drawMap(zoom_x)
         },
         methods: {
             // goDetail() {
             //     console.log(11)
             // },
+            formatter(row, column) {
+                return row.maintenanceNumber + '   /   ' + row.planNumber ;
+            },
             toAmap(location){
                 return gcoord.transform(
                     location,    // 经纬度坐标
@@ -689,531 +807,7 @@
 
                 return mm + "-" + dd;
             },
-            // 柱状图1
-            drawBarChart() {
-                
-                var option = {
-                    // color: ['#59B785', '#F3C242', '#4cabce', '#e5323e'],
-                    color: ['#DF4B4B', '#0DBA7F', '#4cabce', '#e5323e'],
-                    tooltip : {
-                        trigger: 'axis',
-                        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
-                            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
-                        }
-                    },
-                    legend: {
-                        data:['直接访问','及时','超时','视频广告','搜索引擎','百度','谷歌','必应','其他'],
-                        show: true,
-                        itemGap: 90,
-                        // x : '90',
-                        bottom : '0',
-                        // right:'-50',
-                        // top: '100',
-                        orient: 'horizontal',
-                        // data:[{name:'鸡',icon:'circle'},{name:'猪',icon:'circle'},,{name:'牛',icon:'circle'}],
-                        align: 'left',
-                        textStyle: {
-                            color: '#66667F',
-                            fontSize: 12
-                        },
-                        icon: 'circle',
-                        itemWidth:8,
-                        // 使用回调函数
-                        // formatter: function (value, key) {
-                        //     return 'Legend ' + value + key;
-                        // }
-                        // data:['30以上','25-30','cc'],
-                        // formatter: function(name) {
-                        //     var index = 0;
-                        //     var clientlabels = ['aa','bb','cc'];
-                        //     var clientcounts = [9,1,10];
-                        //     clientlabels.forEach(function(value,i){
-                        //         if(value == name){
-                        //             index = i;
-                        //         }
-                        //     });
-                        //     return name + "  " + clientcounts[index];
-                        // }
-                    },
-                    grid: {
-                        top:'6%',
-                        left: '0%',
-                        right: '2%',
-                        bottom: '11%',
-                        containLabel: true
-                    },
-                    xAxis : [
-                        {
-                            type : 'category',
-                            data : this.day,
-                            axisLine:{  
-                                lineStyle:{  
-                                    color:'#24242f',  
-                                    width:1,//这里是为了突出显示加上的  
-                                }  
-                            },
-                            //分割线
-                            // splitLine:{
-                            //     show:true,
-                            // },
-                            //X轴文字
-                            axisLabel: {
-                                show: true,
-                                textStyle: {
-                                    fontSize : 12,  
-                                    // fontFamily : '微软雅黑',  
-                                    color:'#66667F'
-                                }
-                            }
-                        }
-                    ],
-                    yAxis : [
-                        {
-                            type : 'value',
-                            nameTextStyle: {  
-                                color: ['red']  
-                            },  
-                            axisLine:{  
-                                lineStyle:{  
-                                    color:'#24242f',  
-                                    width:1,//这里是为了突出显示加上的  
-                                } 
-                            },
-                            //分割线
-                            splitLine:{
-                                show:true,
-                                lineStyle: {
-                                // 使用深浅的间隔色
-                                    color: '#3F3F49',
-                                    type:'dashed',
-                                    // width:3,
-                                }
-                            },
-                            //Y轴文字
-                            axisLabel: {
-                                show: true,
-                                textStyle: {
-                                fontSize : 12,  
-                                // fontFamily : '微软雅黑',  
-                                color:'#66667F'
-                                }
-                            },
-                            splitNumber :7
-                        }
-                    ],
-                    series : [
-                        {
-                            name:'超时',
-                            type:'bar',
-                            stack: '广告',
-                            data: this.Xdata,
-                        },
-                        {
-                            name:'及时',
-                            type:'bar',
-                            stack: '广告',
-                            data: this.Xdata,
-                            barWidth:'45%'
-                        },
-                        
-                    ]
-                }
-                var trendChart = echarts.init(document.getElementById('chartbar1'))
-                
-                trendChart.setOption(option)
-            },
-             // 柱状图2
-            drawBarChart2() {
-                var xData = function() {
-                    var data = ['六月','七月','八月','九月','十月'];
-                    // for (var i = 0; i < 5; i++) {
-                    //     data.push(data[i]);
-                    // }
-                    // console.log('data:' + data)
-                    return data;
-                }();
-                var data = [this.selectfrom(13, 30),this.selectfrom(13, 30), this.selectfrom(18, 40), this.selectfrom(30, 70), this.selectfrom(15, 40)]
-                var option = {
-                    color: ['#738BD6', '#6B50D0', '#0DBA7F','#e5323e'],
-                    tooltip : {
-                        trigger: 'axis',
-                        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
-                            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
-                        }
-                    },
-                    legend: {
-                        data:['维保电梯数','维保企业数','维保人员数','视频广告','搜索引擎','百度','谷歌','必应','其他'],
-                        show: true,
-                        itemGap: 30,
-                        // x : '90',
-                        bottom : '0',
-                        // right:'-50',
-                        // top: '100',
-                        orient: 'horizontal',
-                        // data:[{name:'鸡',icon:'circle'},{name:'猪',icon:'circle'},,{name:'牛',icon:'circle'}],
-                        align: 'left',
-                        textStyle: {
-                            color: '#66667F',
-                            fontSize: 12
-                        },
-                        icon: 'circle',
-                        itemWidth:8,
-                        // 使用回调函数
-                        // formatter: function (value, key) {
-                        //     return 'Legend ' + value + key;
-                        // }
-                        // data:['30以上','25-30','cc'],
-                        // formatter: function(name) {
-                        //     var index = 0;
-                        //     var clientlabels = ['aa','bb','cc'];
-                        //     var clientcounts = [9,1,10];
-                        //     clientlabels.forEach(function(value,i){
-                        //         if(value == name){
-                        //             index = i;
-                        //         }
-                        //     });
-                        //     return name + "  " + clientcounts[index];
-                        // }
-                    },
-                    grid: {
-                        top:'6%',
-                        left: '0%',
-                        right: '5%',
-                        bottom: '15%',
-                        containLabel: true
-                    },
-                    xAxis : [
-                        {
-                            type : 'category',
-                            data : this.day,
-                            axisLine:{  
-                                lineStyle:{  
-                                    color:'#24242f',  
-                                    width:1,//这里是为了突出显示加上的  
-                                }  
-                            },
-                            //分割线
-                            // splitLine:{
-                            //     show:true,
-                            // },
-                            //X轴文字
-                            axisLabel: {
-                                show: true,
-                                textStyle: {
-                                    fontSize : 12,  
-                                    // fontFamily : '微软雅黑',  
-                                    color:'#66667F'
-                                }
-                            }
-                        }
-                    ],
-                    yAxis : [
-                        {
-                            type : 'value',
-                            nameTextStyle: {  
-                                color: ['red']  
-                            },  
-                            axisLine:{  
-                                lineStyle:{  
-                                    color:'#24242f',  
-                                    width:1,//这里是为了突出显示加上的  
-                                }  
-                            },
-                            //分割线
-                            splitLine:{
-                                show:true,
-                                lineStyle: {
-                                // 使用深浅的间隔色
-                                    color: '#3F3F49',
-                                    type:'dashed',
-                                    // width:3,
-                                }
-                            },
-                            //Y轴文字
-                            axisLabel: {
-                                show: true,
-                                textStyle: {
-                                fontSize : 12,  
-                                // fontFamily : '微软雅黑',  
-                                color:'#66667F'
-                                }
-                            },
-                            splitNumber :7
-                        }
-                    ],
-                    series : [
-                        {
-                            name:'维保人员数',
-                            type:'bar',
-                            stack: '广告',
-                            data:this.Xdata,
-                            barWidth:'50%'
-                        },
-                        {
-                            name:'维保企业数',
-                            type:'bar',
-                            stack: '广告',
-                            data:this.Xdata
-                        },
-                        {
-                            name:'维保电梯数',
-                            type:'bar',
-                            stack: '广告',
-                            data:this.Xdata
-                        },
-                    ]
-                }
-                var trendChart = echarts.init(document.getElementById('chartbar2'))
-                trendChart.setOption(option)
-            },
-             // 饼状图
-            drawPieChart() {
-                var data = [13.7, 13.4, 13.5, 36.1, 17.4]
-                    var option = {
-                    title : {
-                        text: '',
-                        subtext: '',
-                        x:'center'
-                    },
-                    tooltip : {
-                        trigger: 'item',
-                        formatter: "{a} <br/>{b} : {c} ({d}%)"
-                    },
-                    grid: {
-                        // top:'6%',
-                        // left: '0%',
-                        right: '0%',
-                        // bottom: '11%',
-                        // containLabel: true
-                    },
-                    legend: {
-                        show: true,
-                        x2 : '0',
-                        y : 'center',
-                        // right:'-50',
-                        // top: '100',
-                        orient: 'vertical',
-                        // data:[{name:'鸡',icon:'circle'},{name:'猪',icon:'circle'},,{name:'牛',icon:'circle'}],
-                        align: 'left',
-                        textStyle: {
-                            color: '#66667F',
-                            rich : {
-                                white: {
-                                    color: "#fff",
-                                    fontSize: 12,
-                                    align:'right'
-                                },
-                            },
-                        },
-                        // itemGap:'10%',
-                        // height :'10',
-                        icon: 'circle',
-                        itemWidth:8,
-                        // 使用回调函数
-                        // formatter: function (value, key) {
-                        //     return 'Legend ' + value + key;
-                        // }
-                        // data:['30以上','25-30','cc'],
-                        formatter: function(name) {
-                            var index = 0;
-                            var clientlabels = ['30以上','25-30','20-25','15-20','15以下'];
-                            var clientcounts = [40,21,17,13,9];
-                            clientlabels.forEach(function(value,i){
-                                if(value == name){
-                                    index = i;
-                                }
-                            });
-                            return name + "   " + "{white|" + clientcounts[index] + '%}';
-                        }
-
-                    },
-                    
-                    toolbox: {
-                        show : false,
-                        feature : {
-                            mark : {show: true},
-                            dataView : {show: true, readOnly: false},
-                            magicType : {
-                                show: true,
-                                type: ['pie', 'funnel']
-                            },
-                            restore : {show: true},
-                            saveAsImage : {show: true}
-                        }
-                    },
-                    calculable : true,
-                    series : [
-                        {
-                            name:'维保人员维保梯数',
-                            type:'pie',
-                            radius : [45, 65],
-                            center : ['30%', '50%'],
-                            // roseType : 'radius',
-                            label: {
-                                normal: {
-                                    show: false,
-                                    color:'red'
-                                },
-                                // emphasis: {
-                                //     show: false,
-                                //     formatter: '{a}{c}{b}: {d}',
-                                //     position: 'inside', 
-                                // }
-                            },
-                            lableLine: {
-                                normal: {
-                                    // show: false
-                                },
-                                // emphasis: {
-                                //     show: true
-                                // }
-                            },
-                            // itemStyle: {
-                            //     normal: {
-                            //         color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-
-
-                            //         // 0% 处的颜色   
-                            //         offset: 0, color: 'green'  },
-                            //     {
-                                    
-                            //         // 100% 处的颜色
-                            //     offset: 1, color: 'yellow' 
-                            //     }], false)
-                            //     }
-                            // },
-                            // data:this.chartpie3Data,
-                            data:[{
-                                value:40,
-                                name:'30以上',
-                                itemStyle:{
-                                    color: {
-                                        type: 'linear',
-                                        x: 0,
-                                        y: 0,
-                                        x2: 0,
-                                        y2: 1,
-                                        colorStops: [//{
-                                        //     offset: 0, color: 'red' // 0% 处的颜色
-                                        // }, 
-                                        {
-                                            offset: 0.2, color: '#0CB77D' // 0% 处的颜色
-                                        }, 
-                                        //  {offset: 0.5, color: 'green' // 0% 处的颜色
-                                        //  }, 
-                                        {
-                                            offset: 1, color: '#1A5F4F' // 100% 处的颜色
-                                        }],
-                                        globalCoord: true // 缺省为 false
-                                    }
-                                },
-                            }, {
-                                value:21, 
-                                name:'25-30',
-                                itemStyle: {
-                                    normal: {
-                                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                                            // 0% 处的颜色
-                                        offset: 0, color: '#7188D2'},
-                                        {
-                                            // 100% 处的颜色
-                                        offset: 1, color: '#3C4360' 
-                                        }], false)
-                                    },
-                                    // emphasis:{
-                                    //     color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                                    //         // 0% 处的颜色
-                                    //     offset: 0, color: '#000'},
-                                    //     {
-                                    //         // 100% 处的颜色
-                                    //     offset: 1, color: 'yellow' 
-                                    //     }], false)
-                                    // }
-                                },
-                            }, {
-                                value:17, 
-                                name:'20-25',
-                                itemStyle: {
-                                    normal: {
-                                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                                            // 0% 处的颜色
-                                        offset: 0, color: 'rgba(109,81,212,0.3)'},
-                                        {
-                                            // 100% 处的颜色
-                                        offset: 1, color: 'rgba(109,81,212,1)' 
-                                        }], false)
-                                    },
-                                    // emphasis:{
-                                    //     color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                                    //         // 0% 处的颜色
-                                    //     offset: 0, color: '#000'},
-                                    //     {
-                                    //         // 100% 处的颜色
-                                    //     offset: 1, color: 'yellow' 
-                                    //     }], false)
-                                    // }
-                                },
-                            }, {
-                                value:13, 
-                                name:'15-20',
-                                itemStyle: {
-                                    normal: {
-                                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                                            // 0% 处的颜色
-                                        offset: 0, 
-                                        // color: 'rgba(254,168,56,0.3)'},
-                                        color: 'rgba(254,125,1,0.3)'},
-                                        {
-                                            // 100% 处的颜色
-                                        offset: 1, 
-                                        // color: '#FEC101',
-                                        color: 'rgba(254,125,1,1)',
-                                        }], false)
-                                    },
-                                    // emphasis:{
-                                    //     color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                                    //         // 0% 处的颜色
-                                    //     offset: 0, color: '#000'},
-                                    //     {
-                                    //         // 100% 处的颜色
-                                    //     offset: 1, color: 'yellow' 
-                                    //     }], false)
-                                    // }
-                                },
-                            }, {
-                                value:9, 
-                                name:'15以下',
-                                itemStyle: {
-                                    normal: {
-                                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                                            // 0% 处的颜色
-                                        offset: 0, color: 'rgba(254,56,143,0.4)'},
-                                        {
-                                            // 100% 处的颜色
-                                        offset: 1, color: '#F75F5F' 
-                                        }], false)
-                                    },
-
-                                    // emphasis:{
-                                    //     color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                                    //         // 0% 处的颜色
-                                    //     offset: 0, color: '#000'},
-                                    //     {
-                                    //         // 100% 处的颜色
-                                    //     offset: 1, color: 'yellow' 
-                                    //     }], false)
-                                    // }
-                                },
-                            }],
-                            // color: ['red','#24505D','#5FD1B7','#3787B7','#7b91bf','#b068b1','#6b68ad','#c02c3a']
-                        },
-                        
-                    ]
-                }
-
-                var trendChart = echarts.init(document.getElementById('chartpie'))
-                trendChart.setOption(option)
-            },
+           
              // 柱状图3
             drawBarChart3() {
               
@@ -3355,7 +2949,7 @@
                         
                 echart.setOption(option);
             },
-            // 渐变折线图10
+            // 渐变折线图10 
             drawLineChart10(){
                 var chart = document.getElementById("lineChart10");
                 var echart = echarts.init(chart);
@@ -3480,6 +3074,958 @@
                         
                 echart.setOption(option);
             },
+            // 折线图11 电梯运行里程
+            drawLineChart11(){
+                var chart = document.getElementById("lineChart11");
+                var echart = echarts.init(chart);
+                var option = {
+                tooltip : {
+                    trigger: 'axis',
+                },
+                legend: {
+                    data:['A类','全市参考范围'],
+                    itemGap: 30,
+                    // orient: 'vertical',  //垂直显示
+                    y: 'bottom',    //延Y轴居中
+                    x: 'center', //居右显示
+                    textStyle:{
+                        fontSize : 12,  
+                        fontFamily : 'PingFangSC-Regular',  
+                        color:'#66667F'  
+                    },
+                    itemWidth: 8,
+                    show:true,
+                    icon:'circle',
+                    // backgroundColor:'red'
+                },
+                // color:['#FEC101','#6B50D0'],
+                color:['#0DBA7F','#FE7D01'],
+                //工具栏
+                toolbox: {
+                    show : false ,
+                    feature : {
+                    mark : {show: true},
+                    dataView : {show: true, readOnly: false},
+                    magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                    restore : {show: true},
+                    saveAsImage : {show: true}
+                    }
+                },
+                grid: {
+                    right: '3%', //相当于距离左边效果:padding-left
+                    left: '3%', //相当于距离上边效果:padding-top
+                    // bottom: '15%',
+                    bottom: '20%',
+                    top: '10%',
+                    containLabel: true
+                },
+                calculable : true,
+                xAxis : [{
+                    type : 'category',
+                    boundaryGap : false,
+                    data : this.month,
+                    axisLine:{
+                        lineStyle:{  
+                            color:'#24242f',  
+                            width:1,//这里是为了突出显示加上的  
+                        }  
+                    },
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            fontSize : 12,  
+                            // fontFamily : '微软雅黑',  
+                            color:'#66667F'
+                        }
+                    }
+                }],
+                yAxis : [
+                    {
+                    type : 'value',
+                    // min:0,
+                    // max:150,
+                    axisLine:{  
+                        lineStyle:{  
+                            color:'#24242f',  
+                            width:1,//这里是为了突出显示加上的  
+                        }  
+                    },
+                    //分割线
+                    splitLine:{
+                        show:true,
+                        lineStyle: {
+                        // 使用深浅的间隔色
+                            color: '#3F3F49',
+                            type:'dashed',
+                            // width:3,
+                        }
+                    },
+                    //Y轴文字
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                        fontSize : 12,  
+                        color:'#66667F'
+                        }
+                    },
+                    }
+                ],
+                series : [
+                    {
+                        name:'A类',
+                        type:'line',
+                        smooth:true,
+                        showSymbol: false,
+                        stack: 'A类',
+                        data: [12, 116, 200, 87, 105, 202, 105,126, 108, 25, 143, 108, 87, 150, 22],
+                    },
+                   
+                    {
+                        name:'全市参考范围',
+                        type:'line',
+                        smooth:true,
+                        showSymbol: false,
+                        stack: '全市参考范围',
+                        data: [4, 85, 57, 40, 54, 97, 45,76, 34, 17, 86, 53, 67, 87, 10],
+                    },
+                ]
+                };
+                        
+                echart.setOption(option);
+            },
+            // 折线图12 电梯运行里程
+            drawLineChart12(){
+                var chart = document.getElementById("lineChart12");
+                var echart = echarts.init(chart);
+                var option = {
+                tooltip : {
+                    trigger: 'axis',
+                },
+                legend: {
+                    data:['A类','全市参考范围'],
+                    itemGap: 30,
+                    // orient: 'vertical',  //垂直显示
+                    y: 'bottom',    //延Y轴居中
+                    x: 'center', //居右显示
+                    textStyle:{
+                        fontSize : 12,  
+                        fontFamily : 'PingFangSC-Regular',  
+                        color:'#66667F'  
+                    },
+                    itemWidth: 8,
+                    show:true,
+                    icon:'circle',
+                    // backgroundColor:'red'
+                },
+                // color:['#FEC101','#6B50D0'],
+                color:['#0DBA7F','#FE7D01'],
+                //工具栏
+                toolbox: {
+                    show : false ,
+                    feature : {
+                    mark : {show: true},
+                    dataView : {show: true, readOnly: false},
+                    magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                    restore : {show: true},
+                    saveAsImage : {show: true}
+                    }
+                },
+                grid: {
+                    right: '3%', //相当于距离左边效果:padding-left
+                    left: '3%', //相当于距离上边效果:padding-top
+                    // bottom: '15%',
+                    bottom: '20%',
+                    top: '10%',
+                    containLabel: true
+                },
+                calculable : true,
+                xAxis : [{
+                    type : 'category',
+                    boundaryGap : false,
+                    data : this.month,
+                    axisLine:{
+                        lineStyle:{  
+                            color:'#24242f',  
+                            width:1,//这里是为了突出显示加上的  
+                        }  
+                    },
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            fontSize : 12,  
+                            // fontFamily : '微软雅黑',  
+                            color:'#66667F'
+                        }
+                    }
+                }],
+                yAxis : [
+                    {
+                    type : 'value',
+                    // min:0,
+                    // max:150,
+                    axisLine:{  
+                        lineStyle:{  
+                            color:'#24242f',  
+                            width:1,//这里是为了突出显示加上的  
+                        }  
+                    },
+                    //分割线
+                    splitLine:{
+                        show:true,
+                        lineStyle: {
+                        // 使用深浅的间隔色
+                            color: '#3F3F49',
+                            type:'dashed',
+                            // width:3,
+                        }
+                    },
+                    //Y轴文字
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                        fontSize : 12,  
+                        color:'#66667F'
+                        }
+                    },
+                    }
+                ],
+                series : [
+                    {
+                        name:'A类',
+                        type:'line',
+                        smooth:true,
+                        showSymbol: false,
+                        stack: 'A类',
+                        data: [12, 116, 200, 87, 105, 202, 105,126, 108, 25, 143, 108, 87, 150, 22],
+                    },
+                   
+                    {
+                        name:'全市参考范围',
+                        type:'line',
+                        smooth:true,
+                        showSymbol: false,
+                        stack: '全市参考范围',
+                        data: [4, 85, 57, 40, 54, 97, 45,76, 34, 17, 86, 53, 67, 87, 10],
+                    },
+                ]
+                };
+                        
+                echart.setOption(option);
+            },
+            // 折线图13 电梯运行里程
+            drawLineChart13(){
+                var chart = document.getElementById("lineChart13");
+                var echart = echarts.init(chart);
+                var option = {
+                tooltip : {
+                    trigger: 'axis',
+                },
+                legend: {
+                    data:['B类','全市参考范围'],
+                    itemGap: 30,
+                    // orient: 'vertical',  //垂直显示
+                    y: 'bottom',    //延Y轴居中
+                    x: 'center', //居右显示
+                    textStyle:{
+                        fontSize : 12,  
+                        fontFamily : 'PingFangSC-Regular',  
+                        color:'#66667F'  
+                    },
+                    itemWidth: 8,
+                    show:true,
+                    icon:'circle',
+                    // backgroundColor:'red'
+                },
+                // color:['#FEC101','#6B50D0'],
+                color:['#027E73','#FE7D01'],
+                //工具栏
+                toolbox: {
+                    show : false ,
+                    feature : {
+                    mark : {show: true},
+                    dataView : {show: true, readOnly: false},
+                    magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                    restore : {show: true},
+                    saveAsImage : {show: true}
+                    }
+                },
+                grid: {
+                    right: '3%', //相当于距离左边效果:padding-left
+                    left: '3%', //相当于距离上边效果:padding-top
+                    // bottom: '15%',
+                    bottom: '20%',
+                    top: '10%',
+                    containLabel: true
+                },
+                calculable : true,
+                xAxis : [{
+                    type : 'category',
+                    boundaryGap : false,
+                    data : this.month,
+                    axisLine:{
+                        lineStyle:{  
+                            color:'#24242f',  
+                            width:1,//这里是为了突出显示加上的  
+                        }  
+                    },
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            fontSize : 12,  
+                            // fontFamily : '微软雅黑',  
+                            color:'#66667F'
+                        }
+                    }
+                }],
+                yAxis : [
+                    {
+                    type : 'value',
+                    // min:0,
+                    // max:150,
+                    axisLine:{  
+                        lineStyle:{  
+                            color:'#24242f',  
+                            width:1,//这里是为了突出显示加上的  
+                        }  
+                    },
+                    //分割线
+                    splitLine:{
+                        show:true,
+                        lineStyle: {
+                        // 使用深浅的间隔色
+                            color: '#3F3F49',
+                            type:'dashed',
+                            // width:3,
+                        }
+                    },
+                    //Y轴文字
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                        fontSize : 12,  
+                        color:'#66667F'
+                        }
+                    },
+                    }
+                ],
+                series : [
+                    {
+                        name:'B类',
+                        type:'line',
+                        smooth:true,
+                        showSymbol: false,
+                        stack: 'B类',
+                        data: [12, 116, 200, 87, 105, 202, 105,126, 108, 25, 143, 108, 87, 150, 22],
+                    },
+                   
+                    {
+                        name:'全市参考范围',
+                        type:'line',
+                        smooth:true,
+                        showSymbol: false,
+                        stack: '全市参考范围',
+                        data: [4, 85, 57, 40, 54, 97, 45,76, 34, 17, 86, 53, 67, 87, 10],
+                    },
+                ]
+                };
+                        
+                echart.setOption(option);
+            },
+            // 折线图14 电梯运行里程
+            drawLineChart14(){
+                var chart = document.getElementById("lineChart14");
+                var echart = echarts.init(chart);
+                var option = {
+                tooltip : {
+                    trigger: 'axis',
+                },
+                legend: {
+                    data:['B类','全市参考范围'],
+                    itemGap: 30,
+                    // orient: 'vertical',  //垂直显示
+                    y: 'bottom',    //延Y轴居中
+                    x: 'center', //居右显示
+                    textStyle:{
+                        fontSize : 12,  
+                        fontFamily : 'PingFangSC-Regular',  
+                        color:'#66667F'  
+                    },
+                    itemWidth: 8,
+                    show:true,
+                    icon:'circle',
+                    // backgroundColor:'red'
+                },
+                // color:['#FEC101','#6B50D0'],
+                color:['#027E73','#FE7D01'],
+                //工具栏
+                toolbox: {
+                    show : false ,
+                    feature : {
+                    mark : {show: true},
+                    dataView : {show: true, readOnly: false},
+                    magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                    restore : {show: true},
+                    saveAsImage : {show: true}
+                    }
+                },
+                grid: {
+                    right: '3%', //相当于距离左边效果:padding-left
+                    left: '3%', //相当于距离上边效果:padding-top
+                    // bottom: '15%',
+                    bottom: '20%',
+                    top: '10%',
+                    containLabel: true
+                },
+                calculable : true,
+                xAxis : [{
+                    type : 'category',
+                    boundaryGap : false,
+                    data : this.month,
+                    axisLine:{
+                        lineStyle:{  
+                            color:'#24242f',  
+                            width:1,//这里是为了突出显示加上的  
+                        }  
+                    },
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            fontSize : 12,  
+                            // fontFamily : '微软雅黑',  
+                            color:'#66667F'
+                        }
+                    }
+                }],
+                yAxis : [
+                    {
+                    type : 'value',
+                    // min:0,
+                    // max:150,
+                    axisLine:{  
+                        lineStyle:{  
+                            color:'#24242f',  
+                            width:1,//这里是为了突出显示加上的  
+                        }  
+                    },
+                    //分割线
+                    splitLine:{
+                        show:true,
+                        lineStyle: {
+                        // 使用深浅的间隔色
+                            color: '#3F3F49',
+                            type:'dashed',
+                            // width:3,
+                        }
+                    },
+                    //Y轴文字
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                        fontSize : 12,  
+                        color:'#66667F'
+                        }
+                    },
+                    }
+                ],
+                series : [
+                    {
+                        name:'B类',
+                        type:'line',
+                        smooth:true,
+                        showSymbol: false,
+                        stack: 'B类',
+                        data: [12, 116, 200, 87, 105, 202, 105,126, 108, 25, 143, 108, 87, 150, 22],
+                    },
+                   
+                    {
+                        name:'全市参考范围',
+                        type:'line',
+                        smooth:true,
+                        showSymbol: false,
+                        stack: '全市参考范围',
+                        data: [4, 85, 57, 40, 54, 97, 45,76, 34, 17, 86, 53, 67, 87, 10],
+                    },
+                ]
+                };
+                        
+                echart.setOption(option);
+            },
+            // 折线图15 电梯运行里程
+            drawLineChart15(){
+                var chart = document.getElementById("lineChart15");
+                var echart = echarts.init(chart);
+                var option = {
+                tooltip : {
+                    trigger: 'axis',
+                },
+                legend: {
+                    data:['C类','全市参考范围'],
+                    itemGap: 30,
+                    // orient: 'vertical',  //垂直显示
+                    y: 'bottom',    //延Y轴居中
+                    x: 'center', //居右显示
+                    textStyle:{
+                        fontSize : 12,  
+                        fontFamily : 'PingFangSC-Regular',  
+                        color:'#66667F'  
+                    },
+                    itemWidth: 8,
+                    show:true,
+                    icon:'circle',
+                    // backgroundColor:'red'
+                },
+                // color:['#FEC101','#6B50D0'],
+                color:['#738BD6','#FE7D01'],
+                //工具栏
+                toolbox: {
+                    show : false ,
+                    feature : {
+                    mark : {show: true},
+                    dataView : {show: true, readOnly: false},
+                    magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                    restore : {show: true},
+                    saveAsImage : {show: true}
+                    }
+                },
+                grid: {
+                    right: '3%', //相当于距离左边效果:padding-left
+                    left: '3%', //相当于距离上边效果:padding-top
+                    // bottom: '15%',
+                    bottom: '20%',
+                    top: '10%',
+                    containLabel: true
+                },
+                calculable : true,
+                xAxis : [{
+                    type : 'category',
+                    boundaryGap : false,
+                    data : this.month,
+                    axisLine:{
+                        lineStyle:{  
+                            color:'#24242f',  
+                            width:1,//这里是为了突出显示加上的  
+                        }  
+                    },
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            fontSize : 12,  
+                            // fontFamily : '微软雅黑',  
+                            color:'#66667F'
+                        }
+                    }
+                }],
+                yAxis : [
+                    {
+                    type : 'value',
+                    // min:0,
+                    // max:150,
+                    axisLine:{  
+                        lineStyle:{  
+                            color:'#24242f',  
+                            width:1,//这里是为了突出显示加上的  
+                        }  
+                    },
+                    //分割线
+                    splitLine:{
+                        show:true,
+                        lineStyle: {
+                        // 使用深浅的间隔色
+                            color: '#3F3F49',
+                            type:'dashed',
+                            // width:3,
+                        }
+                    },
+                    //Y轴文字
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                        fontSize : 12,  
+                        color:'#66667F'
+                        }
+                    },
+                    }
+                ],
+                series : [
+                    {
+                        name:'C类',
+                        type:'line',
+                        smooth:true,
+                        showSymbol: false,
+                        stack: 'B类',
+                        data: [12, 116, 200, 87, 105, 202, 105,126, 108, 25, 143, 108, 87, 150, 22],
+                    },
+                   
+                    {
+                        name:'全市参考范围',
+                        type:'line',
+                        smooth:true,
+                        showSymbol: false,
+                        stack: '全市参考范围',
+                        data: [4, 85, 57, 40, 54, 97, 45,76, 34, 17, 86, 53, 67, 87, 10],
+                    },
+                ]
+                };
+                        
+                echart.setOption(option);
+            },
+            // 折线图16 电梯运行里程
+            drawLineChart16(){
+                var chart = document.getElementById("lineChart16");
+                var echart = echarts.init(chart);
+                var option = {
+                tooltip : {
+                    trigger: 'axis',
+                },
+                legend: {
+                    data:['C类','全市参考范围'],
+                    itemGap: 30,
+                    // orient: 'vertical',  //垂直显示
+                    y: 'bottom',    //延Y轴居中
+                    x: 'center', //居右显示
+                    textStyle:{
+                        fontSize : 12,  
+                        fontFamily : 'PingFangSC-Regular',  
+                        color:'#66667F'  
+                    },
+                    itemWidth: 8,
+                    show:true,
+                    icon:'circle',
+                    // backgroundColor:'red'
+                },
+                // color:['#FEC101','#6B50D0'],
+                color:['#738BD6','#FE7D01'],
+                //工具栏
+                toolbox: {
+                    show : false ,
+                    feature : {
+                    mark : {show: true},
+                    dataView : {show: true, readOnly: false},
+                    magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                    restore : {show: true},
+                    saveAsImage : {show: true}
+                    }
+                },
+                grid: {
+                    right: '3%', //相当于距离左边效果:padding-left
+                    left: '3%', //相当于距离上边效果:padding-top
+                    // bottom: '15%',
+                    bottom: '20%',
+                    top: '10%',
+                    containLabel: true
+                },
+                calculable : true,
+                xAxis : [{
+                    type : 'category',
+                    boundaryGap : false,
+                    data : this.month,
+                    axisLine:{
+                        lineStyle:{  
+                            color:'#24242f',  
+                            width:1,//这里是为了突出显示加上的  
+                        }  
+                    },
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            fontSize : 12,  
+                            // fontFamily : '微软雅黑',  
+                            color:'#66667F'
+                        }
+                    }
+                }],
+                yAxis : [
+                    {
+                    type : 'value',
+                    // min:0,
+                    // max:150,
+                    axisLine:{  
+                        lineStyle:{  
+                            color:'#24242f',  
+                            width:1,//这里是为了突出显示加上的  
+                        }  
+                    },
+                    //分割线
+                    splitLine:{
+                        show:true,
+                        lineStyle: {
+                        // 使用深浅的间隔色
+                            color: '#3F3F49',
+                            type:'dashed',
+                            // width:3,
+                        }
+                    },
+                    //Y轴文字
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                        fontSize : 12,  
+                        color:'#66667F'
+                        }
+                    },
+                    }
+                ],
+                series : [
+                    {
+                        name:'C类',
+                        type:'line',
+                        smooth:true,
+                        showSymbol: false,
+                        stack: 'C类',
+                        data: [12, 116, 200, 87, 105, 202, 105,126, 108, 25, 143, 108, 87, 150, 22],
+                    },
+                   
+                    {
+                        name:'全市参考范围',
+                        type:'line',
+                        smooth:true,
+                        showSymbol: false,
+                        stack: '全市参考范围',
+                        data: [4, 85, 57, 40, 54, 97, 45,76, 34, 17, 86, 53, 67, 87, 10],
+                    },
+                ]
+                };
+                        
+                echart.setOption(option);
+            },
+            // 折线图17 电梯运行里程
+            drawLineChart17(){
+                var chart = document.getElementById("lineChart17");
+                var echart = echarts.init(chart);
+                var option = {
+                tooltip : {
+                    trigger: 'axis',
+                },
+                legend: {
+                    data:['D类','全市参考范围'],
+                    itemGap: 30,
+                    // orient: 'vertical',  //垂直显示
+                    y: 'bottom',    //延Y轴居中
+                    x: 'center', //居右显示
+                    textStyle:{
+                        fontSize : 12,  
+                        fontFamily : 'PingFangSC-Regular',  
+                        color:'#66667F'  
+                    },
+                    itemWidth: 8,
+                    show:true,
+                    icon:'circle',
+                    // backgroundColor:'red'
+                },
+                // color:['#FEC101','#6B50D0'],
+                color:['#6B50D0','#FE7D01'],
+                //工具栏
+                toolbox: {
+                    show : false ,
+                    feature : {
+                    mark : {show: true},
+                    dataView : {show: true, readOnly: false},
+                    magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                    restore : {show: true},
+                    saveAsImage : {show: true}
+                    }
+                },
+                grid: {
+                    right: '3%', //相当于距离左边效果:padding-left
+                    left: '3%', //相当于距离上边效果:padding-top
+                    // bottom: '15%',
+                    bottom: '20%',
+                    top: '10%',
+                    containLabel: true
+                },
+                calculable : true,
+                xAxis : [{
+                    type : 'category',
+                    boundaryGap : false,
+                    data : this.month,
+                    axisLine:{
+                        lineStyle:{  
+                            color:'#24242f',  
+                            width:1,//这里是为了突出显示加上的  
+                        }  
+                    },
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            fontSize : 12,  
+                            // fontFamily : '微软雅黑',  
+                            color:'#66667F'
+                        }
+                    }
+                }],
+                yAxis : [
+                    {
+                    type : 'value',
+                    // min:0,
+                    // max:150,
+                    axisLine:{  
+                        lineStyle:{  
+                            color:'#24242f',  
+                            width:1,//这里是为了突出显示加上的  
+                        }  
+                    },
+                    //分割线
+                    splitLine:{
+                        show:true,
+                        lineStyle: {
+                        // 使用深浅的间隔色
+                            color: '#3F3F49',
+                            type:'dashed',
+                            // width:3,
+                        }
+                    },
+                    //Y轴文字
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                        fontSize : 12,  
+                        color:'#66667F'
+                        }
+                    },
+                    }
+                ],
+                series : [
+                    {
+                        name:'D类',
+                        type:'line',
+                        smooth:true,
+                        showSymbol: false,
+                        stack: 'D类',
+                        data: [12, 116, 200, 87, 105, 202, 105,126, 108, 25, 143, 108, 87, 150, 22],
+                    },
+                   
+                    {
+                        name:'全市参考范围',
+                        type:'line',
+                        smooth:true,
+                        showSymbol: false,
+                        stack: '全市参考范围',
+                        data: [4, 85, 57, 40, 54, 97, 45,76, 34, 17, 86, 53, 67, 87, 10],
+                    },
+                ]
+                };
+                        
+                echart.setOption(option);
+            },
+            // 折线图18 电梯运行里程
+            drawLineChart18(){
+                var chart = document.getElementById("lineChart18");
+                var echart = echarts.init(chart);
+                var option = {
+                tooltip : {
+                    trigger: 'axis',
+                },
+                legend: {
+                    data:['D类','全市参考范围'],
+                    itemGap: 30,
+                    // orient: 'vertical',  //垂直显示
+                    y: 'bottom',    //延Y轴居中
+                    x: 'center', //居右显示
+                    textStyle:{
+                        fontSize : 12,  
+                        fontFamily : 'PingFangSC-Regular',  
+                        color:'#66667F'  
+                    },
+                    itemWidth: 8,
+                    show:true,
+                    icon:'circle',
+                    // backgroundColor:'red'
+                },
+                // color:['#FEC101','#6B50D0'],
+                color:['#6B50D0','#FE7D01'],
+                //工具栏
+                toolbox: {
+                    show : false ,
+                    feature : {
+                    mark : {show: true},
+                    dataView : {show: true, readOnly: false},
+                    magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                    restore : {show: true},
+                    saveAsImage : {show: true}
+                    }
+                },
+                grid: {
+                    right: '3%', //相当于距离左边效果:padding-left
+                    left: '3%', //相当于距离上边效果:padding-top
+                    // bottom: '15%',
+                    bottom: '20%',
+                    top: '10%',
+                    containLabel: true
+                },
+                calculable : true,
+                xAxis : [{
+                    type : 'category',
+                    boundaryGap : false,
+                    data : this.month,
+                    axisLine:{
+                        lineStyle:{  
+                            color:'#24242f',  
+                            width:1,//这里是为了突出显示加上的  
+                        }  
+                    },
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            fontSize : 12,  
+                            // fontFamily : '微软雅黑',  
+                            color:'#66667F'
+                        }
+                    }
+                }],
+                yAxis : [
+                    {
+                    type : 'value',
+                    // min:0,
+                    // max:150,
+                    axisLine:{  
+                        lineStyle:{  
+                            color:'#24242f',  
+                            width:1,//这里是为了突出显示加上的  
+                        }  
+                    },
+                    //分割线
+                    splitLine:{
+                        show:true,
+                        lineStyle: {
+                        // 使用深浅的间隔色
+                            color: '#3F3F49',
+                            type:'dashed',
+                            // width:3,
+                        }
+                    },
+                    //Y轴文字
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                        fontSize : 12,  
+                        color:'#66667F'
+                        }
+                    },
+                    }
+                ],
+                series : [
+                    {
+                        name:'D类',
+                        type:'line',
+                        smooth:true,
+                        showSymbol: false,
+                        stack: 'D类',
+                        data: [12, 116, 200, 87, 105, 202, 105,126, 108, 25, 143, 108, 87, 150, 22],
+                    },
+                   
+                    {
+                        name:'全市参考范围',
+                        type:'line',
+                        smooth:true,
+                        showSymbol: false,
+                        stack: '全市参考范围',
+                        data: [4, 85, 57, 40, 54, 97, 45,76, 34, 17, 86, 53, 67, 87, 10],
+                    },
+                ]
+                };
+                        
+                echart.setOption(option);
+            },
         }
     };
 </script>
@@ -3488,81 +4034,6 @@
 // 配置
 @import '../assets/stylus/base'
 @import '../assets/stylus/panel'
-
-// 适配
-@media screen and (max-width: 1910px) {
-
-  #MapContainer{
-    width: 30% !important;
-  }
-  .right{
-    left: 30% !important;
-  }
-  #chartbar1,#chartbar2,#chartbar3,#chartbar4,#chartbar6,#chartpie,#chartpie2,#chartpie3,#chartpie4{
-    height: 170px !important;
-  }
-  #chartpie,#chartpie2,#chartpie3,#chartpie4{
-    margin-top: -20px;
-  }
-  #chartbar5{
-    height: 220px !important;
-  }
-
-  .charts{
-    padding: 24px 12px 5px 70px;
-  }
-  .el-col-16{
-    width: 58% !important;
-  }
-  .el-col-8{
-    width: 41% !important;
-  }
-  .chart_Total_title.chart_Total_title_x{
-    padding-bottom: 60px;
-  }
-  .chart-x-title{
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    display: block !important;
-    overflow: hidden;
-  }
-  .chart-x-title .chart_title{
-    display: block;
-    float: left;
-  }
-  .chart-x-title .chart_title .unit{
-    display: block !important;
-    margin-left: 0px !important;
-  }
-  .summaryItemList_x{
-    padding-bottom: 166px !important;
-  }
-  .sum-gradient-last{
-    height: 1541px;
-  }
-}
-.chart_Total_title{
-  position: relative;
-}
-.chart-x-title{
-  display: inline-block;
-}
-.charts .chart-x-title .chart_title{
-  font-size: 16px;
-}
-div{
-  outline: none;
-}
-@media screen and (max-width: 1340px) {
-    .main-wrap {
-        min-width 1340px;
-    }
-    .right {
-        width 961px !important;
-    }
-}
-
 
 // 修改适配
 // .main-wrap {
@@ -3624,6 +4095,8 @@ div{
             size 100% 246px
         #lineChart3,#lineChart4,#lineChart5,#lineChart6,#lineChart7,#lineChart8,#lineChart9,#lineChart10
             size: 100% 235px
+        #lineChart11,#lineChart12,#lineChart13,#lineChart14,#lineChart15,#lineChart16,#lineChart17,#lineChart18
+            size: 100% 195px
     // 第一个summary1
     .summary1
         .summaryItem
@@ -3683,8 +4156,6 @@ div{
             absolute top 224px left 21px
         }
     }
-    // 第三个summary
-    .summary3
     .summaryItemList
         .info-label
             margin-bottom 10px
@@ -3748,5 +4219,79 @@ div{
                 absolute top 15px left -25px
             .circle:nth-child(1)
                 background: red;
-    
+// 这个页面新增样式
+.iconImg{
+    size 47px
+    border-radius 50%
+    display: inline-block;
+    absolute top 21px left 21px
+}
+.check_iconImg1{
+    background: url('../assets/images/hs/completionRate.png') no-repeat
+}
+.check_iconImg2{
+    background: url('../assets/images/hs/timeoutRate.png') no-repeat
+}
+.check_iconImg3{
+    background: url('../assets/images/hs/averageTime.png') no-repeat
+}
+.check_iconImg4{
+    background: url('../assets/images/hs/completionRate_month.png') no-repeat
+}
+.check_iconImg5{
+    background: url('../assets/images/hs/averageTime2.png') no-repeat
+}
+.splitBar
+    background: #282832;
+    display:inline-block
+    size 137px 4px
+    margin-left 22px
+.summaryItem_img
+    position relative
+    padding 15px 0 5px 80px!important
+.thisMonth
+    display inline-block
+    size 49px 24px
+    border: 1px solid rgba(56,61,80,0.60);
+    border-radius: 16.5px;
+    margin-left 22px
+    text-align center
+    margin-bottom 10px
+.add
+    border-radius: 16.5px;
+    display:inline-block
+    size 48px 24px
+    float right
+    background: url('../assets/images/hs/add.png') no-repeat #0DBA7F center;
+    cursor: pointer;
+.tableJob
+    color: #027E73;
+    margin-right 10%
+    cursor pointer
+.tableLast
+    color: #0DBA7F;
+    cursor pointer
+.search
+  float right
+  font-size: 0;
+  .search_input
+    border: 1px solid rgba(56,61,80,0.60);
+    border-radius: 16.5px 0 0 16.5px;
+    size 194px 28px
+    line-height: 28px
+    background: transparent;
+    color: #fff;
+    font-size 14px
+    display: inline-block
+    padding 0 16px
+    box-sizing: border-box;
+    vertical-align: top
+  .search_btn
+    background: url('../assets/images/hs/search.png') no-repeat #0DBA7F center;
+    border-radius: 0 16.5px 16.5px 0;
+    size 32px 28px
+    cursor pointer
+    display: inline-block
+.underline_td
+    text-decoration: underline;
 </style>
