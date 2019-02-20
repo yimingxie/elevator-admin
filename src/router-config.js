@@ -3,9 +3,9 @@ import Router from 'vue-router'
 import TestMap from './views/xym/TestMap'
 import TestMap2 from './views/xym/TestMap2'
 import ElevatorDetail from './views/xym/ElevatorDetail'
-import ElevatorDetail2 from './views/xym/ElevatorDetail2'
-import ElevatorDetail3 from './views/xym/ElevatorDetail3'
 import ElevatorDetailNew from './views/xym/ElevatorDetailNew'
+import ElevatorDetailNew2 from './views/xym/ElevatorDetailNew2'
+import ElevatorDetailOld from './views/xym/ElevatorDetailOld'
 import Index from './views/Index'
 
 
@@ -32,18 +32,24 @@ export default new Router({
     {
       path: "/detail",
       name: "ElevatorDetail",
-      component: ElevatorDetail
+      component: ElevatorDetailNew
     },
     {
       path: "/detail-new",
       name: "ElevatorDetailNew",
-      component: ElevatorDetailNew
+      component: ElevatorDetail
     },
     {
-      path: "/detail3",
-      name: "ElevatorDetail3",
-      component: ElevatorDetail3
+      path: "/detail-new2",
+      name: "ElevatorDetailNew2",
+      component: ElevatorDetailNew2
     },
+    {
+      path: "/detail-old",
+      name: "ElevatorDetailOld",
+      component: ElevatorDetailOld
+    },
+
    
   
   ]

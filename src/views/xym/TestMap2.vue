@@ -75,6 +75,8 @@
 
     <!-- 测试时序 -->
     <div id="chart9" ref="chart9"></div>
+    <div id="chart10" ref="chart10"></div>
+    <div id="chart11" ref="chart11"></div>
 
   </div>
 </template>
@@ -84,7 +86,8 @@ import Vue from "vue";
 import AMap from "AMap";
 import Loca from "Loca";
 import api from '../../api.js'
-import { clearTimeout } from 'timers';
+import { setInterval } from 'timers';
+
 
 export default {
   data() {
@@ -100,18 +103,14 @@ export default {
   },
   mounted() {
     let dataValue = []
-    api.detail.getD27(this.dtID).then(res => {
-      // if (res.data) return
-      console.log(res)
-      res.data.result.forEach((item, i) => {
-          dataValue.unshift(item.value)
-        })
-      dataValue.push(currentVal)
+    // api.detail.getD1(this.dtID).then(res => {
+    //   console.log(res.data)
+     
   
-    })
-    .catch(err => {
-      console.log(666)
-    })
+    // })
+    // .catch(err => {
+    //   console.log(666)
+    // })
 
 
 
@@ -125,6 +124,11 @@ export default {
     this.getCalendar()
     this.drawChart8();
     this.drawChart9();
+    this.drawChart10();
+    this.drawChart11();
+    setInterval(() => {
+      this.drawChart11();
+    }, 2000)
 
     // 图表自适应
     let chart1 = this.$echarts.getInstanceByDom(
@@ -832,7 +836,7 @@ export default {
         date.push(now);
         data.push((Math.random() - 0.5) * 10 + data[data.length - 1]);
         if (shift) {
-          console.log(data);
+          // console.log(data);
           date.shift();
           data.shift();
         }
@@ -931,7 +935,6 @@ export default {
           data.shift();
           date.shift();
         }
-        console.log(date);
         chart7.setOption({
           xAxis: {
             data: date
@@ -959,7 +962,6 @@ export default {
       let localTime = new Date(),
         localMonth = localTime.getMonth();
 
-      console.log(curTime, curYear, curMonth, curDate);
 
       // 判断平年还是闰年
       function isLeapYear(year) {
@@ -977,7 +979,7 @@ export default {
         let firstDayInMonth = new Date(curYear, curMonth, 1),
           firstDayWeek = firstDayInMonth.getDay(); // 2
 
-        console.log(firstDayInMonth + '===' + firstDayWeek)
+        // console.log(firstDayInMonth + '===' + firstDayWeek)
 
         // 根据当前月的天数和当前月第一天星期几来确定当前月的行数，向上取整
         let calendarRows = Math.ceil(
@@ -1002,7 +1004,7 @@ export default {
               date = idx - firstDayWeek + 1;
 
             // 过滤掉无效日期、渲染有效日期
-            console.log(localMonth)
+            // console.log(localMonth)
 
             if (date <= 0 || date > daysInMonth[curMonth]) {
               rows[i] += `<p class="day box"></p>`;
@@ -1149,7 +1151,6 @@ export default {
 
     // 锚点平滑跳转
     jump(index) {
-      console.log(index)
       let that = this
       // this.activeStep = index
       // 用 class="step-jump" 添加锚点
@@ -1157,14 +1158,12 @@ export default {
       let testContent = document.getElementById('testContent')
       if (this.flag) {
         that.flag = false
-        console.log(testContent.scrollTop)
 
         let testContentTop = testContent.offsetTop
 
         let total = jumpArr[index].offsetTop - testContentTop // 目标卷曲位置
         let currentDistance = testContent.scrollTop // 当前卷曲位置
         let step = Math.floor(total / 10)
-        console.log(total, '222')
         if (total > currentDistance) {
           smoothDown()
         } else {
@@ -1212,18 +1211,45 @@ export default {
           text: "故障总数"
         },
         tooltip: {
-          trigger: "axis",
-          axisPointer: {
-            type: "cross",
-            label: {
-              backgroundColor: "#6a7985"
+          // trigger: "axis",
+          // axisPointer: {
+          //   type: "cross",
+          //   label: {
+          //     backgroundColor: "#6a7985"
+          //   }
+          // }
+        },
+        xAxis: [{
+          show: false,
+          type: 'time',
+          boundaryGap: false,
+          axisLabel: {
+            color: '#ffffff',
+            formatter: function (value, index) {
+                // 格式化成月/日，只在第一个刻度显示年份
+                var date = new Date(value);
+                // var texts = [(date.getMonth() + 1), date.getDate()];
+                // if (index === 0) {
+                //     texts.unshift(date.getYear());
+                // }
+                // return texts.join('/');
+
+                var arr = [date.getHours(), date.getMinutes()]
+                return arr.join(':');
+
             }
           }
-        },
-        xAxis: {
-          boundaryGap: false,
           // data: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"]
         },
+        {
+          type: 'category',
+          position: "bottom",
+          axisLabel: {
+            color: '#ffffff',
+          },
+          data: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"]
+        }
+        ],
         yAxis: {},
         series: [
           {
@@ -1238,11 +1264,327 @@ export default {
               color: "#6B50D0",
               opacity: 1
             },
-            data: [[0, 66], [10, 88], [25, 100], [40, 200], [55, 60]]
+            // data: [[0, 66], [10, 88], [25, 100], [40, 200], [55, 60]]
+            data: [[1550027330507, 66], [1550027332931, 88], [1550027342931, 100], [1550027352931, 200], [1550027362931, 60]]
           }
         ]
       };
       lineChart9.setOption(options);
+    },
+
+    drawChart10() {
+
+      api.detail.getD1(this.dtID).then(res => {
+        console.log(res.data)
+
+        // 组装xy数据
+        let nowTimestamp = Date.now()
+        let dataArr = [] // 类似于[[x1, y1], [x2, y2], ...]
+        res.data.result.forEach((item, i) => {
+          let arr2 = []
+          let second = Math.floor((nowTimestamp - new Date(item.time).getTime()) / 1000)
+          arr2 = [second, item.value]
+          dataArr.push(arr2)
+        })
+        console.log(dataArr)
+
+
+
+        let lineChart10 = this.$echarts.init(document.getElementById("chart10"));
+        let options = {
+          tooltip: {
+            trigger: "axis",
+            axisPointer: {
+              lineStyle: {
+                color: '#1D1B25',
+              }
+            },
+            formatter: function (params,ticket,callback) {
+              var date = Date.now()
+              // var timestamp = date + value * 1000
+              // var time = new Date(timestamp)
+              console.log(params)
+              var key = params[0].data[0]
+              var value = params[0].data[1]
+
+              var timestamp = date + key * 1000
+              var time = new Date(timestamp)
+              var timeFormat = time.getHours() + ':' + time.getMinutes() + ':' + time.getSeconds()
+
+              // var res = '时间：' + timeFormat + '<br>值：' + value;
+              var res = params[0].seriesName + '：' + value + '<br>时间：' + timeFormat
+              return res
+              
+            }
+          },
+          xAxis: {
+            type: 'value',
+            // inverse: true,
+            boundaryGap: false,
+            axisTick: {
+              show: false
+            },
+            axisLabel: {
+              formatter: '{value}s',
+              color: '#66667F',
+              margin: 12
+            },
+            name: '(℃)',
+            nameLocation: 'start',
+            nameTextStyle: {
+              color: '#66667F'
+            },
+            splitLine: {
+              show: false,
+            },
+            // nameGap: 6,
+            axisLine: {
+              lineStyle: {
+                color: '#303240'
+              }
+            },
+            // data: []
+          },
+          yAxis: {
+            axisLabel: {
+              show: false,
+              color: '#66667F'
+            },
+            axisTick: {
+              show: false
+            },
+            axisLine: {
+              lineStyle: {
+                color: '#303240'
+              }
+            },
+            splitLine: {
+              show: false,
+            },
+          },
+          grid: {
+            top: '20px',  
+            left: '40px',  
+            right: '26px',  
+            bottom: '24px'
+          },  
+          visualMap: { //区间内控制显示颜色
+            show: false,
+            dimension: 1,
+            type: 'continuous',
+            range: [0, 500],
+            inRange: {
+              color: ['#29DDB6']
+            },
+            outOfRange: {
+              color: ['#E75561']
+            }
+          },
+          series: [
+            {
+              name: "机房温度",
+              type: "line",
+              // symbolSize: 0,
+              showSymbol: false,
+              smooth: true,
+              lineStyle: {
+                width: 3
+              },
+              // markLine: {
+              //   data: [{
+              //       name: '',
+              //       yAxis: 60
+              //   }],
+              //   animation: false,
+              //   symbolSize: 0,
+              //   label: {
+              //     position: 'start'
+              //   },
+              //   lineStyle: {
+              //     normal: {
+              //       type: 'solid',
+              //       color: '#DF4B4B',
+              //     },
+              //   }
+              // },
+              data: dataArr
+              // data: [[9, 10], [12, 20], [18, 40], [31, 80], [50, 100], [58, 180]]
+            },    
+          ]
+        }
+        lineChart10.setOption(options);
+
+      
+      })
+      .catch(err => {
+        console.log('err')
+      })
+
+
+
+
+      
+    },
+
+    drawChart11() {
+
+      api.detail.getD18(this.dtID).then(res => {
+        console.log(res.data)
+
+        // 组装xy数据
+        // let nowTimestamp = Date.now()
+        // let dataArr = [] // 类似于[[x1, y1], [x2, y2], ...]
+        // res.data.result.forEach((item, i) => {
+        //   let arr2 = []
+        //   let second = Math.floor((nowTimestamp - new Date(item.time).getTime()) / 1000)
+        //   arr2 = [second, item.value]
+        //   dataArr.push(arr2)
+        // })
+        // console.log(dataArr)
+
+        // [[time, value]]
+        let dataValue = []
+        res.data.result.forEach((item, i) => {
+          let arr = [new Date(item.time).getTime(), item.value]
+          dataValue.push(arr)
+        })
+
+
+
+        let lineChart11 = this.$echarts.init(document.getElementById("chart11"));
+        let options = {
+          tooltip: {
+            trigger: "axis",
+            axisPointer: {
+              lineStyle: {
+                color: '#1D1B25',
+              }
+            },
+            formatter: function (params,ticket,callback) {
+              // var date = Date.now()
+              // var timestamp = date + value * 1000
+              // var time = new Date(timestamp)
+              // console.log(params)
+              var key = params[0].data[0]
+              var value = params[0].data[1]
+
+              var time = new Date(key)
+              var timeFormat = time.getHours() + ':' + time.getMinutes() + ':' + time.getSeconds()
+
+              // var res = '时间：' + timeFormat + '<br>值：' + value;
+              var res = params[0].seriesName + '：' + value + '<br>时间：' + timeFormat
+              return res
+              
+            }
+          },
+          xAxis: {
+            type: 'time',
+            // inverse: true,
+            boundaryGap: false,
+            axisTick: {
+              show: false
+            },
+            splitNumber: 6,
+            axisLabel: {
+              // formatter: '{value}s',
+              color: '#66667F',
+              margin: 12
+            },
+            name: '(℃)',
+            nameLocation: 'start',
+            nameTextStyle: {
+              color: '#66667F'
+            },
+            splitLine: {
+              show: false,
+            },
+            // nameGap: 6,
+            axisLine: {
+              lineStyle: {
+                color: '#303240'
+              }
+            },
+            // data: []
+          },
+          yAxis: {
+            axisLabel: {
+              show: false,
+              color: '#66667F'
+            },
+            axisTick: {
+              show: false
+            },
+            axisLine: {
+              lineStyle: {
+                color: '#303240'
+              }
+            },
+            splitLine: {
+              show: false,
+            },
+          },
+          grid: {
+            top: '20px',  
+            left: '40px',  
+            right: '26px',  
+            bottom: '24px'
+          },  
+          visualMap: { //区间内控制显示颜色
+            show: false,
+            dimension: 1,
+            type: 'continuous',
+            range: [0, 500],
+            inRange: {
+              color: ['#29DDB6']
+            },
+            outOfRange: {
+              color: ['#E75561']
+            }
+          },
+          series: [
+            {
+              name: "机房温度",
+              type: "line",
+              // symbolSize: 0,
+              showSymbol: false,
+              smooth: true,
+              lineStyle: {
+                width: 3
+              },
+              // markLine: {
+              //   data: [{
+              //       name: '',
+              //       yAxis: 60
+              //   }],
+              //   animation: false,
+              //   symbolSize: 0,
+              //   label: {
+              //     position: 'start'
+              //   },
+              //   lineStyle: {
+              //     normal: {
+              //       type: 'solid',
+              //       color: '#DF4B4B',
+              //     },
+              //   }
+              // },
+              data: dataValue
+              // data: [[9, 10], [12, 20], [18, 40], [31, 80], [50, 100], [58, 180]]
+            },    
+          ]
+        }
+        lineChart11.setOption(options);
+
+      
+      })
+      .catch(err => {
+        console.log('err')
+      })
+
+
+
+
+      
     },
   },
   components: {}
@@ -1254,7 +1596,7 @@ export default {
 
 
 <style lang="scss" scope>
-@import url("../../assets/stylus/css-reset.css");
+// @import url("../../assets/stylus/css-reset.css");
 
 #test {
   // color: #000 !important;
@@ -1336,6 +1678,18 @@ export default {
   }
 
   #chart9 {
+    width: 800px;
+    height: 600px;
+    border: 1px solid red;
+  }
+
+  #chart10 {
+    width: 800px;
+    height: 600px;
+    border: 1px solid red;
+  }
+
+  #chart11 {
     width: 800px;
     height: 600px;
     border: 1px solid red;

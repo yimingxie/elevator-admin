@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="EDSafeLoop">
     <!-- <div class="ed-item-time-change clearfix">
       <span :class="{on : timeOn == 'now'}" @click="changeTime('now')">现在</span>
       <span :class="{on : timeOn == 'day'}" @click="changeTime('day')">今日</span>
@@ -126,29 +126,38 @@ export default {
               color: '#1D1B25',
             }
           },
-          formatter: '{a}: {c}℃<br /> '
+     
         },
         xAxis: {
+          type: 'value',
+          // inverse: true,
           boundaryGap: false,
           axisTick: {
             show: false
           },
           axisLabel: {
+            formatter: '{value}s',
             color: '#66667F',
             margin: 12
           },
+          min: 0,
+          max: 60,
+          interval: 10,
           name: '(℃)',
           nameLocation: 'start',
           nameTextStyle: {
             color: '#66667F'
           },
-          nameGap: 6,
+          splitLine: {
+            show: false,
+          },
+          // nameGap: 6,
           axisLine: {
             lineStyle: {
               color: '#303240'
             }
           },
-          data: []
+          // data: []
         },
         yAxis: {
           axisLabel: {
@@ -169,25 +178,10 @@ export default {
         },
         grid: {
           top: '20px',  
-          left: '40px',  
+          left: '50px',  
           right: '26px',  
           bottom: '24px'
         },  
-        // visualMap: { //区间内控制显示颜色
-        //   show: false,
-        //   dimension: 1,
-        //   type: 'continuous',
-        //   min: 0,
-        //   max: 100,
-        //   range: [0, 60],
-        //   borderWidth: 10,
-        //   inRange: {
-        //     color: ['rgba(41,220,181,0.00)', '#07f7c1'],
-        //   },
-        //   outOfRange: {
-        //     color: ['rgba(209,104,105,0.20)', '#D16869']
-        //   }
-        // },
         visualMap: { //区间内控制显示颜色
           show: false,
           dimension: 1,
@@ -210,7 +204,6 @@ export default {
             lineStyle: {
               width: 3
             },
-            // areaStyle: {},
             // markLine: {
             //   data: [{
             //       name: '',
@@ -228,7 +221,8 @@ export default {
             //     },
             //   }
             // },
-            data: []
+            // data: dataArr
+            data: [[9, 10], [12, 20], [18, 40], [31, 80], [50, 100], [58, 180]]
           },    
         ]
       },
@@ -245,22 +239,38 @@ export default {
           formatter: '{a}: {c}℃<br /> '
         },
         xAxis: {
+          type: 'value',
+          // inverse: true,
           boundaryGap: false,
           axisTick: {
             show: false
           },
           axisLabel: {
+            formatter: '{value}s',
+            color: '#66667F',
+            margin: 12
+          },
+          min: 0,
+          max: 60,
+          interval: 10,
+          name: '(℃)',
+          nameLocation: 'start',
+          nameTextStyle: {
             color: '#66667F'
           },
+          splitLine: {
+            show: false,
+          },
+          // nameGap: 6,
           axisLine: {
             lineStyle: {
               color: '#303240'
             }
           },
-          data: []
+          // data: []
         },
         yAxis: {
-          // interval: 1,
+          interval: 1,
           splitNumber: 1,
           axisTick: {
             show: false
@@ -269,11 +279,11 @@ export default {
             // show: true,
             color: '#66667F',
             formatter: function (value, index) {
-              if (value <= 0) {
-                return '断'
+              if (value == 0) {
+                return '异常'
               }
-              if (value >= 1) {
-                return '通'
+              if (value == 1) {
+                return '正常'
               }
               // return '异常'
             }
@@ -290,10 +300,10 @@ export default {
         },
         grid: {
           top: '20px',  
-          left: '40px',  
+          left: '50px',  
           right: '26px',  
           bottom: '24px'
-        },  
+        }, 
         visualMap: { //区间内控制显示颜色
           show: false,
           dimension: 1,
@@ -391,7 +401,7 @@ export default {
           }
           this.roomSafeValueNum = res.data[21].value
         }
-        this.drawRoomSafe(this.roomSafeValueNum)
+        this.drawRoomSafe()
 
         // 轿顶安全回路
         if (res.data[22]) {
@@ -402,7 +412,7 @@ export default {
           }
           this.boxTopSafeValueNum = res.data[22].value
         }
-        this.drawBoxTopSafe(this.boxTopSafeValueNum)
+        this.drawBoxTopSafe()
 
         // 轿门安全回路
         if (res.data[23]) {
@@ -413,7 +423,7 @@ export default {
           }
           this.boxDoorSafeValueNum = res.data[23].value
         }
-        this.drawBoxDoorSafe(this.boxDoorSafeValueNum)
+        this.drawBoxDoorSafe()
 
         // 层门安全回路
         if (res.data[24]) {
@@ -424,7 +434,7 @@ export default {
           }
           this.floorDoorSafeValueNum = res.data[24].value
         }
-        this.drawFloorDoorSafe(this.floorDoorSafeValueNum)
+        this.drawFloorDoorSafe()
 
         // 底坑安全回路
         if (res.data[25]) {
@@ -435,95 +445,220 @@ export default {
           }
           this.boxBottomSafeValueNum = res.data[25].value
         }
-        this.drawBoxBottomSafe(this.boxBottomSafeValueNum)
+        this.drawBoxBottomSafe()
 
       })
 
     },
 
     // 机房安全回路
-    drawRoomSafe(currentVal) {
+    drawRoomSafe() {
       let that = this
       let dataValue = []
 
       api.detail.getD21(this.dtID).then(res => {
+        // 组装xy数据
+        let unit = res.data.result[0].unit
+        let nowTimestamp = Date.now()
         res.data.result.forEach((item, i) => {
-          dataValue.unshift(item.value)
+          let value
+          let arr2 = []
+          let second = Math.floor((nowTimestamp - new Date(item.time).getTime()) / 1000)
+          if (item.unit == 'mV') {
+            value = 0
+          } else {
+            value = 1
+          }
+          arr2 = [second, value]
+          dataValue.push(arr2)
         })
-        dataValue.push(currentVal)
-        motorVChart(dataValue)
+        motorVChart(dataValue, unit, nowTimestamp)
       })
       .catch(err => {
         motorVChart(dataValue)
       })
 
-      function motorVChart(dataValue) {
+      function motorVChart(dataValue, unit, nowTimestamp) {
         let chart = that.$echarts.init(document.getElementById('room-safe-chart'))
-        that.options2.xAxis.data = that.dataX
         that.options2.series[0].data = dataValue
+        that.options2.xAxis.name = ''
+        that.options2.series[0].name = '机房安全回路'
+        that.options2.yAxis.axisLabel.formatter = function (value, index) {
+          if (value == 0) {
+            return '断'
+          }
+          if (value == 1) {
+            return '通'
+          }
+        }
+        that.options2.tooltip.formatter = function (params,ticket,callback) {
+          var date = Date.now()
+          var key = params[0].data[0]
+          var value = params[0].data[1]
+          if (value == 1) {
+            value = '通'
+          } else {
+            value = '断'
+          }
+
+          var timestamp = date - key * 1000
+          var time = new Date(timestamp)
+          let min = time.getMinutes() >= 10 ? time.getMinutes() : '0' + time.getMinutes()
+          let s = time.getSeconds() >= 10 ? time.getSeconds() : '0' + time.getSeconds()
+          var timeFormat = time.getHours() + ':' + min + ':' + s
+          var res = params[0].seriesName + '：' + value + '<br>时间：' + timeFormat
+          return res
+        }
         chart.setOption(that.options2)
       }
     },
 
     // 轿顶安全回路
-    drawBoxTopSafe(currentVal) {
+    drawBoxTopSafe() {
       let that = this
       let dataValue = []
 
       api.detail.getD22(this.dtID).then(res => {
+        // 组装xy数据
+        let unit = res.data.result[0].unit
+        let nowTimestamp = Date.now()
         res.data.result.forEach((item, i) => {
-          dataValue.unshift(item.value)
+          let value
+          let arr2 = []
+          let second = Math.floor((nowTimestamp - new Date(item.time).getTime()) / 1000)
+          if (item.unit == 'mV') {
+            value = 0
+          } else {
+            value = 1
+          }
+          arr2 = [second, value]
+          dataValue.push(arr2)
         })
-        dataValue.push(currentVal)
-        motorVChart(dataValue)
+        motorVChart(dataValue, unit, nowTimestamp)
       })
       .catch(err => {
         motorVChart(dataValue)
       })
 
-      function motorVChart(dataValue) {
+      function motorVChart(dataValue, unit, nowTimestamp) {
         let chart = that.$echarts.init(document.getElementById('box-top-safe-chart'))
-        that.options2.xAxis.data = that.dataX
         that.options2.series[0].data = dataValue
+        that.options2.xAxis.name = ''
+        that.options2.series[0].name = '轿顶安全回路'
+        that.options2.yAxis.axisLabel.formatter = function (value, index) {
+          if (value == 0) {
+            return '断'
+          }
+          if (value == 1) {
+            return '通'
+          }
+        }
+        that.options2.tooltip.formatter = function (params,ticket,callback) {
+          var date = Date.now()
+          var key = params[0].data[0]
+          var value = params[0].data[1]
+          if (value == 1) {
+            value = '通'
+          } else {
+            value = '断'
+          }
+
+          var timestamp = date - key * 1000
+          var time = new Date(timestamp)
+          let min = time.getMinutes() >= 10 ? time.getMinutes() : '0' + time.getMinutes()
+          let s = time.getSeconds() >= 10 ? time.getSeconds() : '0' + time.getSeconds()
+          var timeFormat = time.getHours() + ':' + min + ':' + s
+          var res = params[0].seriesName + '：' + value + '<br>时间：' + timeFormat
+          return res
+        }
         chart.setOption(that.options2)
       }
     },
 
     // 轿门安全回路
-    drawBoxDoorSafe(currentVal) {
+    drawBoxDoorSafe() {
       let that = this
       let dataValue = []
 
       api.detail.getD23(this.dtID).then(res => {
+        // 组装xy数据
+        let unit = res.data.result[0].unit
+        let nowTimestamp = Date.now()
         res.data.result.forEach((item, i) => {
-          dataValue.unshift(item.value)
+          let value
+          let arr2 = []
+          let second = Math.floor((nowTimestamp - new Date(item.time).getTime()) / 1000)
+          if (item.unit == 'mV') {
+            value = 0
+          } else {
+            value = 1
+          }
+          arr2 = [second, value]
+          dataValue.push(arr2)
         })
-        dataValue.push(currentVal)
-        motorVChart(dataValue)
+        motorVChart(dataValue, unit, nowTimestamp)
       })
       .catch(err => {
         motorVChart(dataValue)
       })
 
-      function motorVChart(dataValue) {
+      function motorVChart(dataValue, unit, nowTimestamp) {
         let chart = that.$echarts.init(document.getElementById('box-door-safe-chart'))
-        that.options2.xAxis.data = that.dataX
         that.options2.series[0].data = dataValue
+        that.options2.xAxis.name = ''
+        that.options2.series[0].name = '轿门安全回路'
+        that.options2.yAxis.axisLabel.formatter = function (value, index) {
+          if (value == 0) {
+            return '断'
+          }
+          if (value == 1) {
+            return '通'
+          }
+        }
+        that.options2.tooltip.formatter = function (params,ticket,callback) {
+          var date = Date.now()
+          var key = params[0].data[0]
+          var value = params[0].data[1]
+          if (value == 1) {
+            value = '通'
+          } else {
+            value = '断'
+          }
+
+          var timestamp = date - key * 1000
+          var time = new Date(timestamp)
+          let min = time.getMinutes() >= 10 ? time.getMinutes() : '0' + time.getMinutes()
+          let s = time.getSeconds() >= 10 ? time.getSeconds() : '0' + time.getSeconds()
+          var timeFormat = time.getHours() + ':' + min + ':' + s
+          var res = params[0].seriesName + '：' + value + '<br>时间：' + timeFormat
+          return res
+        }
         chart.setOption(that.options2)
       }
     },
 
     // 层门安全回路
-    drawFloorDoorSafe(currentVal) {
+    drawFloorDoorSafe() {
       let that = this
       let dataValue = []
 
       api.detail.getD24(this.dtID).then(res => {
+        // 组装xy数据
+        let unit = res.data.result[0].unit
+        let nowTimestamp = Date.now()
         res.data.result.forEach((item, i) => {
-          dataValue.unshift(item.value)
+          let value
+          let arr2 = []
+          let second = Math.floor((nowTimestamp - new Date(item.time).getTime()) / 1000)
+          if (item.unit == 'mV') {
+            value = 0
+          } else {
+            value = 1
+          }
+          arr2 = [second, value]
+          dataValue.push(arr2)
         })
-        dataValue.push(currentVal)
-        motorVChart(dataValue)
+        motorVChart(dataValue, unit, nowTimestamp)
       })
       .catch(err => {
         motorVChart(dataValue)
@@ -531,35 +666,97 @@ export default {
 
       function motorVChart(dataValue) {
         let chart = that.$echarts.init(document.getElementById('floor-door-safe-chart'))
-        that.options2.xAxis.data = that.dataX
         that.options2.series[0].data = dataValue
         that.options2.xAxis.name = ''
         that.options2.series[0].name = '层门安全回路'
-        that.options2.tooltip.formatter = '{a}: {c}<br /> '
+        that.options2.yAxis.axisLabel.formatter = function (value, index) {
+          if (value == 0) {
+            return '断'
+          }
+          if (value == 1) {
+            return '通'
+          }
+        }
+        that.options2.tooltip.formatter = function (params,ticket,callback) {
+          var date = Date.now()
+          var key = params[0].data[0]
+          var value = params[0].data[1]
+          if (value == 1) {
+            value = '通'
+          } else {
+            value = '断'
+          }
+
+          var timestamp = date - key * 1000
+          var time = new Date(timestamp)
+          let min = time.getMinutes() >= 10 ? time.getMinutes() : '0' + time.getMinutes()
+          let s = time.getSeconds() >= 10 ? time.getSeconds() : '0' + time.getSeconds()
+          var timeFormat = time.getHours() + ':' + min + ':' + s
+          var res = params[0].seriesName + '：' + value + '<br>时间：' + timeFormat
+          return res
+        }
         chart.setOption(that.options2)
       }
     },
 
     // 底坑安全回路
-    drawBoxBottomSafe(currentVal) {
+    drawBoxBottomSafe() {
       let that = this
       let dataValue = []
 
       api.detail.getD25(this.dtID).then(res => {
+        // 组装xy数据
+        let unit = res.data.result[0].unit
+        let nowTimestamp = Date.now()
         res.data.result.forEach((item, i) => {
-          dataValue.unshift(item.value)
+          let value
+          let arr2 = []
+          let second = Math.floor((nowTimestamp - new Date(item.time).getTime()) / 1000)
+          if (item.unit == 'mV') {
+            value = 0
+          } else {
+            value = 1
+          }
+          arr2 = [second, value]
+          dataValue.push(arr2)
         })
-        dataValue.push(currentVal)
-        motorVChart(dataValue)
+        motorVChart(dataValue, unit, nowTimestamp)
       })
       .catch(err => {
         motorVChart(dataValue)
       })
 
-      function motorVChart(dataValue) {
+      function motorVChart(dataValue, unit, nowTimestamp) {
         let chart = that.$echarts.init(document.getElementById('box-bottom-safe-chart'))
-        that.options2.xAxis.data = that.dataX
         that.options2.series[0].data = dataValue
+        that.options2.xAxis.name = ''
+        that.options2.series[0].name = '底坑安全回路'
+        that.options2.yAxis.axisLabel.formatter = function (value, index) {
+          if (value == 0) {
+            return '断'
+          }
+          if (value == 1) {
+            return '通'
+          }
+        }
+        that.options2.tooltip.formatter = function (params,ticket,callback) {
+          var date = Date.now()
+          var key = params[0].data[0]
+          var value = params[0].data[1]
+          if (value == 1) {
+            value = '通'
+          } else {
+            value = '断'
+          }
+
+          var timestamp = date - key * 1000
+          var time = new Date(timestamp)
+          let min = time.getMinutes() >= 10 ? time.getMinutes() : '0' + time.getMinutes()
+          let s = time.getSeconds() >= 10 ? time.getSeconds() : '0' + time.getSeconds()
+          var timeFormat = time.getHours() + ':' + min + ':' + s
+          var res = params[0].seriesName + '：' + value + '<br>时间：' + timeFormat
+          return res
+        }
         chart.setOption(that.options2)
       }
     },

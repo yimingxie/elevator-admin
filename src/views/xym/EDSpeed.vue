@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="EDSpeed">
     <!-- <div class="ed-item-time-change clearfix">
       <span :class="{on : timeOn == 'now'}" @click="changeTime('now')">现在</span>
       <span :class="{on : timeOn == 'day'}" @click="changeTime('day')">今日</span>
@@ -50,29 +50,38 @@ export default {
               color: '#1D1B25',
             }
           },
-          formatter: '{a}: {c}℃<br /> '
+     
         },
         xAxis: {
+          type: 'value',
+          // inverse: true,
           boundaryGap: false,
           axisTick: {
             show: false
           },
           axisLabel: {
+            formatter: '{value}s',
             color: '#66667F',
             margin: 12
           },
+          min: 0,
+          max: 60,
+          interval: 10,
           name: '(℃)',
           nameLocation: 'start',
           nameTextStyle: {
             color: '#66667F'
           },
-          nameGap: 6,
+          splitLine: {
+            show: false,
+          },
+          // nameGap: 6,
           axisLine: {
             lineStyle: {
               color: '#303240'
             }
           },
-          data: []
+          // data: []
         },
         yAxis: {
           axisLabel: {
@@ -93,25 +102,10 @@ export default {
         },
         grid: {
           top: '20px',  
-          left: '40px',  
+          left: '50px',  
           right: '26px',  
           bottom: '24px'
         },  
-        // visualMap: { //区间内控制显示颜色
-        //   show: false,
-        //   dimension: 1,
-        //   type: 'continuous',
-        //   min: 0,
-        //   max: 100,
-        //   range: [0, 60],
-        //   borderWidth: 10,
-        //   inRange: {
-        //     color: ['rgba(41,220,181,0.00)', '#07f7c1'],
-        //   },
-        //   outOfRange: {
-        //     color: ['rgba(209,104,105,0.20)', '#D16869']
-        //   }
-        // },
         visualMap: { //区间内控制显示颜色
           show: false,
           dimension: 1,
@@ -134,7 +128,6 @@ export default {
             lineStyle: {
               width: 3
             },
-            // areaStyle: {},
             // markLine: {
             //   data: [{
             //       name: '',
@@ -152,7 +145,8 @@ export default {
             //     },
             //   }
             // },
-            data: []
+            // data: dataArr
+            data: [[9, 10], [12, 20], [18, 40], [31, 80], [50, 100], [58, 180]]
           },    
         ]
       },
@@ -169,19 +163,35 @@ export default {
           formatter: '{a}: {c}℃<br /> '
         },
         xAxis: {
+          type: 'value',
+          // inverse: true,
           boundaryGap: false,
           axisTick: {
             show: false
           },
           axisLabel: {
+            formatter: '{value}s',
+            color: '#66667F',
+            margin: 12
+          },
+          min: 0,
+          max: 60,
+          interval: 10,
+          name: '(℃)',
+          nameLocation: 'start',
+          nameTextStyle: {
             color: '#66667F'
           },
+          splitLine: {
+            show: false,
+          },
+          // nameGap: 6,
           axisLine: {
             lineStyle: {
               color: '#303240'
             }
           },
-          data: []
+          // data: []
         },
         yAxis: {
           interval: 1,
@@ -214,10 +224,10 @@ export default {
         },
         grid: {
           top: '20px',  
-          left: '40px',  
+          left: '50px',  
           right: '26px',  
           bottom: '24px'
-        },  
+        }, 
         visualMap: { //区间内控制显示颜色
           show: false,
           dimension: 1,
@@ -302,7 +312,7 @@ export default {
           this.rpmUnit = res.data[15].unit
           this.speed = Math.abs(res.data[15].speed.toFixed(2)) || 0
         }
-        this.drawRpm(this.rpmValue)
+        this.drawRpm()
 
       })
 
@@ -314,20 +324,42 @@ export default {
       let dataValue = []
 
       api.detail.getD15(this.dtID).then(res => {
+        // 组装xy数据
+        let unit = res.data.result[0].unit
+        let nowTimestamp = Date.now()
+  
         res.data.result.forEach((item, i) => {
-          dataValue.unshift(item.value)
+          let arr2 = []
+          let second = Math.floor((nowTimestamp - new Date(item.time).getTime()) / 1000)
+          arr2 = [second, item.value]
+          dataValue.push(arr2)
         })
-        dataValue.push(currentVal)
+        // console.log(dataArr)
+        motorVChart(dataValue, unit, nowTimestamp) // 传当时时间戳防止时间错乱
+      })
+      .catch(err => {
         motorVChart(dataValue)
       })
 
-      function motorVChart(dataValue) {
+      function motorVChart(dataValue, unit, nowTimestamp) {
         let chart = that.$echarts.init(document.getElementById('rpm-chart'))
-        that.options.xAxis.data = that.dataX
         that.options.series[0].data = dataValue
         that.options.xAxis.name = '(rpm)'
         that.options.series[0].name = '限速轮'
-        that.options.tooltip.formatter = '{a}: {c}rpm<br /> '
+        that.options.tooltip.formatter = function (params,ticket,callback) {
+          var date = nowTimestamp
+          var key = params[0].data[0] 
+          var value = params[0].data[1]
+
+          var timestamp = date - key * 1000
+          var time = new Date(timestamp)
+          let min = time.getMinutes() >= 10 ? time.getMinutes() : '0' + time.getMinutes()
+          let s = time.getSeconds() >= 10 ? time.getSeconds() : '0' + time.getSeconds()
+          var timeFormat = time.getHours() + ':' + min + ':' + s
+          var res = params[0].seriesName + '：' + value + unit + '<br>时间：' + timeFormat
+          return res
+          
+        }
         chart.setOption(that.options)
       }
     }

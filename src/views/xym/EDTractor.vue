@@ -155,6 +155,7 @@ export default {
     return {
       dtID: 'dt001',
       timeOn: 'now',
+      flag: true,
       dataX: ['60s', '55s', '50s', '45s', '40s', '35s', '30s', '25s', '20s', '15s', '10s', '5s', '0s'],
       dataValue: [],
       vControlValue: '0',
@@ -185,29 +186,38 @@ export default {
               color: '#1D1B25',
             }
           },
-          formatter: '{a}: {c}℃<br /> '
+     
         },
         xAxis: {
+          type: 'value',
+          // inverse: true,
           boundaryGap: false,
           axisTick: {
             show: false
           },
           axisLabel: {
+            formatter: '{value}s',
             color: '#66667F',
             margin: 12
           },
+          min: 0,
+          max: 60,
+          interval: 10,
           name: '(℃)',
           nameLocation: 'start',
           nameTextStyle: {
             color: '#66667F'
           },
-          nameGap: 6,
+          splitLine: {
+            show: false,
+          },
+          // nameGap: 6,
           axisLine: {
             lineStyle: {
               color: '#303240'
             }
           },
-          data: []
+          // data: []
         },
         yAxis: {
           axisLabel: {
@@ -228,25 +238,10 @@ export default {
         },
         grid: {
           top: '20px',  
-          left: '40px',  
+          left: '50px',  
           right: '26px',  
           bottom: '24px'
         },  
-        // visualMap: { //区间内控制显示颜色
-        //   show: false,
-        //   dimension: 1,
-        //   type: 'continuous',
-        //   min: 0,
-        //   max: 100,
-        //   range: [0, 60],
-        //   borderWidth: 10,
-        //   inRange: {
-        //     color: ['rgba(41,220,181,0.00)', '#07f7c1'],
-        //   },
-        //   outOfRange: {
-        //     color: ['rgba(209,104,105,0.20)', '#D16869']
-        //   }
-        // },
         visualMap: { //区间内控制显示颜色
           show: false,
           dimension: 1,
@@ -269,7 +264,6 @@ export default {
             lineStyle: {
               width: 3
             },
-            // areaStyle: {},
             // markLine: {
             //   data: [{
             //       name: '',
@@ -287,7 +281,8 @@ export default {
             //     },
             //   }
             // },
-            data: []
+            // data: dataArr
+            data: [[9, 10], [12, 20], [18, 40], [31, 80], [50, 100], [58, 180]]
           },    
         ]
       },
@@ -304,19 +299,35 @@ export default {
           formatter: '{a}: {c}℃<br /> '
         },
         xAxis: {
+          type: 'value',
+          // inverse: true,
           boundaryGap: false,
           axisTick: {
             show: false
           },
           axisLabel: {
+            formatter: '{value}s',
+            color: '#66667F',
+            margin: 12
+          },
+          min: 0,
+          max: 60,
+          interval: 10,
+          name: '(℃)',
+          nameLocation: 'start',
+          nameTextStyle: {
             color: '#66667F'
           },
+          splitLine: {
+            show: false,
+          },
+          // nameGap: 6,
           axisLine: {
             lineStyle: {
               color: '#303240'
             }
           },
-          data: []
+          // data: []
         },
         yAxis: {
           interval: 1,
@@ -349,10 +360,10 @@ export default {
         },
         grid: {
           top: '20px',  
-          left: '40px',  
+          left: '50px',  
           right: '26px',  
           bottom: '24px'
-        },  
+        }, 
         visualMap: { //区间内控制显示颜色
           show: false,
           dimension: 1,
@@ -454,65 +465,71 @@ export default {
         if (res.data[6]) {
           this.vControlValue = res.data[6].value
           this.vControlUnit = res.data[6].unit
-          this.drawMotorV(this.vControlValue)
         }
+        this.drawMotorV()
+
 
         // 电动机电流
         if (res.data[7]) {
           this.iControlValue = res.data[7].value
           this.iControlUnit = res.data[7].unit
-          this.drawMotorI(this.iControlValue)
         }
+        this.drawMotorI()
+
 
         // 主机温度
         if (res.data[8]) {
           this.tempValue = res.data[8].value
-          this.drawMotorTemp(this.tempValue)
         }
+        this.drawMotorTemp()
+
 
         // 电机振动
         if (res.data[9]) {
           this.roomVibrateValue = res.data[9].value
           this.roomVibrateUnit = res.data[9].unit
-          this.drawRoomVibrate(this.roomVibrateValue)
         }
+        this.drawRoomVibrate()
+
 
         // 制动器线圈温度
         if (res.data[10]) {
           this.brakeTempValue = res.data[10].value
           // this.brakeDistanceUnit = res.data[10].unit
           this.brakeTempUnit = '℃'
-          this.drawBrakeTemp(this.brakeTempValue)
         }
+        this.drawBrakeTemp()
+
 
         // 制动器刹车片温度
         if (res.data[11]) {
           this.brakeSkrTempValue = res.data[11].value1
           this.brakeSkrTempUnit = '℃'
-          this.drawBrakeSkrTemp(this.brakeSkrTempValue)
         }
+        this.drawBrakeSkrTemp()
+
 
         // 制动器电压
         if (res.data[12]) {
           this.vBrakeValue = res.data[12].value
           this.vBrakeUnit = res.data[12].unit
-          this.drawVBrake(this.vBrakeValue)
-          
         }
+        this.drawVBrake()
 
         // 制动器电流
         if (res.data[13]) {
           this.iBrakeValue = res.data[13].value
           this.iBrakeUnit = res.data[13].unit
-          this.drawIBrake(this.iBrakeValue)
         }
+        this.drawIBrake()
+
 
         // 曳引轮磨损
         if (res.data[14]) {
           this.driveValue = res.data[14].value
           this.driveUnit = res.data[14].unit 
         }
-        this.drawDrive(this.driveValue)
+        this.drawDrive()
 
       })
 
@@ -521,79 +538,145 @@ export default {
 
 
     // 电动机电压
-    drawMotorV(currentVal) {
+    drawMotorV() {
       let that = this
       let dataValue = []
 
       api.detail.getD6(this.dtID).then(res => {
+        // 组装xy数据
+        let unit = res.data.result[0].unit
+        let nowTimestamp = Date.now()
+  
         res.data.result.forEach((item, i) => {
-          dataValue.unshift(item.value)
+          let arr2 = []
+          let second = Math.floor((nowTimestamp - new Date(item.time).getTime()) / 1000)
+          arr2 = [second, item.value]
+          dataValue.push(arr2)
         })
-        dataValue.push(currentVal)
+        // console.log(dataArr)
+        motorVChart(dataValue, unit, nowTimestamp) // 传当时时间戳防止时间错乱
+      })
+      .catch(err => {
         motorVChart(dataValue)
       })
 
-      function motorVChart(dataValue) {
+      function motorVChart(dataValue, unit, nowTimestamp) {
         let chart = that.$echarts.init(document.getElementById('motor-v-chart'))
-        that.options.xAxis.data = that.dataX
         that.options.series[0].data = dataValue
         that.options.xAxis.name = '(V)'
         that.options.series[0].name = '电动机电压'
-        that.options.tooltip.formatter = '{a}: {c}V<br /> '
+         that.options.tooltip.formatter = function (params,ticket,callback) {
+          var date = nowTimestamp
+          var key = params[0].data[0] 
+          var value = params[0].data[1]
+
+          var timestamp = date - key * 1000
+          var time = new Date(timestamp)
+          let min = time.getMinutes() >= 10 ? time.getMinutes() : '0' + time.getMinutes()
+          let s = time.getSeconds() >= 10 ? time.getSeconds() : '0' + time.getSeconds()
+          var timeFormat = time.getHours() + ':' + min + ':' + s
+          var res = params[0].seriesName + '：' + value + unit + '<br>时间：' + timeFormat
+          return res
+          
+        }
         chart.setOption(that.options)
       }
     },
 
     // 电动机电流
-    drawMotorI(currentVal) {
+    drawMotorI() {
       let that = this
       let dataValue = []
 
       api.detail.getD7(this.dtID).then(res => {
+        // 组装xy数据
+        let unit = res.data.result[0].unit
+        let nowTimestamp = Date.now()
+  
         res.data.result.forEach((item, i) => {
-          dataValue.unshift(item.value)
+          let arr2 = []
+          let second = Math.floor((nowTimestamp - new Date(item.time).getTime()) / 1000)
+          arr2 = [second, item.value]
+          dataValue.push(arr2)
         })
-        dataValue.push(currentVal)
+        // console.log(dataArr)
+        motorVChart(dataValue, unit, nowTimestamp) // 传当时时间戳防止时间错乱
+      })
+      .catch(err => {
         motorVChart(dataValue)
       })
 
-      function motorVChart(dataValue) {
+      function motorVChart(dataValue, unit, nowTimestamp) {
         let chart = that.$echarts.init(document.getElementById('motor-i-chart'))
-        that.options.xAxis.data = that.dataX
         that.options.series[0].data = dataValue
         that.options.xAxis.name = '(A)'
         that.options.series[0].name = '电动机电流'
-        that.options.tooltip.formatter = '{a}: {c}A<br /> '
+        that.options.tooltip.formatter = function (params,ticket,callback) {
+          var date = nowTimestamp
+          var key = params[0].data[0] 
+          var value = params[0].data[1]
+
+          var timestamp = date - key * 1000
+          var time = new Date(timestamp)
+          let min = time.getMinutes() >= 10 ? time.getMinutes() : '0' + time.getMinutes()
+          let s = time.getSeconds() >= 10 ? time.getSeconds() : '0' + time.getSeconds()
+          var timeFormat = time.getHours() + ':' + min + ':' + s
+          var res = params[0].seriesName + '：' + value + unit + '<br>时间：' + timeFormat
+          return res
+          
+        }
         chart.setOption(that.options)
       }
     },
 
     // 电动机温度
-    drawMotorTemp(currentVal) {
+    drawMotorTemp() {
       let that = this
       let dataValue = []
 
       api.detail.getD8(this.dtID).then(res => {
+        // 组装xy数据
+        let unit = res.data.result[0].unit
+        let nowTimestamp = Date.now()
+  
         res.data.result.forEach((item, i) => {
-          dataValue.unshift(item.value)
+          let arr2 = []
+          let second = Math.floor((nowTimestamp - new Date(item.time).getTime()) / 1000)
+          arr2 = [second, item.value]
+          dataValue.push(arr2)
         })
-        dataValue.push(currentVal)
+        // console.log(dataArr)
+        motorVChart(dataValue, unit, nowTimestamp) // 传当时时间戳防止时间错乱
+      })
+      .catch(err => {
         motorVChart(dataValue)
       })
 
-      function motorVChart(dataValue) {
+      function motorVChart(dataValue, unit, nowTimestamp) {
         let chart = that.$echarts.init(document.getElementById('motor-temp-chart'))
-        that.options.xAxis.data = that.dataX
         that.options.series[0].data = dataValue
         that.options.xAxis.name = '(℃)'
         that.options.series[0].name = '电动机温度'
-        that.options.tooltip.formatter = '{a}: {c}℃<br /> '
+        that.options.tooltip.formatter = function (params,ticket,callback) {
+          var date = nowTimestamp
+          var key = params[0].data[0] 
+          var value = params[0].data[1]
+
+          var timestamp = date - key * 1000
+          var time = new Date(timestamp)
+          let min = time.getMinutes() >= 10 ? time.getMinutes() : '0' + time.getMinutes()
+          let s = time.getSeconds() >= 10 ? time.getSeconds() : '0' + time.getSeconds()
+          var timeFormat = time.getHours() + ':' + min + ':' + s
+          var res = params[0].seriesName + '：' + value + '℃' + '<br>时间：' + timeFormat
+          return res
+          
+        }
         chart.setOption(that.options)
       }
     },
 
     // 电动机振动
-    drawRoomVibrate(currentVal) {
+    drawRoomVibrate() {
       let that = this
       let dataValue = []
 
@@ -606,142 +689,278 @@ export default {
       // })
 
       api.detail.getD9(this.dtID).then(res => {
+        // 组装xy数据
+        let unit = res.data.result[0].unit
+        let nowTimestamp = Date.now()
+  
         res.data.result.forEach((item, i) => {
-          dataValue.unshift(item.value)
+          let arr2 = []
+          let second = Math.floor((nowTimestamp - new Date(item.time).getTime()) / 1000)
+          arr2 = [second, item.value]
+          dataValue.push(arr2)
         })
-        dataValue.push(currentVal)
+        // console.log(dataArr)
+        motorVChart(dataValue, unit, nowTimestamp) // 传当时时间戳防止时间错乱
+      })
+      .catch(err => {
         motorVChart(dataValue)
       })
 
-      function motorVChart(dataValue) {
+
+      function motorVChart(dataValue, unit, nowTimestamp) {
         let chart = that.$echarts.init(document.getElementById('motor-vibrate-chart'))
-        that.options.xAxis.data = that.dataX
         that.options.series[0].data = dataValue
         that.options.xAxis.name = '(m/s²)'
         that.options.series[0].name = '电动机振动'
-        that.options.tooltip.formatter = '{a}: {c}m/s^2<br /> '
+        that.options.tooltip.formatter = function (params,ticket,callback) {
+          var date = nowTimestamp
+          var key = params[0].data[0] 
+          var value = params[0].data[1]
+
+          var timestamp = date - key * 1000
+          var time = new Date(timestamp)
+          let min = time.getMinutes() >= 10 ? time.getMinutes() : '0' + time.getMinutes()
+          let s = time.getSeconds() >= 10 ? time.getSeconds() : '0' + time.getSeconds()
+          var timeFormat = time.getHours() + ':' + min + ':' + s
+          var res = params[0].seriesName + '：' + value + unit + '<br>时间：' + timeFormat
+          return res
+          
+        }
         chart.setOption(that.options)
       }
     },
 
     // 制动器线圈温度
-    drawBrakeTemp(currentVal) {
+    drawBrakeTemp() {
       let that = this
       let dataValue = []
 
       api.detail.getD10(this.dtID).then(res => {
+        // 组装xy数据
+        let unit = res.data.result[0].unit
+        let nowTimestamp = Date.now()
+  
         res.data.result.forEach((item, i) => {
-          dataValue.unshift(item.value)
+          let arr2 = []
+          let second = Math.floor((nowTimestamp - new Date(item.time).getTime()) / 1000)
+          arr2 = [second, item.value]
+          dataValue.push(arr2)
         })
-        dataValue.push(currentVal)
+        // console.log(dataArr)
+        motorVChart(dataValue, unit, nowTimestamp) // 传当时时间戳防止时间错乱
+      })
+      .catch(err => {
         motorVChart(dataValue)
       })
 
-      function motorVChart(dataValue) {
+
+      function motorVChart(dataValue, unit, nowTimestamp) {
         let chart = that.$echarts.init(document.getElementById('brake-temp-chart'))
-        that.options.xAxis.data = that.dataX
         that.options.series[0].data = dataValue
         that.options.xAxis.name = '(℃)'
         that.options.series[0].name = '制动器温度'
-        that.options.tooltip.formatter = '{a}: {c}℃<br /> '
+        that.options.tooltip.formatter = function (params,ticket,callback) {
+          var date = nowTimestamp
+          // var timestamp = date + value * 1000
+          // var time = new Date(timestamp)
+          var key = params[0].data[0] 
+          var value = params[0].data[1]
+
+          var timestamp = date - key * 1000
+          var time = new Date(timestamp)
+          let min = time.getMinutes() >= 10 ? time.getMinutes() : '0' + time.getMinutes()
+          let s = time.getSeconds() >= 10 ? time.getSeconds() : '0' + time.getSeconds()
+          var timeFormat = time.getHours() + ':' + min + ':' + s
+
+          // var res = '时间：' + timeFormat + '<br>值：' + value;
+          var res = params[0].seriesName + '：' + value + '℃' + '<br>时间：' + timeFormat
+          return res
+          
+        }
         chart.setOption(that.options)
       }
     },
 
     // 刹车片温度
-    drawBrakeSkrTemp(currentVal) {
+    drawBrakeSkrTemp() {
       let that = this
       let dataValue = []
 
       api.detail.getD11(this.dtID).then(res => {
+        // 组装xy数据
+        let unit = res.data.result[0].unit
+        let nowTimestamp = Date.now()
+  
         res.data.result.forEach((item, i) => {
-          dataValue.unshift(item.value)
+          let arr2 = []
+          let second = Math.floor((nowTimestamp - new Date(item.time).getTime()) / 1000)
+          arr2 = [second, item.value]
+          dataValue.push(arr2)
         })
-        dataValue.push(currentVal)
+        // console.log(dataArr)
+        motorVChart(dataValue, unit, nowTimestamp) // 传当时时间戳防止时间错乱
+      })
+      .catch(err => {
         motorVChart(dataValue)
       })
 
-      function motorVChart(dataValue) {
+      function motorVChart(dataValue, unit, nowTimestamp) {
         let chart = that.$echarts.init(document.getElementById('brake-skr-chart'))
-        that.options.xAxis.data = that.dataX
         that.options.series[0].data = dataValue
         that.options.xAxis.name = '(℃)'
         that.options.series[0].name = '制动器刹车片温度'
-        that.options.tooltip.formatter = '{a}: {c}℃<br /> '
+        that.options.tooltip.formatter = function (params,ticket,callback) {
+          var date = nowTimestamp
+          var key = params[0].data[0] 
+          var value = params[0].data[1]
+
+          var timestamp = date - key * 1000
+          var time = new Date(timestamp)
+          let min = time.getMinutes() >= 10 ? time.getMinutes() : '0' + time.getMinutes()
+          let s = time.getSeconds() >= 10 ? time.getSeconds() : '0' + time.getSeconds()
+          var timeFormat = time.getHours() + ':' + min + ':' + s
+          var res = params[0].seriesName + '：' + value + '℃' + '<br>时间：' + timeFormat
+          return res
+          
+        }
         chart.setOption(that.options)
       }
     },
 
     // 制动器电压
-    drawVBrake(currentVal) {
+    drawVBrake() {
       let that = this
       let dataValue = []
 
       api.detail.getD12(this.dtID).then(res => {
+        // 组装xy数据
+        let unit = res.data.result[0].unit
+        let nowTimestamp = Date.now()
+  
         res.data.result.forEach((item, i) => {
-          dataValue.unshift(item.value)
+          let arr2 = []
+          let second = Math.floor((nowTimestamp - new Date(item.time).getTime()) / 1000)
+          arr2 = [second, item.value]
+          dataValue.push(arr2)
         })
-        dataValue.push(currentVal)
+        // console.log(dataArr)
+        motorVChart(dataValue, unit, nowTimestamp) // 传当时时间戳防止时间错乱
+      })
+      .catch(err => {
         motorVChart(dataValue)
       })
 
-      function motorVChart(dataValue) {
+      function motorVChart(dataValue, unit, nowTimestamp) {
         let chart = that.$echarts.init(document.getElementById('v-brake-chart'))
-        that.options.xAxis.data = that.dataX
         that.options.series[0].data = dataValue
         that.options.xAxis.name = '(V)'
         that.options.series[0].name = '制动器电压'
-        that.options.tooltip.formatter = '{a}: {c}V<br /> '
+        that.options.tooltip.formatter = function (params,ticket,callback) {
+          var date = nowTimestamp
+          var key = params[0].data[0] 
+          var value = params[0].data[1]
+
+          var timestamp = date - key * 1000
+          var time = new Date(timestamp)
+          let min = time.getMinutes() >= 10 ? time.getMinutes() : '0' + time.getMinutes()
+          let s = time.getSeconds() >= 10 ? time.getSeconds() : '0' + time.getSeconds()
+          var timeFormat = time.getHours() + ':' + min + ':' + s
+          var res = params[0].seriesName + '：' + value + unit + '<br>时间：' + timeFormat
+          return res
+          
+        }
         chart.setOption(that.options)
       }
     },
 
     // 制动器电流
-    drawIBrake(currentVal) {
+    drawIBrake() {
       let that = this
       let dataValue = []
 
       api.detail.getD13(this.dtID).then(res => {
+        // 组装xy数据
+        let unit = res.data.result[0].unit
+        let nowTimestamp = Date.now()
+  
         res.data.result.forEach((item, i) => {
-          dataValue.unshift(item.value)
+          let arr2 = []
+          let second = Math.floor((nowTimestamp - new Date(item.time).getTime()) / 1000)
+          arr2 = [second, item.value]
+          dataValue.push(arr2)
         })
-        dataValue.push(currentVal)
+        // console.log(dataArr)
+        motorVChart(dataValue, unit, nowTimestamp) // 传当时时间戳防止时间错乱
+      })
+      .catch(err => {
         motorVChart(dataValue)
       })
 
-      function motorVChart(dataValue) {
+      function motorVChart(dataValue, unit, nowTimestamp) {
         let chart = that.$echarts.init(document.getElementById('i-brake-chart'))
-        that.options.xAxis.data = that.dataX
         that.options.series[0].data = dataValue
         that.options.xAxis.name = '(A)'
         that.options.series[0].name = '制动器电流'
-        that.options.tooltip.formatter = '{a}: {c}A<br /> '
+        that.options.tooltip.formatter = function (params,ticket,callback) {
+          var date = nowTimestamp
+          var key = params[0].data[0] 
+          var value = params[0].data[1]
+
+          var timestamp = date - key * 1000
+          var time = new Date(timestamp)
+          let min = time.getMinutes() >= 10 ? time.getMinutes() : '0' + time.getMinutes()
+          let s = time.getSeconds() >= 10 ? time.getSeconds() : '0' + time.getSeconds()
+          var timeFormat = time.getHours() + ':' + min + ':' + s
+          var res = params[0].seriesName + '：' + value + unit + '<br>时间：' + timeFormat
+          return res
+          
+        }
         chart.setOption(that.options)
       }
     },
 
     // 曳引轮磨损
-    drawDrive(currentVal) {
+    drawDrive() {
       let that = this
       let dataValue = []
 
       api.detail.getD14(this.dtID).then(res => {
+        // 组装xy数据
+        let unit = res.data.result[0].unit
+        let nowTimestamp = Date.now()
+  
         res.data.result.forEach((item, i) => {
-          dataValue.unshift(item.value)
+          let arr2 = []
+          let second = Math.floor((nowTimestamp - new Date(item.time).getTime()) / 1000)
+          arr2 = [second, item.value]
+          dataValue.push(arr2)
         })
-        dataValue.push(currentVal)
-        motorVChart(dataValue)
-      }).catch(err => {
+        // console.log(dataArr)
+        motorVChart(dataValue, unit, nowTimestamp) // 传当时时间戳防止时间错乱
+      })
+      .catch(err => {
         motorVChart(dataValue)
       })
 
-      function motorVChart(dataValue) {
+      function motorVChart(dataValue, unit, nowTimestamp) {
         let chart = that.$echarts.init(document.getElementById('drive-chart'))
-        that.options.xAxis.data = that.dataX
         that.options.series[0].data = dataValue
         that.options.xAxis.name = ''
         that.options.series[0].name = '曳引轮磨损'
-        that.options.tooltip.formatter = '{a}: {c}<br /> '
+        that.options.tooltip.formatter = function (params,ticket,callback) {
+          var date = nowTimestamp
+          var key = params[0].data[0] 
+          var value = params[0].data[1]
+
+          var timestamp = date - key * 1000
+          var time = new Date(timestamp)
+          let min = time.getMinutes() >= 10 ? time.getMinutes() : '0' + time.getMinutes()
+          let s = time.getSeconds() >= 10 ? time.getSeconds() : '0' + time.getSeconds()
+          var timeFormat = time.getHours() + ':' + min + ':' + s
+          var res = params[0].seriesName + '：' + value + '<br>时间：' + timeFormat
+          return res
+          
+        }
         // console.log(dataValue)
         chart.setOption(that.options)
       }
