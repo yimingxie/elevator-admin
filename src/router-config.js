@@ -22,7 +22,7 @@ export default new Router({
       name: 'Index',
       component: Index
     },{
-      path: 'mainten',
+      path: '/mainten',
       name: 'maintenance',
       component: maintenance
     },{

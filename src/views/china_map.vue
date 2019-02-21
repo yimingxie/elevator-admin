@@ -739,6 +739,8 @@
 <style lang="stylus">
 // 配置
 @import '../assets/stylus/base'
+div
+    outline:none
 #MapContainer {
     width: 642px;
     margin: 0px;

@@ -148,11 +148,13 @@
                                         </span>
                                     </template>
                                 </el-table-column>
-                                <el-table-column 
+                                <el-table-column
                                     label="操作"
                                     min-width='100'>
-                                    <span class="tableJob">作业轨迹</span>
-                                    <span class='tableLast'>任务</span>
+                                    <template slot-scope="scope">
+                                        <span class="tableJob">作业轨迹</span>
+                                        <span class='tableLast'>任务</span>
+                                    </template>
                                 </el-table-column>
                             </el-table>
                         </div>
