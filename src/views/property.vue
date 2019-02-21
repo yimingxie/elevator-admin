@@ -3448,37 +3448,35 @@
                         }
                     }
                 }],
-                yAxis : [
-                    {
-                        type : 'value',
-                        // min:0,
-                        // max:150,
-                        axisLine:{  
-                            lineStyle:{  
-                                color:'#24242f',  
-                                width:1,//这里是为了突出显示加上的  
-                            }  
-                        },
-                        //分割线
-                        splitLine:{
-                            show:true,
-                            lineStyle: {
-                            // 使用深浅的间隔色
-                                color: '#3F3F49',
-                                type:'dashed',
-                                // width:3,
-                            }
-                        },
-                        //Y轴文字
-                        axisLabel: {
-                            show: true,
-                            textStyle: {
-                            fontSize : 12,  
-                            color:'#66667F'
-                            }
+                yAxis : [{
+                    type : 'value',
+                    // min:0,
+                    // max:150,
+                    axisLine:{  
+                        lineStyle:{  
+                            color:'#24242f',  
+                            width:1,//这里是为了突出显示加上的  
+                        }  
+                    },
+                    //分割线
+                    splitLine:{
+                        show:true,
+                        lineStyle: {
+                        // 使用深浅的间隔色
+                            color: '#3F3F49',
+                            type:'dashed',
+                            // width:3,
+                        }
+                    },
+                    //Y轴文字
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                        fontSize : 12,  
+                        color:'#66667F'
                         }
                     }
-                ],
+                }],
                 series : [
                     {
                         name:'B类',
@@ -3568,33 +3566,33 @@
                 }],
                 yAxis : [
                     {
-                    type : 'value',
-                    // min:0,
-                    // max:150,
-                    axisLine:{  
-                        lineStyle:{  
-                            color:'#24242f',  
-                            width:1,//这里是为了突出显示加上的  
-                        }  
-                    },
-                    //分割线
-                    splitLine:{
-                        show:true,
-                        lineStyle: {
-                        // 使用深浅的间隔色
-                            color: '#3F3F49',
-                            type:'dashed',
-                            // width:3,
-                        }
-                    },
-                    //Y轴文字
-                    axisLabel: {
-                        show: true,
-                        textStyle: {
-                        fontSize : 12,  
-                        color:'#66667F'
-                        }
-                    },
+                        type : 'value',
+                        // min:0,
+                        // max:150,
+                        axisLine:{  
+                            lineStyle:{  
+                                color:'#24242f',  
+                                width:1,//这里是为了突出显示加上的  
+                            }  
+                        },
+                        // 分割线
+                        splitLine:{
+                            show: true,
+                            lineStyle: {
+                            // 使用深浅的间隔色
+                                color: '#3F3F49',
+                                type:'dashed',
+                                // width:3,
+                            }
+                        },
+                        //Y轴文字
+                        axisLabel: {
+                            show: true,
+                            textStyle: {
+                            fontSize : 12,  
+                            color:'#66667F'
+                            }
+                        },
                     }
                 ],
                 series : [
