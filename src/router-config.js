@@ -35,7 +35,10 @@ export default new Router({
     },{
       path: '/property',
       name: 'property',
-      component: property
+      component: property,
+      meta: {
+        title: '电梯物业监管战情室 ',
+      },
     },{
       path: '/china_map',
       name: 'china_map',
