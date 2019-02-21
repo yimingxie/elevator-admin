@@ -21,10 +21,16 @@ export default new Router({
     {
       path: '/',
       name: 'Index',
+      meta: {
+        title: '电梯行业监管战情室',
+      },
       component: Index
     },{
       path: '/mainten',
       name: 'maintenance',
+      meta: {
+        title: '电梯维保监管战情室',
+      },
       component: maintenance
     },{
       path: '/property',
@@ -52,6 +58,9 @@ export default new Router({
     {
       path: "/detail",
       name: "ElevatorDetail",
+      meta: {
+        title: '电梯运行详情',
+      },
       component: ElevatorDetailNew
     },
     {

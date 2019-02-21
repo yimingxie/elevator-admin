@@ -8,16 +8,15 @@
           </div>
           <table class="ed-profile-table">
             <tr>
-              <td width="76"><p class="edp-table-title">电脑编号</p></td>
+              <td width="76"><p class="edp-table-title">电梯编号</p></td>
               <td>
                 <!-- <select name="" id="">
                   <option value="">DT1</option>
                   <option value="">DT2</option>
                   <option value="">DT3</option>
                 </select> -->
-                <el-select placeholder="请选择"  v-model="dtID">
-                  <el-option key="'DT1'" :label="dtID" :value="dtID"></el-option>
-                  <el-option key="'DT2'" :label="dtID" :value="dtID"></el-option>
+                <el-select v-model="selectValue">
+                  <el-option v-for="(item, index) in selectArr" :key="index" :label="item.label" :value="item.value"></el-option>
                 </el-select>
               </td>
             </tr>
@@ -60,7 +59,7 @@
               <p>当前人数</p>
             </div>
             <div class="ed-ebox-sc">
-              <h4>关</h4>
+              <h4>{{eleCurrentDoor}}</h4>
               <p>轿门状态</p>
             </div>
           </div>
@@ -184,14 +183,14 @@
       </div>
 
       <div class="ed-right1" id="ed-right1" ref="ed-right1">
+        <div class="ed-item-time-change-block"></div>
+        <div class="ed-item-time-change clearfix">
+          <span :class="{on : timeOn == 'now'}" @click="changeTime('now')">现在</span>
+          <span :class="{on : timeOn == 'day'}" @click="changeTime('day')">今日</span>
+          <span :class="{on : timeOn == 'month'}" @click="changeTime('month')">本月</span>
+          <span :class="{on : timeOn == 'year'}" @click="changeTime('year')">本年</span>
+        </div>
         <el-scrollbar style="height: 100%;" id="scrollbar1">
-          <div class="ed-item-time-change clearfix">
-            <span :class="{on : timeOn == 'now'}" @click="changeTime('now')">现在</span>
-            <span :class="{on : timeOn == 'day'}" @click="changeTime('day')">今日</span>
-            <span :class="{on : timeOn == 'month'}" @click="changeTime('month')">本月</span>
-            <span :class="{on : timeOn == 'year'}" @click="changeTime('year')">本年</span>
-          </div>
-
 
           <!-- 大类 -->
           <!-- 机房 -->
@@ -799,10 +798,22 @@ export default {
       flag: true, // 用于滚动节流
       dataX: ['60s', '55s', '50s', '45s', '40s', '35s', '30s', '25s', '20s', '15s', '10s', '5s', '0s'],
       dataValue: [],
+      selectValue:'001',
+      selectArr: [{
+          value: '001',
+          label: 'DT1'
+      }, {
+          value: '002',
+          label: 'DT2'
+      }, {
+          value: '003',
+          label: 'DT3'
+      }],
       currentView: "EDMotorRoom",
       navActive: '机房',
       eleSpeed: '0',
       eleCurrentFloor: '0',
+      eleCurrentDoor: '关',
 
       // 机房默认值
       tempValue: '0',
@@ -1116,8 +1127,6 @@ export default {
   mounted() {
   
     
-    
-    
     setTimeout(() => {
       let room_temp_chart = this.$echarts.getInstanceByDom(document.getElementById("room-temp-chart"));
       let west_chart = this.$echarts.getInstanceByDom(document.getElementById("west-chart"));
@@ -1197,11 +1206,15 @@ export default {
     this.getCurrentData()
     this.dateNow = this.formatDate()
     this.getRealTime()
-    setInterval(() => {
+    const intervalTimer = setInterval(() => {
       this.getRealTime()
       this.getCurrentData()
       this.dateNow = this.formatDate()
     }, 2000)
+    // 通过$once来监听定时器，在beforeDestroy钩子可以被清除。
+    this.$once('hook:beforeDestroy', () => {            
+      clearInterval(intervalTimer);                                    
+    })
 
     // 滚动高亮
     this.scrollNav()
@@ -1372,22 +1385,25 @@ export default {
     // 更新电梯实时数据
     getCurrentData() {
       api.detail.getCurrent(this.dtID).then(res => {
-        // console.log(res.data)
+        // 速度
+        if (res.data[15]) {
+          this.eleSpeed = Math.abs((res.data[15].speed / 100).toFixed(2)) || 0
+        }
+
+        // 轿门状态（目前用的层门状态接口）
+        if (res.data[16]) {
+          if (res.data[16].value) {
+            this.eleCurrentDoor = '开'
+          } else {
+            this.eleCurrentDoor = '关'
+          }
+        }
         
         // 电梯当前楼层、速度、状态
         if (res.data[19]) {
-          console.log(res.data[19])
+          // console.log(res.data[19])
           this.direction = res.data[19].direction
           this.eleCurrentFloor = res.data[19].louc
-          this.eleSpeed = Math.abs((res.data[19].speed / 100).toFixed(3)) || 0
-          // this.eleBottomValue = res.data[19].value
-          // if (res.data[19].direction === 'up') {
-          //   this.direction = '上'
-          // } else if (res.data[19].direction === 'down') {
-          //   this.direction = '下'
-          // } else {
-          //   this.direction = '停'
-          // }
         }
       })
     },
@@ -1529,14 +1545,14 @@ export default {
         }
         this.drawFloorDoor()
 
-        // 电梯轿门
-        if (res.data[17]) {
-          if (res.data[17].value) {
+        // 电梯轿门（目前用的是层门数据）
+        if (res.data[16]) {
+          if (res.data[16].value) {
             this.floorDoorValue = '开'
           } else {
             this.floorDoorValue = '关'
           }
-          this.floorDoorNum = res.data[17].value
+          this.floorDoorNum = res.data[16].value
         }
         this.drawEleDoor()
 
@@ -3106,28 +3122,17 @@ export default {
 
 
 
-<style lang="stylus">
-@import "../../assets/stylus/panel"
-
-</style>
-
-
-<style scoped>
-  /* .ed-container >>> .el-select-dropdown__item{
-    padding: 0 0 0 10px !important;
-  } */
-</style>
-
-
-
 
 <style lang="scss">
 
 #ed {
-  // @import url("../../assets/stylus/css-reset.css");
+  .el-input__inner{
+    width: 100px !important;
+  } 
+
 
   background: #000;
-  padding: 80px 36px 20px;
+  padding: 80px 0 20px 20px;
 
   .ed-container {
     margin-top: 32px;
@@ -3533,16 +3538,19 @@ export default {
     color: #fff;
   }
   .ed-right1 {
+    // box-sizing: border-box;
     float: left;
     width: 900px;
     position: relative;
     box-sizing: border-box;
     height: 945px;
+    // height: 930px;
     background: #12151c;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
     border-radius: 10px;
-    padding: 20px 0 20px 30px;
+    padding: 50px 0 20px 30px;
     z-index: 10;
+    overflow: hidden;
   }
   .ed-item {
     padding-right: 20px;
@@ -3553,9 +3561,20 @@ export default {
     font-size: 20px;
     color: #ffffff;
   }
+  // .ed-item-time-change-block{
+  //   height: 52px;
+  // }
   .ed-item-time-change{
-  text-align: right;
-  padding-right: 20px;
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: right;
+    z-index: 60;
+    // height: 40px;
+    padding: 15px 20px;
+    background: #12151C;
   }
   .ed-item-time-change span{
     display: inline-block;
@@ -3742,7 +3761,7 @@ export default {
   }
   .ed-right2{
     float: left;
-    width: 280px;
+    width: 320px;
     position: relative;
     box-sizing: border-box;
     height: 945px;
@@ -3815,16 +3834,16 @@ export default {
 /* 适配 */
 @media screen and (max-width: 1910px) {
   #ed{
-    padding: 80px 20px 20px;
+    padding: 80px 0 20px 20px;
 
-    .ed-right1{width: 42%;padding: 14px 0 20px 30px;}
+    .ed-right1{width: 42%;padding: 50px 0 20px 30px;}
     .ed-item-chart{width: 68%;}
     .ed-item-chart-data{width: 150px;}
     .edic-data-p{margin-left: 10px;}
     .ed-left{width: 30%;}
     .ed-mid{width: 80px;margin-left: 20px;}
     .ed-nav-box p{font-size: 14px;}
-    .ed-right2{width: 18%;margin-left: 20px;padding: 14px 0 14px 14px;}
+    .ed-right2{width: 19%;margin-left: 20px;padding: 14px 0 14px 14px;}
     .wai-p{font-size: 12px;}
     .wai-time{font-size: 10px;}
     .ed-ebox-title h3{line-height: 60px;margin-top: 10px;}
@@ -3843,7 +3862,15 @@ export default {
     /* .edic-data-p p{width: 60px;line-height: 1.3;} */
   }
   
-  
+}
+@media screen and (max-width: 1500px) {
+  #ed{
+    .ed-right2 {
+      width: 18%;
+    }
+
+  }
+
 
 }
 @media screen and (max-width: 1350px) {

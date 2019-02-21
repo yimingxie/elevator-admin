@@ -1177,28 +1177,9 @@ export default {
 
 
 
-<style lang="stylus">
-@import "../../assets/stylus/panel"
-
-</style>
-
-
-<style scoped>
-  /* .ed-container >>> .el-select-dropdown__item{
-    padding: 0 0 0 10px !important;
-  } */
-</style>
-
-
-
 <style lang="scss">
 
 #ed {
-  // @import url("../../assets/stylus/css-reset.css");
-
-  .el-input__inner{
-    width: 150px !important;
-  } 
 
 
   background: #000;
