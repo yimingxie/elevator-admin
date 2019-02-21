@@ -1,3 +1,77 @@
+// 适配
+@media screen and (max-width: 1910px) {
+
+  #MapContainer{
+    width: 30% !important;
+  }
+  .right{
+    left: 30% !important;
+  }
+  #chartbar1,#chartbar2,#chartbar3,#chartbar4,#chartbar6,#chartpie,#chartpie2,#chartpie3,#chartpie4{
+    height: 170px !important;
+  }
+  #chartpie,#chartpie2,#chartpie3,#chartpie4{
+    margin-top: -20px;
+  }
+  #chartbar5{
+    height: 220px !important;
+  }
+
+  .charts{
+    padding: 24px 12px 5px 70px!important;
+  }
+  .el-col-16{
+    width: 58% !important;
+  }
+  .el-col-8{
+    width: 41% !important;
+  }
+  .chart_Total_title.chart_Total_title_x{
+    padding-bottom: 60px;
+  }
+  .chart-x-title{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: block !important;
+    overflow: hidden;
+  }
+  .chart-x-title .chart_title{
+    display: block;
+    float: left;
+  }
+  .chart-x-title .chart_title .unit{
+    display: block !important;
+    margin-left: 0px !important;
+  }
+  .summaryItemList_x{
+    padding-bottom: 166px !important;
+  }
+  .sum-gradient-last{
+    height: 1541px;
+  }
+}
+.chart_Total_title{
+  position: relative;
+}
+.chart-x-title{
+  display: inline-block;
+}
+.charts .chart-x-title .chart_title{
+  font-size: 16px;
+}
+div{
+  outline: none;
+}
+@media screen and (max-width: 1340px) {
+    .main-wrap {
+        min-width 1340px;
+    }
+    .right {
+        width 961px !important;
+    }
+}
+// 适配 end
 button.btn {
     border: none;
     outline: none;
@@ -16,204 +90,119 @@ button.btn {
   font-size: 18px!important
   line-height: 30px!important
 }
-
-/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
-::-webkit-scrollbar {
-  width: 0.2857142857142857rem;
-  height: 0.2857142857142857rem;
-  border-radius: 1.4285714285714286rem;
-  margin-left: 1.4285714285714286rem;
-  // display:none
-}
-/*定义滚动条轨道 内阴影+圆角*/
-::-webkit-scrollbar-track {
-/* -webkit-box-shadow: inset 0 0 0.42857142857142855rem rgba(0,0,0,0.3);
-  */
-  border-radius: 1.4285714285714286rem;
-  background: #1B302D;
-  margin-left: 1.4285714285714286rem;
-}
-/*定义滑块 内阴影+圆角*/
-::-webkit-scrollbar-thumb {
-  // border-radius: 1.4285714285714286rem;
-/* -webkit-box-shadow: inset 0 0 0.42857142857142855rem rgba(0,0,0,.3);
-  */
-  transform: scale(3, 1)
-  background: #6AE7C7;
-  border-radius: 5.62px;
-  margin-left: 1.4285714285714286rem;
-}
 .main-wrap
   padding 50px 10px 10px 10px
   // background: #313549
   // position: relative;
   margin-top: 80px;
   letter-spacing: 0.03px;
-.panel
-  // padding: 32px 0 0 0
-  box-sizing: border-box;
-  margin: 0 10px 20px;
-  margin-bottom:  30px
-  background: #16161C;
-  box-shadow: 0 21px 20px -14px rgba(10,23,63,0.15);
-  border-radius: 10px;
-  // overflow hidden
-.title
-  line-height: 40px
-  height 40px
-  .label1
-    float left
-    font-size: 20px
-    color: #fff
-    letter-spacing: 0.04px
-  .label2
-    float left
-    // line-height 20px
-    font-size: 12px;
-    color: #ccc;
-    letter-spacing: 0.02px;
-    margin-left 5px
-  .label3
-    font-size: 18px;
-    color: #FFFFFF;
-    letter-spacing: 0.9px;
-    float: right
-    margin-right: 10px
-.sum-gradient 
-    position absolute
-    top 0
-    right 0
-    width 23px
-    height 100%
-    background: linear-gradient(to right, #16161C, #0A0A0C)
-.sum-gradient-last
-    height 1516px
-.summary
-  position relative
-  padding: 30px 0 0 0 
-  background: #16161C;
-  box-shadow: 0 21px 20px -14px rgba(10,23,63,0.15);
-  // border-radius: 10px 0 0 10px;
-  width:206px !important
 
-  
-  .info-number
-    font-family: myFirstFont;
-    line-height 39px
-    font-size: 24px;
-    color: #FFFFFF;
-    letter-spacing: 0.08px;
-  .info-label
-    font-family: PingFangSC-Regular;
-    font-size: 14px;
-    color: #66667F;
-    line-height 21px
-    letter-spacing: 0.03px;
-    img 
-      margin-right:  6.8px
-  .unit
-    margin-left 8px
-    color: #ccc;
-  .summaryItem
-    margin-right: 23px;
-    // text-align: center
-    padding 15px 22px 14px 22px
-  .tab
-    .tabTitle
-      margin-bottom: 10px
-      .info-number
-        font-family: myFirstFont;
-        font-size: 20px;
-        color: #FFFFFF;
-        letter-spacing: 0.08px;
-        line-height: 28px
-    .info-label
-      font-size: 12px;
-      color: rgba(255,255,255,0.60);
-      letter-spacing: 0.02px;
-//图表面板
-.charts
-  padding  33px 22px 19px 22px
-  .chart_Total_title
-    margin-bottom: 15px
-    .chart_title
-      font-size: 18px
-      margin-right 18px
-      .unit
-        font-size: 12px;
-        color: #66667F;
-        letter-spacing: 0.02px;
-        margin-left: 7px
-
-  .chart_title_right
-    float right 
-    .rank
-      // size 68px 28px 
-      padding: 5px 18px
+  .panel
+    // padding: 32px 0 0 0
+    box-sizing: border-box;
+    margin: 0 10px 20px;
+    margin-bottom:  30px
+    background: #16161C;
+    box-shadow: 0 21px 20px -14px rgba(10,23,63,0.15);
+    border-radius: 10px;
+    // overflow hidden
+  .title
+    line-height: 40px
+    height 40px
+    .label1
+      float left
+      font-size: 20px
       color: #fff
-      background: #0DBA7F;
-      border-radius: 16.5px;
-// 下拉菜单 end
-//  select--start
-.el-select-dropdown
-  background: rgba(8,15,12,1)!important
-  border: 1px solid #416663!important
-  border-radius: 0!important
-  &:after
-    content: ''
-    size: 20px
-    absolute bottom 6px left 6px
-    display inline-block
-    // background: url("./assets/images/下拉菜单小方块@1x.svg") no-repeat 0 0px
-.el-select-dropdown__list
-  max-height: 175px!important
-.el-scrollbar__thumb
-  background-color #6AE7C7!important
-.el-scrollbar__thumb:hover
-  background-color #6AE7C7!important
-.el-select-dropdown__item
-  font-size: 20px!important
-  color: #376A75!important
-  padding: 0 0 0 40px!important
-.el-select-dropdown__item.hover, .el-select-dropdown__item:hover
-  background: none!important
-  color: blue!important
-.el-select-dropdown__item.selected
-  color: blue!important
-.el-input__inner
-  border: 1px solid rgba(56,61,80,0.60)!important;
-  border-radius: 16.5px!important;
-  background: rgba(0,0,0,0) !important;
-  // font-size: 20px!important
-  color: #fff!important
-  letter-spacing: 1px;
-  border-radius: 20px!important;
-  width: 120px!important;
-  height:28px!important;
-  line-height: 28px!important
-  // padding: 0 0 0 40px!important;
-.el-scrollbar__bar
-  right 10px!important
-.el-select .el-input .el-select__caret
-  color: #fff!important
-.el-date-editor.el-input, .el-date-editor.el-input__inner
-  width: 120px!important;
-// .el-icon-arrow-up:before {
-//   content: "\E60C"!important;
-// }
-.el-icon--right
-  color #BBFFBC!important
-.el-input__icon
-  line-height: 1!important;
-// .el-icon-date:before {
-//     content: "\E60C"!important;
-// }
-// .el-icon-arrow-down:before {
-//   content: "\E60B"!important;
-// }
-// [class*=" el-icon-"], [class^=el-icon-]
-//   line-height: inherit!important;
-// select--end
+      letter-spacing: 0.04px
+    .label2
+      float left
+      // line-height 20px
+      font-size: 12px;
+      color: #ccc;
+      letter-spacing: 0.02px;
+      margin-left 5px
+    .label3
+      font-size: 18px;
+      color: #FFFFFF;
+      letter-spacing: 0.9px;
+      float: right
+      margin-right: 10px
+  .sum-gradient 
+      position absolute
+      top 0
+      right 0
+      width 23px
+      height 100%
+      background: linear-gradient(to right, #16161C, #0A0A0C)
+  .sum-gradient-last
+      height 1516px
+  .summary
+    position relative
+    padding: 30px 0 0 0 
+    background: #16161C;
+    box-shadow: 0 21px 20px -14px rgba(10,23,63,0.15);
+    // border-radius: 10px 0 0 10px;
+    width:206px !important
+
+    
+    .info-number
+      font-family: 'Microsoft YaHei';
+      line-height 39px
+      font-size: 24px;
+      color: #FFFFFF;
+      letter-spacing: 0.08px;
+    .info-label
+      font-family: Microsoft YaHei;
+      font-size: 14px;
+      color: #66667F;
+      line-height 21px
+      letter-spacing: 0.03px;
+      img 
+        margin-right:  6.8px
+    .unit
+      margin-left 8px
+      color: #ccc;
+    .summaryItem
+      margin-right: 23px;
+      // text-align: center
+      padding 15px 22px 14px 22px
+    .tab
+      .tabTitle
+        margin-bottom: 10px
+        .info-number
+          font-family: 'Microsoft YaHei';
+          font-size: 20px;
+          color: #FFFFFF;
+          letter-spacing: 0.08px;
+          line-height: 28px
+      .info-label
+        font-size: 12px;
+        color: rgba(255,255,255,0.60);
+        letter-spacing: 0.02px;
+  //图表面板
+  .charts
+    padding  33px 22px 19px 22px
+    .chart_Total_title
+      margin-bottom: 15px
+      .chart_title
+        font-size: 18px
+        margin-right 18px
+        .unit
+          font-size: 12px;
+          color: #66667F;
+          letter-spacing: 0.02px;
+          margin-left: 7px
+
+    .chart_title_right
+      float right 
+      .rank
+        // size 68px 28px
+        padding: 5px 18px
+        color: #fff
+        background: #0DBA7F;
+        border-radius: 16.5px;
+  // 图表面板 end
+
 // 进度条
 .progress
   height: 6px;
@@ -268,7 +257,7 @@ button.btn {
     right: 0;
     font-size: 14px;
     i 
-      font-family: myFirstFont;
+      font-family: 'Microsoft YaHei';
       font-size: 28px;
       color: #4AF9D1;
       margin-right: 5px;
@@ -293,7 +282,24 @@ button.btn {
     50% { box-shadow: 0 0 11px 0 rgba(251,87,48,0.84), 0 0 11px 0 rgba(251,87,48,0.84)}
     to { box-shadow: 0 0 11px 0 rgba(251,87,48,0.2) }
 }
-
+// 修改默认input placeholder的样式（颜色，字体）
+:-moz-placeholder {
+  color: #66667F;
+  opacity: 1;
+}
+::-moz-placeholder {
+  color: #66667F;
+  opacity: 1;
+}
+input:-ms-input-placeholder {
+  color: #66667F;
+  opacity: 1;
+}
+input::-webkit-input-placeholder {
+  color: #66667F;
+  opacity: 1;
+} 
+// 修改默认input placeholder的样式（颜色，字体） end---
 
 
 
@@ -342,7 +348,7 @@ button.btn {
 //   // margin 0 10px
 //   background: #383D50
 //   .info-number
-//     font-family: myFirstFont;
+//     font-family: 'Microsoft YaHei';
 //     line-height 50px
 //     font-size: 42px;
 //     color: #FFFFFF;
@@ -411,7 +417,7 @@ button.btn {
 //     right: 0;
 //     font-size: 14px;
 //     i 
-//       font-family: myFirstFont;
+//       font-family: 'Microsoft YaHei';
 //       font-size: 28px;
 //       color: #4AF9D1;
 //       margin-right: 5px;

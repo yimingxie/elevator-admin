@@ -7,6 +7,9 @@ import ElevatorDetailNew from './views/xym/ElevatorDetailNew'
 import ElevatorDetailNew2 from './views/xym/ElevatorDetailNew2'
 import ElevatorDetailOld from './views/xym/ElevatorDetailOld'
 import Index from './views/Index'
+import maintenance from './views/maintenance'
+import china_map from './views/china_map'
+import dateContainer from './views/dateContainer'
 
 
 
@@ -18,6 +21,18 @@ export default new Router({
       path: '/',
       name: 'Index',
       component: Index
+    },{
+      path: '/mainten',
+      name: 'maintenance',
+      component: maintenance
+    },{
+      path: '/china_map',
+      name: 'china_map',
+      component: china_map
+    },{
+      path: '/dateContainer',
+      name: 'dateContainer',
+      component: dateContainer
     },
     {
       path: "/test-map",
