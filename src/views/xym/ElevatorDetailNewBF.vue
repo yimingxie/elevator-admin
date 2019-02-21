@@ -1376,10 +1376,10 @@ export default {
         
         // 电梯当前楼层、速度、状态
         if (res.data[19]) {
-          console.log(res.data[19])
+          // console.log(res.data[19])
           this.direction = res.data[19].direction
           this.eleCurrentFloor = res.data[19].louc
-          this.eleSpeed = Math.abs((res.data[19].speed / 100).toFixed(3)) || 0
+          this.eleSpeed = Math.abs(res.data[19].speed.toFixed(3)) || 0
           // this.eleBottomValue = res.data[19].value
           // if (res.data[19].direction === 'up') {
           //   this.direction = '上'

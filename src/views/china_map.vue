@@ -49,7 +49,7 @@
             <div class="infoWindows_data">{{ name }}</div>
             <div class="infoWindows_info"> 使用地点：</div>
             <div class="infoWindows_data">{{ name }}</div>
-            <div class="infoWindows_details"><a href="/lift/#/detail">查看详情</a></div>
+            <div class="infoWindows_details"><a href="/lift/gov/#/detail">查看详情</a></div>
             <i class="detailIcon"></i>
             <span class="bottomImg"></span>
         </div>`,
@@ -773,7 +773,7 @@ div
             line-height 20px
             display inline-block
             float right
-            margin 15px 0 0 10px
+            margin 15px 22px 0 10px
             background: #0DBA7F;
             border-radius: 16.5px;
             padding 4px 10px 3px 10px
@@ -913,7 +913,7 @@ div
 .search1
     float right
     font-size: 0;
-    margin 15px 0 0 0
+    margin 14px 0 0 0
     white-space: nowrap;
     height: 28px;
     line-height: 28px;
@@ -935,7 +935,5 @@ div
         size 32px 28px
         cursor pointer
         display: inline-block
-@media screen and (max-width: 1910px) {
 
-}
 </style>

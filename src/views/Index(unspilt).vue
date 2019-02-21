@@ -87,7 +87,7 @@
                 </el-row>
                 <el-row class="">
                     <el-col :span="24">
-                        <div class="spiltBar" style="height:12px;background: #111116;"></div>
+                        <div class="spiltBar"></div>
                     </el-col>
                 </el-row>
                 <el-row class="">
@@ -156,7 +156,7 @@
                 </el-row>
                 <el-row class="">
                     <el-col :span="24">
-                        <div class="spiltBar" style="height:12px;background: #111116;"></div>
+                        <div class="spiltBar"></div>
                     </el-col>
                 </el-row>
                  <el-row class="">
@@ -280,10 +280,10 @@
                 </el-row>
            </div>
             <div class="panel">
+                <div class="sum-gradient"></div>
                <el-row class="">
                     <el-col :span="4">
                         <div class="summary summary3">
-                            <div class="sum-gradient sum-gradient-last"></div>
                             <div class="summaryItem tab" style="background-image: linear-gradient(90deg, rgba(254,56,143,0.40) 0%, #F75F5F 100%);">
                                 <div class="tabTitle"><span class="info-number" id='time1'>电梯实时故障预测健康管理</span></div>
                                 <div class="info-label"><img src="../assets/images/hs/today.png" alt=""/>今天</div>
@@ -2565,7 +2565,7 @@
                     x: 'center', //居右显示
                     textStyle:{
                         fontSize : 12,  
-                        fontFamily : 'PingFangSC-Regular',  
+                        fontFamily : 'Microsoft YaHei',  
                         color:'#66667F'  
                     },
                     itemWidth: 8,
@@ -2711,7 +2711,7 @@
                     x: 'center', //居右显示
                     textStyle:{
                         fontSize : 12,  
-                        fontFamily : 'PingFangSC-Regular',  
+                        fontFamily : 'Microsoft YaHei',  
                         color:'#66667F'  
                     },
                     itemWidth: 20,
@@ -3024,7 +3024,7 @@
                     x: 'center', //居右显示
                     textStyle:{
                         fontSize : 12,  
-                        fontFamily : 'PingFangSC-Regular',  
+                        fontFamily : 'Microsoft YaHei',  
                         color:'#66667F'  
                     },
                     show:true,
@@ -3190,7 +3190,7 @@
                     x: 'center', //居右显示
                     textStyle:{
                         fontSize : 12,  
-                        fontFamily : 'PingFangSC-Regular',  
+                        fontFamily : 'Microsoft YaHei',  
                         color:'#66667F'  
                     },
                     show:true,
@@ -3335,7 +3335,7 @@
                     x: 'center', //居右显示
                     textStyle:{
                         fontSize : 12,  
-                        fontFamily : 'PingFangSC-Regular',  
+                        fontFamily : 'Microsoft YaHei',  
                         color:'#66667F'  
                     },
                     itemWidth: 8,
@@ -3469,7 +3469,7 @@
                     x: 'center', //居右显示
                     textStyle:{
                         fontSize : 12,  
-                        fontFamily : 'PingFangSC-Regular',  
+                        fontFamily : 'Microsoft YaHei',  
                         color:'#66667F'  
                     },
                     itemWidth: 8,
@@ -3581,7 +3581,7 @@
                     x: 'center', //居右显示
                     textStyle:{
                         fontSize : 12,  
-                        fontFamily : 'PingFangSC-Regular',  
+                        fontFamily : 'Microsoft YaHei',  
                         color:'#66667F'  
                     },
                     itemWidth: 8,
@@ -3727,7 +3727,7 @@
                     x: 'center', //居右显示
                     textStyle:{
                         fontSize : 12,  
-                        fontFamily : 'PingFangSC-Regular',  
+                        fontFamily : 'Microsoft YaHei',  
                         color:'#66667F'  
                     },
                     itemWidth: 8,
@@ -3873,7 +3873,7 @@
                     x: 'center', //居右显示
                     textStyle:{
                         fontSize : 12,  
-                        fontFamily : 'PingFangSC-Regular',  
+                        fontFamily : 'Microsoft YaHei',  
                         color:'#66667F'  
                     },
                     show:true,
@@ -4029,7 +4029,7 @@
                     x: 'center', //居右显示
                     textStyle:{
                         fontSize : 12,  
-                        fontFamily : 'PingFangSC-Regular',  
+                        fontFamily : 'Microsoft YaHei',  
                         color:'#66667F'  
                     },
                     itemWidth: 8,

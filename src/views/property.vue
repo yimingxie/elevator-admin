@@ -20,7 +20,7 @@
                <div class="sum-gradient"></div>
                <el-row class="">
                     <el-col :span="4">
-                        <div class="summary">
+                        <div class="summary" style="padding-bottom: 40px;">
                             <div class="summaryItem tab" style="background-image: linear-gradient(90deg, #0DBA7F 0%, rgba(13,186,127,0.40) 100%);">
                                 <div class="tabTitle"><span class="info-number" id='time1'>维保作业统计</span></div>
                                 <div class="info-label"><img src="../assets/images/hs/today.png" alt=""/>今天</div>
@@ -52,25 +52,7 @@
                                 <span class="border-line"></span>
                             </div>
                         </div>
-                    </el-col>
-                    
-                    <el-col :span="20" >
-                        <div class=" charts">
-                            <div class="chart_Total_title chart_Total_title_x" style="padding-bottom: 0;">
-                                <span class="chart_title">任务列表</span>
-                                <span class="add"></span>
-                            </div>
-                            <dateContainer></dateContainer>
-                        </div>
-                    </el-col>
-                </el-row>
-                <el-row class="">
-                    <el-col :span="24">
-                        <div class="spiltBar" ></div>
-                    </el-col>
-                </el-row>
-                 <el-row class="">
-                    <el-col :span="4">
+                        <div class="spiltBar" style="width:182px;"></div>
                         <div class="summary">
                             <div class="thisMonth">本月</div>
                             <div class="splitBar" ></div>
@@ -94,76 +76,48 @@
                             </div>
                         </div>
                     </el-col>
+                    
                     <el-col :span="20" >
-                        <!-- <div class="charts" style="padding: 25px 22px 19px 22px;"> -->
-                        <div class="charts">
-                            <div class="chart_Total_title chart_Total_title_x" style="padding-bottom: 0;margin-bottom: 10px;">
-                                <span class="chart_title">维保人员列表</span>
-                                <div class="search">
-                                    <input class="search_input" placeholder="请输入维保人员姓名" />
-                                    <span class="search_btn"></span>
-                                </div>
+                        <div class=" charts">
+                            <div class="chart_Total_title chart_Total_title_x" style="padding-bottom: 0;">
+                                <span class="chart_title">任务列表</span>
+                                <span class="add"></span>
                             </div>
-                            <el-table
-                                
-                                :data="personnelLists"
-                                height="280"
-                                border
-                                style="width: 100%">
-                                <el-table-column
-                                    prop="name"
-                                    label="维保人员姓名"
-                                    class-name="underline_td"
-                                    min-width='100'
-                                >
-                                </el-table-column>
-                                <el-table-column
-                                    prop="overtimeRate"
-                                    label="超时率"
-                                    sortable
-                                    >
-                                </el-table-column>
-                                <el-table-column
-                                    prop="averageMil"
-                                    label="月均里程/km"
-                                    min-width='110'
-                                    sortable>
-                                </el-table-column>
-                                <el-table-column
-                                    prop="maintenanceTime"
-                                    label="维保时长/min"
-                                    min-width='110'
-                                    sortable
-                                    >
-                                </el-table-column>
-                                <el-table-column
-                                    label="已维保数/计划数/月"
-                                    min-width='120'>
-                                    <template slot-scope="scope">
-                                        <span >
-                                            {{scope.row.maintenanceNumber}} 
-                                        </span>
-                                        <span style="color:#66667F">
-                                            &nbsp;/&nbsp;&nbsp;{{scope.row.planNumber}}
-                                        </span>
-                                    </template>
-                                </el-table-column>
-                                <el-table-column
-                                    label="操作"
-                                    min-width='100'>
-                                    <!-- <span class="tableJob">作业轨迹</span>
-                                    <span class='tableLast'>任务</span> -->
-                                    <template slot-scope="scope">
-                                        <span class="tableJob">作业轨迹</span>
-                                        <span class='tableLast'>任务</span>
-                                    </template>
-                                </el-table-column>
-                            </el-table>
+                            <dateContainer1></dateContainer1>
                         </div>
                     </el-col>
                 </el-row>
            </div>
-
+            <div class="panel">
+                <div class="sum-gradient"></div>    
+                <el-row class="">
+                    <el-col :span="4">
+                        <div class=" summary summary1">
+                            
+                            <div class="summaryItem tab" style="background-image: linear-gradient(90deg, #0DBA7F 0%, rgba(13,186,127,0.40) 100%);">
+                                <div class="tabTitle"><span class="info-number" id='time1'>电梯运营数据</span></div>
+                                <div class="info-label"><img src="../assets/images/hs/today.png" alt=""/>今天</div>
+                                <div class="info-label"><img src="../assets/images/hs/quyu.png" alt=""/>深圳市{{ region }}</div>
+                            </div>
+                            <div class="summaryItem" style="padding-bottom:86px">
+                                <div><span class="info-number" id='time1' >168237</span><span class="unit">人</span></div>
+                                <div class="info-label">实时人数</div>
+                            </div>
+                        </div>
+                    </el-col>
+                    <el-col :span="20" >
+                        <div class=" charts">
+                            <div class="chart_Total_title chart_Total_title_x" style="padding-bottom: 0;">
+                                <span class="chart_title">人流趋势<span class="unit">/ 人</span></span>
+                                <span class="chart_title_right">
+                                    <radio-group :items="periods" :value.sync="period">></radio-group>
+                                </span>
+                            </div>
+                            <div id="lineChart19"></div>
+                        </div>
+                    </el-col>
+                </el-row>
+           </div>
            
             <div class="panel">
                 <div class="sum-gradient"></div>  
@@ -171,7 +125,7 @@
                     <el-col :span="4">
                         <div class="summary summary3">
                             
-                            <div class="summaryItem tab" style="background-image: linear-gradient(90deg, rgba(254,56,143,0.40) 0%, #F75F5F 100%);">
+                            <div class="summaryItem tab" style="background-image: linear-gradient(-90deg, rgba(223,75,75,0.40) 0%, #DF4B4B 100%);">
                                 <div class="tabTitle"><span class="info-number" id='time1'>电梯实时故障预测健康管理</span></div>
                                 <div class="info-label"><img src="../assets/images/hs/today.png" alt=""/>今天</div>
                                 <div class="info-label"><img src="../assets/images/hs/quyu.png" alt=""/>深圳市{{ region }}</div>
@@ -248,9 +202,9 @@
                     </el-col>
                     <el-col :span="20" >
                         <div class=" charts" style="padding-bottom: 30px;position: relative;">
-                            <div class="chart_Total_title chart_Total_title_x">
+                            <div class="chart_Total_title chart_Total_title_x" style="padding-bottom: 60px;">
                                 <span class="chart_title">电梯实时故障预测统计<span class="unit">/次</span></span>
-                                <div class="chart-x-title">
+                                <div style="position: absolute;bottom: 5px;left: 0;display: block !important;overflow: hidden;">
                                     <span class="chart_title">95325<span class="unit">年度预警数/次</span></span>
                                     <span class="chart_title">31200<span class="unit">月度预警数/次</span></span>
                                 </div>
@@ -263,6 +217,8 @@
                                         placeholder="选择月">
                                     </el-date-picker>
                                     <el-select v-model="selectValue" placeholder="请选择"><el-option v-for="(item, index) in options" :key="index" :label="item.label" :value="item.value"></el-option></el-select>
+                                    <button class="rank btn" disabled style="background:#FE7D01">预警数电梯排名</button>
+                                    <button class="rank btn" disabled style="background: #DF4B4B;">电梯停机排名</button>
                                 </span>
                             </div>
                             <el-row class="" style="border-bottom: 1px solid rgba(48,52,72,0.80);">
@@ -329,10 +285,11 @@
                 </el-row>
            </div>
            <div class="panel">
-                <div class="sum-gradient"></div>
-                <el-row class="">
+               <div class="sum-gradient"></div>
+               <el-row class="">
                     <el-col :span="4">
                         <div class="summary summary3">
+                            
                             <div class="summaryItem tab" style="background-image: linear-gradient(90deg, #0DBA7F 0%, rgba(13,186,127,0.40) 100%);">
                                 <div class="tabTitle"><span class="info-number" id='time1'>电梯运行里程</span></div>
                                 <div class="info-label"><img src="../assets/images/hs/today.png" alt=""/>今天</div>
@@ -457,15 +414,25 @@
     import gcoord from 'gcoord'
     import AMapUI from 'AMapUI'
     import china_map from "./china_map";
-    import dateContainer from "./dateContainer";
+    import dateContainer1 from "./dateContainer1";
+    import RadioGroup from "../components/RadioGroup";
+    
     export default {
         name: 'HelloWorld',
         components: {
             'chinaMap': china_map,
-            'dateContainer': dateContainer,
+            'dateContainer1': dateContainer1,
+            'radio-group': RadioGroup,
         },
         data () {
             return {
+                periods: [
+                    { label: '小时', value: 1 },
+                    { label: '天', value: 7 },
+                    { label: '月', value: 30 },
+                    { label: '年', value: 365 }
+                ],
+                period:7,
                 value1:'2',
                 selectValue:'',
                 options: [{
@@ -595,6 +562,7 @@
             this.drawLineChart16()
             this.drawLineChart17()
             this.drawLineChart18()
+            this.drawLineChart19()
             // 图表 end---
             this.drawLine()
             // this.today = this.getCurrentDate(1)
@@ -626,6 +594,7 @@
             let lineChart16 = this.$echarts.getInstanceByDom(document.getElementById("lineChart16"));
             let lineChart17 = this.$echarts.getInstanceByDom(document.getElementById("lineChart17"));
             let lineChart18 = this.$echarts.getInstanceByDom(document.getElementById("lineChart18"));
+            let lineChart19 = this.$echarts.getInstanceByDom(document.getElementById("lineChart19"));
 
             window.addEventListener("resize", function() {
                 // chartbar1.resize();
@@ -654,9 +623,8 @@
                 lineChart16.resize();
                 lineChart17.resize();
                 lineChart18.resize();
-
+                lineChart19.resize();   
             });
-            
         },
         methods: {
             // goDetail() {
@@ -4010,6 +3978,124 @@
                         
                 echart.setOption(option);
             },
+            drawLineChart19(){
+                var chart = document.getElementById("lineChart19");
+                var echart = echarts.init(chart);
+                var option = {
+                tooltip : {
+                    trigger: 'axis',
+                },
+                legend: {
+                    data:['人流','全市参考范围'],
+                    itemGap: 30,
+                    // orient: 'vertical',  //垂直显示
+                    y: 'bottom',    //延Y轴居中
+                    x: 'center', //居右显示
+                    textStyle:{
+                        fontSize : 12,  
+                        fontFamily : 'Microsoft YaHei',  
+                        color:'#66667F'  
+                    },
+                    itemWidth: 8,
+                    show:true,
+                    icon:'circle',
+                    // backgroundColor:'red'
+                },
+                // color:['#FEC101','#6B50D0'],
+                color:['#1EDEB6 ','#FE7D01'],
+                //工具栏
+                toolbox: {
+                    show : false ,
+                    feature : {
+                    mark : {show: true},
+                    dataView : {show: true, readOnly: false},
+                    magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                    restore : {show: true},
+                    saveAsImage : {show: true}
+                    }
+                },
+                grid: {
+                    right: '3%', //相当于距离左边效果:padding-left
+                    left: '3%', //相当于距离上边效果:padding-top
+                    // bottom: '15%',
+                    bottom: '20%',
+                    top: '10%',
+                    containLabel: true
+                },
+                calculable : true,
+                xAxis : [{
+                    type : 'category',
+                    boundaryGap : false,
+                    data :['00:00','02:00','04:00','06:00','08:00','10:00','12:00','14:00','16:00','18:00','20:00','22:00','23:59'],
+                    axisLine:{
+                        lineStyle:{  
+                            color:'#24242f',  
+                            width:1,//这里是为了突出显示加上的  
+                        }  
+                    },
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            fontSize : 12,  
+                            // fontFamily : '微软雅黑',  
+                            color:'#66667F'
+                        }
+                    }
+                }],
+                yAxis : [
+                    {
+                    type : 'value',
+                    // min:0,
+                    // max:150,
+                    axisLine:{  
+                        lineStyle:{  
+                            color:'#24242f',  
+                            width:1,//这里是为了突出显示加上的  
+                        }  
+                    },
+                    //分割线
+                    splitLine:{
+                        show:true,
+                        lineStyle: {
+                        // 使用深浅的间隔色
+                            color: '#3F3F49',
+                            type:'dashed',
+                            // width:3,
+                        }
+                    },
+                    //Y轴文字
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                        fontSize : 12,  
+                        color:'#66667F'
+                        }
+                    },
+                    }
+                ],
+                series : [
+                    {
+                        name:'人流',
+                        type:'line',
+                        smooth:true,
+                        showSymbol: false,
+                        stack: '人流',
+                        data: [12, 116, 200, 87, 105, 202, 105,126, 108, 25, 143, 108, 87, 150, 22],
+                    },
+                   
+                    {
+                        name:'全市参考范围',
+                        type:'line',
+                        smooth:true,
+                        showSymbol: false,
+                        stack: '全市参考范围',
+                        data: [4, 85, 57, 40, 54, 97, 45,76, 34, 17, 86, 53, 67, 87, 10],
+                    },
+                ]
+                };
+                        
+                echart.setOption(option);
+            },
         }
     };
 </script>
@@ -4018,7 +4104,7 @@
 // 配置
 @import '../assets/stylus/base'
 @import '../assets/stylus/panel'
-@import '../assets/stylus/pageSty'
+
 // 这个页面新增样式
 .iconImg{
     size 47px

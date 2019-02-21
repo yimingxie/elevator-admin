@@ -4,7 +4,7 @@
       <div class="ed-left">
         <div class="ed-profile">
           <div class="ed-profile-state">
-            <em>电梯概况</em><span>例行维保</span>
+            <em>电梯概况2</em><span>例行维保</span>
           </div>
           <table class="ed-profile-table">
             <tr>
@@ -15,9 +15,9 @@
                   <option value="">DT2</option>
                   <option value="">DT3</option>
                 </select> -->
-                <el-select placeholder="请选择">
-                  <el-option key="'DT1'" label="'DT1'" value="0"></el-option>
-                  <el-option key="'DT2'" label="'DT2'" value="1"></el-option>
+                <el-select placeholder="请选择"  v-model="dtID">
+                  <el-option key="'DT1'" :label="dtID" :value="dtID"></el-option>
+                  <el-option key="'DT2'" :label="dtID" :value="dtID"></el-option>
                 </el-select>
               </td>
             </tr>
@@ -35,25 +35,18 @@
 
 
         <div class="ed-elevator">
-          <!-- <div class="ed-elevator-name">2号电梯</div>
-          <div class="ed-ebox-title clearfix">
-            <h3>94 <span>今天健康指数（{{dateNow}}）</span></h3>
-          </div> -->
           <div class="ed-ebox"></div>
           <div class="ed-ebox-udBtn">
-            <div class="ed-ebox-data-btn" :class="{on : direction == 'up'}">
+            <div class="ed-ebox-data-btn on">
               <div class="ed-ebox-data-up2"></div>
               <div class="ed-ebox-data-up"></div>
             </div>
-            <div class="ed-ebox-data-btn" :class="{on : direction == 'down'}">
+            <div class="ed-ebox-data-btn">
               <div class="ed-ebox-data-down2"></div>
               <div class="ed-ebox-data-down"></div>
             </div>
           </div>
           <div class="ed-ebox-data">
-            <!-- <div class="ed-ebox-data-btn ed-ebox-data-up"></div>
-            <div class="ed-ebox-data-floor">{{eleCurrentFloor}}<span>F</span></div>
-            <div class="ed-ebox-data-btn ed-ebox-data-down"></div> -->
             <div class="ed-ebox-sc">
               <h4>{{eleCurrentFloor}}<span>F</span></h4>
               <p>当前楼层</p>
@@ -70,7 +63,6 @@
               <h4>关</h4>
               <p>轿门状态</p>
             </div>
-
           </div>
 
 
@@ -158,33 +150,33 @@
       <!-- 导航 -->
       <div class="ed-mid">
         <div class="ed-nav">
-          <div class="ed-nav-box" :class="{on : navActive == '机房'}" @click="switchNav('机房')">
+          <div class="ed-nav-box" :class="{on : navActive == '机房'}" @click="jump(0)">
             <!-- TODO 告警 -->
             <!-- <div class="warning"></div> -->
             <div class="edn-icon edn-icon1"></div>
             <p>机房</p>
           </div>
-          <div class="ed-nav-box" :class="{on : navActive == '曳引机'}" @click="switchNav('曳引机')">
+          <div class="ed-nav-box" :class="{on : navActive == '曳引机'}" @click="jump(1)">
             <div class="edn-icon edn-icon2"></div>
             <p>曳引机</p>
           </div>
-          <div class="ed-nav-box" :class="{on : navActive == '限速器'}" @click="switchNav('限速器')">
+          <div class="ed-nav-box" :class="{on : navActive == '限速器'}" @click="jump(2)">
             <div class="edn-icon edn-icon3"></div>
             <p>限速器</p>
           </div>
-          <div class="ed-nav-box" :class="{on : navActive == '梯门'}" @click="switchNav('梯门')">
+          <div class="ed-nav-box" :class="{on : navActive == '梯门'}" @click="jump(3)">
             <div class="edn-icon edn-icon4"></div>
             <p>梯门</p>
           </div>
-          <div class="ed-nav-box" :class="{on : navActive == '轿厢'}" @click="switchNav('轿厢')">
+          <div class="ed-nav-box" :class="{on : navActive == '轿厢'}" @click="jump(4)">
             <div class="edn-icon edn-icon5"></div>
             <p>轿厢</p>
           </div>
-          <div class="ed-nav-box" :class="{on : navActive == '安全回路'}" @click="switchNav('安全回路')">
+          <div class="ed-nav-box" :class="{on : navActive == '安全回路'}" @click="jump(5)">
             <div class="edn-icon edn-icon6"></div>
             <p>安全回路</p>
           </div>
-          <div class="ed-nav-box" :class="{on : navActive == '门锁回路'}" @click="switchNav('门锁回路')">
+          <div class="ed-nav-box" :class="{on : navActive == '门锁回路'}" @click="jump(6)">
             <div class="edn-icon edn-icon7"></div>
             <p>门锁回路</p>
           </div>
@@ -192,15 +184,32 @@
       </div>
 
       <div class="ed-right1" id="ed-right1" ref="ed-right1">
-        <el-scrollbar style="height: 100%;">
+        <el-scrollbar style="height: 100%;" id="scrollbar1">
           <div class="ed-item-time-change clearfix">
             <span :class="{on : timeOn == 'now'}" @click="changeTime('now')">现在</span>
             <span :class="{on : timeOn == 'day'}" @click="changeTime('day')">今日</span>
             <span :class="{on : timeOn == 'month'}" @click="changeTime('month')">本月</span>
             <span :class="{on : timeOn == 'year'}" @click="changeTime('year')">本年</span>
           </div>
+
+
           <!-- 大类 -->
-          <div :is="currentView"></div>
+          <!-- EDMotorRoom,
+          EDTractor,
+          EDSpeed,
+          EDDoor,
+          EDBox,
+          EDSafeLoop,
+          EDLockLoop
+        -->
+          <ed-motor-room></ed-motor-room>
+          <ed-tractor></ed-tractor>
+          <ed-speed></ed-speed>
+          <ed-door></ed-door>
+          <ed-box></ed-box>
+          <ed-safe-loop></ed-safe-loop>
+          <ed-lock-loop></ed-lock-loop>
+        
 
         </el-scrollbar>
       </div>
@@ -317,6 +326,8 @@
           
         </div>
       </div>
+
+
     </div>
   </div>
 </template>
@@ -338,22 +349,377 @@ export default {
       dateNow: '',
       dtID: 'dt001',
       timeOn: 'now',
-      direction: 'stop',
+      flag: true,
+      dataX: ['60s', '55s', '50s', '45s', '40s', '35s', '30s', '25s', '20s', '15s', '10s', '5s', '0s'],
+      dataValue: [],
       currentView: "EDMotorRoom",
       navActive: '机房',
-
       eleSpeed: '0',
       eleCurrentFloor: '0',
+
+      // 机房默认值
+      tempValue: '0',
+      tempUnit: '℃',
+      westValue: '0',
+      westUnit: '%',
+      windValue: '0',
+      windUnit: 'm/s',
+      roomWaterValue: '正常',
+      roomWaterValueNum: '1',
+      airValue: '开',
+      airValueNum: '1',
+
+      // 曳引机默认值
+      vControlValue: '0',
+      vControlUnit: 'V',
+      iControlValue: '0',
+      iControlUnit: 'A',
+      tractorTempValue: '0',
+      tempUnit: '℃',
+      roomVibrateValue: '0',
+      roomVibrateUnit: 'mm/s',
+      brakeTempValue: '0',
+      brakeTempUnit: '℃',
+      brakeSkrTempValue: '0',
+      brakeSkrTempUnit: '℃',
+      vBrakeValue: '0',
+      vBrakeUnit: 'V',
+      iBrakeValue: '0',
+      iBrakeUnit: 'A',
+      driveValue: '100',
+      driveUnit: '',
+
+      // 限速器默认值
+      rpmValue: '0',
+      rpmUnit: 'RPM',
+      speed: '0',
+
+      // 梯门默认值
+      floorDoorValue: '关',
+      floorDoorValueNum: '0',
+      eleDoorValue: '关',
+      eleDoorValueNum: '0',
+
+      // 轿厢默认值
+      boxVibrateValue: '0',
+      boxVibrateUnit: 'mm/s',
+      eleBottomValue: '0',
+      eleBottomUnit: 'm',
+      currentFloor: '1',
+      direction: '停',
+      boxWeightValue: '0',
+      boxWeightUnit: 'kg',
+
+      // 安全回路默认值
+      roomSafeValue: '通',
+      roomSafeValueNum: '1',
+      boxTopSafeValue: '通',
+      boxTopSafeValueNum: '1',
+      boxDoorSafeValue: '通',
+      boxDoorSafeValueNum: '1',
+      floorDoorSafeValue: '通',
+      floorDoorSafeValueNum: '1',
+      boxBottomSafeValue: '通',
+      boxBottomSafeValueNum: '1',
+
+      // 门锁回路默认值
+      floorLockValue: '通',
+      floorLockValueNum: '1',
+      boxLockValue: '通',
+      boxLockValueNum: '1',
+
+
+      // 温湿度配置
+      options: {
+        tooltip: {
+          trigger: "axis",
+          axisPointer: {
+            lineStyle: {
+              color: '#1D1B25',
+            }
+          },
+     
+        },
+        xAxis: {
+          type: 'value',
+          // inverse: true,
+          boundaryGap: false,
+          axisTick: {
+            show: false
+          },
+          axisLabel: {
+            formatter: '{value}s',
+            color: '#66667F',
+            margin: 12
+          },
+          min: 0,
+          max: 60,
+          interval: 10,
+          name: '(℃)',
+          nameLocation: 'start',
+          nameTextStyle: {
+            color: '#66667F'
+          },
+          splitLine: {
+            show: false,
+          },
+          // nameGap: 6,
+          axisLine: {
+            lineStyle: {
+              color: '#303240'
+            }
+          },
+          // data: []
+        },
+        yAxis: {
+          axisLabel: {
+            show: false,
+            color: '#66667F'
+          },
+          axisTick: {
+            show: false
+          },
+          axisLine: {
+            lineStyle: {
+              color: '#303240'
+            }
+          },
+          splitLine: {
+            show: false,
+          },
+        },
+        grid: {
+          top: '20px',  
+          left: '50px',  
+          right: '26px',  
+          bottom: '24px'
+        },  
+        visualMap: { //区间内控制显示颜色
+          show: false,
+          dimension: 1,
+          type: 'continuous',
+          range: [0, 500],
+          inRange: {
+            color: ['#29DDB6']
+          },
+          outOfRange: {
+            color: ['#E75561']
+          }
+        },
+        series: [
+          {
+            name: "机房温度",
+            type: "line",
+            // symbolSize: 0,
+            showSymbol: false,
+            smooth: true,
+            lineStyle: {
+              width: 3
+            },
+            // markLine: {
+            //   data: [{
+            //       name: '',
+            //       yAxis: 60
+            //   }],
+            //   animation: false,
+            //   symbolSize: 0,
+            //   label: {
+            //     position: 'start'
+            //   },
+            //   lineStyle: {
+            //     normal: {
+            //       type: 'solid',
+            //       color: '#DF4B4B',
+            //     },
+            //   }
+            // },
+            // data: dataArr
+            data: [[9, 10], [12, 20], [18, 40], [31, 80], [50, 100], [58, 180]]
+          },    
+        ]
+      },
+
+      // 回路配置
+      options2: {
+        tooltip: {
+          trigger: "axis",
+          axisPointer: {
+            lineStyle: {
+              color: '#1D1B25',
+            }
+          },
+          formatter: '{a}: {c}℃<br /> '
+        },
+        xAxis: {
+          type: 'value',
+          // inverse: true,
+          boundaryGap: false,
+          axisTick: {
+            show: false
+          },
+          axisLabel: {
+            formatter: '{value}s',
+            color: '#66667F',
+            margin: 12
+          },
+          min: 0,
+          max: 60,
+          interval: 10,
+          name: '(℃)',
+          nameLocation: 'start',
+          nameTextStyle: {
+            color: '#66667F'
+          },
+          splitLine: {
+            show: false,
+          },
+          // nameGap: 6,
+          axisLine: {
+            lineStyle: {
+              color: '#303240'
+            }
+          },
+          // data: []
+        },
+        yAxis: {
+          interval: 1,
+          splitNumber: 1,
+          axisTick: {
+            show: false
+          },
+          axisLabel: {
+            // show: true,
+            color: '#66667F',
+            formatter: function (value, index) {
+              if (value == 0) {
+                return '异常'
+              }
+              if (value == 1) {
+                return '正常'
+              }
+              // return '异常'
+            }
+          },
+          axisLine: {
+            lineStyle: {
+              color: '#303240'
+            }
+          },
+          splitLine: {
+            show: false,
+          },
+      
+        },
+        grid: {
+          top: '20px',  
+          left: '50px',  
+          right: '26px',  
+          bottom: '24px'
+        }, 
+        visualMap: { //区间内控制显示颜色
+          show: false,
+          dimension: 1,
+          type: 'continuous',
+          range: [0, 0.01],
+          inRange: {
+            color: ['#E75561']
+          },
+          outOfRange: {
+            color: ['#29DDB6']
+          }
+        },
+        series: [
+          {
+            name: "A类",
+            type: "line",
+            step: true,
+            showSymbol: false,
+            lineStyle: {
+              width: 2
+            },
+            // markLine: {
+            //   data: [
+            //     {
+            //       name: '异常',
+            //       yAxis: 0
+            //     },
+            //   ],
+            //   animation: false,
+            //   symbolSize: 0,
+            //   label: {
+            //     position: 'start'
+            //   },
+            //   lineStyle: {
+            //     normal: {
+            //       type: 'solid',
+            //       color: '#66667F',
+            //     },
+            //   }
+            // },
+            data: []
+          },
+          
+        ]
+      }
+
     };
   },
   mounted() {
+  
+    
+    
+    
+    // setTimeout(() => {
+    //   let room_temp_chart = this.$echarts.getInstanceByDom(document.getElementById("room-temp-chart"));
+    //   let west_chart = this.$echarts.getInstanceByDom(document.getElementById("west-chart"));
+    //   let room_wind_chart = this.$echarts.getInstanceByDom(document.getElementById("room-wind-chart"));
+    //   let room_water_chart = this.$echarts.getInstanceByDom(document.getElementById("room-water-chart"));
+    //   let air_chart = this.$echarts.getInstanceByDom(document.getElementById("air-chart"));
+
+    //   let motor_v_chart = this.$echarts.getInstanceByDom(document.getElementById("motor-v-chart"));
+    //   let motor_i_chart = this.$echarts.getInstanceByDom(document.getElementById("motor-i-chart"));
+    //   let motor_temp_chart = this.$echarts.getInstanceByDom(document.getElementById("motor-temp-chart"));
+    //   let motor_vibrate_chart = this.$echarts.getInstanceByDom(document.getElementById("motor-vibrate-chart"));
+    //   let brake_temp_chart = this.$echarts.getInstanceByDom(document.getElementById("brake-temp-chart"));
+    //   let brake_skr_chart = this.$echarts.getInstanceByDom(document.getElementById("brake-skr-chart"));
+    //   let v_brake_chart = this.$echarts.getInstanceByDom(document.getElementById("v-brake-chart"));
+    //   let i_brake_chart = this.$echarts.getInstanceByDom(document.getElementById("i-brake-chart"));
+    //   let drive_chart = this.$echarts.getInstanceByDom(document.getElementById("drive-chart"));
+      
+    //   window.addEventListener("resize", function() {
+    //     room_temp_chart.resize();
+    //     west_chart.resize();
+    //     room_wind_chart.resize();
+    //     room_water_chart.resize();
+    //     air_chart.resize();
+
+    //     motor_v_chart.resize();
+    //     motor_i_chart.resize();
+    //     motor_temp_chart.resize();
+    //     motor_vibrate_chart.resize();
+    //     brake_temp_chart.resize();
+    //     brake_skr_chart.resize();
+    //     v_brake_chart.resize();
+    //     i_brake_chart.resize();
+    //     drive_chart.resize();
+    //   });
+
+    // }, 300)
+
+    // 更新时间和实时数据
     this.getCurrentData()
     this.dateNow = this.formatDate()
-
+    this.getRealTime()
     setInterval(() => {
+      this.getRealTime()
       this.getCurrentData()
       this.dateNow = this.formatDate()
-    }, 2000);
+    }, 2000)
+
+    // 滚动高亮
+    this.scrollNav()
+
+
   },
   methods: {
     // 封装时间
@@ -371,6 +737,7 @@ export default {
         // return y+"-"+m+"-"+d+" "+h+":"+m1+":"+s;
         return y + "." + m + "." + d
     },
+    // 切换导航
     switchNav(name) {
       this.navActive = name
       if (name == '机房') {
@@ -396,14 +763,132 @@ export default {
       }
     },
 
+    // 锚点平滑跳转
+    jump(index) {
+      let that = this
+      // this.activeStep = index
+      // 用 class="step-jump" 添加锚点
+      let jumpArr = document.querySelectorAll('.edType')
+      // let testContent = document.getElementById('testContent')
+      let scrollbar1 = document.getElementById('scrollbar1')
+      let scrollWrap = scrollbar1.firstChild
+
+      if (this.flag) {
+        that.flag = false
+
+        let scrollWrapTop = scrollWrap.offsetTop
+
+        let total = jumpArr[index].offsetTop - scrollWrapTop // 目标卷曲位置
+        let currentDistance = scrollWrap.scrollTop // 当前卷曲位置
+        let step = Math.floor(total / 20)
+
+        // 若需要平滑滚动
+        // if (total > currentDistance) {
+        //   smoothDown()
+        // } else {
+        //   let newTotal = currentDistance - total
+        //   step = Math.floor(newTotal / 20)
+        //   smoothUp()
+        // }
+
+        // 若不需要平滑滚动
+        scrollWrap.scrollTop = total
+        that.flag = true
+
+
+
+        // 向下
+        function smoothDown() {
+          if (currentDistance < total) {
+            clearTimeout(timer)
+            currentDistance += step
+            scrollWrap.scrollTop = currentDistance
+            let timer = setTimeout(smoothDown, 10)
+          } else {
+            scrollWrap.scrollTop = total
+            that.flag = true
+          }
+        }
+
+        // 向上
+        function smoothUp () {
+          if (currentDistance > total) {
+            clearTimeout(timer)
+            currentDistance -= step
+            scrollWrap.scrollTop = currentDistance
+            let timer = setTimeout(smoothUp, 10)
+          } else {
+            scrollWrap.scrollTop = total
+            that.flag = true
+          }
+        }
+      }
+      
+
+    },
+
+    // 滚动高亮
+    scrollNav() {
+      let that = this
+
+      let scrollbar1 = document.getElementById('scrollbar1')
+      let scrollWrap = scrollbar1.firstChild // 触发滚动的主体
+      // 大类
+      let EDMotorRoom = document.getElementById('EDMotorRoom')
+      let EDTractor = document.getElementById('EDTractor')
+      let EDSpeed = document.getElementById('EDSpeed')
+      let EDDoor = document.getElementById('EDDoor')
+      let EDBox = document.getElementById('EDBox')
+      let EDSafeLoop = document.getElementById('EDSafeLoop')
+      let EDLockLoop = document.getElementById('EDLockLoop')
+
+      let d = 80 // 提前多少距离高亮
+      let scrollWrapTop = scrollWrap.offsetTop + d 
+      let boxATop = EDMotorRoom.offsetTop - scrollWrapTop // A盒子距离容器顶部的距离
+      let boxBTop = EDTractor.offsetTop - scrollWrapTop
+      let boxCTop = EDSpeed.offsetTop - scrollWrapTop
+      let boxDTop = EDDoor.offsetTop - scrollWrapTop
+      let boxETop = EDBox.offsetTop - scrollWrapTop
+      let boxFTop = EDSafeLoop.offsetTop - scrollWrapTop
+      // let boxGTop = EDLockLoop.offsetTop - scrollWrapTop
+      let boxGTop = 3050 // 为最后一个，所以要做特殊处理，scroll为2700
+
+      
+
+      scrollWrap.addEventListener('scroll', () => {
+        var current_offset_top = scrollWrap.scrollTop; // 卷曲的高度
+        console.log(current_offset_top)
+
+        // console.log(boxATop)
+        if (current_offset_top < boxBTop) {
+          that.navActive = "机房";
+        } else if (current_offset_top >= boxBTop && current_offset_top < boxCTop) {
+          that.navActive = "曳引机";
+        } else if (current_offset_top >= boxCTop && current_offset_top < boxDTop) {
+          that.navActive = "限速器";
+        } else if (current_offset_top >= boxDTop && current_offset_top < boxETop) {
+          that.navActive = "梯门";
+        } else if (current_offset_top >= boxETop && current_offset_top < boxFTop) {
+          that.navActive = "轿厢";
+        } else if (current_offset_top >= boxFTop && current_offset_top < boxGTop) {
+          that.navActive = "安全回路";
+        } else if (current_offset_top >= boxGTop) {
+          that.navActive = "门锁回路";
+        } 
+        // else if (current_offset_top >= boxCTop) {
+        //   this.currentView = "EDSpeed";
+        // }
+
+      })
+    },
+
+    // 更新电梯实时数据
     getCurrentData() {
       api.detail.getCurrent(this.dtID).then(res => {
         // console.log(res.data)
         
         // 电梯当前楼层、速度、状态
         if (res.data[19]) {
-          // console.log(res.data[19])
-          this.direction = res.data[19].direction
           this.eleCurrentFloor = res.data[19].louc
           this.eleSpeed = Math.abs(res.data[19].speed.toFixed(3)) || 0
           // this.eleBottomValue = res.data[19].value
@@ -416,49 +901,281 @@ export default {
           // }
         }
       })
-    }
+    },
+
+
+    // 获取实时数据（总）
+    getRealTime() {
+      api.detail.getCurrent(this.dtID).then(res => {
+
+        // 机房温度
+        if (res.data[1]) {
+          this.tempValue = res.data[1].value
+          // this.tempUnit = res.data[1].unit
+        }
+
+
+        // 机房湿度
+        if (res.data[2]) {
+          this.westValue = res.data[2].value
+          this.westUnit = res.data[2].unit
+        }
+
+
+        // 机房风速
+        if (res.data[3]) {
+          this.windValue = res.data[3].value
+          this.windUnit = res.data[3].unit
+        }
+
+
+        // 水浸
+        if (res.data[4]) {
+          if (res.data[4].unit == 'V') {
+            this.roomWaterValue = '正常'
+          } else {
+            this.roomWaterValue = '异常'
+          }
+          this.roomWaterValueNum = res.data[4].value
+        }
+
+
+        // 风扇
+        if (res.data[5]) {
+          if (res.data[5].unit == 'V') {
+            this.airValue = '开'
+          } else {
+            this.airValue = '关'
+          }
+          this.airValueNum = res.data[5].value
+        }
+
+
+        // 电动机电压
+        if (res.data[6]) {
+          this.vControlValue = res.data[6].value
+          this.vControlUnit = res.data[6].unit
+        }
+
+
+
+        // 电动机电流
+        if (res.data[7]) {
+          this.iControlValue = res.data[7].value
+          this.iControlUnit = res.data[7].unit
+        }
+
+
+
+        // 电动机温度
+        if (res.data[8]) {
+          this.tractorTempValue = res.data[8].value
+        }
+
+
+
+        // 电机振动
+        if (res.data[9]) {
+          this.roomVibrateValue = res.data[9].value
+          this.roomVibrateUnit = res.data[9].unit
+        }
+
+
+
+        // 制动器线圈温度
+        if (res.data[10]) {
+          this.brakeTempValue = res.data[10].value
+          // this.brakeDistanceUnit = res.data[10].unit
+          this.brakeTempUnit = '℃'
+        }
+
+
+
+        // 制动器刹车片温度
+        if (res.data[11]) {
+          this.brakeSkrTempValue = res.data[11].value1
+          this.brakeSkrTempUnit = '℃'
+        }
+
+
+
+        // 制动器电压
+        if (res.data[12]) {
+          this.vBrakeValue = res.data[12].value
+          this.vBrakeUnit = res.data[12].unit
+        }
+
+
+        // 制动器电流
+        if (res.data[13]) {
+          this.iBrakeValue = res.data[13].value
+          this.iBrakeUnit = res.data[13].unit
+        }
+
+
+
+        // 曳引轮磨损
+        if (res.data[14]) {
+          this.driveValue = res.data[14].value
+          this.driveUnit = res.data[14].unit 
+        }
+
+
+        // 限速器转速
+        if (res.data[15]) {
+          this.rpmValue = res.data[15].value
+          this.rpmUnit = res.data[15].unit
+          this.speed = Math.abs(res.data[15].speed.toFixed(2)) || 0
+        }
+
+
+        // 电梯层门
+        if (res.data[16]) {
+          if (res.data[16].value) {
+            this.floorDoorValue = '开'
+          } else {
+            this.floorDoorValue = '关'
+          }
+          this.floorDoorNum = res.data[16].value
+        }
+
+
+        // 电梯轿门
+        if (res.data[17]) {
+          if (res.data[17].value) {
+            this.floorDoorValue = '开'
+          } else {
+            this.floorDoorValue = '关'
+          }
+          this.floorDoorNum = res.data[17].value
+        }
+
+
+        // 轿厢振动
+        if (res.data[18]) {
+          this.boxVibrateValue = res.data[18].value
+          this.boxVibrateUnit = res.data[18].unit
+        }
+
+        // 电梯当前楼层、速度、状态
+        if (res.data[19]) {
+          this.eleBottomValue = res.data[19].value.toFixed(3)
+          this.currentFloor = res.data[19].louc
+          // this.eleBottomValue = res.data[19].value
+          if (res.data[19].direction === 'up') {
+            this.direction = '上'
+          } else if (res.data[19].direction === 'down') {
+            this.direction = '下'
+          } else {
+            this.direction = '停'
+          }
+        }
+
+
+        // 轿厢荷载
+        if (res.data[20]) {
+          this.boxWeightValue = res.data[20].value
+          this.boxWeightUnit = res.data[20].unit
+        }
+
+
+        // 机房安全回路
+        if (res.data[21]) {
+          if (res.data[21].unit == 'V') {
+            this.roomSafeValue = '通'
+          } else {
+            this.roomSafeValue = '断'
+          }
+          this.roomSafeValueNum = res.data[21].value
+        }
+
+
+        // 轿顶安全回路
+        if (res.data[22]) {
+          if (res.data[22].unit == 'V') {
+            this.boxTopSafeValue = '通'
+          } else {
+            this.boxTopSafeValue = '断'
+          }
+          this.boxTopSafeValueNum = res.data[22].value
+        }
+
+
+        // 轿门安全回路
+        if (res.data[23]) {
+          if (res.data[23].unit == 'V') {
+            this.boxDoorSafeValue = '通'
+          } else {
+            this.boxDoorSafeValue = '断'
+          }
+          this.boxDoorSafeValueNum = res.data[23].value
+        }
+
+
+        // 层门安全回路
+        if (res.data[24]) {
+          if (res.data[24].unit == 'V') {
+            this.floorDoorSafeValue = '通'
+          } else {
+            this.floorDoorSafeValue = '断'
+          }
+          this.floorDoorSafeValueNum = res.data[24].value
+        }
+
+
+        // 底坑安全回路
+        if (res.data[25]) {
+          if (res.data[25].unit == 'V') {
+            this.boxBottomSafeValue = '通'
+          } else {
+            this.boxBottomSafeValue = '断'
+          }
+          this.boxBottomSafeValueNum = res.data[25].value
+        }
+
+
+        // 层门门锁回路
+        if (res.data[26]) {
+          if (res.data[26].unit == 'V') {
+            this.floorLockValue = '通'
+          } else {
+            this.floorLockValue = '断'
+          }
+          this.floorLockValueNum = res.data[26].value
+        }
+
+
+        // 轿门门锁回路
+        if (res.data[27]) {
+          if (res.data[27].unit == 'V') {
+            this.boxLockValue = '通'
+          } else {
+            this.boxLockValue = '断'
+          }
+          this.boxLockValueNum = res.data[27].value
+        }
+
+
+      })
+
+
+    },
 
     
   },
   components: {
-    EDMotorRoom,
-    EDTractor,
-    EDSpeed,
-    EDDoor,
-    EDBox,
-    EDSafeLoop,
-    EDLockLoop
+    'ed-motor-room': EDMotorRoom,
+    'ed-tractor': EDTractor,
+    'ed-speed': EDSpeed,
+    'ed-door': EDDoor,
+    'ed-box': EDBox,
+    'ed-safe-loop': EDSafeLoop,
+    'ed-lock-loop': EDLockLoop
   }
 };
 </script>
 
-<style>
-/* 全局 */
-/* .el-scrollbar {
-  height: 100%;
-}
-.el-scrollbar__wrap {
-  overflow-x: hidden !important;
-}
-.el-scrollbar__thumb {
-  background: rgba(13, 186, 127, 0.2);
-  border: none !important;
-  border-radius: 8px;
-}
-.el-scrollbar__bar.is-vertical {
-  width: 4px;
-}
-.el-scrollbar__thumb:hover {
-  background: rgba(13, 186, 127, 0.5);
-}
-.el-scrollbar__bar {
-  opacity: 1;
-}
-.el-scrollbar__bar.is-horizontal {
-  opacity: 0 !important;
-} */
 
-</style>
 
 <style lang="stylus">
 @import "../../assets/stylus/panel"
@@ -466,12 +1183,23 @@ export default {
 </style>
 
 
+<style scoped>
+  /* .ed-container >>> .el-select-dropdown__item{
+    padding: 0 0 0 10px !important;
+  } */
+</style>
+
 
 
 <style lang="scss">
 
 #ed {
   // @import url("../../assets/stylus/css-reset.css");
+
+  .el-input__inner{
+    width: 150px !important;
+  } 
+
 
   background: #000;
   padding: 80px 36px 20px;
@@ -618,10 +1346,6 @@ export default {
     background: url("../../assets/images/xym/up_highlight.png") no-repeat center
       center;
     animation: btnMove1 1s ease infinite;
-    display: none;
-  }
-  .ed-ebox-data-btn.on .ed-ebox-data-up2{
-    display: block;
   }
   .ed-ebox-data-btn.on .ed-ebox-data-up {
     background: url("../../assets/images/xym/up_highlight.png") no-repeat center
@@ -647,21 +1371,10 @@ export default {
     z-index: 2;
     background: url("../../assets/images/xym/down_highlight.png") no-repeat center
       center;
-    animation: btnMove2 1s ease infinite;
-    display: none;
-
-  }
-  .ed-ebox-data-btn.on .ed-ebox-data-down2{
-    display: block;
   }
   @keyframes btnMove1 {
     0%{transform: translateY(0);}
     60%{transform: translateY(-3px);}
-    100%{transform: translateY(0);}
-  }
-  @keyframes btnMove2 {
-    0%{transform: translateY(0);}
-    60%{transform: translateY(3px);}
     100%{transform: translateY(0);}
   }
   .ed-ebox-data-speed {
@@ -1110,8 +1823,6 @@ export default {
     padding: 10px 0;
     margin-top: 10px;
     height: 850px;
-    // overflow: scroll;
-    // overflow-x: hidden;
   }
   .warn-list-li{
     padding: 10px 0;

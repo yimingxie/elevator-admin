@@ -321,7 +321,7 @@ body,html
         color: #FFFFFF;
         letter-spacing: 0.08px;
         padding-left 10px
-        font-family: myFirstFont;
+        font-family: 'Microsoft YaHei';
       .unit
         padding-left 5px
         // absolute left 10px

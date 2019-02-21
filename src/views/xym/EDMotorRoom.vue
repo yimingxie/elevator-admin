@@ -94,6 +94,7 @@ export default {
     return {
       dtID: 'dt001',
       timeOn: 'now',
+      flag: true,
       dataX: ['60s', '55s', '50s', '45s', '40s', '35s', '30s', '25s', '20s', '15s', '10s', '5s', '0s'],
       dataValue: [],
 
@@ -117,29 +118,38 @@ export default {
               color: '#1D1B25',
             }
           },
-          formatter: '{a}: {c}℃'
+     
         },
         xAxis: {
+          type: 'value',
+          // inverse: true,
           boundaryGap: false,
           axisTick: {
             show: false
           },
           axisLabel: {
+            formatter: '{value}s',
             color: '#66667F',
             margin: 12
           },
+          min: 0,
+          max: 60,
+          interval: 10,
           name: '(℃)',
           nameLocation: 'start',
           nameTextStyle: {
             color: '#66667F'
           },
-          nameGap: 6,
+          splitLine: {
+            show: false,
+          },
+          // nameGap: 6,
           axisLine: {
             lineStyle: {
               color: '#303240'
             }
           },
-          data: []
+          // data: []
         },
         yAxis: {
           axisLabel: {
@@ -160,25 +170,10 @@ export default {
         },
         grid: {
           top: '20px',  
-          left: '40px',  
+          left: '50px',  
           right: '26px',  
           bottom: '24px'
         },  
-        // visualMap: { //区间内控制显示颜色
-        //   show: false,
-        //   dimension: 1,
-        //   type: 'continuous',
-        //   min: 0,
-        //   max: 100,
-        //   range: [0, 60],
-        //   borderWidth: 10,
-        //   inRange: {
-        //     color: ['rgba(41,220,181,0.00)', '#07f7c1'],
-        //   },
-        //   outOfRange: {
-        //     color: ['rgba(209,104,105,0.20)', '#D16869']
-        //   }
-        // },
         visualMap: { //区间内控制显示颜色
           show: false,
           dimension: 1,
@@ -201,7 +196,6 @@ export default {
             lineStyle: {
               width: 3
             },
-            // areaStyle: {},
             // markLine: {
             //   data: [{
             //       name: '',
@@ -219,7 +213,8 @@ export default {
             //     },
             //   }
             // },
-            data: []
+            // data: dataArr
+            data: [[9, 10], [12, 20], [18, 40], [31, 80], [50, 100], [58, 180]]
           },    
         ]
       },
@@ -236,19 +231,35 @@ export default {
           formatter: '{a}: {c}℃<br /> '
         },
         xAxis: {
+          type: 'value',
+          // inverse: true,
           boundaryGap: false,
           axisTick: {
             show: false
           },
           axisLabel: {
+            formatter: '{value}s',
+            color: '#66667F',
+            margin: 12
+          },
+          min: 0,
+          max: 60,
+          interval: 10,
+          name: '(℃)',
+          nameLocation: 'start',
+          nameTextStyle: {
             color: '#66667F'
           },
+          splitLine: {
+            show: false,
+          },
+          // nameGap: 6,
           axisLine: {
             lineStyle: {
               color: '#303240'
             }
           },
-          data: []
+          // data: []
         },
         yAxis: {
           interval: 1,
@@ -281,10 +292,10 @@ export default {
         },
         grid: {
           top: '20px',  
-          left: '40px',  
+          left: '50px',  
           right: '26px',  
           bottom: '24px'
-        },  
+        }, 
         visualMap: { //区间内控制显示颜色
           show: false,
           dimension: 1,
@@ -388,23 +399,23 @@ export default {
           this.tempValue = res.data[1].value
           // this.tempUnit = res.data[1].unit
         }
-        this.drawTemp(this.tempValue)
+        this.drawTemp()
 
         // 机房湿度
         if (res.data[2]) {
           this.westValue = res.data[2].value
           this.westUnit = res.data[2].unit
         }
-        this.drawWest(this.westValue)
+        this.drawWest()
 
         // 机房风速
         if (res.data[3]) {
           this.windValue = res.data[3].value
           this.windUnit = res.data[3].unit
         }
-        this.drawWind(this.windValue)
+        this.drawWind()
 
-        // 水浸（？）
+        // 水浸
         if (res.data[4]) {
           if (res.data[4].unit == 'V') {
             this.roomWaterValue = '正常'
@@ -413,7 +424,7 @@ export default {
           }
           this.roomWaterValueNum = res.data[4].value
         }
-        this.drawRoomWater(this.roomWaterValueNum)
+        this.drawRoomWater()
 
         // 风扇
         if (res.data[5]) {
@@ -424,7 +435,7 @@ export default {
           }
           this.airValueNum = res.data[5].value
         }
-        this.drawAir(this.airValueNum)
+        this.drawAir()
 
       })
 
@@ -433,131 +444,242 @@ export default {
 
     },
 
+    // 第一种情况
     // 机房温度
-    drawTemp(currentVal) {
+    drawTemp() {
       let that = this
-      let dataValue = []
-      let timeArr = []
-
+      let dataValue = [] // 类似于[[x1, y1], [x2, y2], ...]
 
       api.detail.getD1(this.dtID).then(res => {
+        // res.data.result.forEach((item, i) => {
+        //   dataValue.unshift(item.value)
+        // })
+        // dataValue.push(currentVal)
+        // motorVChart(dataValue)
+
+        // 组装xy数据
+        let unit = res.data.result[0].unit
+        let nowTimestamp = Date.now()
+  
         res.data.result.forEach((item, i) => {
-          dataValue.unshift(item.value)
+          let arr2 = []
+          let second = Math.floor((nowTimestamp - new Date(item.time).getTime()) / 1000)
+          arr2 = [second, item.value]
+          dataValue.push(arr2)
         })
-        dataValue.push(currentVal)
-        motorVChart(dataValue)
-      })
-
-      function motorVChart(dataValue) {
-        let chart = that.$echarts.init(document.getElementById('room-temp-chart'))
-
-        // console.log(that.options.tooltip.formatter)
-        that.options.xAxis.data = that.dataX
-        that.options.series[0].data = dataValue
-        that.options.xAxis.name = '(℃)'
-        that.options.series[0].name = '机房温度'
-        that.options.tooltip.formatter = '{a}: {c}℃<br /> '
-        chart.setOption(that.options)
-      }
-
-
-
-    },
-
-    // 机房湿度
-    drawWest(currentVal) {
-      let that = this
-      let dataValue = []
-
-      api.detail.getD2(this.dtID).then(res => {
-        res.data.result.forEach((item, i) => {
-          dataValue.unshift(item.value)
-        })
-        dataValue.push(currentVal)
-        motorVChart(dataValue)
+        // console.log(dataArr)
+        motorVChart(dataValue, unit, nowTimestamp) // 传当时时间戳防止时间错乱
       })
       .catch(err => {
         motorVChart(dataValue)
       })
 
-      function motorVChart(dataValue) {
+      function motorVChart(dataValue, unit, nowTimestamp) {
+        let chart = that.$echarts.init(document.getElementById('room-temp-chart'))
+        // 当没数据，x轴转为类目轴
+        // if (dataValue.length <= 0) {
+        //   that.options.xAxis.type = 'category'
+        //   that.options.xAxis.data = that.dataX
+        // } else {
+        //   that.options.xAxis.type = 'value'
+        //   that.options.xAxis.data = []
+        // }
+        that.options.xAxis.type = 'value'
+        that.options.series[0].data = dataValue
+        that.options.xAxis.name = '(℃)'
+        that.options.series[0].name = '机房温度'
+        that.options.tooltip.formatter = function (params,ticket,callback) {
+          var date = nowTimestamp
+          // var timestamp = date + value * 1000
+          // var time = new Date(timestamp)
+          var key = params[0].data[0] 
+          var value = params[0].data[1]
+
+          var timestamp = date - key * 1000
+          var time = new Date(timestamp)
+          let min = time.getMinutes() >= 10 ? time.getMinutes() : '0' + time.getMinutes()
+          let s = time.getSeconds() >= 10 ? time.getSeconds() : '0' + time.getSeconds()
+          var timeFormat = time.getHours() + ':' + min + ':' + s
+
+          // var res = '时间：' + timeFormat + '<br>值：' + value;
+          var res = params[0].seriesName + '：' + value + '℃' + '<br>时间：' + timeFormat
+          return res
+          
+        }
+        chart.setOption(that.options)
+      }
+    },
+
+    // 机房湿度
+    drawWest() {
+      let that = this
+      let dataValue = []
+
+      api.detail.getD2(this.dtID).then(res => {
+        // 组装xy数据
+        let unit = res.data.result[0].unit
+        let nowTimestamp = Date.now()
+  
+        res.data.result.forEach((item, i) => {
+          let arr2 = []
+          let second = Math.floor((nowTimestamp - new Date(item.time).getTime()) / 1000)
+          arr2 = [second, item.value]
+          dataValue.push(arr2)
+        })
+        motorVChart(dataValue, unit, nowTimestamp)
+      })
+      .catch(err => {
+        motorVChart(dataValue)
+      })
+
+      function motorVChart(dataValue, unit, nowTimestamp) {
         let chart = that.$echarts.init(document.getElementById('west-chart'))
-        that.options.xAxis.data = that.dataX
+        that.options.xAxis.type = 'value'
         that.options.series[0].data = dataValue
         that.options.xAxis.name = '(%)'
         that.options.series[0].name = '机房湿度'
-        that.options.tooltip.formatter = '{a}: {c}%<br /> '
+        that.options.tooltip.formatter = function (params,ticket,callback) {
+          var date = nowTimestamp
+          var key = params[0].data[0] 
+          var value = params[0].data[1]
+
+          var timestamp = date - key * 1000
+          var time = new Date(timestamp)
+          let min = time.getMinutes() >= 10 ? time.getMinutes() : '0' + time.getMinutes()
+          let s = time.getSeconds() >= 10 ? time.getSeconds() : '0' + time.getSeconds()
+          var timeFormat = time.getHours() + ':' + min + ':' + s
+          var res = params[0].seriesName + '：' + value + '℃' + '<br>时间：' + timeFormat
+          return res
+          
+        }
         chart.setOption(that.options)
       }
     },
 
     // 机房风速
-    drawWind(currentVal) {
+    drawWind() {
       let that = this
       let dataValue = []
 
       api.detail.getD3(this.dtID).then(res => {
+        // 组装xy数据
+        let unit = res.data.result[0].unit
+        let nowTimestamp = Date.now()
+  
         res.data.result.forEach((item, i) => {
-          dataValue.unshift(item.value)
+          let arr2 = []
+          let second = Math.floor((nowTimestamp - new Date(item.time).getTime()) / 1000)
+          arr2 = [second, item.value]
+          dataValue.push(arr2)
         })
-        dataValue.push(currentVal)
-        motorVChart(dataValue)
+        // console.log(dataArr)
+        motorVChart(dataValue, unit, nowTimestamp) // 传当时时间戳防止时间错乱
       })
       .catch(err => {
         motorVChart(dataValue)
       })
 
-      function motorVChart(dataValue) {
+      function motorVChart(dataValue, unit, nowTimestamp) {
         let chart = that.$echarts.init(document.getElementById('room-wind-chart'))
-        that.options.xAxis.data = that.dataX
         that.options.series[0].data = dataValue
 
         that.options.xAxis.name = '(m/s)'
         that.options.series[0].name = '机房风速'
-        that.options.tooltip.formatter = '{a}: {c}m/s<br /> '
+        that.options.tooltip.formatter = function (params,ticket,callback) {
+          var date = nowTimestamp
+          var key = params[0].data[0] 
+          var value = params[0].data[1]
+
+          var timestamp = date - key * 1000
+          var time = new Date(timestamp)
+          let min = time.getMinutes() >= 10 ? time.getMinutes() : '0' + time.getMinutes()
+          let s = time.getSeconds() >= 10 ? time.getSeconds() : '0' + time.getSeconds()
+          var timeFormat = time.getHours() + ':' + min + ':' + s
+          var res = params[0].seriesName + '：' + value + '℃' + '<br>时间：' + timeFormat
+          return res
+          
+        }
 
         chart.setOption(that.options)
       }
     },
 
     // 机房水浸
-    drawRoomWater(currentVal) {
+    drawRoomWater() {
       let that = this
       let dataValue = []
 
       api.detail.getD4(this.dtID).then(res => {
+        // 组装xy数据
+        let unit = res.data.result[0].unit
+        let nowTimestamp = Date.now()
         res.data.result.forEach((item, i) => {
-          dataValue.unshift(item.value)
+          let value
+          let arr2 = []
+          let second = Math.floor((nowTimestamp - new Date(item.time).getTime()) / 1000)
+          if (item.unit == 'mV') {
+            value = 0
+          } else {
+            value = 1
+          }
+          arr2 = [second, value]
+          dataValue.push(arr2)
         })
-        dataValue.push(currentVal)
-        motorVChart(dataValue)
+        motorVChart(dataValue, unit, nowTimestamp)
       })
       .catch(err => {
         motorVChart(dataValue)
       })
 
-      function motorVChart(dataValue) {
+      function motorVChart(dataValue, unit, nowTimestamp) {
         let chart = that.$echarts.init(document.getElementById('room-water-chart'))
-        that.options2.xAxis.data = that.dataX
         that.options2.series[0].data = dataValue
-        that.options.xAxis.name = ''
-        that.options.series[0].name = '机房水浸'
-        that.options.tooltip.formatter = '{a}: {c}<br /> '
+        that.options2.xAxis.name = ''
+        that.options2.series[0].name = '机房水浸'
+        that.options2.tooltip.formatter = function (params,ticket,callback) {
+          var date = Date.now()
+          var key = params[0].data[0]
+          var value = params[0].data[1]
+          if (value == 1) {
+            value = '正常'
+          } else {
+            value = '异常'
+          }
+
+          var timestamp = date - key * 1000
+          var time = new Date(timestamp)
+          let min = time.getMinutes() >= 10 ? time.getMinutes() : '0' + time.getMinutes()
+          let s = time.getSeconds() >= 10 ? time.getSeconds() : '0' + time.getSeconds()
+          var timeFormat = time.getHours() + ':' + min + ':' + s
+          var res = params[0].seriesName + '：' + value + '<br>时间：' + timeFormat
+          return res
+        }
         chart.setOption(that.options2)
       }
     },
 
     // 空调
-    drawAir(currentVal) {
+    drawAir() {
       let that = this
       let dataValue = []
 
       api.detail.getD5(this.dtID).then(res => {
+        // 组装xy数据
+        let unit = res.data.result[0].unit
+        let nowTimestamp = Date.now()
         res.data.result.forEach((item, i) => {
-          dataValue.unshift(item.value)
+          let value
+          let arr2 = []
+          let second = Math.floor((nowTimestamp - new Date(item.time).getTime()) / 1000)
+          if (item.unit == 'mV') {
+            value = 0
+          } else {
+            value = 1
+          }
+          arr2 = [second, value]
+          dataValue.push(arr2)
         })
-        dataValue.push(currentVal)
-        motorVChart(dataValue)
+        motorVChart(dataValue, unit, nowTimestamp)
       })
       .catch(err => {
         motorVChart(dataValue)
@@ -567,9 +689,26 @@ export default {
         let chart = that.$echarts.init(document.getElementById('air-chart'))
         that.options2.xAxis.data = that.dataX
         that.options2.series[0].data = dataValue
-        that.options.xAxis.name = ''
-        that.options.series[0].name = '空调/排气扇'
-        that.options.tooltip.formatter = '{a}: {c}<br /> '
+        that.options2.xAxis.name = ''
+        that.options2.series[0].name = '空调/排气扇'
+        that.options2.tooltip.formatter = function (params,ticket,callback) {
+          var date = Date.now()
+          var key = params[0].data[0]
+          var value = params[0].data[1]
+          if (value == 1) {
+            value = '开'
+          } else {
+            value = '关'
+          }
+
+          var timestamp = date - key * 1000
+          var time = new Date(timestamp)
+          let min = time.getMinutes() >= 10 ? time.getMinutes() : '0' + time.getMinutes()
+          let s = time.getSeconds() >= 10 ? time.getSeconds() : '0' + time.getSeconds()
+          var timeFormat = time.getHours() + ':' + min + ':' + s
+          var res = params[0].seriesName + '：' + value + '<br>时间：' + timeFormat
+          return res
+        }
         chart.setOption(that.options2)
       }
     },

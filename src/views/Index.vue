@@ -17,10 +17,11 @@
         </table> -->
         <div class="right">
            <div class="panel">
-               <el-row class="">
+                <div class="sum-gradient"></div>
+                <el-row class="">
                     <el-col :span="4">
                         <div class=" summary summary1">
-                            <div class="sum-gradient"></div>
+                            
                             <div class="summaryItem tab" style="background-image: linear-gradient(90deg, #0DBA7F 0%, rgba(13,186,127,0.40) 100%);">
                                 <div class="tabTitle"><span class="info-number" id='time1'>电梯维保统计</span></div>
                                 <div class="info-label"><img src="../assets/images/hs/today.png" alt=""/>今天</div>
@@ -54,7 +55,7 @@
                                 <div class="chart-x-title">
                                     <span class="chart_title">91582<span class="unit">维保电梯数</span></span>
                                     <span class="chart_title">2356<span class="unit">维保及时数</span></span>
-                                    <span class="chart_title">2356<span class="unit">维保及时率</span></span>
+                                    <span class="chart_title">30%<span class="unit">维保超时率</span></span>
                                 </div>
                                 <!-- <span class="chart_title">91582<span class="unit">维保电梯数</span></span>
                                 <span class="chart_title">2356<span class="unit">维保及时数</span></span>
@@ -75,21 +76,20 @@
                 </el-row>
                 <el-row class="">
                     <el-col :span="24">
-                        <div class="spiltBar" style="height:12px;background: #111116;"></div>
+                        <div class="spiltBar"></div>
                     </el-col>
                 </el-row>
                 <el-row class="">
                     <el-col :span="4">
                         <div class=" summary summary2">
-                            <div class="sum-gradient"></div>
                             <div style="border-bottom:2px solid #131319">
                                 <span  class="rect" ></span>
                                 <span class="iconImg iconImg1"></span>
                                 <div class="summaryItem" >
-                                    <div><span class="info-number" id='time1'>1854</span></div>
+                                    <div><span class="info-number" id='time1'>15321</span></div>
                                     <div class="info-label">维保人员数</div>
                                     <span class="border-line"></span>
-                                    <div class="chart_title">2356<span class="unit">梯/天</span></div>
+                                    <div class="chart_title">16<span class="unit">梯/天</span></div>
                                 </div>
                                 <div style="clear:both"></div>
                             </div>
@@ -97,10 +97,10 @@
                                 <span class="rect"></span>
                                 <span class="iconImg iconImg2"></span>
                                 <div class="summaryItem" >
-                                    <div><span class="info-number" id='time1'>1854</span></div>
+                                    <div><span class="info-number" id='time1'>844</span></div>
                                     <div class="info-label">维保企业数</div>
                                     <span class="border-line"></span>
-                                    <div class="chart_title">2356<span class="unit">梯/天</span></div>
+                                    <div class="chart_title">2366<span class="unit">梯/天</span></div>
                                 </div>
                             </div>
                         </div>
@@ -144,13 +144,12 @@
                 </el-row>
                 <el-row class="">
                     <el-col :span="24">
-                        <div class="spiltBar" style="height:12px;background: #111116;"></div>
+                        <div class="spiltBar"></div>
                     </el-col>
                 </el-row>
                  <el-row class="">
                     <el-col :span="4">
                         <div class=" summary summary2">
-                            <div class="sum-gradient"></div>
                             <div style="border-bottom:2px solid #131319">
                                 <span  class="rect" ></span>
                                 <span class="iconImg iconImg3"></span>
@@ -206,17 +205,17 @@
                 </el-row>
            </div>
            <div class="panel">
-               <el-row class="">
+                <div class="sum-gradient"></div>
+                <el-row class="">
                     <el-col :span="4">
                         <div class="summary summary3">
-                            <div class="sum-gradient"></div>
                             <div class="summaryItem tab" style="background-image: linear-gradient(90deg, #0DBA7F 0%, rgba(13,186,127,0.40) 100%);">
                                 <div class="tabTitle"><span class="info-number" id='time1'>电梯运行里程</span></div>
                                 <div class="info-label"><img src="../assets/images/hs/today.png" alt=""/>今天</div>
                                 <div class="info-label"><img src="../assets/images/hs/quyu.png" alt=""/>深圳市{{ region }}</div>
                             </div>
                             <div class="summaryItem summaryItemList summaryItemList_x" style="padding-bottom: 213px;">
-                                <div class=""><span class="info-number" id='time1' style="color: #0DBA7F;">1687</span><span class="unit"> km</span></div>
+                                <div class=""><span class="info-number" id='time1' style="color: #0DBA7F;">1687</span><span class="unit" style="color: rgb(13, 186, 127);"> km</span></div>
                                 <div class="info-label">2019年累计运行里程</div>
                                 <div><span class="info-number fontSize18" id='time1'>300</span><span class="unit"> km/梯</span></div>
                                 <div class="info-label">当月累计里程平均值</div>
@@ -268,10 +267,11 @@
                 </el-row>
            </div>
             <div class="panel">
-               <el-row class="">
+                <div class="sum-gradient"></div>
+                <el-row class="">
                     <el-col :span="4">
                         <div class="summary summary3">
-                            <div class="sum-gradient sum-gradient-last"></div>
+                            
                             <div class="summaryItem tab" style="background-image: linear-gradient(90deg, rgba(254,56,143,0.40) 0%, #F75F5F 100%);">
                                 <div class="tabTitle"><span class="info-number" id='time1'>电梯实时故障预测健康管理</span></div>
                                 <div class="info-label"><img src="../assets/images/hs/today.png" alt=""/>今天</div>
@@ -350,10 +350,10 @@
                     <el-col :span="20" >
                         <div class=" charts" style="padding-bottom: 30px;position: relative;">
                             <div class="chart_Total_title chart_Total_title_x">
-                                <span class="chart_title">电梯实时故障预测统计</span>
+                                <span class="chart_title">电梯实时故障预测统计<span class="unit">/次</span></span>
                                 <div class="chart-x-title">
-                                    <span class="chart_title">95325<span class="unit">年度预警数</span></span>
-                                    <span class="chart_title">31200<span class="unit">月度预警数</span></span>
+                                    <span class="chart_title">95325<span class="unit">年度预警数/次</span></span>
+                                    <span class="chart_title">31200<span class="unit">月度预警数/次</span></span>
                                 </div>
                                 <!-- <span class="chart_title">95325<span class="unit">年度预警数</span></span>
                                 <span class="chart_title">31200<span class="unit">月度预警数</span></span> -->
@@ -373,13 +373,13 @@
                             <el-row class="" style="margin-top:20px">
                                 <el-col :span="12" >
                                     <div class="chart_Total_title">
-                                        <span class="chart_title fontSize14">机房环境预警数</span>
+                                        <span class="chart_title fontSize14">机房环境预警数<span class="unit">/次</span></span>
                                     </div>
                                     <div id="lineChart3"></div>
                                 </el-col>
                                 <el-col :span="12">
                                     <div class="chart_Total_title">
-                                        <span class="chart_title fontSize14" style="margin-left:12px">控制柜预警数</span>
+                                        <span class="chart_title fontSize14" style="margin-left:12px">控制柜预警数<span class="unit">/次</span></span>
                                     </div>
                                     <div id="lineChart4"></div>
                                 </el-col>
@@ -387,13 +387,13 @@
                             <el-row class="" style="margin-top:20px">
                                 <el-col :span="12" >
                                     <div class="chart_Total_title">
-                                        <span class="chart_title fontSize14">曳引机预警数</span>
+                                        <span class="chart_title fontSize14">曳引机预警数<span class="unit">/次</span></span>
                                     </div>
                                     <div id="lineChart5"></div>
                                 </el-col>
                                 <el-col :span="12">
                                     <div class="chart_Total_title">
-                                        <span class="chart_title fontSize14" style="margin-left:12px">限速器预警数</span>
+                                        <span class="chart_title fontSize14" style="margin-left:12px">限速器预警数<span class="unit">/次</span></span>
                                     </div>
                                     <div id="lineChart6"></div>
                                 </el-col>
@@ -401,13 +401,13 @@
                             <el-row class="" style="margin-top:20px">
                                 <el-col :span="12" >
                                     <div class="chart_Total_title">
-                                        <span class="chart_title fontSize14">制动器预警数</span>
+                                        <span class="chart_title fontSize14">制动器预警数<span class="unit">/次</span></span>
                                     </div>
                                     <div id="lineChart7"></div>
                                 </el-col>
                                 <el-col :span="12">
                                     <div class="chart_Total_title">
-                                        <span class="chart_title fontSize14" style="margin-left:12px">轿厢预警数</span>
+                                        <span class="chart_title fontSize14" style="margin-left:12px">轿厢预警数<span class="unit">/次</span></span>
                                     </div>
                                     <div id="lineChart8"></div>
                                 </el-col>
@@ -415,13 +415,13 @@
                             <el-row class="" style="margin-top:20px">
                                 <el-col :span="12" >
                                     <div class="chart_Total_title">
-                                        <span class="chart_title fontSize14">安全回路预警数</span>
+                                        <span class="chart_title fontSize14">安全回路预警数<span class="unit">/次</span></span>
                                     </div>
                                     <div id="lineChart9"></div>
                                 </el-col>
                                 <el-col :span="12">
                                     <div class="chart_Total_title">
-                                        <span class="chart_title fontSize14" style="margin-left:12px">门锁回路预警数</span>
+                                        <span class="chart_title fontSize14" style="margin-left:12px">门锁回路预警数<span class="unit">/次</span></span>
                                     </div>
                                     <div id="lineChart10"></div>
                                 </el-col>
@@ -1907,7 +1907,7 @@
                     x: 'center', //居右显示
                     textStyle:{
                         fontSize : 12,  
-                        fontFamily : 'PingFangSC-Regular',  
+                        fontFamily : 'Microsoft YaHei',  
                         color:'#66667F'  
                     },
                     itemWidth: 8,
@@ -2053,7 +2053,7 @@
                     x: 'center', //居右显示
                     textStyle:{
                         fontSize : 12,  
-                        fontFamily : 'PingFangSC-Regular',  
+                        fontFamily : 'Microsoft YaHei',  
                         color:'#66667F'  
                     },
                     itemWidth: 20,
@@ -2366,7 +2366,7 @@
                     x: 'center', //居右显示
                     textStyle:{
                         fontSize : 12,  
-                        fontFamily : 'PingFangSC-Regular',  
+                        fontFamily : 'Microsoft YaHei',  
                         color:'#66667F'  
                     },
                     show:true,
@@ -2532,7 +2532,7 @@
                     x: 'center', //居右显示
                     textStyle:{
                         fontSize : 12,  
-                        fontFamily : 'PingFangSC-Regular',  
+                        fontFamily : 'Microsoft YaHei',  
                         color:'#66667F'  
                     },
                     show:true,
@@ -2677,7 +2677,7 @@
                     x: 'center', //居右显示
                     textStyle:{
                         fontSize : 12,  
-                        fontFamily : 'PingFangSC-Regular',  
+                        fontFamily : 'Microsoft YaHei',  
                         color:'#66667F'  
                     },
                     itemWidth: 8,
@@ -2811,7 +2811,7 @@
                     x: 'center', //居右显示
                     textStyle:{
                         fontSize : 12,  
-                        fontFamily : 'PingFangSC-Regular',  
+                        fontFamily : 'Microsoft YaHei',  
                         color:'#66667F'  
                     },
                     itemWidth: 8,
@@ -2923,7 +2923,7 @@
                     x: 'center', //居右显示
                     textStyle:{
                         fontSize : 12,  
-                        fontFamily : 'PingFangSC-Regular',  
+                        fontFamily : 'Microsoft YaHei',  
                         color:'#66667F'  
                     },
                     itemWidth: 8,
@@ -3069,7 +3069,7 @@
                     x: 'center', //居右显示
                     textStyle:{
                         fontSize : 12,  
-                        fontFamily : 'PingFangSC-Regular',  
+                        fontFamily : 'Microsoft YaHei',  
                         color:'#66667F'  
                     },
                     itemWidth: 8,
@@ -3215,7 +3215,7 @@
                     x: 'center', //居右显示
                     textStyle:{
                         fontSize : 12,  
-                        fontFamily : 'PingFangSC-Regular',  
+                        fontFamily : 'Microsoft YaHei',  
                         color:'#66667F'  
                     },
                     show:true,
@@ -3371,7 +3371,7 @@
                     x: 'center', //居右显示
                     textStyle:{
                         fontSize : 12,  
-                        fontFamily : 'PingFangSC-Regular',  
+                        fontFamily : 'Microsoft YaHei',  
                         color:'#66667F'  
                     },
                     itemWidth: 8,
@@ -3488,265 +3488,6 @@
 // 配置
 @import '../assets/stylus/base'
 @import '../assets/stylus/panel'
+@import '../assets/stylus/pageSty'
 
-// 适配
-@media screen and (max-width: 1910px) {
-
-  #MapContainer{
-    width: 30% !important;
-  }
-  .right{
-    left: 30% !important;
-  }
-  #chartbar1,#chartbar2,#chartbar3,#chartbar4,#chartbar6,#chartpie,#chartpie2,#chartpie3,#chartpie4{
-    height: 170px !important;
-  }
-  #chartpie,#chartpie2,#chartpie3,#chartpie4{
-    margin-top: -20px;
-  }
-  #chartbar5{
-    height: 220px !important;
-  }
-
-  .charts{
-    padding: 24px 12px 5px 70px;
-  }
-  .el-col-16{
-    width: 58% !important;
-  }
-  .el-col-8{
-    width: 41% !important;
-  }
-  .chart_Total_title.chart_Total_title_x{
-    padding-bottom: 60px;
-  }
-  .chart-x-title{
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    display: block !important;
-    overflow: hidden;
-  }
-  .chart-x-title .chart_title{
-    display: block;
-    float: left;
-  }
-  .chart-x-title .chart_title .unit{
-    display: block !important;
-    margin-left: 0px !important;
-  }
-  .summaryItemList_x{
-    padding-bottom: 166px !important;
-  }
-  .sum-gradient-last{
-    height: 1541px;
-  }
-}
-.chart_Total_title{
-  position: relative;
-}
-.chart-x-title{
-  display: inline-block;
-}
-.charts .chart-x-title .chart_title{
-  font-size: 16px;
-}
-div{
-  outline: none;
-}
-@media screen and (max-width: 1340px) {
-    .main-wrap {
-        min-width 1340px;
-    }
-    .right {
-        width 961px !important;
-    }
-}
-
-
-// 修改适配
-// .main-wrap {
-//     min-width 1830px
-// }
-// .right {
-//     width 1260px
-// }
-
-// @media screen and (max-width: 1910px) {
-//     #MapContainer{
-//         width: 100%!important
-//         position relative !important
-//         top auto !important
-//         left auto !important
-//         bottom auto!important
-//         box-sizing: border-box;
-//         padding-top 0!important
-//     }
-//     #container{
-//         height 500px!important
-//     }
-//     .right{
-//         width: 100%!important
-//         position relative !important
-//         top auto !important
-//         left auto !important
-//         bottom auto!important
-//     }
-// }
-.main-wrap
-    .right
-        absolute left 643px top 80px bottom 0 right 0
-        // background #1B1B23
-        overflow: auto;
-        padding 30px 10px 0 10px
-        box-sizing: border-box;
-        #chartbar1
-            // size 100% 220px
-            width 100%
-            height 220px
-        #chartbar2
-            size 100% 235px
-        #chartpie
-            size: 100% 198px
-        #chartbar3
-            size 100% 230px
-        #chartpie2
-            size: 100% 235px
-        #lineChart
-            size: 100% 235px
-        #lineChart2
-            size: 100% 235px  
-        #chartbar4
-            size 100% 230px
-        #chartpie3
-            size: 100% 235px
-        #chartbar5
-            size 100% 246px
-        #lineChart3,#lineChart4,#lineChart5,#lineChart6,#lineChart7,#lineChart8,#lineChart9,#lineChart10
-            size: 100% 235px
-    // 第一个summary1
-    .summary1
-        .summaryItem
-            .aside-border-line {
-                display: inline-block;
-                width: 100%;
-                height: 2px;
-                border-bottom: 2px solid #18181E;
-                float: left;
-                margin: 12px 0
-            }
-    // 第二个summary
-    .summary2{
-        height 327px
-        padding 0!important
-        .rect{
-            size 43px 162px
-            float left
-            display inline-block
-            background: rgba(102,102,127,0.17);
-            box-shadow: 0 21px 20px -14px rgba(10,23,63,0.15);
-        }
-        .summaryItem{
-            float left
-            margin 0
-            padding: 30px 0 20px 49px
-            width 160px
-            box-sizing border-box
-        }
-        .border-line{
-            display: inline-block;
-            size : 65% 2px;
-            border-bottom: 1px solid rgba(102,102,127,0.45);
-            // float: left;
-            margin: 10px 0
-        }
-        .iconImg{
-            size 47px
-            border-radius 50%
-            display: inline-block;
-            
-        }
-        .iconImg1{
-            background: url('../assets/images/hs/1d.png')
-            absolute top 56px left 21px
-        }
-        .iconImg2{
-            background: url('../assets/images/hs/c70.png')
-            absolute top 223px left 21px
-        }
-        .iconImg3{
-            background: url('../assets/images/hs/b63.png')
-            absolute top 60px left 21px
-        }
-        .iconImg4{
-            background: url('../assets/images/hs/60e.png')
-            absolute top 224px left 21px
-        }
-    }
-    // 第三个summary
-    .summary3
-    .summaryItemList
-        .info-label
-            margin-bottom 10px
-
-    .spiltBar{
-        height 12px;
-        background: rgba(27,27,35,0.60);
-        // display inline-block
-    }
-    .proportionBar
-        size 16px 397px
-        display inline-block
-        background #5A39D5
-        .proportionBar_item
-            width 100%
-            padding 0
-            margin 0
-        :nth-child(1)
-            background: #5A39D5!important;
-        :nth-child(2)
-            background: #8423E2!important;
-        :nth-child(3)
-            background: #E22340;
-        :nth-child(4)
-            background: #F56F6F;
-        :nth-child(5)
-            // background: #CB500F;
-            background: #FEC101;
-        :nth-child(6)
-            // background: #FB7027;
-            background: #F9D562;
-        :nth-child(7)
-            // background: #FEC101;
-            background: #CB500F;
-        :nth-child(8)
-            // background: #F9D562;
-            background: #FE7D01;
-    .proportionInfo
-        size 78px 397px
-        display inline-block
-        absolute top 0 right -42px
-        .proportionInfo_item
-            position relative
-            height 12.8%
-            vertical-align middle
-            line-height 20px
-            .info-number
-                line-height 20px!important
-            .info-label
-                font-size 12px
-            .line
-                size 28px 1px
-                display inline-block
-                background: #5A39D5;
-                absolute top 18px left -46px
-            .circle
-                size 8px
-                display inline-block
-                background: #FEC101;
-                border-radius 50%
-                absolute top 15px left -25px
-            .circle:nth-child(1)
-                background: red;
-    
 </style>

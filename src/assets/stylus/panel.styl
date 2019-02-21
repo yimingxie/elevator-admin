@@ -47,9 +47,6 @@
   .summaryItemList_x{
     padding-bottom: 166px !important;
   }
-  .sum-gradient-last{
-    height: 1541px;
-  }
 }
 .chart_Total_title{
   position: relative;
@@ -105,7 +102,7 @@ button.btn {
     background: #16161C;
     box-shadow: 0 21px 20px -14px rgba(10,23,63,0.15);
     border-radius: 10px;
-    // overflow hidden
+    position relative
   .title
     line-height: 40px
     height 40px
@@ -130,12 +127,11 @@ button.btn {
   .sum-gradient 
       position absolute
       top 0
-      right 0
+      left: 185px;
       width 23px
       height 100%
       background: linear-gradient(to right, #16161C, #0A0A0C)
-  .sum-gradient-last
-      height 1516px
+      z-index 500
   .summary
     position relative
     padding: 30px 0 0 0 
@@ -146,13 +142,13 @@ button.btn {
 
     
     .info-number
-      font-family: myFirstFont;
+      font-family: 'Microsoft YaHei';
       line-height 39px
       font-size: 24px;
       color: #FFFFFF;
       letter-spacing: 0.08px;
     .info-label
-      font-family: PingFangSC-Regular;
+      font-family: Microsoft YaHei;
       font-size: 14px;
       color: #66667F;
       line-height 21px
@@ -170,7 +166,7 @@ button.btn {
       .tabTitle
         margin-bottom: 10px
         .info-number
-          font-family: myFirstFont;
+          font-family: 'Microsoft YaHei';
           font-size: 20px;
           color: #FFFFFF;
           letter-spacing: 0.08px;
@@ -257,7 +253,7 @@ button.btn {
     right: 0;
     font-size: 14px;
     i 
-      font-family: myFirstFont;
+      font-family: 'Microsoft YaHei';
       font-size: 28px;
       color: #4AF9D1;
       margin-right: 5px;
@@ -282,24 +278,7 @@ button.btn {
     50% { box-shadow: 0 0 11px 0 rgba(251,87,48,0.84), 0 0 11px 0 rgba(251,87,48,0.84)}
     to { box-shadow: 0 0 11px 0 rgba(251,87,48,0.2) }
 }
-// 修改默认input placeholder的样式（颜色，字体）
-:-moz-placeholder {
-  color: #66667F;
-  opacity: 1;
-}
-::-moz-placeholder {
-  color: #66667F;
-  opacity: 1;
-}
-input:-ms-input-placeholder {
-  color: #66667F;
-  opacity: 1;
-}
-input::-webkit-input-placeholder {
-  color: #66667F;
-  opacity: 1;
-} 
-// 修改默认input placeholder的样式（颜色，字体） end---
+
 
 
 
@@ -348,7 +327,7 @@ input::-webkit-input-placeholder {
 //   // margin 0 10px
 //   background: #383D50
 //   .info-number
-//     font-family: myFirstFont;
+//     font-family: 'Microsoft YaHei';
 //     line-height 50px
 //     font-size: 42px;
 //     color: #FFFFFF;
@@ -417,7 +396,7 @@ input::-webkit-input-placeholder {
 //     right: 0;
 //     font-size: 14px;
 //     i 
-//       font-family: myFirstFont;
+//       font-family: 'Microsoft YaHei';
 //       font-size: 28px;
 //       color: #4AF9D1;
 //       margin-right: 5px;

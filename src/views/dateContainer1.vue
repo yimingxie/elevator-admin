@@ -1,5 +1,5 @@
 <template>
-    <div class="dataList">
+    <div class="dataList1">
       <div id="dateContainer">
         <div class="nowTime">
             <button class="preMon" @click="preMon" :style="{background:tabIndex === 0?'#0DBA7F' : '#1B1B23'}">
@@ -53,92 +53,64 @@
           </tbody>
         </table>
       </div>
-      <div class="right_wrapper">
-        <div class='taskTable'>
-          <div class="date__showNowTime">
-            <span v-if="showDateTitle"><span v-text="mnow + 1"></span>月<span v-text="dnow"></span>日</span>
-            <span v-if="!showDateTitle">已过期</span>
+      <div class='taskTable'>
+        <div class="date__showNowTime" >
+          <span v-if="showDateTitle"><span v-text="mnow + 1"></span>月<span v-text="dnow"></span>日</span>
+          <span v-if="!showDateTitle">已过期</span>
+          <div class="search" style="margin-right:20px">
+              <input class="search_input" placeholder="请输入电梯名称/注册代码"/>
+              <span class="search_btn"></span>
           </div>
-        
-          <!-- <table border="1" id="table2" class="tableClass">
-              <thead>
-                <tr>
-                  <th>电梯编号</th>
-                  <th>地址</th>
-                  <th>维保人员</th>
-                  <th>时间</th>
-                  <th>所属标签</th>
-                  <th>操作</th>
-                </tr>
-              </thead>
-              <template v-if="liftDatas.length > 0">
-                <tr v-for="(liftData,index) in liftDatas" :key="index">
-                  <td>{{ liftData.id }}</td>
-                  <td>{{ liftData.address }}</td>
-                  <td>{{ liftData.person }}</td>
-                  <td>{{ liftData.date }}</td>
-                  <td>{{liftData.label}}</td>
-                  <td>修改</td>
-                </tr>
-              </template>
-          </table> -->
-          <el-table
-            @filter-change="handleFilterChange"
-            :data="liftDatas"
-            height="85%"
-            border
-            class="tableBg">
-            <el-table-column
-              prop="id"
-              label="电梯编号"
-              min-width="60"
-            >
-            </el-table-column>
-            <el-table-column
-              prop="address"
-              label="地址"
-              v-if='show1 !== 2'
-              :show-overflow-tooltip='true'
-              min-width="90"
-              >
-            </el-table-column>
-            <el-table-column
-              prop="person"
-              label="维保人员"
-              min-width="60">
-            </el-table-column>
-            <el-table-column  
-              label="时间"
-              v-if='show1 === 0'
-              min-width="60">
-              <template slot-scope="scope" >
-                <div v-if="tabIndex !== 1"><span v-if="mnow-0 < 10">0{{ mnow + 1 }}</span><span v-if="mnow-0 >= 10">{{ mnow + 1 }}</span>.<span v-if="dnow-0 < 10">0{{ dnow }}</span><span v-if="dnow-0 >= 10">{{ dnow }}</span></div>
-                <span v-if="tabIndex === 1">{{scope.row.date}}</span>
-              </template>
-            </el-table-column>
-            <el-table-column
-              prop="label"
-              label="所属标签"
-              column-key="label"
-              :filters="tableStatus"
-              :show-overflow-tooltip=true
-              min-width="90"
-              >
-              <template slot-scope="scope">
-                <span :class="{red: scope.row.status === '异常', blue: ((scope.row.status === '补打卡') || (scope.row.status === '请假'))}">
-                  {{scope.row.label}}
-                </span>
-              </template>
-
-            </el-table-column>
-            <el-table-column 
-              label="操作" min-width="40">
-              <template slot-scope="scope">
-                <span class="tableLast">修改</span>
-              </template>
-            </el-table-column>
-          </el-table>
         </div>
+        <el-table
+          @filter-change="handleFilterChange"
+          :data="liftDatas"
+          height="370"
+          border
+          class="tableBg">
+          <el-table-column
+            prop="id"
+            label="电梯编号"
+            min-width="50"
+          >
+          </el-table-column>
+          <el-table-column
+            prop="address"
+            label="地址"
+            :show-overflow-tooltip=true
+            >
+          </el-table-column>
+          <el-table-column
+            prop="person"
+            label="维保人员"
+            min-width="50">
+          </el-table-column>
+          <el-table-column  
+            label="维保公司"
+            prop="company"
+            :show-overflow-tooltip=true
+            >
+          </el-table-column>
+          <el-table-column
+            prop="maintenanceTime"
+            label="维保时长/min"
+            min-width='85'
+            sortable
+            >
+          </el-table-column>
+          <el-table-column
+            prop="averageMil"
+            label="月均里程/km"
+            min-width='80'
+            sortable>
+          </el-table-column>
+          <el-table-column 
+            label="操作" width="50">
+            <template slot-scope="scope">
+              <span class="tableLast">详情</span>
+            </template>
+          </el-table-column>
+        </el-table>
       </div>
     </div>
   </template>
@@ -163,20 +135,19 @@
         tabIndex:0, //三栏按钮切换
         show1: true,
         jsonHtml : [
-          {date: 2,msg: '1234',total:1234},
+          {date: 2,msg: '1234',total:2300},
           {date: 3, msg: 3456,total:2300},
-          {date: 4,msg: 3452,total:3456},
-          {date: 6,msg: 2345,total:2346},
-          {date: 12,msg: 230,total:3253},
-          {date: 15,msg: 1234,total:3468},
-          {date: 20,msg: 400,total:2456}
+          {date: 4,msg: 3456,total:2300},
+          {date: 6,msg: 2345,total:2300},
+          {date: 12,msg: 0,total:2300},
+          {date: 15,msg: 1234,total:2300},
+          {date: 20,msg: 0,total:2300}
         ],
         liftDatas : [],
         tableStatus: [{ text: '紧急', value: '紧急' },{ text: '南山', value: '南山' }],
         addresss: ['南光城市花园A座','花园城数码大厦A座','吉荣花园一期','吉荣花园二期','吉荣花园三期','南光城市花园B座','花园城数码大厦B座','花园城数码大厦C座','花园城数码大厦D座','花园城一期','花园城二期','花园城三期','花园城四期','花园城五期'],
         persons:['尹霞','杨帆','廖秀英','江霞','马敏','汤涛','小明','李磊','苏超','江霞','江霞' ],
         dt: ['DT','D'],
-        labels:['紧急；南山','--','紧急；周末；老旧','紧急；周末；老旧','紧急；周末；老旧','紧急；周末；老旧','紧急','紧急','紧急','紧急；南山','紧急；南山']
       }
     },
     mounted() {
@@ -193,32 +164,32 @@
     methods: {
       changeJsonData(){
          this.liftDatas = [
-          {id: this.dt[this.selectfrom(0,1)]+ Math.floor(Math.random()*10),date:'02.10',address: this.addresss[this.randomN()],person:this.persons[this.randomN()],company:'深圳松达电梯有限公司',label:this.labels[this.randomN()]},
-          {id: this.dt[this.selectfrom(0,1)]+ Math.floor(Math.random()*10),date:'02.15',address: this.addresss[this.randomN()],person:this.persons[this.randomN()],company:'深圳松达电梯有限公司',label:this.labels[this.randomN()]},
-          {id: this.dt[this.selectfrom(0,1)]+Math.floor(Math.random()*10),date:'02.14',address: this.addresss[this.randomN()],person:this.persons[this.randomN()],company:'深圳松达电梯有限公司',label:this.labels[this.randomN()]},
-          {id: this.dt[this.selectfrom(0,1)]+ Math.floor(Math.random()*10),date:'02.18',address: this.addresss[this.randomN()],person:this.persons[this.randomN()],company:'深圳松达电梯有限公司',label:this.labels[this.randomN()]},
-          {id: this.dt[this.selectfrom(0,1)]+ Math.floor(Math.random()*10),date:'02.14',address: this.addresss[this.randomN()],person:this.persons[this.randomN()],company:'深圳松达电梯有限公司',label:this.labels[this.randomN()]},
-          {id: this.dt[this.selectfrom(0,1)]+ Math.floor(Math.random()*10),date:'02.11',address: this.addresss[this.randomN()],person:this.persons[this.randomN()],company:'深圳松达电梯有限公司',label:this.labels[this.randomN()]},
-          {id: this.dt[this.selectfrom(0,1)]+ Math.floor(Math.random()*10),date:'02.15',address: this.addresss[this.randomN()],person:this.persons[this.randomN()],company:'深圳松达电梯有限公司',label:this.labels[this.randomN()]},
-          {id: this.dt[this.selectfrom(0,1)]+ Math.floor(Math.random()*10),date:'02.05',address: this.addresss[this.randomN()],person:this.persons[this.randomN()],company:'深圳松达电梯有限公司',label:this.labels[this.randomN()]},
-          {id: this.dt[this.selectfrom(0,1)]+ Math.floor(Math.random()*10),date:'02.02',address: this.addresss[this.randomN()],person:this.persons[this.randomN()],company:'深圳松达电梯有限公司',label:this.labels[this.randomN()]},
-          {id: this.dt[this.selectfrom(0,1)]+ Math.floor(Math.random()*10),date:'02.04',address: this.addresss[this.randomN()],person:this.persons[this.randomN()],company:'深圳松达电梯有限公司',label:this.labels[this.randomN()]},
-          {id: this.dt[this.selectfrom(0,1)]+ Math.floor(Math.random()*10),date:'02.01',address: this.addresss[this.randomN()],person:this.persons[this.randomN()],company:'深圳松达电梯有限公司',label:this.labels[this.randomN()]},
-          {id: this.dt[this.selectfrom(0,1)]+ Math.floor(Math.random()*10),date:'01.16',address: '吉荣花园',person:this.persons[this.randomN()],company:'深圳松达电梯有限公司',label:this.labels[this.randomN()]},
-          {id: this.dt[this.selectfrom(0,1)]+ Math.floor(Math.random()*10),date:'01.10',address: '花园城数码大厦',person:this.persons[this.randomN()],company:'深圳松达电梯有限公司',maintenanceTime:5432,averageMil:4245},
-          {id: this.dt[this.selectfrom(0,1)]+ Math.floor(Math.random()*10),date:'01.05',address: '吉荣花园',person:'汤涛',company:'深圳松达电梯有限公司',label:this.labels[this.randomN()]},
-          {id: this.dt[this.selectfrom(0,1)]+ Math.floor(Math.random()*10),date:'01.08',address: '南光城市花园A座',person:'尹霞',company:'深圳松达电梯有限公司',label:this.labels[this.randomN()]},
-          {id: this.dt[this.selectfrom(0,1)]+ Math.floor(Math.random()*10),date:'01.04',address: '花园城数码大厦',person:'尹霞',company:'深圳松达电梯有限公司',label:this.labels[this.randomN()]},
-          {id: this.dt[this.selectfrom(0,1)]+ Math.floor(Math.random()*10),date:'01.12',address: '花园城数码大厦',person:'杨帆',company:'深圳松达电梯有限公司',label:this.labels[this.randomN()]},
-          {id: this.dt[this.selectfrom(0,1)]+ Math.floor(Math.random()*10),date:'01.18',address: '吉荣花园',person:'江霞',company:'深圳松达电梯有限公司',label:this.labels[this.randomN()]},
-          {id: this.dt[this.selectfrom(0,1)]+ Math.floor(Math.random()*10),date:'01.10',address: '花园城数码大厦',person:'廖秀英',company:'深圳松达电梯有限公司',label:this.labels[this.randomN()]},
-          {id: 'DT8'+ Math.floor(Math.random()*10),date:'02.17',address: '南光城市花园A座',person:'马敏',company:'深圳松达电梯有限公司',label:this.labels[this.randomN()]},
-          {id: 'T8'+ Math.floor(Math.random()*10),date:'02.19',address: '花园城数码大厦',person:'苏超',company:'深圳松达电梯有限公司',label:this.labels[this.randomN()]},
-          {id: 'DT4'+ Math.floor(Math.random()*10),date:'02.20',address: '花园城数码大厦',person:'小明',company:'深圳松达电梯有限公司',label:this.labels[this.randomN()]},
-          {id: 'T1'+ Math.floor(Math.random()*10),date:'02.25',address: '吉荣花园',person:'马敏',company:'深圳松达电梯有限公司',label:this.labels[this.randomN()]},
-          {id: 'DT7'+ Math.floor(Math.random()*10),date:'02.28',address: '花园城数码大厦',person:'汤涛',company:'深圳松达电梯有限公司',label:this.labels[this.randomN()]},
-          {id: 'DT11'+ Math.floor(Math.random()*10),date:'02.24',address: '吉荣花园',person:'李磊',company:'深圳松达电梯有限公司',label:this.labels[this.randomN()]},
-          {id: 'DT12'+ Math.floor(Math.random()*10),date:'02.21',address: '花园城数码大厦',person:'苏超',company:'深圳松达电梯有限公司',label:this.labels[this.randomN()]},
+          {id: this.dt[this.selectfrom(0,1)]+ Math.floor(Math.random()*10),address: this.addresss[this.randomN()],person:this.persons[this.randomN()],company:'深圳松达电梯有限公司',maintenanceTime:this.selectfrom(1000,9000), averageMil:this.selectfrom(1000,9000)},
+          {id: this.dt[this.selectfrom(0,1)]+ Math.floor(Math.random()*10),address: this.addresss[this.randomN()],person:this.persons[this.randomN()],company:'深圳松达电梯有限公司',maintenanceTime:this.selectfrom(1000,9000),averageMil:this.selectfrom(1000,9000)},
+          {id: this.dt[this.selectfrom(0,1)]+Math.floor(Math.random()*10),address: this.addresss[this.randomN()],person:this.persons[this.randomN()],company:'深圳松达电梯有限公司',maintenanceTime:this.selectfrom(1000,9000),averageMil:this.selectfrom(1000,9000)},
+          {id: this.dt[this.selectfrom(0,1)]+ Math.floor(Math.random()*10),address: this.addresss[this.randomN()],person:this.persons[this.randomN()],company:'深圳松达电梯有限公司',maintenanceTime:this.selectfrom(1000,9000),averageMil:this.selectfrom(1000,9000)},
+          {id: this.dt[this.selectfrom(0,1)]+ Math.floor(Math.random()*10),address: this.addresss[this.randomN()],person:this.persons[this.randomN()],company:'深圳松达电梯有限公司',maintenanceTime:this.selectfrom(1000,9000),averageMil:this.selectfrom(1000,9000)},
+          {id: this.dt[this.selectfrom(0,1)]+ Math.floor(Math.random()*10),address: this.addresss[this.randomN()],person:this.persons[this.randomN()],company:'深圳松达电梯有限公司',maintenanceTime:this.selectfrom(1000,9000),averageMil:this.selectfrom(1000,9000)},
+          {id: this.dt[this.selectfrom(0,1)]+ Math.floor(Math.random()*10),address: this.addresss[this.randomN()],person:this.persons[this.randomN()],company:'深圳松达电梯有限公司',maintenanceTime:this.selectfrom(1000,9000),averageMil:this.selectfrom(1000,9000)},
+          {id: this.dt[this.selectfrom(0,1)]+ Math.floor(Math.random()*10),address: this.addresss[this.randomN()],person:this.persons[this.randomN()],company:'深圳松达电梯有限公司',maintenanceTime:this.selectfrom(1000,9000),averageMil:this.selectfrom(1000,9000)},
+          {id: this.dt[this.selectfrom(0,1)]+ Math.floor(Math.random()*10),address: this.addresss[this.randomN()],person:this.persons[this.randomN()],company:'深圳松达电梯有限公司',maintenanceTime:this.selectfrom(1000,9000),averageMil:this.selectfrom(1000,9000)},
+          {id: this.dt[this.selectfrom(0,1)]+ Math.floor(Math.random()*10),address: this.addresss[this.randomN()],person:this.persons[this.randomN()],company:'深圳松达电梯有限公司',maintenanceTime:this.selectfrom(1000,9000),averageMil:this.selectfrom(1000,9000)},
+          {id: this.dt[this.selectfrom(0,1)]+ Math.floor(Math.random()*10),address: this.addresss[this.randomN()],person:this.persons[this.randomN()],company:'深圳松达电梯有限公司',maintenanceTime:this.selectfrom(1000,9000),averageMil:this.selectfrom(1000,9000)},
+          {id: this.dt[this.selectfrom(0,1)]+ Math.floor(Math.random()*10),address: '吉荣花园',person:this.persons[this.randomN()],company:'深圳松达电梯有限公司',maintenanceTime:this.selectfrom(1000,9000),averageMil:this.selectfrom(1000,9000)},
+          {id: this.dt[this.selectfrom(0,1)]+ Math.floor(Math.random()*10),address: '花园城数码大厦',person:this.persons[this.randomN()],company:'深圳松达电梯有限公司',maintenanceTime:5432,averageMil:4245},
+          {id: this.dt[this.selectfrom(0,1)]+ Math.floor(Math.random()*10),address: '吉荣花园',person:'汤涛',company:'深圳松达电梯有限公司',maintenanceTime:this.selectfrom(1000,9000),averageMil:this.selectfrom(1000,9000)},
+          {id: this.dt[this.selectfrom(0,1)]+ Math.floor(Math.random()*10),address: '南光城市花园A座',person:'尹霞',company:'深圳松达电梯有限公司',maintenanceTime:this.selectfrom(1000,9000),averageMil:this.selectfrom(1000,9000)},
+          {id: this.dt[this.selectfrom(0,1)]+ Math.floor(Math.random()*10),address: '花园城数码大厦',person:'尹霞',company:'深圳松达电梯有限公司',maintenanceTime:this.selectfrom(1000,9000),averageMil:this.selectfrom(1000,9000)},
+          {id: this.dt[this.selectfrom(0,1)]+ Math.floor(Math.random()*10),address: '花园城数码大厦',person:'杨帆',company:'深圳松达电梯有限公司',maintenanceTime:this.selectfrom(1000,9000),averageMil:this.selectfrom(1000,9000)},
+          {id: this.dt[this.selectfrom(0,1)]+ Math.floor(Math.random()*10),address: '吉荣花园',person:'江霞',company:'深圳松达电梯有限公司',maintenanceTime:5235,averageMil:7658},
+          {id: this.dt[this.selectfrom(0,1)]+ Math.floor(Math.random()*10),address: '花园城数码大厦',person:'廖秀英',company:'深圳松达电梯有限公司',maintenanceTime:6584,averageMil:5367},
+          {id: 'DT8'+ Math.floor(Math.random()*10),address: '南光城市花园A座',person:'马敏',company:'深圳松达电梯有限公司',maintenanceTime:4256,averageMil:5436},
+          {id: 'T8'+ Math.floor(Math.random()*10),address: '花园城数码大厦',person:'苏超',company:'深圳松达电梯有限公司',maintenanceTime:4325,averageMil:4366},
+          {id: 'DT4'+ Math.floor(Math.random()*10),address: '花园城数码大厦',person:'小明',company:'深圳松达电梯有限公司',maintenanceTime:3253,averageMil:5436},
+          {id: 'T1'+ Math.floor(Math.random()*10),address: '吉荣花园',person:'马敏',company:'深圳松达电梯有限公司',maintenanceTime:3251,averageMil:6876},
+          {id: 'DT7'+ Math.floor(Math.random()*10),address: '花园城数码大厦',person:'汤涛',company:'深圳松达电梯有限公司',maintenanceTime:6532,averageMil:8756},
+          {id: 'DT11'+ Math.floor(Math.random()*10),address: '吉荣花园',person:'李磊',company:'深圳松达电梯有限公司',maintenanceTime:1245,averageMil:6588},
+          {id: 'DT12'+ Math.floor(Math.random()*10),address: '花园城数码大厦',person:'苏超',company:'深圳松达电梯有限公司',maintenanceTime:4363,averageMil:6566},
         ]
         console.log('111111111===' + JSON.stringify(this.randomJson(this.liftDatas))); 
         var arr = {}
@@ -291,7 +262,7 @@
           return data1;
         }
       },
-      change (index) {
+      change (index) { // 点击表格td
         if(index !='' && index > 0 && index <= this.m_days[this.mnow] ){
           this.dnow = index
         }
@@ -359,10 +330,10 @@
     
    }
 </script>
-<style lang="stylus">
+<style lang="stylus" >
 // 配置
 @import '../assets/stylus/base'
-// @import '../assets/stylus/panel'
+@import '../assets/stylus/pageSty'
 
 .tableClass
   border none
@@ -385,22 +356,22 @@
     &:last-child
       color #0DBA7F
       cursor pointer
-.dataList
+.dataList1
   clearfix()
   background #1B1B23;
   position relative
   #dateContainer
     background: #1B1B23;
-    box-shadow: 30px 0 29px -18px rgba(0,0,0,0.50);
-    float left
-    width 37%
-    margin-right 2%
+    box-shadow: 0 30px 29px -18px rgba(0,0,0,0.50);
+    margin-bottom 8px
+    // float left
+    // width 37%
     box-sizing border-box
     #table
       width 100%
       td
         border: 1px solid rgba(102,102,127,0.23);
-        size 157px 83.6px
+        size 157px 67.2px
         font-size: 12px;
         color: #66667F;
         letter-spacing: 0.02px;
@@ -421,13 +392,13 @@
         vertical-align middle
       .dateNub
         text-align left
-        margin 5px
+        margin 5px 0 0 5px
       p
         font-size: 16px;
         color: #FFFFFF;
         letter-spacing: 0.02px;
         text-align: center;
-        margin 9px 0 4px 0
+        line-height 21px
   .nowTime
     clearfix()
     .preMon,.nextMon,.thisMon
@@ -459,24 +430,12 @@
     float left
     width 60%
   .taskTable
-    absolute top 0 bottom 0 right 0 left 40%;
-    // width:60%;
-    // height:100%;
+    padding-left 20px
   .GqTotal
-    text-align center
-  // 适配
-  @media screen and (max-width: 1640px) {
-    #dateContainer{
-      width 327px
-    }
-    .right_wrapper{
-      width: 50%;
-    }
-    .taskTable{
-      left:350px;
-    }
-  }
+    text-align right;
+    margin: 0 5px 5px
   .tableLast
     color: #0DBA7F;
     cursor pointer;
+  
 </style>
