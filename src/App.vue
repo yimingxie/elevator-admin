@@ -1,13 +1,13 @@
 <template>
   <div id="page-container">
     <div id="header">
-      {{ title }}
+      {{ $route.meta.title }}
     </div>
     <span class="right_header">
-      <i class="headPic"></i>
-      <span>Whung</span>
-      <i class="split"></i>
-      <i class="quit"></i>
+      <!-- <i class="headPic"></i> -->
+      <span>版本号V1.6.7.0</span>
+      <!-- <i class="split"></i>
+      <i class="quit"></i> -->
     </span>
     
     <router-view></router-view>
@@ -24,23 +24,9 @@
     },
     
     mounted () {
-      console.log('1111111' + this.$route.name)
-      if(this.$route.name === 'maintenance'){
-        this.title = '电梯维保监管战情室'
-      } else {
-        this.title = '电梯行业监管战情室'
-      }
+
     },
-    watch: {
-      $route(to,from){
-        console.log('1111111' + to.path);
-        if(to.path === 'maintenance'){
-          this.title = '电梯维保监管战情室'
-        } else {
-          this.title = '电梯行业监管战情室'
-        }
-      }
-    },
+
     methods: {
       quit(){
         this.$router.push('/')
