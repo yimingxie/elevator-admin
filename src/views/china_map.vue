@@ -770,10 +770,10 @@ div
         }
         .MapTitle_btn{
             // size 117px 24px
-            line-height 20px
+            line-height 21px
             display inline-block
             float right
-            margin 15px 22px 0 10px
+            margin 18px 22px 0 10px
             background: #0DBA7F;
             border-radius: 16.5px;
             padding 4px 10px 3px 10px
@@ -913,7 +913,7 @@ div
 .search1
     float right
     font-size: 0;
-    margin 14px 0 0 0
+    margin 18px 0 0 0
     white-space: nowrap;
     height: 28px;
     line-height: 28px;
