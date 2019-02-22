@@ -91,8 +91,8 @@
             <el-scrollbar style="height: 100%;">
               <table class="ed-elist-table">
                 <tr>
-                  <th width="16%">维保人员</th>
-                  <th width="18%">维保时间</th>
+                  <th width="16%">维保时间</th>
+                  <th width="18%">维保人员</th>
                   <th width="22%">状态</th>
                   <th width="16%">时效</th>
                   <th width="">电梯运行里程(天)</th>
@@ -798,6 +798,10 @@ export default {
       flag: true, // 用于滚动节流
       dataX: ['60s', '55s', '50s', '45s', '40s', '35s', '30s', '25s', '20s', '15s', '10s', '5s', '0s'],
       dataValue: [],
+
+      // 电梯概况
+      // general: ,
+
       selectValue:'001',
       selectArr: [{
           value: '001',
@@ -811,6 +815,8 @@ export default {
       }],
       currentView: "EDMotorRoom",
       navActive: '机房',
+
+      // 电梯实时数据
       eleSpeed: '0',
       eleCurrentFloor: '0',
       eleCurrentDoor: '关',
@@ -1125,6 +1131,8 @@ export default {
     };
   },
   mounted() {
+
+    // document.title = 'aaa'
   
     
     setTimeout(() => {
@@ -1412,6 +1420,7 @@ export default {
     // 获取实时数据（总）
     getRealTime() {
       api.detail.getCurrent(this.dtID).then(res => {
+        // console.log(res.data)
 
         // 机房温度
         if (res.data[1]) {
@@ -1534,26 +1543,29 @@ export default {
         }
         this.drawRpm()
 
-        // 电梯层门
+        // 电梯层门 和电梯轿门（目前用的是层门数据）
         if (res.data[16]) {
           if (res.data[16].value) {
             this.floorDoorValue = '开'
+            this.eleDoorValue = '开'
           } else {
             this.floorDoorValue = '关'
+            this.eleDoorValue = '关'
           }
-          this.floorDoorNum = res.data[16].value
+          // this.floorDoorNum = res.data[16].value
+          // this.eleDoorNum = res.data[16].value
         }
         this.drawFloorDoor()
 
         // 电梯轿门（目前用的是层门数据）
-        if (res.data[16]) {
-          if (res.data[16].value) {
-            this.floorDoorValue = '开'
-          } else {
-            this.floorDoorValue = '关'
-          }
-          this.floorDoorNum = res.data[16].value
-        }
+        // if (res.data[16]) {
+        //   if (res.data[16].value) {
+        //     this.floorDoorValue = '开'
+        //   } else {
+        //     this.floorDoorValue = '关'
+        //   }
+        //   this.floorDoorNum = res.data[16].value
+        // }
         this.drawEleDoor()
 
         // 轿厢振动
