@@ -535,5 +535,5 @@
     color: #0DBA7F;
     cursor pointer;
 .el-table__empty-block
-  background: url("../assets/images/hs/dataNoneSearch.png") no-repeat center 30%!important
+  background: url("../assets/images/hs/dataNoneSearch.png") no-repeat center 20%!important
 </style>

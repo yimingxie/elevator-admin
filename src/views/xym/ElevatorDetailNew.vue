@@ -3538,7 +3538,7 @@ export default {
     color: #fff;
   }
   .ed-right1 {
-    // box-sizing: border-box;
+    box-sizing: border-box;
     float: left;
     width: 900px;
     position: relative;
@@ -3548,7 +3548,7 @@ export default {
     background: #12151c;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
     border-radius: 10px;
-    padding: 50px 0 20px 30px;
+    padding: 50px 0 20px 30px !important;
     z-index: 10;
     overflow: hidden;
   }

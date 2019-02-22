@@ -310,7 +310,7 @@
                     <el-col :span="20" >
                         <div class=" charts">
                             <div class="chart_Total_title">
-                                <span class="chart_title">电梯运行里程<span class="unit">/ km</span></span>
+                                <span class="chart_title">电梯运行里程<span class="unit" >/ km</span></span>
                                 <span class="chart_title_right">
                                     <el-date-picker
                                         v-model="value1"
