@@ -296,7 +296,7 @@
                                 <div class="info-label"><img src="../assets/images/hs/quyu.png" alt=""/>深圳市{{ region }}</div>
                             </div>
                             <div class="summaryItem summaryItemList summaryItemList_x" style="padding-bottom: 213px;">
-                                <div class=""><span class="info-number" id='time1' style="color: #0DBA7F;">1687</span><span class="unit"> km</span></div>
+                                <div class=""><span class="info-number" id='time1' style="color: #0DBA7F;">1687</span><span class="unit" style="color: #0DBA7F;"> km</span></div>
                                 <div class="info-label">2019年累计运行里程</div>
                                 <div><span class="info-number fontSize18" id='time1'>300</span><span class="unit"> km/梯</span></div>
                                 <div class="info-label">当月累计里程平均值</div>
@@ -433,7 +433,7 @@
                     { label: '年', value: 365 }
                 ],
                 period:7,
-                value1:'2',
+                value1:'2019-2',
                 selectValue:'',
                 options: [{
                     value: '440303',
@@ -3293,12 +3293,12 @@
                 //工具栏
                 toolbox: {
                     show : false ,
-                    feature : {
-                    mark : {show: true},
-                    dataView : {show: true, readOnly: false},
-                    magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
-                    restore : {show: true},
-                    saveAsImage : {show: true}
+                    feature: {
+                        mark: {show: true},
+                        dataView: {show: true, readOnly: false},
+                        magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                        restore : {show: true},
+                        saveAsImage : {show: true}
                     }
                 },
                 grid: {
@@ -3388,113 +3388,110 @@
                 var chart = document.getElementById("lineChart14");
                 var echart = echarts.init(chart);
                 var option = {
-                tooltip : {
-                    trigger: 'axis',
-                },
-                legend: {
-                    data:['B类','全市参考范围'],
-                    itemGap: 30,
-                    // orient: 'vertical',  //垂直显示
-                    y: 'bottom',    //延Y轴居中
-                    x: 'center', //居右显示
-                    textStyle:{
-                        fontSize : 12,  
-                        fontFamily : 'Microsoft YaHei',  
-                        color:'#66667F'  
+                    tooltip : {
+                        trigger: 'axis',
                     },
-                    itemWidth: 8,
-                    show:true,
-                    icon:'circle',
-                    // backgroundColor:'red'
-                },
-                // color:['#FEC101','#6B50D0'],
-                color:['#027E73','#FE7D01'],
-                //工具栏
-                toolbox: {
-                    show : false ,
-                    feature : {
-                    mark : {show: true},
-                    dataView : {show: true, readOnly: false},
-                    magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
-                    restore : {show: true},
-                    saveAsImage : {show: true}
-                    }
-                },
-                grid: {
-                    right: '3%', //相当于距离左边效果:padding-left
-                    left: '3%', //相当于距离上边效果:padding-top
-                    // bottom: '15%',
-                    bottom: '20%',
-                    top: '10%',
-                    containLabel: true
-                },
-                calculable : true,
-                xAxis : [{
-                    type : 'category',
-                    boundaryGap : false,
-                    data : this.month,
-                    axisLine:{
-                        lineStyle:{  
-                            color:'#24242f',  
-                            width:1,//这里是为了突出显示加上的  
-                        }  
-                    },
-                    axisLabel: {
-                        show: true,
-                        textStyle: {
+                    legend: {
+                        data:['B类','全市参考范围'],
+                        itemGap: 30,
+                        // orient: 'vertical',  //垂直显示
+                        y: 'bottom',    //延Y轴居中
+                        x: 'center', //居右显示
+                        textStyle:{
                             fontSize : 12,  
-                            // fontFamily : '微软雅黑',  
-                            color:'#66667F'
-                        }
-                    }
-                }],
-                yAxis : [{
-                    type : 'value',
-                    // min:0,
-                    // max:150,
-                    axisLine:{  
-                        lineStyle:{  
-                            color:'#24242f',  
-                            width:1,//这里是为了突出显示加上的  
-                        }  
-                    },
-                    //分割线
-                    splitLine:{
+                            fontFamily : 'Microsoft YaHei',  
+                            color:'#66667F'  
+                        },
+                        itemWidth: 8,
                         show:true,
-                        lineStyle: {
-                        // 使用深浅的间隔色
-                            color: '#3F3F49',
-                            type:'dashed',
-                            // width:3,
+                        icon:'circle',
+                        // backgroundColor:'red'
+                    },
+                    // color:['#FEC101','#6B50D0'],
+                    color:['#027E73','#FE7D01'],
+                    //工具栏
+                    toolbox: {
+                        show : false ,
+                        feature : {
+                        mark : {show: true},
+                        dataView : {show: true, readOnly: false},
+                        magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                        restore : {show: true},
+                        saveAsImage : {show: true}
                         }
                     },
-                    //Y轴文字
-                    axisLabel: {
-                        show: true,
-                        textStyle: {
-                        fontSize : 12,  
-                        color:'#66667F'
+                    grid: {
+                        right: '3%', //相当于距离左边效果:padding-left
+                        left: '3%', //相当于距离上边效果:padding-top
+                        // bottom: '15%',
+                        bottom: '20%',
+                        top: '10%',
+                        containLabel: true
+                    },
+                    calculable : true,
+                    xAxis : [{
+                        type : 'category',
+                        boundaryGap : false,
+                        data : this.month,
+                        axisLine:{
+                            lineStyle:{  
+                                color:'#24242f',  
+                                width:1,//这里是为了突出显示加上的  
+                            }  
+                        },
+                        axisLabel: {
+                            show: true,
+                            textStyle: {
+                                fontSize : 12,  
+                                // fontFamily : '微软雅黑',  
+                                color:'#66667F'
+                            }
                         }
-                    }
-                }],
-                series : [
-                    {
+                    }],
+                    yAxis: [{
+                        type : 'value',
+                        // min:0,
+                        // max:150,
+                        axisLine:{
+                            lineStyle:{  
+                                color:'#24242f',  
+                                width:1,//这里是为了突出显示加上的  
+                            }  
+                        },
+                        //分割线
+                        splitLine:{
+                            show:true,
+                            lineStyle: {
+                            // 使用深浅的间隔色
+                                color: '#3F3F49',
+                                type:'dashed',
+                                // width:3,
+                            }
+                        },
+                        //Y轴文字
+                        axisLabel: {
+                            show: true,
+                            textStyle: {
+                            fontSize : 12,  
+                            color: '#66667F'
+                            }
+                        }
+                    }],
+                    series: [{
                         name:'B类',
                         type:'line',
                         smooth:true,
                         showSymbol: false,
                         stack: 'B类',
                         data: [12, 116, 200, 87, 105, 202, 105,126, 108, 25, 143, 108, 87, 150, 22],
-                    },
-                    {
+                    }, {
                         name:'全市参考范围',
                         type:'line',
                         smooth:true,
                         showSymbol: false,
                         stack: '全市参考范围',
                         data: [4, 85, 57, 40, 54, 97, 45,76, 34, 17, 86, 53, 67, 87, 10],
-                    },
-                ]
+                    }]
                 };
                         
                 echart.setOption(option);
@@ -3504,68 +3501,67 @@
                 var chart = document.getElementById("lineChart15");
                 var echart = echarts.init(chart);
                 var option = {
-                tooltip : {
-                    trigger: 'axis',
-                },
-                legend: {
-                    data:['C类','全市参考范围'],
-                    itemGap: 30,
-                    // orient: 'vertical',  //垂直显示
-                    y: 'bottom',    //延Y轴居中
-                    x: 'center', //居右显示
-                    textStyle:{
-                        fontSize : 12,  
-                        fontFamily : 'Microsoft YaHei',  
-                        color:'#66667F'  
+                    tooltip : {
+                        trigger: 'axis',
                     },
-                    itemWidth: 8,
-                    show:true,
-                    icon:'circle',
-                    // backgroundColor:'red'
-                },
-                // color:['#FEC101','#6B50D0'],
-                color:['#738BD6','#FE7D01'],
-                //工具栏
-                toolbox: {
-                    show : false ,
-                    feature : {
-                    mark : {show: true},
-                    dataView : {show: true, readOnly: false},
-                    magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
-                    restore : {show: true},
-                    saveAsImage : {show: true}
-                    }
-                },
-                grid: {
-                    right: '3%', //相当于距离左边效果:padding-left
-                    left: '3%', //相当于距离上边效果:padding-top
-                    // bottom: '15%',
-                    bottom: '20%',
-                    top: '10%',
-                    containLabel: true
-                },
-                calculable : true,
-                xAxis : [{
-                    type : 'category',
-                    boundaryGap : false,
-                    data : this.month,
-                    axisLine:{
-                        lineStyle:{  
-                            color:'#24242f',  
-                            width:1,//这里是为了突出显示加上的  
-                        }  
-                    },
-                    axisLabel: {
-                        show: true,
-                        textStyle: {
+                    legend: {
+                        data:['C类','全市参考范围'],
+                        itemGap: 30,
+                        // orient: 'vertical',  //垂直显示
+                        y: 'bottom',    //延Y轴居中
+                        x: 'center', //居右显示
+                        textStyle:{
                             fontSize : 12,  
-                            // fontFamily : '微软雅黑',  
-                            color:'#66667F'
+                            fontFamily : 'Microsoft YaHei',  
+                            color:'#66667F'  
+                        },
+                        itemWidth: 8,
+                        show:true,
+                        icon:'circle',
+                        // backgroundColor:'red'
+                    },
+                    // color:['#FEC101','#6B50D0'],
+                    color:['#738BD6','#FE7D01'],
+                    //工具栏
+                    toolbox: {
+                        show : false ,
+                        feature : {
+                            mark : {show: true},
+                            dataView : {show: true, readOnly: false},
+                            magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                            restore : {show: true},
+                            saveAsImage : {show: true}
                         }
-                    }
-                }],
-                yAxis : [
-                    {
+                    },
+                    grid: {
+                        right: '3%', //相当于距离左边效果:padding-left
+                        left: '3%', //相当于距离上边效果:padding-top
+                        // bottom: '15%',
+                        bottom: '20%',
+                        top: '10%',
+                        containLabel: true
+                    },
+                    calculable : true,
+                    xAxis : [{
+                        type : 'category',
+                        boundaryGap : false,
+                        data : this.month,
+                        axisLine:{
+                            lineStyle:{  
+                                color:'#24242f',  
+                                width:1,//这里是为了突出显示加上的  
+                            }  
+                        },
+                        axisLabel: {
+                            show: true,
+                            textStyle: {
+                                fontSize : 12,  
+                                // fontFamily : '微软雅黑',  
+                                color:'#66667F'
+                            }
+                        }
+                    }],
+                    yAxis : [{
                         type : 'value',
                         // min:0,
                         // max:150,
@@ -3575,9 +3571,9 @@
                                 width:1,//这里是为了突出显示加上的  
                             }  
                         },
-                        // 分割线
+                        //分割线
                         splitLine:{
-                            show: true,
+                            show:true,
                             lineStyle: {
                             // 使用深浅的间隔色
                                 color: '#3F3F49',
@@ -3593,27 +3589,26 @@
                             color:'#66667F'
                             }
                         },
-                    }
-                ],
-                series : [
-                    {
-                        name:'C类',
-                        type:'line',
-                        smooth:true,
-                        showSymbol: false,
-                        stack: 'B类',
-                        data: [12, 116, 200, 87, 105, 202, 105,126, 108, 25, 143, 108, 87, 150, 22],
-                    },
-                   
-                    {
-                        name:'全市参考范围',
-                        type:'line',
-                        smooth:true,
-                        showSymbol: false,
-                        stack: '全市参考范围',
-                        data: [4, 85, 57, 40, 54, 97, 45,76, 34, 17, 86, 53, 67, 87, 10],
-                    },
-                ]
+                    }],
+                    series : [
+                        {
+                            name:'C类',
+                            type:'line',
+                            smooth:true,
+                            showSymbol: false,
+                            stack: 'B类',
+                            data: [12, 116, 200, 87, 105, 202, 105,126, 108, 25, 143, 108, 87, 150, 22],
+                        },
+                    
+                        {
+                            name:'全市参考范围',
+                            type:'line',
+                            smooth:true,
+                            showSymbol: false,
+                            stack: '全市参考范围',
+                            data: [4, 85, 57, 40, 54, 97, 45,76, 34, 17, 86, 53, 67, 87, 10],
+                        },
+                    ]
                 };
                         
                 echart.setOption(option);
@@ -4020,7 +4015,7 @@
                     containLabel: true
                 },
                 calculable : true,
-                xAxis : [{
+                xAxis: [{
                     type : 'category',
                     boundaryGap : false,
                     data :['00:00','02:00','04:00','06:00','08:00','10:00','12:00','14:00','16:00','18:00','20:00','22:00','23:59'],
@@ -4033,9 +4028,9 @@
                     axisLabel: {
                         show: true,
                         textStyle: {
-                            fontSize : 12,  
+                            fontSize: 12,  
                             // fontFamily : '微软雅黑',  
-                            color:'#66667F'
+                            color: '#66667F'
                         }
                     }
                 }],
@@ -4044,7 +4039,7 @@
                     type : 'value',
                     // min:0,
                     // max:150,
-                    axisLine:{  
+                    axisLine: {
                         lineStyle:{  
                             color:'#24242f',  
                             width:1,//这里是为了突出显示加上的  

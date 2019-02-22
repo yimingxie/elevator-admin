@@ -51,7 +51,7 @@
                     <el-col :span="20" >
                         <div class=" charts">
                             <div class="chart_Total_title chart_Total_title_x">
-                                <span class="chart_title">维保及时率统计</span>
+                                <span class="chart_title">维保时效统计<span class="unit">/次</span></span>
                                 <div class="chart-x-title">
                                     <span class="chart_title">91582<span class="unit">维保电梯数</span></span>
                                     <span class="chart_title">2356<span class="unit">维保及时数</span></span>
@@ -448,7 +448,7 @@
         },
         data () {
             return {
-                value1:'2',
+                value1:'2019-2',
                 selectValue:'',
                 options: [{
                     value: '440303',
@@ -2912,143 +2912,141 @@
                 var chart = document.getElementById("lineChart7");
                 var echart = echarts.init(chart);
                 var option = {
-                tooltip : {
-                    trigger: 'axis',
-                },
-                legend: {
-                    data:['线圈温度','刹车片温度','电压/电流','制动力'],
-                    itemGap: 10,
-                    // orient: 'vertical',  //垂直显示
-                    y: 'bottom',    //延Y轴居中
-                    x: 'center', //居右显示
-                    textStyle:{
-                        fontSize : 12,  
-                        fontFamily : 'Microsoft YaHei',  
-                        color:'#66667F'  
+                    tooltip: {
+                        trigger: 'axis',
                     },
-                    itemWidth: 8,
-                    show:true,
-                    icon:'circle',
-                    // backgroundColor:'red'
-                },
-                // color:['#F9D562','#FB7027','#E22340','#6B50D0'],
-                color:['#FE7D01','#FEC101','#E22340','#6B50D0'],
-                //工具栏
-                toolbox: {
-                    show : false ,
-                    feature : {
-                    mark : {show: true},
-                    dataView : {show: true, readOnly: false},
-                    magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
-                    restore : {show: true},
-                    saveAsImage : {show: true}
-                    }
-                },
-                grid: {
-                    right: '3%', //相当于距离左边效果:padding-left
-                    left: '3%', //相当于距离上边效果:padding-top
-                    bottom: '15%',
-                    top: '10%',
-                    containLabel: true
-                },
-                calculable : true,
-                xAxis : [{
-                    type : 'category',
-                    boundaryGap : false,
-                    data : this.day,
-                    axisLine:{
-                        lineStyle:{  
-                            color:'#24242f',  
-                            width:1,//这里是为了突出显示加上的  
-                        }  
-                    },
-                    axisLabel: {
-                        show: true,
-                        textStyle: {
+                    legend: {
+                        data: ['线圈温度','刹车片温度','电压/电流','制动力'],
+                        itemGap: 10,
+                        // orient: 'vertical',  //垂直显示
+                        y: 'bottom',    //延Y轴居中
+                        x: 'center', //居右显示
+                        textStyle:{
                             fontSize : 12,  
-                            // fontFamily : '微软雅黑',  
-                            color:'#66667F'
-                        }
-                    }
-                }],
-                yAxis : [
-                    {
-                    type : 'value',
-                    // min:0,
-                    // max:150,
-                    axisLine:{  
-                        lineStyle:{  
-                            color:'#24242f',  
-                            width:1,//这里是为了突出显示加上的  
-                        }  
-                    },
-                    //分割线
-                    splitLine:{
+                            fontFamily : 'Microsoft YaHei',  
+                            color:'#66667F'  
+                        },
+                        itemWidth: 8,
                         show:true,
-                        lineStyle: {
-                        // 使用深浅的间隔色
-                            color: '#3F3F49',
-                            type:'dashed',
-                            // width:3,
+                        icon:'circle',
+                        // backgroundColor:'red'
+                    },
+                    // color:['#F9D562','#FB7027','#E22340','#6B50D0'],
+                    color:['#FE7D01','#FEC101','#E22340','#6B50D0'],
+                    //工具栏
+                    toolbox: {
+                        show : false ,
+                        feature : {
+                        mark : {show: true},
+                        dataView : {show: true, readOnly: false},
+                        magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                        restore : {show: true},
+                        saveAsImage : {show: true}
                         }
                     },
-                    //Y轴文字
-                    axisLabel: {
-                        show: true,
-                        textStyle: {
-                        fontSize : 12,  
-                        color:'#66667F'
+                    grid: {
+                        right: '3%', //相当于距离左边效果:padding-left
+                        left: '3%', //相当于距离上边效果:padding-top
+                        bottom: '15%',
+                        top: '10%',
+                        containLabel: true
+                    },
+                    calculable : true,
+                    xAxis : [{
+                        type : 'category',
+                        boundaryGap : false,
+                        data : this.day,
+                        axisLine:{
+                            lineStyle:{  
+                                color:'#24242f',  
+                                width:1,//这里是为了突出显示加上的  
+                            }  
+                        },
+                        axisLabel: {
+                            show: true,
+                            textStyle: {
+                                fontSize : 12,  
+                                // fontFamily : '微软雅黑',  
+                                color:'#66667F'
+                            }
                         }
-                    },
-                    }
-                ],
-                series : [
-                    {
-                        name:'线圈温度',
-                        type:'line',
-                        smooth:true,
-                        areaStyle: {
-                            color:'rgba(249,213,98,0.3)' 
+                    }],
+                    yAxis : [{
+                        type : 'value',
+                        // min:0,
+                        // max:150,
+                        axisLine: {
+                            lineStyle: {
+                                color: '#24242f',  
+                                width: 1//这里是为了突出显示加上的  
+                            }
                         },
-                        showSymbol: false,
-                        stack: '总量5',
-                        data: this.Xdata,
-                    },
-                    {
-                        name:'刹车片温度',
-                        type:'line',
-                        smooth:true,
-                        areaStyle: {
-                            color:'rgba(251,112,39,0.3)'
+                        // 分割线
+                        splitLine: {
+                            show: true ,
+                            lineStyle: {
+                            // 使用深浅的间隔色
+                                color: '#3F3F49',
+                                type: 'dashed',
+                                // width:3,
+                            }
                         },
-                        showSymbol: false,
-                        stack: '总量5',
-                        data: this.Xdata,
-                    },
-                    {
-                        name:'电压/电流',
-                        type:'line',
-                        smooth:true,
-                        areaStyle: {
-                            color:'rgba(226,35,64,0.3)'
+                        //Y轴文字
+                        axisLabel: {
+                            show: true,
+                            textStyle: {
+                                fontSize : 12,  
+                                color:'#66667F'
+                            }
+                        }
+                    }],
+                    series : [
+                        {
+                            name:'线圈温度',
+                            type:'line',
+                            smooth:true,
+                            areaStyle: {
+                                color:'rgba(249,213,98,0.3)' 
+                            },
+                            showSymbol: false,
+                            stack: '总量5',
+                            data: this.Xdata,
+                        },
+                        {
+                            name:'刹车片温度',
+                            type:'line',
+                            smooth:true,
+                            areaStyle: {
+                                color:'rgba(251,112,39,0.3)'
+                            },
+                            showSymbol: false,
+                            stack: '总量5',
+                            data: this.Xdata,
+                        },
+                        {
+                            name:'电压/电流',
+                            type:'line',
+                            smooth:true,
+                            areaStyle: {
+                                color:'rgba(226,35,64,0.3)'
 
+                            },
+                            showSymbol: false,
+                            stack: '总量5',
+                            data: this.Xdata,
                         },
-                        showSymbol: false,
-                        stack: '总量5',
-                        data: this.Xdata,
-                    },
-                    {
-                        name:'制动力',
-                        type:'line',
-                        smooth:true,
-                        areaStyle: {
-                            color:'rgba(90,57,213,0.3)'
+                        {
+                            name:'制动力',
+                            type:'line',
+                            smooth:true,
+                            areaStyle: {
+                                color:'rgba(90,57,213,0.3)'
+                            },
+                            showSymbol: false,
+                            stack: '总量5',
+                            data: this.Xdata,
                         },
-                        showSymbol: false,
-                        stack: '总量5',
-                        data: this.Xdata,
-                    },
-                ]
+                    ]
                 };
                         
                 echart.setOption(option);
@@ -3356,130 +3354,128 @@
                 echart.setOption(option);
             },
             // 渐变折线图10
-            drawLineChart10(){
+            drawLineChart10 () {
                 var chart = document.getElementById("lineChart10");
                 var echart = echarts.init(chart);
                 var option = {
-                tooltip : {
-                    trigger: 'axis',
-                },
-                legend: {
-                    data:['层门门锁回路','轿门门锁回路'],
-                    itemGap: 10,
-                    // orient: 'vertical',  //垂直显示
-                    y: 'bottom',    //延Y轴居中
-                    x: 'center', //居右显示
-                    textStyle:{
-                        fontSize : 12,  
-                        fontFamily : 'Microsoft YaHei',  
-                        color:'#66667F'  
+                    tooltip : {
+                        trigger: 'axis',
                     },
-                    itemWidth: 8,
-                    show:true,
-                    icon:'circle',
-                    // backgroundColor:'red'
-                },
-                // color:['#FEC101','#6B50D0'],
-                color:['#FE7D01','#6B50D0'],
-                //工具栏
-                toolbox: {
-                    show : false ,
-                    feature : {
-                    mark : {show: true},
-                    dataView : {show: true, readOnly: false},
-                    magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
-                    restore : {show: true},
-                    saveAsImage : {show: true}
-                    }
-                },
-                grid: {
-                    right: '3%', //相当于距离左边效果:padding-left
-                    left: '3%', //相当于距离上边效果:padding-top
-                    // bottom: '15%',
-                    bottom: '20%',
-                    top: '10%',
-                    containLabel: true
-                },
-                calculable : true,
-                xAxis : [{
-                    type : 'category',
-                    boundaryGap : false,
-                    data : this.day,
-                    axisLine:{
-                        lineStyle:{  
-                            color:'#24242f',  
-                            width:1,//这里是为了突出显示加上的  
-                        }  
-                    },
-                    axisLabel: {
-                        show: true,
-                        textStyle: {
+                    legend: {
+                        data:['层门门锁回路','轿门门锁回路'],
+                        itemGap: 10,
+                        // orient: 'vertical',  //垂直显示
+                        y: 'bottom',    //延Y轴居中
+                        x: 'center', //居右显示
+                        textStyle:{
                             fontSize : 12,  
-                            // fontFamily : '微软雅黑',  
-                            color:'#66667F'
-                        }
-                    }
-                }],
-                yAxis : [
-                    {
-                    type : 'value',
-                    // min:0,
-                    // max:150,
-                    axisLine:{  
-                        lineStyle:{  
-                            color:'#24242f',  
-                            width:1,//这里是为了突出显示加上的  
-                        }  
-                    },
-                    //分割线
-                    splitLine:{
+                            fontFamily : 'Microsoft YaHei',  
+                            color:'#66667F'  
+                        },
+                        itemWidth: 8,
                         show:true,
-                        lineStyle: {
-                        // 使用深浅的间隔色
-                            color: '#3F3F49',
-                            type:'dashed',
-                            // width:3,
+                        icon:'circle',
+                        // backgroundColor:'red'
+                    },
+                    // color:['#FEC101','#6B50D0'],
+                    color:['#FE7D01','#6B50D0'],
+                    //工具栏
+                    toolbox: {
+                        show : false ,
+                        feature : {
+                        mark : {show: true},
+                        dataView : {show: true, readOnly: false},
+                        magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                        restore : {show: true},
+                        saveAsImage : {show: true}
                         }
                     },
-                    //Y轴文字
-                    axisLabel: {
-                        show: true,
-                        textStyle: {
-                        fontSize : 12,  
-                        color:'#66667F'
+                    grid: {
+                        right: '3%', //相当于距离左边效果:padding-left
+                        left: '3%', //相当于距离上边效果:padding-top
+                        // bottom: '15%',
+                        bottom: '20%',
+                        top: '10%',
+                        containLabel: true
+                    },
+                    calculable : true,
+                    xAxis : [{
+                        type : 'category',
+                        boundaryGap : false,
+                        data : this.day,
+                        axisLine:{
+                            lineStyle:{  
+                                color:'#24242f',  
+                                width:1,//这里是为了突出显示加上的  
+                            }  
+                        },
+                        axisLabel: {
+                            show: true,
+                            textStyle: {
+                                fontSize : 12,  
+                                // fontFamily : '微软雅黑',  
+                                color:'#66667F'
+                            }
                         }
-                    },
-                    }
-                ],
-                series : [
-                    {
-                        name:'层门门锁回路',
-                        type:'line',
-                        smooth:true,
-                        areaStyle: {
-                            color:'rgba(249,213,98,0.3)'
+                    }],
+                    yAxis : [
+                        {
+                        type : 'value',
+                        // min:0,
+                        // max:150,
+                        axisLine:{  
+                            lineStyle:{  
+                                color:'#24242f',  
+                                width:1,//这里是为了突出显示加上的  
+                            }  
                         },
-                        showSymbol: false,
-                        stack: '总量5',
-                        data: this.Xdata,
-                    },
-                   
-                    {
-                        name:'轿门门锁回路',
-                        type:'line',
-                        smooth:true,
-                        areaStyle: {
-                            color:'rgba(90,57,213,0.3)'
+                        //分割线
+                        splitLine:{
+                            show:true,
+                            lineStyle: {
+                            // 使用深浅的间隔色
+                                color: '#3F3F49',
+                                type:'dashed',
+                                // width:3,
+                            }
                         },
-                        showSymbol: false,
-                        stack: '总量5',
-                        data: this.Xdata,
-                    },
-                ]
+                        //Y轴文字
+                        axisLabel: {
+                            show: true,
+                            textStyle: {
+                            fontSize : 12,  
+                            color:'#66667F'
+                            }
+                        },
+                        }
+                    ],
+                    series : [
+                        {
+                            name:'层门门锁回路',
+                            type:'line',
+                            smooth:true,
+                            areaStyle: {
+                                color:'rgba(249,213,98,0.3)'
+                            },
+                            showSymbol: false,
+                            stack: '总量5',
+                            data: this.Xdata,
+                        },
+                        {
+                            name:'轿门门锁回路',
+                            type:'line',
+                            smooth:true,
+                            areaStyle: {
+                                color:'rgba(90,57,213,0.3)'
+                            },
+                            showSymbol: false,
+                            stack: '总量5',
+                            data: this.Xdata,
+                        }
+                    ]
                 };
-                        
                 echart.setOption(option);
-            },
+            }
         }
     };
 </script>

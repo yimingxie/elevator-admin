@@ -339,7 +339,7 @@
                                 <div class="info-label"><img src="../assets/images/hs/quyu.png" alt=""/>深圳市{{ region }}</div>
                             </div>
                             <div class="summaryItem summaryItemList summaryItemList_x" style="padding-bottom: 213px;">
-                                <div class=""><span class="info-number" id='time1' style="color: #0DBA7F;">1687</span><span class="unit"> km</span></div>
+                                <div class=""><span class="info-number" id='time1' style="color: #0DBA7F;">1687</span><span class="unit" style="color: #0DBA7F;"> km</span></div>
                                 <div class="info-label">2019年累计运行里程</div>
                                 <div><span class="info-number fontSize18" id='time1'>300</span><span class="unit"> km/梯</span></div>
                                 <div class="info-label">当月累计里程平均值</div>
@@ -466,7 +466,7 @@
         },
         data () {
             return {
-                value1:'2',
+                value1:'2019-2',
                 selectValue:'',
                 options: [{
                     value: '440303',
@@ -3460,22 +3460,21 @@
                     top: '10%',
                     containLabel: true
                 },
-                calculable : true,
-                xAxis : [{
-                    type : 'category',
-                    boundaryGap : false,
-                    data : this.month,
-                    axisLine:{
+                calculable: true,
+                xAxis: [{
+                    type: 'category',
+                    boundaryGap: false,
+                    data: this.month,
+                    axisLine: {
                         lineStyle:{  
-                            color:'#24242f',  
-                            width:1,//这里是为了突出显示加上的  
+                            color: '#24242f',  
+                            width: 1  // 这里是为了突出显示加上的  
                         }  
                     },
                     axisLabel: {
                         show: true,
                         textStyle: {
-                            fontSize : 12,  
-                            // fontFamily : '微软雅黑',  
+                            fontSize: 12,  
                             color:'#66667F'
                         }
                     }
