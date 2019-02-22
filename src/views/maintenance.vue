@@ -339,7 +339,7 @@
                                 <div class="info-label"><img src="../assets/images/hs/quyu.png" alt=""/>深圳市{{ region }}</div>
                             </div>
                             <div class="summaryItem summaryItemList summaryItemList_x" style="padding-bottom: 213px;">
-                                <div class=""><span class="info-number" id='time1' style="color: #0DBA7F;">1687</span><span class="unit"> km</span></div>
+                                <div class=""><span class="info-number" id='time1' style="color: #0DBA7F;">1687</span><span class="unit" style="color: rgb(13, 186, 127);"> km</span></div>
                                 <div class="info-label">2019年累计运行里程</div>
                                 <div><span class="info-number fontSize18" id='time1'>300</span><span class="unit"> km/梯</span></div>
                                 <div class="info-label">当月累计里程平均值</div>
