@@ -4,7 +4,7 @@
       <div class="ed-left">
         <div class="ed-profile">
           <div class="ed-profile-state">
-            <em>电梯概况</em><span>例行维保</span>
+            <em>电梯概况</em><span :class="edState">例行维保</span>
           </div>
           <table class="ed-profile-table">
             <tr>
@@ -185,6 +185,7 @@
       <div class="ed-right1" id="ed-right1" ref="ed-right1">
         <div class="ed-item-time-change-block"></div>
         <div class="ed-item-time-change clearfix">
+          <!-- timeOn以后可改为historyTime -->
           <span :class="{on : timeOn == 'now'}" @click="changeTime('now')">现在</span>
           <span :class="{on : timeOn == 'day'}" @click="changeTime('day')">今日</span>
           <span :class="{on : timeOn == 'month'}" @click="changeTime('month')">本月</span>
@@ -522,13 +523,6 @@
 
           <!-- 安全回路 -->
           <div id="EDSafeLoop" class="edType">
-            <!-- <div class="ed-item-time-change clearfix">
-              <span :class="{on : timeOn == 'now'}" @click="changeTime('now')">现在</span>
-              <span :class="{on : timeOn == 'day'}" @click="changeTime('day')">今日</span>
-              <span :class="{on : timeOn == 'month'}" @click="changeTime('month')">本月</span>
-              <span :class="{on : timeOn == 'year'}" @click="changeTime('year')">本年</span>
-            </div> -->
-
             <div class="ed-item">
               <div class="ed-item-title">机房回路</div>
               <div class="ed-item-chart-box clearfix">
@@ -793,6 +787,7 @@ export default {
     return {
       dateNow: '',
       dtID: 'dt001',
+      historyTime: '',
       timeOn: 'now',
       direction: 'stop',
       flag: true, // 用于滚动节流
@@ -800,8 +795,7 @@ export default {
       dataValue: [],
 
       // 电梯概况
-      // general: ,
-
+      edState: 'maintenance',
       selectValue:'001',
       selectArr: [{
           value: '001',
@@ -1132,9 +1126,6 @@ export default {
   },
   mounted() {
 
-    // document.title = 'aaa'
-  
-    
     setTimeout(() => {
       let room_temp_chart = this.$echarts.getInstanceByDom(document.getElementById("room-temp-chart"));
       let west_chart = this.$echarts.getInstanceByDom(document.getElementById("west-chart"));
@@ -1211,6 +1202,10 @@ export default {
     }, 300)
 
     // 更新时间和实时数据
+    if (this.$route.params.id) {
+      this.dtID = this.$route.params.id
+    }
+    console.log(this.dtID)
     this.getCurrentData()
     this.dateNow = this.formatDate()
     this.getRealTime()
@@ -1417,7 +1412,7 @@ export default {
     },
 
 
-    // 获取实时数据（总）
+    // 获取实时数据和绘制历史数据（总）
     getRealTime() {
       api.detail.getCurrent(this.dtID).then(res => {
         // console.log(res.data)
@@ -1681,6 +1676,107 @@ export default {
 
     },
 
+    // 切换历史数据曲线
+    changeTime(time) {
+      console.log(time)
+      // if (time == 'now') {
+      //   this.historyTime = 'now'
+      //   this.timeOn = 'now'
+      // } else if (time == 'day') {
+      //   this.historyTime = 'day'
+      //   this.timeOn = 'day'
+      // } else if (time == 'day') {
+      //   this.historyTime = 'day'
+      //   this.timeOn = 'day'
+      // }
+      // this.drawAllCharts()
+    },
+
+    // 所有历史数据图表
+    drawAllCharts() {
+
+      // 机房温度
+      this.drawTemp()
+
+      // 机房湿度
+      this.drawWest()
+
+      // 机房风速
+      this.drawWind()
+
+      // 水浸
+      this.drawRoomWater()
+
+      // 风扇
+      this.drawAir()
+
+      // 电动机电压
+      this.drawMotorV()
+
+      // 电动机电流
+      this.drawMotorI()
+
+      // 电动机温度
+      this.drawMotorTemp()
+
+      // 电机振动
+      this.drawRoomVibrate()
+
+      // 制动器线圈温度
+      this.drawBrakeTemp()
+
+      // 制动器刹车片温度
+      this.drawBrakeSkrTemp()
+
+      // 制动器电压
+      this.drawVBrake()
+
+      // 制动器电流
+      this.drawIBrake()
+
+      // 曳引轮磨损
+      this.drawDrive()
+
+      // 限速器转速
+      this.drawRpm()
+
+      // 电梯层门 和电梯轿门（目前用的是层门数据）
+      this.drawFloorDoor()
+      this.drawEleDoor()
+
+      // 轿厢振动
+      this.drawBoxVibrate()
+
+      // 电梯当前楼层、速度、状态
+      this.drawBoxPosition()
+
+      // 轿厢荷载
+      this.drawBoxWeight()
+
+      // 机房安全回路
+      this.drawRoomSafe()
+
+      // 轿顶安全回路
+      this.drawBoxTopSafe()
+
+      // 轿门安全回路
+      this.drawBoxDoorSafe()
+
+      // 层门安全回路
+      this.drawFloorDoorSafe()
+
+      // 底坑安全回路
+      this.drawBoxBottomSafe()
+
+      // 层门门锁回路
+      this.drawFloorLock()
+
+      // 轿门门锁回路
+      this.drawBoxLock()
+    },
+
+    
+
 
     // 第一种情况
     // 机房温度
@@ -1688,7 +1784,7 @@ export default {
       let that = this
       let dataValue = [] // 类似于[[x1, y1], [x2, y2], ...]
 
-      api.detail.getD18(this.dtID).then(res => {
+      api.detail.getD1(this.dtID, this.historyTime).then(res => {
         // 组装xy数据
         let unit = res.data.result[0].unit
         let nowTimestamp = Date.now()
@@ -1747,7 +1843,7 @@ export default {
       let that = this
       let dataValue = []
 
-      api.detail.getD2(this.dtID).then(res => {
+      api.detail.getD2(this.dtID, this.historyTime).then(res => {
         // 组装xy数据
         let unit = res.data.result[0].unit
         let nowTimestamp = Date.now()
@@ -1793,7 +1889,7 @@ export default {
       let that = this
       let dataValue = []
 
-      api.detail.getD3(this.dtID).then(res => {
+      api.detail.getD3(this.dtID, this.historyTime).then(res => {
         // 组装xy数据
         let unit = res.data.result[0].unit
         let nowTimestamp = Date.now()
@@ -1842,7 +1938,7 @@ export default {
       let that = this
       let dataValue = []
 
-      api.detail.getD4(this.dtID).then(res => {
+      api.detail.getD4(this.dtID, this.historyTime).then(res => {
         // 组装xy数据
         let unit = res.data.result[0].unit
         let nowTimestamp = Date.now()
@@ -1896,7 +1992,7 @@ export default {
       let that = this
       let dataValue = []
 
-      api.detail.getD5(this.dtID).then(res => {
+      api.detail.getD5(this.dtID, this.historyTime).then(res => {
         // 组装xy数据
         let unit = res.data.result[0].unit
         let nowTimestamp = Date.now()
@@ -1951,7 +2047,7 @@ export default {
       let that = this
       let dataValue = []
 
-      api.detail.getD6(this.dtID).then(res => {
+      api.detail.getD6(this.dtID, this.historyTime).then(res => {
         // 组装xy数据
         let unit = res.data.result[0].unit
         let nowTimestamp = Date.now()
@@ -1997,7 +2093,7 @@ export default {
       let that = this
       let dataValue = []
 
-      api.detail.getD7(this.dtID).then(res => {
+      api.detail.getD7(this.dtID, this.historyTime).then(res => {
         // 组装xy数据
         let unit = res.data.result[0].unit
         let nowTimestamp = Date.now()
@@ -2043,7 +2139,7 @@ export default {
       let that = this
       let dataValue = []
 
-      api.detail.getD8(this.dtID).then(res => {
+      api.detail.getD8(this.dtID, this.historyTime).then(res => {
         // 组装xy数据
         let unit = res.data.result[0].unit
         let nowTimestamp = Date.now()
@@ -2097,7 +2193,7 @@ export default {
       //   motorVChart(dataValue)
       // })
 
-      api.detail.getD9(this.dtID).then(res => {
+      api.detail.getD9(this.dtID, this.historyTime).then(res => {
         // 组装xy数据
         let unit = res.data.result[0].unit
         let nowTimestamp = Date.now()
@@ -2144,7 +2240,7 @@ export default {
       let that = this
       let dataValue = []
 
-      api.detail.getD10(this.dtID).then(res => {
+      api.detail.getD10(this.dtID, this.historyTime).then(res => {
         // 组装xy数据
         let unit = res.data.result[0].unit
         let nowTimestamp = Date.now()
@@ -2195,7 +2291,7 @@ export default {
       let that = this
       let dataValue = []
 
-      api.detail.getD11(this.dtID).then(res => {
+      api.detail.getD11(this.dtID, this.historyTime).then(res => {
         // 组装xy数据
         let unit = res.data.result[0].unit
         let nowTimestamp = Date.now()
@@ -2241,7 +2337,7 @@ export default {
       let that = this
       let dataValue = []
 
-      api.detail.getD12(this.dtID).then(res => {
+      api.detail.getD12(this.dtID, this.historyTime).then(res => {
         // 组装xy数据
         let unit = res.data.result[0].unit
         let nowTimestamp = Date.now()
@@ -2287,7 +2383,7 @@ export default {
       let that = this
       let dataValue = []
 
-      api.detail.getD13(this.dtID).then(res => {
+      api.detail.getD13(this.dtID, this.historyTime).then(res => {
         // 组装xy数据
         let unit = res.data.result[0].unit
         let nowTimestamp = Date.now()
@@ -2333,7 +2429,7 @@ export default {
       let that = this
       let dataValue = []
 
-      api.detail.getD14(this.dtID).then(res => {
+      api.detail.getD14(this.dtID, this.historyTime).then(res => {
         // 组装xy数据
         let unit = res.data.result[0].unit
         let nowTimestamp = Date.now()
@@ -2380,7 +2476,7 @@ export default {
       let that = this
       let dataValue = []
 
-      api.detail.getD15(this.dtID).then(res => {
+      api.detail.getD15(this.dtID, this.historyTime).then(res => {
         // 组装xy数据
         let unit = res.data.result[0].unit
         let nowTimestamp = Date.now()
@@ -2427,7 +2523,7 @@ export default {
       let that = this
       let dataValue = []
 
-      api.detail.getD16(this.dtID).then(res => {
+      api.detail.getD16(this.dtID, this.historyTime).then(res => {
         // 组装xy数据
         let unit = res.data.result[0].unit
         let nowTimestamp = Date.now()
@@ -2489,7 +2585,7 @@ export default {
       let that = this
       let dataValue = []
 
-      api.detail.getD16(this.dtID).then(res => {
+      api.detail.getD16(this.dtID, this.historyTime).then(res => {
         // 组装xy数据
         let unit = res.data.result[0].unit
         let nowTimestamp = Date.now()
@@ -2551,7 +2647,7 @@ export default {
       let that = this
       let dataValue = []
 
-      api.detail.getD18(this.dtID).then(res => {
+      api.detail.getD18(this.dtID, this.historyTime).then(res => {
         // 组装xy数据
         let unit = res.data.result[0].unit
         let nowTimestamp = Date.now()
@@ -2598,7 +2694,7 @@ export default {
       let that = this
       let dataValue = []
 
-      api.detail.getD19(this.dtID).then(res => {
+      api.detail.getD19(this.dtID, this.historyTime).then(res => {
         // 组装xy数据
         let unit = res.data.result[0].unit
         let nowTimestamp = Date.now()
@@ -2641,7 +2737,7 @@ export default {
       let that = this
       let dataValue = []
 
-      api.detail.getD18(this.dtID).then(res => {
+      api.detail.getD20(this.dtID, this.historyTime).then(res => {
         // 组装xy数据
         let unit = res.data.result[0].unit
         let nowTimestamp = Date.now()
@@ -2685,7 +2781,7 @@ export default {
       let that = this
       let dataValue = []
 
-      api.detail.getD21(this.dtID).then(res => {
+      api.detail.getD21(this.dtID, this.historyTime).then(res => {
         // 组装xy数据
         let unit = res.data.result[0].unit
         let nowTimestamp = Date.now()
@@ -2747,7 +2843,7 @@ export default {
       let that = this
       let dataValue = []
 
-      api.detail.getD22(this.dtID).then(res => {
+      api.detail.getD22(this.dtID, this.historyTime).then(res => {
         // 组装xy数据
         let unit = res.data.result[0].unit
         let nowTimestamp = Date.now()
@@ -2809,7 +2905,7 @@ export default {
       let that = this
       let dataValue = []
 
-      api.detail.getD23(this.dtID).then(res => {
+      api.detail.getD23(this.dtID, this.historyTime).then(res => {
         // 组装xy数据
         let unit = res.data.result[0].unit
         let nowTimestamp = Date.now()
@@ -2871,7 +2967,7 @@ export default {
       let that = this
       let dataValue = []
 
-      api.detail.getD24(this.dtID).then(res => {
+      api.detail.getD24(this.dtID, this.historyTime).then(res => {
         // 组装xy数据
         let unit = res.data.result[0].unit
         let nowTimestamp = Date.now()
@@ -2933,7 +3029,7 @@ export default {
       let that = this
       let dataValue = []
 
-      api.detail.getD25(this.dtID).then(res => {
+      api.detail.getD25(this.dtID, this.historyTime).then(res => {
         // 组装xy数据
         let unit = res.data.result[0].unit
         let nowTimestamp = Date.now()
@@ -2996,7 +3092,7 @@ export default {
       let that = this
       let dataValue = []
 
-      api.detail.getD26(this.dtID).then(res => {
+      api.detail.getD26(this.dtID, this.historyTime).then(res => {
         // 组装xy数据
         let unit = res.data.result[0].unit
         let nowTimestamp = Date.now()
@@ -3059,7 +3155,7 @@ export default {
       let that = this
       let dataValue = []
 
-      api.detail.getD27(this.dtID).then(res => {
+      api.detail.getD27(this.dtID, this.historyTime).then(res => {
         // 组装xy数据
         let unit = res.data.result[0].unit
         let nowTimestamp = Date.now()
@@ -3174,10 +3270,21 @@ export default {
     color: #FFFFFF;
     line-height: 20px;
     height: 20px;
-    background: #6B50D0;
     padding: 0 12px;
     border-radius: 4px;
     margin-left: 20px;
+  }
+  .ed-profile-state span.normal{
+    background: #0DBA7F;
+  }
+  .ed-profile-state span.maintenance{
+    background: #6B50D0;
+  }
+  .ed-profile-state span.fault{
+    background: #FEC101;
+  }
+  .ed-profile-state span.help{
+    background: #F56F6F;
   }
   .ed-profile-table{
     width: 100%;
