@@ -417,7 +417,6 @@
 <style lang="stylus">
 // 配置
 @import '../assets/stylus/base'
-// @import '../assets/stylus/panel'
 
 .tableClass
   border none

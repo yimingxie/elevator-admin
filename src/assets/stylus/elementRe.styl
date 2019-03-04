@@ -1,31 +1,36 @@
 
 /*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
 ::-webkit-scrollbar {
-  width: 0.2857142857142857rem;
-  height: 0.2857142857142857rem;
-  border-radius: 1.4285714285714286rem;
-  margin-left: 1.4285714285714286rem;
+    width: 0.2857142857142857rem;
+    height: 0.2857142857142857rem;
+    background: rgba(13,186,127,0.20);
+    border: 1px solid #0DBA7F;
+    border-radius: 8px;
+    margin-left: 1.4285714285714286rem;
   // display:none
 }
 /*定义滚动条轨道 内阴影+圆角*/
 ::-webkit-scrollbar-track {
 /* -webkit-box-shadow: inset 0 0 0.42857142857142855rem rgba(0,0,0,0.3);
   */
-  border-radius: 1.4285714285714286rem;
-  background: #1B302D;
-  margin-left: 1.4285714285714286rem;
+   background: #070709;
+    border-radius: 8px;
+    margin-left: 1.4285714285714286rem;
 }
 /*定义滑块 内阴影+圆角*/
 ::-webkit-scrollbar-thumb {
   // border-radius: 1.4285714285714286rem;
 /* -webkit-box-shadow: inset 0 0 0.42857142857142855rem rgba(0,0,0,.3);
   */
-  transform: scale(3, 1)
-  background: #6AE7C7;
-  border-radius: 5.62px;
-  margin-left: 1.4285714285714286rem;
+    transform: scale(3, 1)
+    background: rgba(13,186,127,0.20);
+    border: 1px solid #0DBA7F;
+    border-radius: 8px;
+    margin-left: 1.4285714285714286rem;
 }
 // 滚动条 end
+
+
 //  下拉框--start
 .el-select-dropdown
   background: rgba(22,22,28,0.9)!important

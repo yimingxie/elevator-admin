@@ -909,7 +909,7 @@
                             name:'电梯运行里程',
                             type:'bar',
                             data:[120, 132, 101, 134, 90, 230, 210, 132, 101, 134, 90, 230],
-                            barWidth:25.4
+                            barWidth:'45%'
                         },
                         
                     ]
@@ -941,14 +941,17 @@
                         orient: 'vertical',
                         // data:[{name:'鸡',icon:'circle'},{name:'猪',icon:'circle'},,{name:'牛',icon:'circle'}],
                         align: 'left',
+                        itemGap: 15,
                         textStyle: {
                             color: '#66667F',
                             rich : {
                                 white: {
                                     color: "#fff",
                                     fontSize: 12,
-                                   
                                 },
+                                titleNameWidth: {
+                                    width:93
+                                }
                             },
                         },
                         // itemGap:'10%',
@@ -962,14 +965,14 @@
                         // data:['30以上','25-30','cc'],
                         formatter: function(name) {
                             var index = 0;
-                            var clientlabels = ['A类(75-100%)','B类（50%-75%）','C类（25%-50%）','D类（0-25%）'];
+                            var clientlabels = ['A类 (75%以上)','B类 (50-75%)','C类 (25-50%)','D类 (0-25%)'];
                             var clientcounts = [41,27,19,13];
                             clientlabels.forEach(function(value,i){
                                 if(value == name){
                                     index = i;
                                 }
                             });
-                            return name + "  " + "{white|" + clientcounts[index] + '%}';
+                            return  "{titleNameWidth|" + name + " } " + "{white|" + clientcounts[index] + '%}';
                         }
 
                     },
@@ -1006,7 +1009,7 @@
                             },
                             data:[{
                                 value:41,
-                                name:'A类(75%以上)',
+                                name:'A类 (75%以上)',
                                 itemStyle:{
                                     color: {
                                         type: 'linear',
@@ -1030,7 +1033,7 @@
                                 },
                             }, {
                                 value:27, 
-                                name:'B类(50-75%)',
+                                name:'B类 (50-75%)',
                                 itemStyle: {
                                     normal: {
                                         color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
@@ -1044,7 +1047,7 @@
                                 },
                             }, {
                                 value:19, 
-                                name:'C类(25-50%)',
+                                name:'C类 (25-50%)',
                                 itemStyle: {
                                     normal: {
                                         color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
@@ -1067,7 +1070,7 @@
                                 },
                             }, {
                                 value:13, 
-                                name:'D类(0-25%)',
+                                name:'D类 (0-25%)',
                                 itemStyle: {
                                     normal: {
                                         color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
@@ -1247,226 +1250,6 @@
 
  
                 var trendChart = echarts.init(document.getElementById('chartbar4'))
-                trendChart.setOption(option)
-            },
-             // 饼状图3
-            drawPieChart3() {
-                var data = [13.7, 13.4, 13.5, 36.1, 17.4]
-                    var option = {
-                    title : {
-                        text: '',
-                        subtext: '',
-                        x:'center'
-                    },
-                    tooltip : {
-                        trigger: 'item',
-                        formatter: "{a} <br/>{b} : {c} ({d}%)"
-                    },
-                    legend: {
-                        show: true,
-                        x2 : '0',
-                        y : 'center',
-                        // right:'-50',
-                        // top: '100',
-                        orient: 'vertical',
-                        // data:[{name:'鸡',icon:'circle'},{name:'猪',icon:'circle'},,{name:'牛',icon:'circle'}],
-                        align: 'left',
-                        textStyle: {
-                            color: '#66667F',
-                            rich : {
-                                white: {
-                                    color: "#fff",
-                                    fontSize: 12,
-                                   
-                                },
-                            },
-                        },
-                        // itemGap:'10%',
-                        padding: [20, 0],
-                        icon: 'circle',
-                        itemWidth:8,
-                        // 使用回调函数
-                        // formatter: function (value, key) {
-                        //     return 'Legend ' + value + key;
-                        // }
-                        // data:['30以上','25-30','cc'],
-                        formatter: function(name) {
-                            var index = 0;
-                            var clientlabels = ['40分钟以上','30-40分钟','20-30分钟','20分钟以下'];
-                            var clientcounts = [41,27,13,19];
-                            clientlabels.forEach(function(value,i){
-                                if(value == name){
-                                    index = i;
-                                }
-                            });
-                            return name + "  " + "{white|" + clientcounts[index] + '%}';
-                        }
-
-                    },
-                    
-                    toolbox: {
-                        show : false,
-                        feature : {
-                            mark : {show: true},
-                            dataView : {show: true, readOnly: false},
-                            magicType : {
-                                show: true,
-                                type: ['pie', 'funnel']
-                            },
-                            restore : {show: true},
-                            saveAsImage : {show: true}
-                        }
-                    },
-                    calculable : true,
-                    series : [
-                        {
-                            name:'维保人员维保梯数',
-                            type:'pie',
-                            // radius : [36, 85],
-                            radius : [45, 65],
-                            center : ['27%', '50%'],
-                          
-                            // roseType : 'radius',
-                            label: {
-                                normal: {
-                                    show: false,
-                                    color:'red'
-                                },
-                                // emphasis: {
-                                //     show: false,
-                                //     formatter: '{a}{c}{b}: {d}',
-                                //     position: 'inside', 
-                                // }
-                            },
-                            lableLine: {
-                                normal: {
-                                    // show: false
-                                },
-                                // emphasis: {
-                                //     show: true
-                                // }
-                            },
-                            // itemStyle: {
-                            //     normal: {
-                            //         color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-
-
-                            //         // 0% 处的颜色   
-                            //         offset: 0, color: 'green'  },
-                            //     {
-                                    
-                            //         // 100% 处的颜色
-                            //     offset: 1, color: 'yellow' 
-                            //     }], false)
-                            //     }
-                            // },
-                            // data:this.chartpie3Data,
-                            data:[{
-                                value:41,
-                                name:'40分钟以上',
-                                itemStyle:{
-                                    color: {
-                                        type: 'linear',
-                                        x: 0,
-                                        y: 0,
-                                        x2: 0,
-                                        y2: 1,
-                                        colorStops: [//{
-                                        //     offset: 0, color: 'red' // 0% 处的颜色
-                                        // }, 
-                                        {
-                                            offset: 0.2, color: '#0CB77D' // 0% 处的颜色
-                                        }, 
-                                        //  {offset: 0.5, color: 'green' // 0% 处的颜色
-                                        //  }, 
-                                        {
-                                            offset: 1, color: '#1A5F4F' // 100% 处的颜色
-                                        }],
-                                        globalCoord: true // 缺省为 false
-                                    }
-                                },
-                            }, {
-                                value:27, 
-                                name:'30-40分钟',
-                                itemStyle: {
-                                    normal: {
-                                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                                            // 0% 处的颜色
-                                        offset: 0, color: 'rgba(109,81,212,0.3)'},
-                                        {
-                                            // 100% 处的颜色
-                                        offset: 1, color: 'rgba(109,81,212,1)' 
-                                        }], false)
-                                    },
-                                    // emphasis:{
-                                    //     color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                                    //         // 0% 处的颜色
-                                    //     offset: 0, color: '#000'},
-                                    //     {
-                                    //         // 100% 处的颜色
-                                    //     offset: 1, color: 'yellow' 
-                                    //     }], false)
-                                    // }
-                                },
-                            }, {
-                                value:13, 
-                                name:'20-30分钟',
-                                itemStyle: {
-                                    normal: {
-                                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                                            // 0% 处的颜色
-                                        offset: 0, 
-                                        // color: 'rgba(254,168,56,0.3)'},
-                                        color: 'rgba(254,125,1,0.3)'},
-                                        {
-                                            // 100% 处的颜色
-                                        offset: 1, 
-                                        // color: '#FEC101',
-                                        color: 'rgba(254,125,1,1)',
-                                        }], false)
-                                    },
-                                    // emphasis:{
-                                    //     color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                                    //         // 0% 处的颜色
-                                    //     offset: 0, color: '#000'},
-                                    //     {
-                                    //         // 100% 处的颜色
-                                    //     offset: 1, color: 'yellow' 
-                                    //     }], false)
-                                    // }
-                                },
-                            }, {
-                                value:19, 
-                                name:'20分钟以下',
-                                itemStyle: {
-                                    normal: {
-                                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                                            // 0% 处的颜色
-                                        offset: 0, color: 'rgba(254,56,143,0.4)'},
-                                        {
-                                            // 100% 处的颜色
-                                        offset: 1, color: '#F75F5F' 
-                                        }], false)
-                                    },
-
-                                    // emphasis:{
-                                    //     color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                                    //         // 0% 处的颜色
-                                    //     offset: 0, color: '#000'},
-                                    //     {
-                                    //         // 100% 处的颜色
-                                    //     offset: 1, color: 'yellow' 
-                                    //     }], false)
-                                    // }
-                                },
-                            }],
-                            // color: ['red','#24505D','#5FD1B7','#3787B7','#7b91bf','#b068b1','#6b68ad','#c02c3a']
-                        },
-                        
-                    ]
-                }
-
-                var trendChart = echarts.init(document.getElementById('chartpie3'))
                 trendChart.setOption(option)
             },
             // 渐变折线图1
@@ -3598,13 +3381,10 @@
                         }
                     }
                 }],
-                yAxis : [
-                    {
-                    type : 'value',
-                    // min:0,
-                    // max:150,
-                    axisLine:{  
-                        lineStyle:{  
+                yAxis: [{
+                    type: 'value',
+                    axisLine: {  
+                        lineStyle: {  
                             color:'#24242f',  
                             width:1,//这里是为了突出显示加上的  
                         }  
@@ -3623,12 +3403,11 @@
                     axisLabel: {
                         show: true,
                         textStyle: {
-                        fontSize : 12,  
-                        color:'#66667F'
+                            fontSize : 12,  
+                            color:'#66667F'
                         }
                     },
-                    }
-                ],
+                }],
                 series : [
                     {
                         name:'C类',
@@ -3776,116 +3555,114 @@
                 var chart = document.getElementById("lineChart17");
                 var echart = echarts.init(chart);
                 var option = {
-                tooltip : {
-                    trigger: 'axis',
-                },
-                legend: {
-                    data:['D类','全市参考范围'],
-                    itemGap: 30,
-                    // orient: 'vertical',  //垂直显示
-                    y: 'bottom',    //延Y轴居中
-                    x: 'center', //居右显示
-                    textStyle:{
-                        fontSize : 12,  
-                        fontFamily : 'Microsoft YaHei',  
-                        color:'#66667F'  
+                    tooltip : {
+                        trigger: 'axis',
                     },
-                    itemWidth: 8,
-                    show:true,
-                    icon:'circle',
-                    // backgroundColor:'red'
-                },
-                // color:['#FEC101','#6B50D0'],
-                color:['#6B50D0','#FE7D01'],
-                //工具栏
-                toolbox: {
-                    show : false ,
-                    feature : {
-                    mark : {show: true},
-                    dataView : {show: true, readOnly: false},
-                    magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
-                    restore : {show: true},
-                    saveAsImage : {show: true}
-                    }
-                },
-                grid: {
-                    right: '3%', //相当于距离左边效果:padding-left
-                    left: '3%', //相当于距离上边效果:padding-top
-                    // bottom: '15%',
-                    bottom: '20%',
-                    top: '10%',
-                    containLabel: true
-                },
-                calculable : true,
-                xAxis : [{
-                    type : 'category',
-                    boundaryGap : false,
-                    data : this.month,
-                    axisLine:{
-                        lineStyle:{  
-                            color:'#24242f',  
-                            width:1,//这里是为了突出显示加上的  
-                        }  
-                    },
-                    axisLabel: {
-                        show: true,
-                        textStyle: {
+                    legend: {
+                        data:['D类','全市参考范围'],
+                        itemGap: 30,
+                        // orient: 'vertical',  //垂直显示
+                        y: 'bottom',    //延Y轴居中
+                        x: 'center', //居右显示
+                        textStyle:{
                             fontSize : 12,  
-                            // fontFamily : '微软雅黑',  
-                            color:'#66667F'
-                        }
-                    }
-                }],
-                yAxis : [
-                    {
-                    type : 'value',
-                    // min:0,
-                    // max:150,
-                    axisLine:{  
-                        lineStyle:{  
-                            color:'#24242f',  
-                            width:1,//这里是为了突出显示加上的  
-                        }  
-                    },
-                    //分割线
-                    splitLine:{
+                            fontFamily : 'Microsoft YaHei',  
+                            color:'#66667F'  
+                        },
+                        itemWidth: 8,
                         show:true,
-                        lineStyle: {
-                        // 使用深浅的间隔色
-                            color: '#3F3F49',
-                            type:'dashed',
-                            // width:3,
+                        icon:'circle',
+                        // backgroundColor:'red'
+                    },
+                    color:['#6B50D0','#FE7D01'],
+                    toolbox: { // 工具栏
+                        show : false ,
+                        feature : {
+                        mark : {show: true},
+                        dataView : {show: true, readOnly: false},
+                        magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                        restore : {show: true},
+                        saveAsImage : {show: true}
                         }
                     },
-                    //Y轴文字
-                    axisLabel: {
-                        show: true,
-                        textStyle: {
-                        fontSize : 12,  
-                        color:'#66667F'
+                    grid: {
+                        right: '3%', //相当于距离左边效果:padding-left
+                        left: '3%', //相当于距离上边效果:padding-top
+                        // bottom: '15%',
+                        bottom: '20%',
+                        top: '10%',
+                        containLabel: true
+                    },
+                    calculable : true,
+                    xAxis : [{
+                        type : 'category',
+                        boundaryGap : false,
+                        data : this.month,
+                        axisLine:{
+                            lineStyle:{  
+                                color:'#24242f',  
+                                width:1,//这里是为了突出显示加上的  
+                            }  
+                        },
+                        axisLabel: {
+                            show: true,
+                            textStyle: {
+                                fontSize : 12,  
+                                // fontFamily : '微软雅黑',  
+                                color:'#66667F'
+                            }
                         }
-                    },
-                    }
-                ],
-                series : [
-                    {
-                        name:'D类',
-                        type:'line',
-                        smooth:true,
-                        showSymbol: false,
-                        stack: 'D类',
-                        data: [12, 116, 200, 87, 105, 202, 105,126, 108, 25, 143, 108, 87, 150, 22],
-                    },
-                   
-                    {
-                        name:'全市参考范围',
-                        type:'line',
-                        smooth:true,
-                        showSymbol: false,
-                        stack: '全市参考范围',
-                        data: [4, 85, 57, 40, 54, 97, 45,76, 34, 17, 86, 53, 67, 87, 10],
-                    },
-                ]
+                    }],
+                    yAxis : [
+                        {
+                        type : 'value',
+                        // min:0,
+                        // max:150,
+                        axisLine:{  
+                            lineStyle:{  
+                                color:'#24242f',  
+                                width:1,//这里是为了突出显示加上的  
+                            }  
+                        },
+                        //分割线
+                        splitLine:{
+                            show:true,
+                            lineStyle: {
+                            // 使用深浅的间隔色
+                                color: '#3F3F49',
+                                type:'dashed',
+                                // width:3,
+                            }
+                        },
+                        //Y轴文字
+                        axisLabel: {
+                            show: true,
+                            textStyle: {
+                            fontSize : 12,  
+                            color:'#66667F'
+                            }
+                        },
+                        }
+                    ],
+                    series : [
+                        {
+                            name:'D类',
+                            type:'line',
+                            smooth:true,
+                            showSymbol: false,
+                            stack: 'D类',
+                            data: [12, 116, 200, 87, 105, 202, 105,126, 108, 25, 143, 108, 87, 150, 22],
+                        },
+                    
+                        {
+                            name:'全市参考范围',
+                            type:'line',
+                            smooth:true,
+                            showSymbol: false,
+                            stack: '全市参考范围',
+                            data: [4, 85, 57, 40, 54, 97, 45,76, 34, 17, 86, 53, 67, 87, 10],
+                        },
+                    ]
                 };
                         
                 echart.setOption(option);
@@ -4013,7 +3790,7 @@
     };
 </script>
 
-<style lang="stylus" scoped>
+<style lang="stylus">
 // 配置
 @import '../assets/stylus/base'
 @import '../assets/stylus/panel'

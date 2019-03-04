@@ -83,10 +83,10 @@ let protocol = process.env.NODE_ENV !== 'production' ? 'http:' : window.location
 
 // 环境的切换
 if (process.env.NODE_ENV == 'development') { 
-  axios.defaults.baseURL = `${protocol}//iot.gidomino.com`
+  axios.defaults.baseURL = `${protocol}//192.168.100.7:8080`
   // axios.defaults.baseURL = `${protocol}//192.168.100.11:8080`
   // axios.defaults.baseURL = `${protocol}//127.0.0.1/`
- } else if (process.env.NODE_ENV == 'debug') { 
+ } else if (process.env.NODE_ENV == 'debug') {
   axios.defaults.baseURL = '';
  } else if (process.env.NODE_ENV == 'production') { 
   axios.defaults.baseURL = `${protocol}//iot.gidomino.com`

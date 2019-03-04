@@ -9,9 +9,58 @@ export default  {
      * @param  {Object} 告警规则参数
      * @return {Promise}
      */
-  elevator (offst,limit) {
+  // 创建建筑
+  createBuilding(params) {
+    return http.post(
+      `/elevator/building/`, params
+    )
+  },
+ 
+  getBuilding(buildingId) {
     return http.get(
-      `http://127.0.0.1/elevator/building?offset=${offst}&limit=${limit}`
+      `/elevator/building/${buildingId}`
+    )
+  },
+  // 查询建筑列表
+  getBuildings(pageIndex,pageSize) {
+    return http.get(
+      `/elevator/building?pageIndex=${pageIndex}&pageSize=${pageSize}`
+    )
+  },
+  // 创建公司
+  createCorp(params) {
+    return http.post(
+      `/elevator/corp/`, params
+    )
+  },
+  // 查询公司列表
+  getCorps(pageIndex,pageSize) {
+    return http.get(
+      `/elevator/corp?pageIndex=${pageIndex}&pageSize=${pageSize}`
+    )
+  },
+  // 创建电梯
+  createLift(params) {
+    return http.post(
+      `/elevator/lift`, params
+    )
+  },
+  // 查询电梯列表
+  getLifts(pageIndex,pageSize) {
+    return http.get(
+      `/elevator/lift?pageIndex=${pageIndex}&pageSize=${pageSize}`
+    )
+  },
+  // 创建报警
+  createAlarm(params) {
+    return http.post(
+      `/elevator/alarm`, params
+    )
+  },
+  // 查询报警列表
+  getAlarms(pageIndex,pageSize) {
+    return http.get(
+      `/elevator/alarm?pageIndex=${pageIndex}&pageSize=${pageSize}`
     )
   },
 }

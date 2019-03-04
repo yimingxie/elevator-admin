@@ -97,10 +97,10 @@
                                 <span class="rect"></span>
                                 <span class="iconImg iconImg2"></span>
                                 <div class="summaryItem" >
-                                    <div><span class="info-number" id='time1'>844</span></div>
+                                    <div><span class="info-number" id='time1'>1854</span></div>
                                     <div class="info-label">维保企业数</div>
                                     <span class="border-line"></span>
-                                    <div class="chart_title">2366<span class="unit">梯/天</span></div>
+                                    <div class="chart_title">206<span class="unit">梯/天</span></div>
                                 </div>
                             </div>
                         </div>
@@ -154,16 +154,16 @@
                                 <span  class="rect" ></span>
                                 <span class="iconImg iconImg3"></span>
                                 <div class="summaryItem" style="padding: 51px 0 20px 49px;">
-                                    <div><span class="info-number" id='time1'>1854</span></div>
+                                    <div><span class="info-number" id='time1'>3.5</span><span class="unit">h</span></div>
                                     <div class="info-label">维保平均时长</div>
                                 </div>
                                 <div style="clear:both"></div>
                             </div>
                             <div>
-                                <span class="rect"></span>
+                                <span class="rect" style="border-bottom-left-radius: 10px;"></span>
                                 <span class="iconImg iconImg4"></span>
                                 <div class="summaryItem" style="padding: 51px 0 20px 49px;">
-                                    <div><span class="info-number" id='time1'>1854</span></div>
+                                    <div><span class="info-number" id='time1'>10</span><span class="unit">%</span></div>
                                     <div class="info-label">低于40分钟</div>
                                 </div>
                             </div>
@@ -176,7 +176,7 @@
                                 <div class="chart-x-title">
                                     <span class="chart_title">3.5h<span class="unit">平均时长</span></span>
                                     <span class="chart_title">20%<span class="unit">低于40分钟</span></span>
-                                    <span class="chart_title">20%<span class="unit">低于50分钟</span></span>
+                                    <span class="chart_title">30%<span class="unit">低于50分钟</span></span>
                                 </div>
                                 <!-- <span class="chart_title">3.5h<span class="unit">平均时长</span></span>
                                 <span class="chart_title">20%<span class="unit">低于40分钟</span></span>
@@ -214,7 +214,7 @@
                                 <div class="info-label"><img src="../assets/images/hs/today.png" alt=""/>今天</div>
                                 <div class="info-label"><img src="../assets/images/hs/quyu.png" alt=""/>深圳市{{ region }}</div>
                             </div>
-                            <div class="summaryItem summaryItemList summaryItemList_x" style="padding-bottom: 213px;">
+                            <div class="summaryItem summaryItemList">
                                 <div class=""><span class="info-number" id='time1' style="color: #0DBA7F;">1687</span><span class="unit" style="color: rgb(13, 186, 127);"> km</span></div>
                                 <div class="info-label">2019年累计运行里程</div>
                                 <div><span class="info-number fontSize18" id='time1'>300</span><span class="unit"> km/梯</span></div>
@@ -486,9 +486,9 @@
         },
         mounted(){
             let _this = this
-            // api.corp.elevator(1,5).then(res => {
-            //     console.log(JSON.stringify(res))
-            // })
+            api.corp.getBuilding(1111).then(res => {
+                console.log(JSON.stringify(res))
+            })
             console.log('result====' + this.data)
             // 维保及时率统计
             this.drawBarChart()
@@ -988,21 +988,25 @@
                     },
                     legend: {
                         show: true,
-                        x2 : '0',
+                        x2 : -3,
                         y : 'center',
                         // right:'-50',
                         // top: '100',
                         orient: 'vertical',
                         // data:[{name:'鸡',icon:'circle'},{name:'猪',icon:'circle'},,{name:'牛',icon:'circle'}],
                         align: 'left',
+                        itemGap: 15,
                         textStyle: {
+                            lineHeight:100,
                             color: '#66667F',
                             rich : {
                                 white: {
                                     color: "#fff",
                                     fontSize: 12,
-                                    align:'right'
                                 },
+                                titleNameWidth: {
+                                    width:48
+                                }
                             },
                         },
                         // itemGap:'10%',
@@ -1023,7 +1027,7 @@
                                     index = i;
                                 }
                             });
-                            return name + "   " + "{white|" + clientcounts[index] + '%}';
+                            return "{titleNameWidth|" + name + " }  " + "{white|" + clientcounts[index] + '%}';
                         }
 
                     },
@@ -1331,7 +1335,7 @@
                             name:'电梯运行里程',
                             type:'bar',
                             data:[120, 132, 101, 134, 90, 230, 210, 132, 101, 134, 90, 230],
-                            barWidth:25.4
+                            barWidth:'45%'
                         },
                         
                     ]
@@ -1363,14 +1367,17 @@
                         orient: 'vertical',
                         // data:[{name:'鸡',icon:'circle'},{name:'猪',icon:'circle'},,{name:'牛',icon:'circle'}],
                         align: 'left',
+                        itemGap: 15,
                         textStyle: {
                             color: '#66667F',
                             rich : {
                                 white: {
                                     color: "#fff",
                                     fontSize: 12,
-                                   
                                 },
+                                titleNameWidth: {
+                                    width:93
+                                }
                             },
                         },
                         // itemGap:'10%',
@@ -1384,14 +1391,14 @@
                         // data:['30以上','25-30','cc'],
                         formatter: function(name) {
                             var index = 0;
-                            var clientlabels = ['A类(75-100%)','B类（50%-75%）','C类（25%-50%）','D类（0-25%）'];
+                            var clientlabels = ['A类 (75%以上)','B类 (50-75%)','C类 (25-50%)','D类 (0-25%)'];
                             var clientcounts = [41,27,19,13];
                             clientlabels.forEach(function(value,i){
                                 if(value == name){
                                     index = i;
                                 }
                             });
-                            return name + "  " + "{white|" + clientcounts[index] + '%}';
+                            return  "{titleNameWidth|" + name + " } " + "{white|" + clientcounts[index] + '%}';
                         }
 
                     },
@@ -1428,7 +1435,7 @@
                             },
                             data:[{
                                 value:41,
-                                name:'A类(75%以上)',
+                                name:'A类 (75%以上)',
                                 itemStyle:{
                                     color: {
                                         type: 'linear',
@@ -1452,7 +1459,7 @@
                                 },
                             }, {
                                 value:27, 
-                                name:'B类(50-75%)',
+                                name:'B类 (50-75%)',
                                 itemStyle: {
                                     normal: {
                                         color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
@@ -1466,7 +1473,7 @@
                                 },
                             }, {
                                 value:19, 
-                                name:'C类(25-50%)',
+                                name:'C类 (25-50%)',
                                 itemStyle: {
                                     normal: {
                                         color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
@@ -1489,7 +1496,7 @@
                                 },
                             }, {
                                 value:13, 
-                                name:'D类(0-25%)',
+                                name:'D类 (0-25%)',
                                 itemStyle: {
                                     normal: {
                                         color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
@@ -1693,14 +1700,17 @@
                         orient: 'vertical',
                         // data:[{name:'鸡',icon:'circle'},{name:'猪',icon:'circle'},,{name:'牛',icon:'circle'}],
                         align: 'left',
+                        itemGap: 15,
                         textStyle: {
                             color: '#66667F',
                             rich : {
                                 white: {
                                     color: "#fff",
                                     fontSize: 12,
-                                   
                                 },
+                                titleNameWidth: {
+                                    width:75
+                                }
                             },
                         },
                         // itemGap:'10%',
@@ -1721,7 +1731,7 @@
                                     index = i;
                                 }
                             });
-                            return name + "  " + "{white|" + clientcounts[index] + '%}';
+                            return "{titleNameWidth|" +  name + " } " + "{white|" + clientcounts[index] + '%}';
                         }
 
                     },
@@ -1742,11 +1752,11 @@
                     calculable : true,
                     series : [
                         {
-                            name:'维保人员维保梯数',
+                            name:'维保时长',
                             type:'pie',
                             // radius : [36, 85],
                             radius : [45, 65],
-                            center : ['27%', '50%'],
+                            center : ['30%', '50%'],
                           
                             // roseType : 'radius',
                             label: {
@@ -2909,8 +2919,8 @@
             },
             // 渐变折线图7
             drawLineChart7(){
-                var chart = document.getElementById("lineChart7");
-                var echart = echarts.init(chart);
+                var chart1 = document.getElementById("lineChart7");
+                var echart = echarts.init(chart1);
                 var option = {
                     tooltip: {
                         trigger: 'axis',
@@ -2972,7 +2982,7 @@
                         }
                     }],
                     yAxis : [{
-                        type : 'value',
+                        type: 'value',
                         // min:0,
                         // max:150,
                         axisLine: {
@@ -3201,154 +3211,154 @@
                 var chart = document.getElementById("lineChart9");
                 var echart = echarts.init(chart);
                 var option = {
-                tooltip : {
-                    trigger: 'axis',
-                },
-                legend: {
-                    data:['机房安全回路','轿顶安全回路','轿门安全回路','层门安全回路','底坑安全回路'],
-                    itemGap: 10,
-                    itemWidth:8,
-                    // orient: 'vertical',  //垂直显示
-                    y: 'bottom',    //延Y轴居中
-                    x: 'center', //居右显示
-                    textStyle:{
-                        fontSize : 12,  
-                        fontFamily : 'Microsoft YaHei',  
-                        color:'#66667F'  
+                    tooltip : {
+                        trigger: 'axis',
                     },
-                    show:true,
-                    icon:'circle',
-                    // backgroundColor:'red'
-                },
-                // color:['#FEC101','#FB7027','#CB500F','#E22340','#6B50D0'],
-                color:['#FE7D01','#CB500F','#FEC101','#E22340','#6B50D0'],
-                //工具栏
-                toolbox: {
-                    show : false ,
-                    feature : {
-                    mark : {show: true},
-                    dataView : {show: true, readOnly: false},
-                    magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
-                    restore : {show: true},
-                    saveAsImage : {show: true}
-                    }
-                },
-                grid: {
-                    right: '3%', //相当于距离左边效果:padding-left
-                    left: '3%', //相当于距离上边效果:padding-top
-                    // bottom: '15%',
-                    bottom: '20%',
-                    top: '10%',
-                    containLabel: true
-                },
-                calculable : true,
-                xAxis : [{
-                    type : 'category',
-                    boundaryGap : false,
-                    data : this.day,
-                    axisLine:{
-                        lineStyle:{  
-                            color:'#24242f',  
-                            width:1,//这里是为了突出显示加上的  
-                        }  
-                    },
-                    axisLabel: {
-                        show: true,
-                        textStyle: {
+                    legend: {
+                        data:['机房安全回路','轿顶安全回路','轿门安全回路','层门安全回路','底坑安全回路'],
+                        itemGap: 10,
+                        itemWidth:8,
+                        // orient: 'vertical',  //垂直显示
+                        y: 'bottom',    //延Y轴居中
+                        x: 'center', //居右显示
+                        textStyle:{
                             fontSize : 12,  
-                            // fontFamily : '微软雅黑',  
-                            color:'#66667F'
-                        }
-                    }
-                }],
-                yAxis : [
-                    {
-                    type : 'value',
-                    // min:0,
-                    // max:150,
-                    axisLine:{  
-                        lineStyle:{  
-                            color:'#24242f',  
-                            width:1,//这里是为了突出显示加上的  
-                        }  
-                    },
-                    //分割线
-                    splitLine:{
+                            fontFamily : 'Microsoft YaHei',  
+                            color:'#66667F'  
+                        },
                         show:true,
-                        lineStyle: {
-                        // 使用深浅的间隔色
-                            color: '#3F3F49',
-                            type:'dashed',
-                            // width:3,
+                        icon:'circle',
+                        // backgroundColor:'red'
+                    },
+                    // color:['#FEC101','#FB7027','#CB500F','#E22340','#6B50D0'],
+                    color:['#FE7D01','#CB500F','#FEC101','#E22340','#6B50D0'],
+                    //工具栏
+                    toolbox: {
+                        show : false ,
+                        feature : {
+                        mark : {show: true},
+                        dataView : {show: true, readOnly: false},
+                        magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                        restore : {show: true},
+                        saveAsImage : {show: true}
                         }
                     },
-                    //Y轴文字
-                    axisLabel: {
-                        show: true,
-                        textStyle: {
-                        fontSize : 12,  
-                        color:'#66667F'
+                    grid: {
+                        right: '3%', //相当于距离左边效果:padding-left
+                        left: '3%', //相当于距离上边效果:padding-top
+                        // bottom: '15%',
+                        bottom: '20%',
+                        top: '10%',
+                        containLabel: true
+                    },
+                    calculable : true,
+                    xAxis : [{
+                        type : 'category',
+                        boundaryGap : false,
+                        data : this.day,
+                        axisLine:{
+                            lineStyle:{  
+                                color:'#24242f',  
+                                width:1,//这里是为了突出显示加上的  
+                            }  
+                        },
+                        axisLabel: {
+                            show: true,
+                            textStyle: {
+                                fontSize : 12,  
+                                // fontFamily : '微软雅黑',  
+                                color:'#66667F'
+                            }
                         }
-                    },
-                    }
-                ],
-                series : [
-                    {
-                        name:'机房安全回路',
-                        type:'line',
-                        smooth:true,
-                        areaStyle: {
-                            color:'rgba(249,213,98,0.3)' 
+                    }],
+                    yAxis : [
+                        {
+                        type : 'value',
+                        // min:0,
+                        // max:150,
+                        axisLine:{  
+                            lineStyle:{  
+                                color:'#24242f',  
+                                width:1,//这里是为了突出显示加上的  
+                            }  
                         },
-                        showSymbol: false,
-                        stack: '总量5',
-                        data: this.Xdata,
-                    },
-                    {
-                        name:'轿顶安全回路',
-                        type:'line',
-                        smooth:true,
-                        areaStyle: {
-                            color:'rgba(251,112,39,0.3)'
+                        //分割线
+                        splitLine:{
+                            show:true,
+                            lineStyle: {
+                            // 使用深浅的间隔色
+                                color: '#3F3F49',
+                                type:'dashed',
+                                // width:3,
+                            }
                         },
-                        showSymbol: false,
-                        stack: '总量5',
-                        data: this.Xdata,
-                    },
-                    {
-                        name:'轿门安全回路',
-                        type:'line',
-                        smooth:true,
-                        areaStyle: {
-                            color:'rgba(245,111,111,0.3)'
+                        //Y轴文字
+                        axisLabel: {
+                            show: true,
+                            textStyle: {
+                            fontSize : 12,  
+                            color:'#66667F'
+                            }
                         },
-                        showSymbol: false,
-                        stack: '总量5',
-                        data: this.Xdata,
-                    },
-                    {
-                        name:'层门安全回路',
-                        type:'line',
-                        smooth:true,
-                        areaStyle: {
-                            color:'rgba(226,35,64,0.3)'
+                        }
+                    ],
+                    series : [
+                        {
+                            name:'机房安全回路',
+                            type:'line',
+                            smooth:true,
+                            areaStyle: {
+                                color:'rgba(249,213,98,0.3)' 
+                            },
+                            showSymbol: false,
+                            stack: '总量5',
+                            data: this.Xdata,
+                        },
+                        {
+                            name:'轿顶安全回路',
+                            type:'line',
+                            smooth:true,
+                            areaStyle: {
+                                color:'rgba(251,112,39,0.3)'
+                            },
+                            showSymbol: false,
+                            stack: '总量5',
+                            data: this.Xdata,
+                        },
+                        {
+                            name:'轿门安全回路',
+                            type:'line',
+                            smooth:true,
+                            areaStyle: {
+                                color:'rgba(245,111,111,0.3)'
+                            },
+                            showSymbol: false,
+                            stack: '总量5',
+                            data: this.Xdata,
+                        },
+                        {
+                            name:'层门安全回路',
+                            type:'line',
+                            smooth:true,
+                            areaStyle: {
+                                color:'rgba(226,35,64,0.3)'
 
+                            },
+                            showSymbol: false,
+                            stack: '总量5',
+                            data: this.Xdata,
+                        },{
+                            name:'底坑安全回路',
+                            type:'line',
+                            smooth:true,
+                            areaStyle: {
+                                color:'rgba(90,57,213,0.3)'
+                            },
+                            showSymbol: false,
+                            stack: '总量5',
+                            data: this.Xdata,
                         },
-                        showSymbol: false,
-                        stack: '总量5',
-                        data: this.Xdata,
-                    },{
-                        name:'底坑安全回路',
-                        type:'line',
-                        smooth:true,
-                        areaStyle: {
-                            color:'rgba(90,57,213,0.3)'
-                        },
-                        showSymbol: false,
-                        stack: '总量5',
-                        data: this.Xdata,
-                    },
-                ]
+                    ]
                 };
                         
                 echart.setOption(option);
@@ -3480,7 +3490,7 @@
     };
 </script>
 
-<style lang="stylus" scoped>
+<style lang="stylus">
 // 配置
 @import '../assets/stylus/base'
 @import '../assets/stylus/panel'

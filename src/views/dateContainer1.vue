@@ -386,7 +386,6 @@
 <style lang="stylus" >
 // 配置
 @import '../assets/stylus/base'
-@import '../assets/stylus/pageSty'
 
 .tableClass
   border none

@@ -14,7 +14,7 @@
             
             <span id="isAllMap" v-if="!isEnlargeMap" class="MapTitle_btn">查看全市电梯分布</span>
             <div class="search1">
-                <input class="search_input" placeholder="电梯名称/注册代码" />
+                <input id='tipinput' class="search_input" placeholder="搜索" />
                 <span class="search_btn"></span>
             </div>
             <span v-if="isEnlargeMap" class="MapTitle_title"><span @click="drawMap()"> &lt; 返回全市 / </span>  深圳市{{ region }}</span>
@@ -27,7 +27,6 @@
         </div>
     </div>
 </template>
-
 <script>
     import Vue from 'vue'
     import api from 'api'
@@ -35,10 +34,8 @@
     import gcoord from 'gcoord'
     import AMapUI from 'AMapUI'
     var _this = this
-    // var sel = '<router-link to="/index">Home</router-link>'
-    var sel = '<a >查看详情</a>'
+    var sel = '<el-select v-model="selectValue" placeholder="请选择"><el-option v-for="(item, index) in options" :key="index" :label="item.label" :value="item.value"></el-option></el-select>'
     console.log('sel===' + sel)
-    
     // 生成html 和 时间
     var MyComponent = Vue.extend({
         template: `<div class="infoWindows" :class="infoWindowsClass">
@@ -52,7 +49,7 @@
             <div class="infoWindows_data">{{ name }}</div>
             <div class="infoWindows_info"> 使用地点：</div>
             <div class="infoWindows_data">{{ name }}</div>
-            <div class="infoWindows_details"> <a :href='url'>查看详情</a> </div>
+            <div class="infoWindows_details"><a href="/lift/gov/#/detail">查看详情</a></div>
             <i class="detailIcon"></i>
             <span class="bottomImg"></span>
         </div>`,
@@ -62,7 +59,7 @@
                 location:'000，000',
                 name:0,
                 title:1,
-                type:9,
+                type:0,
                 selectValue :'12楼A区',
                 options : [{
                     value: '12A',
@@ -78,42 +75,12 @@
                 // bottomImgClass: 'bottomImg1',
                 typeInfo:'',
                 infoWindowsClass:'infoWindowsClass1',
-                url : '/lift/gov/#/detail'
+                
             }
         },
-        // created(){
-            // Vue.nextTick(function () {
-                
-            // })
-            // this.$nextTick(() => {
-            //     // DOM 更新了
-            //     console.log('type' + this.type)
-            //     this.url = '/lift/gov/#/detail?id=' + this.type
-            // })
-        // },
-        beforeCreate:function(){
-            console.log("组件实例化之前执行的函数");
-        },
-        created:function(){
-            console.log("组件实例化化完毕，但页面还未显示");
-        },
-        beforeMount:function(){
-            console.log("组件挂载前，页面仍未展示，但虚拟dom已经配置");
-        },
-        mounted:function(){
-            console.log('type' + this.type)
-            console.log("组件挂载后，此方法执行后，页面显示");
-        },
-        beforeUpdate:function(){
-            console.log('type' + this.type)
-            console.log("组件更新前，页面仍未更新，但虚拟dom已经配置");
-        },
-        updated:function(){
-            console.log('type' + this.type)
-            console.log("组件更新，此方法执行后，页面显示");
-        },
-
+    
         watch:{
+            
             type(){
                 if( this.type === 0) {
                     this.infoWindowsClass = 'infoWindowsClass1'
@@ -128,14 +95,7 @@
                     this.infoWindowsClass = 'infoWindowsClass4'
                     this.typeInfo = '事故救援'
                 }
-                console.log('1111111===' + JSON.stringify(this.topImgClass))
-                console.log('type' + this.type)
-                this.url = '/lift/gov/#/detail?id=' + this.type
-            }
-        },
-        method:{
-            aaa() {
-                
+                // console.log('1111111===' + JSON.stringify(this.topImgClass))
             }
         }
     });
@@ -191,29 +151,6 @@
 
 
         methods: {
-            // goDetail() {
-            //     console.log(11)
-            // },
-            aaa () {
-                alert(1)
-                router.push({ name: 'index', params: { id: 123 }})
-            },
-            toAmap(location){
-                return gcoord.transform(
-                    location,    // 经纬度坐标
-                    gcoord.WGS84,
-                    gcoord.AMap
-                );
-                // return result
-            },
-            toWgs(location){
-                return gcoord.transform(
-                    location,    // 经纬度坐标
-                    gcoord.AMap,
-                    gcoord.WGS84
-                );
-                // return result
-            },
             drawMap(zoom_x){
                 var _this = this
                 // _this.isAllMap = false
@@ -223,62 +160,96 @@
                 var map = new AMap.Map('container', {
                     cursor: 'default',
                     // zoom: 10,
+                    resizeEnable: true,
                     zoom: zoom_x,
                     center: [114.191998,22.641178],
                     mapStyle: "amap://styles/1bfbe59619e6c0b9f07090f826d40521"
                 });
                 // 搜索地图
-                // var autoOptions = {
-                //     input: "tipinput"
-                // };
-                // var auto = new AMap.Autocomplete(autoOptions);
-                // var placeSearch = new AMap.PlaceSearch({
-                //     map: map
-                // });  //构造地点查询类1
-                // AMap.event.addListener(auto, "select", select);//注册监听，当选中某条记录时会触发
-                // function select(e) {
-                //     placeSearch.setCity(e.poi.adcode);
-                //     placeSearch.search(e.poi.name);  //关键字查询查询
-                // }
+                var autoOptions = {
+                    input: "tipinput"
+                };
+                var auto = new AMap.Autocomplete(autoOptions);
+                var placeSearch = new AMap.PlaceSearch({
+                    map: map
+                });  //构造地点查询类1
+                AMap.event.addListener(auto, "select", select);//注册监听，当选中某条记录时会触发
+                function select(e) {
+                    placeSearch.setCity(e.poi.adcode);
+                    placeSearch.search(e.poi.name);  //关键字查询查询
+                }
                 // 搜索地图 end-//
+
+
+                // 画定位图标
+                var overlays = [];
                 // var count = 0, clickListener;
                 // var _onClick = function(e) {
                 //     map.remove(overlays)
-                //     new AMap.Marker({
+                //     var overlay = new AMap.Marker({
                 //         position: e.lnglat,
-                //         map: map
+                //         map: map,
+                //         icon: require('../assets/images/hs/guzhang.png'),
                 //     })
                 //     map.emit('count', {count: count += 1});//触发自定义事件
+                //     console.log('lnglat===' +  e.lnglat)
+                //     console.log('count===' +  count)
+                //     map.add(overlay);
+                //     overlays.push(overlay);
+                //     if(count > 3){
+                //         map.remove(overlays)
+                //     }
                 // }
                 // // map.on("count", _onCount); 
                 // clickListener = AMap.event.addListener(map, "click", _onClick);
-                // // 画定位图标
-                // var mouseTool = new AMap.MouseTool(map);
-                // //监听draw事件可获取画好的覆盖物
-                // var overlays = [];
-                // mouseTool.on('draw',function(e) {
-                //     // 清除所有标点
-                //     // 设置缩放级别和中心点
-                    
-                //     map.remove(overlays)
-                //     overlays = [];
-                //     overlays.push(e.obj);
-                // })
-                // function draw(type){
-                //     switch(type){
-                //         case 'marker':{
-                //             mouseTool.marker({
-                //             //同Marker的Option设置
+
+                
+                var mouseTool = new AMap.MouseTool(map);
+                var count = 0
+                // 监听draw事件可获取画好的覆盖物
+                mouseTool.on('draw',function(e) {
+                    // 清除所有标点
+                    // 设置缩放级别和中心点
+                    // map.remove(overlays)
+                    // overlays = [];
+                    overlays.push(e.obj);
+                    map.emit('count', {count: count += 1});//触发自定义事件
+                    console.log('lnglat===' +  e.obj.getPosition())
+                    console.log('count===' +  count)
+                    //  if(count > 3){
+                    //     map.remove(overlays)
+                    // }
+                })
+                function draw(type) {
+                    switch(type) {
+                        case 'marker': {
+                            mouseTool.marker({
+                            // 同Marker的Option设置
+                                icon: require('../assets/images/hs/guzhang.png'),
+                            });
+                    break;
+                }}}
+                draw('marker')
+                // map.on('click', bind);
+                // //bt1的click的绑定事件
+                // var bind = function() {
+                //     remove(); //防止重复绑定
+                //     var clickListener = AMap.event.addListener(map, "click", function(e) {
+                //         new AMap.Marker({
+                //             position: e.lnglat,
+                //             map: map
                 //         });
-                //     break;
-                // }}}
-                // draw('marker')
+                //     });
+                // };
+                // 画定位图标 end
+
+                
                 AMapUI.load(['ui/geo/DistrictExplorer', 'lib/$'], function(DistrictExplorer, $){
                     initPage(DistrictExplorer);
                 });
                 AMapUI.loadUI(['overlay/SvgMarker'], function(SvgMarker) {
                 if (!SvgMarker.supportSvg) {
-                    //当前环境并不支持SVG，此时SvgMarker会回退到父类，即SimpleMarker
+                    // 当前环境并不支持SVG，此时SvgMarker会回退到父类，即SimpleMarker
                     alert('当前环境不支持SVG');
                 }
                 
@@ -307,13 +278,6 @@
 
 
                     return rings;
-                }
-                function getLongestRing(feature) {
-                    var rings = getAllRings(feature);
-                    rings.sort(function(a, b) {
-                        return b.length - a.length;
-                    });
-                    return rings[0];
                 }
                 //just some colors
                 var colors = [
@@ -469,25 +433,9 @@
                                     size: new AMap.Size(25, 34),
                                 });
                             } else if(lnglats[i].type === 1){ // 例行维保
-                                // marker = new AMap.CircleMarker({
-                                //     center:lnglats[i].position,
-                                //     radius:7,//3D视图下，CircleMarker半径不要超过64px
-                                //     strokeColor:'#6B50D0',
-                                //     strokeWeight:3,
-                                //     strokeOpacity:0.8,
-                                //     fillColor:'#947AF6',
-                                //     fillOpacity:1,
-                                //     zIndex:10,
-                                //     bubble:true,
-                                //     cursor:'pointer',
-                                //     clickable: true,
-                                // })
                                  marker = new AMap.Marker({
                                     map: map,
                                     position: lnglats[i].position,
-                                //  position: new AMap.LngLat(116.38,39.92),
-                                    // 将一张图片的地址设置为 icon
-                                    // icon: '//a.amap.com/jsapi_demos/static/demo-center/icons/dir-via-marker.png',
                                     icon: require('../assets/images/hs/purpleDot.png'),
                                     size: new AMap.Size(25, 34),
                                 });
@@ -495,11 +443,6 @@
                             // 赋值，传值
                             marker.name = lnglats[i].name
                             marker.type = lnglats[i].type
-                            // console.log('JSON====' + JSON.stringify(lnglats[i]))
-                            // marker.options = lnglats[i].eleOptions
-                            // console.log(lnglats[i].eleOptions)
-                            // infoWindow.setContent(this.createInfoWindow(title, content.join("<br/>")));
-
                             marker.on('click', markerClick);
                             // marker.emit('click', {target: marker}); // 默认打开信息窗体
                             map.add(marker);
@@ -510,14 +453,10 @@
                             infoWindow.close()
                             component.$data.type = e.target.type
                             component.$data.name = e.target.name
-                            // component.$data.options = e.target.options
-                            // component.$data.selectValue = e.target.options[0].label
                             if(e.target.getPosition){
                                 infoWindow.open(map, e.target.getPosition());
                             } else {
-                                // console.log(e.target.getCenter())
                                 infoWindow.open(map, e.target.getCenter());
-                                
                             }
                         }
                     }
@@ -541,28 +480,13 @@
                                        
                                         // 当zoom小于11 点击地图放大 并添加图标点
                                         // if(map.getZoom() < 15) {
-                                            if(!(_this.region === features[features.length-1].properties.name) || map.getZoom() < 14){  // 鼠标点击处为地图中心 放大 ,不是点击当前已选择区域时才放大
-                                                map.setZoomAndCenter(14, e.lnglat); 
-                                            }
-                                            
-                                            // map.setZoomAndCenter(14, features[len-1].properties.centroid); // 每个区域中心处为地图中心
-
-                                            // 放大后添加图标点
-                                            // if ( map.getZoom() > 10 ) {
-                                                _this.isEnlargeMap = true
-                                                _this.region = features[features.length-1].properties.name
-                                                funcreateMakers()
-                                            // }
-                                            // else {
-                                            //     map.remove(markers);
-                                            //     infoWindow.close()
-                                            // }
-                                        // }
+                                        if(!(_this.region === features[features.length-1].properties.name) || map.getZoom() < 14){  // 鼠标点击处为地图中心 放大 ,不是点击当前已选择区域时才放大
+                                            map.setZoomAndCenter(14, e.lnglat); 
+                                        }
                                         
-                                        // console.log('aaaaaaaa==' + JSON.stringify(features[features.length-1].properties))
-
-                                        // locMarker.setPosition(e.lnglat);
-                                        // locMarker.setMap(map);
+                                        _this.isEnlargeMap = true
+                                        _this.region = features[features.length-1].properties.name
+                                        funcreateMakers()
                                 }
                             }, {
                                 levelLimit: 4
@@ -572,7 +496,7 @@
                 }
 
                 listenMouseEvents();
-                // 绘制深圳市级区域轮廓
+                // 绘制深圳市级区域轮廓 
                 function renderFeatures(features) {
 
                     //清除已有的绘制内容
@@ -615,12 +539,9 @@
                                     19:2,
                                     20:2,
                                 }
-                                // console.log(JSON.stringify(features[features.length-1].properties))
                                 var regionName = features[features.length-1].properties.name
-                                // console.log('regionName==' + regionName)
                                 var startMarker = new AMap.ElasticMarker({
                                     position:features[features.length-1].properties.centroid,
-                                    // zooms:[8,12],// 在哪些层级中显示
                                     offset:[-30,-120],
                                     zoomStyleMapping:zoomStyleMapping1,
                                     map: map,
@@ -638,9 +559,6 @@
                                         label: {
                                             content:regionName,//文本内容
                                             position:'BM',//文本位置相对于图标的基准点，
-                                            //BL、BM、BR、ML、MR、TL、TM、TR分别代表左下角、底部中央、右下角、
-                                            //左侧中央、右侧中央、左上角、顶部中央、右上角。 
-                                            //缺省时代表相对图标的锚点位置
                                             offset:[-30,-120],//相对position的偏移量
                                             minZoom:5,//label的最小显示级别
                                             maxScale:1.4,//最大放大比例
@@ -655,19 +573,15 @@
                                             scaleFactor:2,//地图放大一级的缩放比例系数
                                             maxScale:1.2,//最大放大比例
                                             minScale:1.2,//最小放大比例
-                                            // imageOffset:[0,-10],
                                         },
                                         label:{
-                                            content:regionName,//文本内容
-                                            position:'BM',//文本位置相对于图标的基准点，
-                                            //BL、BM、BR、ML、MR、TL、TM、TR分别代表左下角、底部中央、右下角、
-                                            //左侧中央、右侧中央、左上角、顶部中央、右上角。 
-                                            //缺省时代表相对图标的锚点位置
-                                            offset:[-30,-170],//相对position的偏移量
-                                            minZoom:5//label的最小显示级别
+                                            content: regionName, //文本内容
+                                            position: 'BM', //文本位置相对于图标的基准点，
+                                            offset: [-30,-170], //相对position的偏移量
+                                            minZoom: 5 //label的最小显示级别
                                         }
                                     },{
-                                        icon:{
+                                        icon: {
                                             img:require('../assets/images/hs/locationTip.png'),
                                             size:[25,118],//可见区域的大小
                                             ancher:[0,100],//锚点
@@ -675,28 +589,18 @@
                                             scaleFactor:2,//地图放大一级的缩放比例系数
                                             maxScale:1.4,//最大放大比例
                                             minScale:1.2,//最小放大比例
-                                            // imageOffset:[0,-10],
                                         },
-                                        label:{
+                                        label: {
                                             content:regionName,//文本内容
                                             position:'BM',//文本位置相对于图标的基准点，
-                                            //BL、BM、BR、ML、MR、TL、TM、TR分别代表左下角、底部中央、右下角、
-                                            //左侧中央、右侧中央、左上角、顶部中央、右上角。 
-                                            //缺省时代表相对图标的锚点位置
                                             offset:[-30,-190],//相对position的偏移量
                                             minZoom:5//label的最小显示级别
                                         }
                                     }],
-                                
                                 })
-                            
-                            
                                 locationMaker.push(startMarker)
                                 map.add(startMarker)
                             }
-                            
-                            // 添加南山区等各个区标识 end--
-
                             var strokeColor = colors[i % colors.length];
                             var fillColor = colors[i % colors.length];
 
@@ -714,52 +618,7 @@
                     
                 }
 
-                // //更新位置头部的提示内容
-                function refreshLocTip(lngLat, features) {
-
-                    var i, len = features.length,
-                        $node = $('#locTip');
-
-                    if (!len) {
-                        $node.html(lngLat.toString() + '：未知区域');
-                        return;
-                    }
-
-                    var routes = [];
-
-                    for (i = 0; i < len; i++) {
-
-                        routes.push('<span style="color:' + colors[i] + '">' + features[i].properties.name + '</span>');
-                    }
-                    // console.log('aaaaaaaa==' + JSON.stringify(features[len-1].properties))
-                    $node.html(lngLat.toString() + '：' + routes.join(' &gt; '));
-                }
-
-                // function renderCountry(setBounds) {
-
-                //     districtExplorer.loadCountryNode(function(err, countryNode) {
-
-                //         if (setBounds) {
-                //             map.setBounds(countryNode.getBounds());
-                //         }
-
-                //         districtExplorer.renderParentFeature(countryNode, {
-                //             cursor: 'default',
-                //             bubble: true,
-                //             strokeColor: 'red', //线颜色
-                //             strokeOpacity: 0, //线透明度
-                //             strokeWeight: 2, //线宽
-                //             fillColor: colors[0], //填充色
-                //             fillOpacity: 0.2, //填充透明度
-                //         });
-                //     });
-                // }
-
-                // renderCountry(true);    
-
-                //////////////////////////////////
-
-
+                //**************控制地图行政区划显示(深圳)***********************
                 var countryCode = 100000, //全国
                     provCodes = [
                         //110000, //北京
@@ -778,7 +637,6 @@
                             cityNodes = areaNodes.slice(1);
                         var path = [];
                         //首先放置背景区域，这里是大陆的边界11111111
-                        // path.push(getLongestRing(countryNode.getParentFeature()));
                         for (var i = 0, len = provCodes.length; i < len; i++) {
                             //逐个放置需要镂空的省级区域
                             path.push.apply(path, getAllRings(countryNode.getSubFeatureByAdcode(provCodes[i])));
@@ -804,7 +662,7 @@
                         });
                     });
                 }
-                //**************控制地图行政区划显示结束***********************
+                //**************控制地图行政区划显示(深圳)结束***********************
             },
         }
     };
@@ -1009,5 +867,6 @@ div
         size 32px 28px
         cursor pointer
         display: inline-block
-
+.auto-item,.amap-lib-infowindow,.amap-pls-marker-tip
+    color #000
 </style>

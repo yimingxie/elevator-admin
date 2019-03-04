@@ -8,11 +8,10 @@ import ElevatorDetailNew2 from './views/xym/ElevatorDetailNew2'
 import ElevatorDetailOld from './views/xym/ElevatorDetailOld'
 import Index from './views/Index'
 import maintenance from './views/maintenance'
-import china_map from './views/china_map'
+import china_map from './views/china_map.1'
 import dateContainer from './views/dateContainer'
 import property from './views/property'
-
-
+import FormAdd from './views/FormAdd'
 
 Vue.use(Router)
 
@@ -81,7 +80,11 @@ export default new Router({
       name: "ElevatorDetailOld",
       component: ElevatorDetailOld
     },
-
+    {
+      path: "/add",
+      name: "FormAdd",
+      component: FormAdd
+    },
    
   
   ]
