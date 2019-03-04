@@ -478,7 +478,7 @@ export default {
       let that = this
       let dataValue = []
 
-      api.detail.getD18(this.dtID).then(res => {
+      api.detail.getD20(this.dtID).then(res => {
         // 组装xy数据
         let unit = res.data.result[0].unit
         let nowTimestamp = Date.now()
