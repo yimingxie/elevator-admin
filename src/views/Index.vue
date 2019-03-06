@@ -448,7 +448,7 @@
         },
         data () {
             return {
-                value1:'2019-2',
+                value1:'2019-3',
                 selectValue:'',
                 options: [{
                     value: '440303',
@@ -3493,7 +3493,9 @@
 <style lang="stylus">
 // 配置
 @import '../assets/stylus/base'
+// 一些所有页面的公用样式，一些适配样式
 @import '../assets/stylus/panel'
+// 三个页面（政府 物业 维保）的公用样式
 @import '../assets/stylus/pageSty'
 
 </style>

@@ -10,7 +10,13 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+      '/searchBuilding':{                        // 要代理的接口名
+        target:'https://app03.szmqs.gov.cn/seout/command/ajax/com.inspur.gcloud.giapbase.se.equipment.cmd.DcSeEquInformQueryCmd/queryEquipments',   // 要代理的接口地址
+        changeOrigin:true,                            // 允许跨域
+        pathRewrite:{'^/searchBuilding':''}            // 接口名重写
+      }
+    },
 
     // Various Dev Server settings
     host: '0.0.0.0', // can be overwritten by process.env.HOST

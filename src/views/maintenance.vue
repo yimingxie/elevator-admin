@@ -466,7 +466,7 @@
         },
         data () {
             return {
-                value1:'2019-2',
+                value1:'2019-3',
                 selectValue:'',
                 options: [{
                     value: '440303',
@@ -3578,11 +3578,11 @@
                     toolbox: { // 工具栏
                         show : false ,
                         feature : {
-                        mark : {show: true},
-                        dataView : {show: true, readOnly: false},
-                        magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
-                        restore : {show: true},
-                        saveAsImage : {show: true}
+                            mark : {show: true},
+                            dataView : {show: true, readOnly: false},
+                            magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                            restore : {show: true},
+                            saveAsImage : {show: true}
                         }
                     },
                     grid: {

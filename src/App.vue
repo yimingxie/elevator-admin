@@ -5,7 +5,7 @@
     </div>
     <span class="right_header">
       <!-- <i class="headPic"></i> -->
-      <span>版本号V1.6.7.1</span>
+      <span>版本号V1.6.7.2</span>
       <!-- <i class="split"></i>
       <i class="quit"></i> -->
     </span>

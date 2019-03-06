@@ -35,7 +35,7 @@
                   {{ getTitle((i-1) * 7 + k - firstnow) }}
                 </div>
 
-                <div class="" v-for="(LMsg,index) in jsonHtml" :key= index  v-if="(i-1) * 7 + k - firstnow === jsonHtml[index].date">
+                <div class="" v-for="(LMsg,index) in jsonHtml" :key= index  v-if="(i-1) * 7 + k - firstnow === jsonHtml[index].date && (i-1) * 7 + k - firstnow <= m_days[mnow]">
                   <p v-if="(i-1) * 7 + k - firstnow <= NowDay && NowMonth === mnow">{{ LMsg.msg }}</p>
                   <p v-else>0</p>
                   <div class="GqTotal">共{{ LMsg.total }}</div>
@@ -47,7 +47,7 @@
                   {{ getTitle((i-1) * 7 + k - firstnow) }}
                 </div>
 
-                <div class="" v-for="(LMsg,index) in jsonHtml" :key= index  v-if="(i-1) * 7 + k - firstnow === jsonHtml[index].date">
+                <div class="" v-for="(LMsg,index) in jsonHtml" :key= index  v-if="(i-1) * 7 + k - firstnow === jsonHtml[index].date && (i-1) * 7 + k - firstnow <= m_days[mnow]">
                   <p v-if="(i-1) * 7 + k - firstnow <= NowDay && NowMonth === mnow">{{ LMsg.msg }}</p>
                   <p v-else>0</p>
                   <div class="GqTotal">共{{ LMsg.total }}</div>

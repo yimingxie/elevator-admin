@@ -35,7 +35,7 @@
                   {{ getTitle((i-1) * 7 + k - firstnow) }}
                 </div>
 
-                <div class="" v-for="(LMsg,index) in jsonHtml" :key= index  v-if="(i-1) * 7 + k - firstnow === jsonHtml[index].date">
+                <div class="" v-for="(LMsg,index) in jsonHtml" :key= index  v-if="(i-1) * 7 + k - firstnow === jsonHtml[index].date && (i-1) * 7 + k - firstnow <= m_days[mnow]" >
                   <p v-if="(i-1) * 7 + k - firstnow <= NowDay && NowMonth === mnow">{{ LMsg.msg }}</p>
                   <p v-else>0</p>
                   <div class="GqTotal">共{{ LMsg.total }}</div>
@@ -47,12 +47,13 @@
                   {{ getTitle((i-1) * 7 + k - firstnow) }}
                 </div>
 
-                <div class="" v-for="(LMsg,index) in jsonHtml" :key= index  v-if="(i-1) * 7 + k - firstnow === jsonHtml[index].date">
+                <div class="" v-for="(LMsg,index) in jsonHtml" :key= index  v-if="(i-1) * 7 + k - firstnow === jsonHtml[index].date && (i-1) * 7 + k - firstnow <= m_days[mnow]">
                   <p v-if="(i-1) * 7 + k - firstnow <= NowDay && NowMonth === mnow">{{ LMsg.msg }}</p>
                   <p v-else>0</p>
                   <div class="GqTotal">共{{ LMsg.total }}</div>
                 </div>
               </td>
+              <!-- 已过期 日历无点击事件end -->
             </tr>
           </tbody>
         </table>
@@ -189,6 +190,7 @@
           {date: 22, msg: 290,total:2300},
           {date: 26,msg: 560,total:3456},
           {date: 28,msg: 653,total:2346},
+          {date: 29,msg: 653,total:2346},
           {date: 31,msg: 653,total:2346},
         ],
         liftDatas: [],
@@ -328,6 +330,7 @@
         // (i-1) * 7 + k - firstnow >= NowDay &&  (i-1) * 7 + k - firstnow < NowDay + 8  && NowMonth === mnow ? 'rgba(223,75,75,0.10)' : ''}">  -->
         
       },
+      // 点击td事件
       change (index) {
         if(index !='' && index > 0 && index <= this.m_days[this.mnow] ){
           this.dnow = index
@@ -349,7 +352,7 @@
         this.NowMonth=this.newDate.getMonth();//常量 不变
         this.NowDay=this.newDate.getDate(); //常量 不变
         if(!other) {
-          this.mnow=this.newDate.getMonth(); //月份 随着点击日历变化
+          this.mnow = this.newDate.getMonth(); // 默认月份为当前月份
         }
         this.dnow=this.newDate.getDate(); //日期 随着点击日历变化
         if (other && other === "next") {
@@ -374,7 +377,8 @@
       preMon() {
         this.tabIndex = 0;
         var _this = this;
-        this.mnow= this.NowMonth
+        this.mnow = this.NowMonth
+        // this.mnow = this.mnow -1
         this.showDateTitle = true
        
         this.sureDate(_this,"up");
@@ -394,6 +398,7 @@
         this.tabIndex = 2;
         var _this = this;
         this.mnow = this.NowMonth + 1
+        // this.mnow = this.mnow + 1
         this.showDateTitle = true
         this.sureDate(_this,"next");
         this.isShowTable()

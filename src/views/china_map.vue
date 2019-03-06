@@ -371,7 +371,7 @@
                     var infoWindow = new AMap.InfoWindow({
                         isCustom: true,  //使用自定义窗体
                         content: component.$el,
-                        offset: new AMap.Pixel(162, 284),
+                        offset: new AMap.Pixel(162, 278),
                         closeWhenClickMap:true, //点击地图关闭
                         autoMove: false // 自动适配地图
                     });
@@ -432,6 +432,7 @@
                                     // icon: '//a.amap.com/jsapi_demos/static/demo-center/icons/dir-via-marker.png',
                                     icon: require('../assets/images/hs/guzhang.png'),
                                     size: new AMap.Size(25, 34),
+                                    offset: new AMap.Pixel(-20,-38),
                                 });
                                 
                             } else if(lnglats[i].type === 3){ // 事故救援
@@ -443,6 +444,7 @@
                                     // icon: '//a.amap.com/jsapi_demos/static/demo-center/icons/dir-via-marker.png',
                                     icon: require('../assets/images/hs/shigu.png'),
                                     size: new AMap.Size(25, 34),
+                                    offset: new AMap.Pixel(-20,-38),
                                 });
                                 
                             } else if(lnglats[i].type === 0){ // 正常运行
@@ -467,6 +469,7 @@
                                     // icon: '//a.amap.com/jsapi_demos/static/demo-center/icons/dir-via-marker.png',
                                     icon: require('../assets/images/hs/greenDot.png'),
                                     size: new AMap.Size(25, 34),
+                                    offset: new AMap.Pixel(-20,-38),
                                 });
                             } else if(lnglats[i].type === 1){ // 例行维保
                                 // marker = new AMap.CircleMarker({
@@ -490,6 +493,7 @@
                                     // icon: '//a.amap.com/jsapi_demos/static/demo-center/icons/dir-via-marker.png',
                                     icon: require('../assets/images/hs/purpleDot.png'),
                                     size: new AMap.Size(25, 34),
+                                    offset: new AMap.Pixel(-20,-38),
                                 });
                             }
                             // 赋值，传值

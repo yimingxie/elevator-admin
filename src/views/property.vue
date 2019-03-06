@@ -433,7 +433,7 @@
                     { label: '年', value: 365 }
                 ],
                 period:7,
-                value1:'2019-2',
+                value1:'2019-3',
                 selectValue:'',
                 options: [{
                     value: '440303',
@@ -3479,6 +3479,7 @@
                             }
                         }
                     }],
+                    
                     series: [{
                         name:'B类',
                         type:'line',

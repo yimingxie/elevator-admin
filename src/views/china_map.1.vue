@@ -1,29 +1,53 @@
 <template>
-    <!-- 地图 -->
-    <div id="MapContainer" class="panel">
-        <!-- <div id="locTip" style="position:fixed;top:85px;z-index:200">点击地图进行区域定位
-        </div> -->
-        <div v-if="isEnlargeMap" class="circleType">
-            <i class="circle"></i><span>正常运行</span>
-            <i class="circle" style="background:#6B50D0"></i><span>例行维保</span>
-            <i class="circle" style="background:#FEC101"></i><span>故障检修</span>
-            <i class="circle" style="background:#F56F6F"></i><span>事故救援</span>
-        </div>
-        <div class="MapTitle">
-            <span v-if="!isEnlargeMap" class="MapTitle_title">本市地图</span>
-            
-            <span id="isAllMap" v-if="!isEnlargeMap" class="MapTitle_btn">查看全市电梯分布</span>
-            <div class="search1">
-                <input id='tipinput' class="search_input" placeholder="搜索" />
-                <span class="search_btn"></span>
+<div>
+        <!-- 地图 -->
+        <div id="MapContainer1" class="panel">
+            <!-- <div id="locTip" style="position:fixed;top:85px;z-index:200">点击地图进行区域定位
+            </div> -->
+            <div v-if="isEnlargeMap" class="circleType">
+                <i class="circle"></i><span>正常运行</span>
+                <i class="circle" style="background:#6B50D0"></i><span>例行维保</span>
+                <i class="circle" style="background:#FEC101"></i><span>故障检修</span>
+                <i class="circle" style="background:#F56F6F"></i><span>事故救援</span>
             </div>
-            <span v-if="isEnlargeMap" class="MapTitle_title"><span @click="drawMap()"> &lt; 返回全市 / </span>  深圳市{{ region }}</span>
-            
-        </div>
-        <div class="row" style="height: 100%;">
-            <div class="col-xs-9" style="padding-left:2px;padding-right:2px;height: 100%;">
-                <div id="container" tabindex="0" style="height: 100%;"></div>
+            <div class="MapTitle">
+                <span v-if="!isEnlargeMap" class="MapTitle_title">本市地图</span>
+                
+                <span id="isAllMap" v-if="!isEnlargeMap" class="MapTitle_btn">查看全市电梯分布</span>
+                <div class="search1">
+                    <input id='tipinput' class="search_input" placeholder="搜索" />
+                    <span class="search_btn"></span>
+                </div>
+                <span v-if="isEnlargeMap" class="MapTitle_title"><span @click="drawMap()"> &lt; 返回全市 / </span>  深圳市{{ region }}</span>
+                
             </div>
+            <div class="row" style="height: 100%;">
+                <div class="col-xs-9" style="padding-left:2px;padding-right:2px;height: 100%;">
+                    <div id="container" tabindex="0" style="height: 100%;"></div>
+                </div>
+            </div>
+        </div>
+        <div class="right1" >
+            <div>已创建{{coordinates.length}}个电梯点</div>
+            <div class='tableRow'> 
+                <table class="table table-bordered table-stripe">
+                <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>经纬度</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(coordinate,index) in coordinates" :key="index">
+                        <td>{{ coordinate.index }}</td>
+                        <td>{{ coordinate.LngLat }}</td>
+                        <td><span @click="deleteCoordinate(index)" class="deleteClass">删除</span></td>
+                    </tr>
+                </tbody>
+                </table>
+            </div>
+            <button class="submitBtn">将已创建的电梯点数据提交至后台</button>
         </div>
     </div>
 </template>
@@ -35,7 +59,7 @@
     import AMapUI from 'AMapUI'
     var _this = this
     var sel = '<el-select v-model="selectValue" placeholder="请选择"><el-option v-for="(item, index) in options" :key="index" :label="item.label" :value="item.value"></el-option></el-select>'
-    console.log('sel===' + sel)
+    // console.log('sel===' + sel)
     // 生成html 和 时间
     var MyComponent = Vue.extend({
         template: `<div class="infoWindows" :class="infoWindowsClass">
@@ -104,13 +128,35 @@
         name: 'HelloWorld',
         data () {
             return {
-                isEnlargeMap:false,
+                overlays: [],
+                coordinates:[],
+                coordinatesTotal:0,
+                isEnlargeMap: false,
                 region:'',
-                placeholderTitle:'请输入电梯名称/注册代码'
+                placeholderTitle:'请输入电梯名称/注册代码',
+                Aparams: {
+                    params:{
+                        javaClass:"ParameterSet",
+                        map:{
+                            needTotal:true,
+                            REG_CODE:"32104403002009004022",
+                            EQU_NUM:"",
+                            start:0,
+                            limit:10
+                        },
+                        length: 7
+                    },
+                    context:{
+                        javaClass:"HashMap",
+                        map:{},
+                        length:0
+                    }
+                }
+                
             }
         },
         // 传值到父组件
-        watch:{
+        watch: {
             value (newVal, oldVal) {
                 this.region = newVal
                 this.$emit('page-update')
@@ -119,7 +165,12 @@
                 this.$emit('input', val)
             },
         },
-        mounted(){
+        mounted() {
+            // 请求爬虫数据
+            api.corp.searchBuilding(this.Aparams).then(res => {
+                console.log(JSON.stringify(res))
+            })
+                
             this.region = this.value    // 在生命周期中，把获取的value值获取给region
             let _this = this
             // api.corp.elevator(1,5).then(res => {
@@ -128,29 +179,34 @@
 
             // 地图缩放适配
             let zoom_x = 10
-            let windowWeight = document.body.offsetWidth
-            if (windowWeight < 1800) {
-                zoom_x = 9
-            }
+            // let windowWeight = document.body.offsetWidth
+            // if (windowWeight < 1800) {
+            //     zoom_x = 9
+            // }
 
             this.drawMap(zoom_x)
 
-            window.addEventListener("resize", function() {
-                let windowWeight = document.body.offsetWidth
-                if (windowWeight < 1800) {
-                    zoom_x = 9
-                } else {
-                    zoom_x = 10
-                }
+            // window.addEventListener("resize", function() {
+            //     let windowWeight = document.body.offsetWidth
+            //     if (windowWeight < 1800) {
+            //         zoom_x = 9
+            //     } else {
+            //         zoom_x = 10
+            //     }
 
-                _this.drawMap(zoom_x)
-
-            });
+            //     _this.drawMap(zoom_x)
+            // });
             
         },
 
 
         methods: {
+            // 删除电梯经纬度点
+            deleteCoordinate(index){
+                this.coordinates.splice(index,1)
+                this.overlays[index].setMap(null);
+                this.overlays.splice(index,1)
+            },
             drawMap(zoom_x){
                 var _this = this
                 // _this.isAllMap = false
@@ -182,7 +238,7 @@
 
 
                 // 画定位图标
-                var overlays = [];
+                
                 // var count = 0, clickListener;
                 // var _onClick = function(e) {
                 //     map.remove(overlays)
@@ -203,7 +259,10 @@
                 // // map.on("count", _onCount); 
                 // clickListener = AMap.event.addListener(map, "click", _onClick);
 
-                
+                // var $deleteClass = document.getElementById('deleteClass');
+                // $deleteClass.on('click', function(e) {
+                //     _this.deleteCoordinate()
+                // })
                 var mouseTool = new AMap.MouseTool(map);
                 var count = 0
                 // 监听draw事件可获取画好的覆盖物
@@ -212,12 +271,23 @@
                     // 设置缩放级别和中心点
                     // map.remove(overlays)
                     // overlays = [];
-                    overlays.push(e.obj);
+                    _this.overlays.push(e.obj);
+                    map.add(_this.overlays);
                     map.emit('count', {count: count += 1});//触发自定义事件
-                    console.log('lnglat===' +  e.obj.getPosition())
-                    console.log('count===' +  count)
+                    // var coordinatesJson = e.obj.getPosition()
+                    var coordinatesJson = { index:count,LngLat: [e.obj.getPosition().lng , e.obj.getPosition().lat] }
+                    _this.coordinates.push(coordinatesJson)
+                    console.log('coordinates===' +  JSON.stringify(_this.coordinates))
+                    _this.coordinatesTotal = count
+                    
+                    draw('marker')
+                    // console.log('lnglat===' +  e.obj.getPosition())
+                    console.log('overlays===' +  _this.overlays)
                     //  if(count > 3){
-                    //     map.remove(overlays)
+                    //     // 删除所有maker
+                    //     // map.remove(overlays)
+                    //     /// 清除指定点
+                    //     overlays[0].setMap(null);
                     // }
                 })
                 function draw(type) {
@@ -226,6 +296,12 @@
                             mouseTool.marker({
                             // 同Marker的Option设置
                                 icon: require('../assets/images/hs/guzhang.png'),
+                                label: {
+                                    content:count*1+1,
+                                    offset:10
+                                },
+                                size: new AMap.Size(25, 34),
+                                offset: new AMap.Pixel(-20,-38),
                             });
                     break;
                 }}}
@@ -284,6 +360,7 @@
                     "rgba(0,0,0,0)", "rgba(0,0,0,0)", "rgba(0,0,0,0)", "rgba(13,186,127,0.80)"
                 ];
                 var locationMaker = [];
+                var markers = []; //markers数组，用于接多个图标点
                 function initPage(DistrictExplorer) {
                 //创建一个实例
                 var districtExplorer = new DistrictExplorer({
@@ -309,7 +386,7 @@
                             isLocating = false;
                            
                             // console.log(rrr)
-                            // console.log(_this.region)
+                            // console.log('e.lnglat:::' + e.lnglat)
                             // 当鼠标在当前区域移动时 不绘制绿色轮廓
                             if (err) {
                                 console.error(err);
@@ -330,7 +407,7 @@
 
                     });
                     
-                    var markers = []; //markers数组，用于接多个图标点
+                    
                             
                     var infoWindow = new AMap.InfoWindow({
                         isCustom: true,  //使用自定义窗体
@@ -396,6 +473,7 @@
                                     // icon: '//a.amap.com/jsapi_demos/static/demo-center/icons/dir-via-marker.png',
                                     icon: require('../assets/images/hs/guzhang.png'),
                                     size: new AMap.Size(25, 34),
+                                    offset: new AMap.Pixel(-20,-38),
                                 });
                                 
                             } else if(lnglats[i].type === 3){ // 事故救援
@@ -407,6 +485,7 @@
                                     // icon: '//a.amap.com/jsapi_demos/static/demo-center/icons/dir-via-marker.png',
                                     icon: require('../assets/images/hs/shigu.png'),
                                     size: new AMap.Size(25, 34),
+                                    offset: new AMap.Pixel(-20,-38),
                                 });
                                 
                             } else if(lnglats[i].type === 0){ // 正常运行
@@ -431,6 +510,7 @@
                                     // icon: '//a.amap.com/jsapi_demos/static/demo-center/icons/dir-via-marker.png',
                                     icon: require('../assets/images/hs/greenDot.png'),
                                     size: new AMap.Size(25, 34),
+                                    offset: new AMap.Pixel(-20,-38),
                                 });
                             } else if(lnglats[i].type === 1){ // 例行维保
                                  marker = new AMap.Marker({
@@ -438,6 +518,7 @@
                                     position: lnglats[i].position,
                                     icon: require('../assets/images/hs/purpleDot.png'),
                                     size: new AMap.Size(25, 34),
+                                    offset: new AMap.Pixel(-20,-38),
                                 });
                             }
                             // 赋值，传值
@@ -609,7 +690,7 @@
                                 bubble: true,
                                 strokeColor: strokeColor, //线颜色
                                 strokeOpacity: 1, //线透明度
-                                strokeWeight: 1, //线宽
+                                strokeWeight: 1, //线宽 
                                 fillColor: fillColor, //填充色
                                 fillOpacity: 0.2, //填充透明度
                             });
@@ -673,7 +754,7 @@
 @import '../assets/stylus/base'
 div
     outline:none
-#MapContainer {
+#MapContainer1 {
     width: 642px;
     margin: 0px;
     absolute left 0 top 0 bottom 0
@@ -869,4 +950,35 @@ div
         display: inline-block
 .auto-item,.amap-lib-infowindow,.amap-pls-marker-tip
     color #000
+.right1
+    absolute left 643px top 80px bottom 0 right 0
+    // background #1B1B23
+    overflow: auto;
+    padding 30px 10px 50px 50px
+    text-align center
+    box-sizing: border-box;
+table {
+    margin 30px auto
+    th,td {
+        padding 5px 
+        border 1px solid #677092
+    }
+}
+.deleteClass {
+    cursor pointer;
+    // color: #fff;
+    // &:hover{
+        color: #0dba7f;
+    // }
+}
+.submitBtn {
+    padding: 4px 20px 3px
+    background #0dba7f;
+    color #fff;
+    cursor pointer;
+    border-radius: 16.5px;
+    &:hover {
+        background : #24ca91
+    }
+}
 </style>
