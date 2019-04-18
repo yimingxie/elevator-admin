@@ -5,7 +5,7 @@
     </div>
     <span class="right_header">
       <!-- <i class="headPic"></i> -->
-      <span>版本号V1.6.7.2</span>
+      <span>版本号V1.6.7.4</span>
       <!-- <i class="split"></i>
       <i class="quit"></i> -->
     </span>
@@ -24,7 +24,8 @@
     },
     
     mounted () {
-      document.title = this.$route.meta.title
+      // console.log(this.$route.meta.title)
+      // document.title = this.$route.meta.title
 
     },
 

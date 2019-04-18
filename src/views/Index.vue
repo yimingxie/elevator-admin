@@ -448,7 +448,7 @@
         },
         data () {
             return {
-                value1:'2019-3',
+                value1:'2019-4',
                 selectValue:'',
                 options: [{
                     value: '440303',
@@ -486,10 +486,9 @@
         },
         mounted(){
             let _this = this
-            api.corp.getBuilding(1111).then(res => {
-                console.log(JSON.stringify(res))
-            })
-            console.log('result====' + this.data)
+            // api.corp.getBuilding(1111).then(res => {
+            //     console.log(JSON.stringify(res))
+            // })
             // 维保及时率统计
             this.drawBarChart()
             // 人均维保梯数统计

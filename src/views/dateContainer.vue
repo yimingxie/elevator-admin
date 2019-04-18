@@ -272,7 +272,7 @@
         if(typeof(result[flag1])==undefined){
           this.randomJson(result);
         }else{
-          console.log(result[flag1]);
+          // console.log(result[flag1]);
           flag=flag1; 
           return result[flag1];
         }		
@@ -296,8 +296,8 @@
       },
       // 筛选时触发事件
       handleFilterChange(filters) {
-        console.log(filters);
-        console.log('筛选条件变化');
+        // console.log(filters);
+        // console.log('筛选条件变化');
       },
       resetDateFilter() {
         this.$refs.filterTable.clearFilter('date');
@@ -363,11 +363,11 @@
         
         // 设置日期为当月的第一天
         this.firstDay = new Date(this.ynow,this.mnow,1);
-        console.log(this.firstDay)
+        // console.log(this.firstDay)
 
         // 获取每月第一天是星期几
         this.firstnow=this.firstDay.getDay();
-        console.log(this.firstnow)
+        // console.log(this.firstnow)
 
         this.m_days = [31,28+this.is_leap(this.ynow),31,30,31,30,31,31,30,31,30,31];
         // 表格有几行
