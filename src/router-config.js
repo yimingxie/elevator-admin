@@ -1,17 +1,12 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import TestMap from './views/xym/TestMap'
-import TestMap2 from './views/xym/TestMap2'
 import ElevatorDetail from './views/xym/ElevatorDetail'
 import ElevatorDetailNew from './views/xym/ElevatorDetailNew'
 import ElevatorDetailNew2 from './views/xym/ElevatorDetailNew2'
 import ElevatorDetailOld from './views/xym/ElevatorDetailOld'
 import Index from './views/Index'
 import maintenance from './views/maintenance'
-import china_map from './views/china_map.1'
-import dateContainer from './views/dateContainer'
 import property from './views/property'
-import FormAdd from './views/FormAdd'
 
 Vue.use(Router)
 
@@ -38,24 +33,6 @@ export default new Router({
       meta: {
         title: '电梯物业监管战情室 ',
       },
-    },{
-      path: '/china_map',
-      name: 'china_map',
-      component: china_map
-    },{
-      path: '/dateContainer',
-      name: 'dateContainer',
-      component: dateContainer
-    },
-    {
-      path: "/test-map",
-      name: "TestMap",
-      component: TestMap
-    },
-    {
-      path: "/test-map2",
-      name: "TestMap2",
-      component: TestMap2
     },
     {
       path: "/detail",
@@ -79,13 +56,6 @@ export default new Router({
       path: "/detail-old",
       name: "ElevatorDetailOld",
       component: ElevatorDetailOld
-    },
-    {
-      path: "/add",
-      name: "FormAdd",
-      component: FormAdd
-    },
-   
-  
+    }
   ]
 })

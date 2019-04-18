@@ -37,7 +37,6 @@
     var _this = this
     // var sel = '<router-link to="/index">Home</router-link>'
     var sel = '<a >查看详情</a>'
-    console.log('sel===' + sel)
     
     // 生成html 和 时间
     var MyComponent = Vue.extend({
@@ -91,27 +90,27 @@
             //     this.url = '/lift/gov/#/detail?id=' + this.type
             // })
         // },
-        beforeCreate:function(){
-            console.log("组件实例化之前执行的函数");
-        },
-        created:function(){
-            console.log("组件实例化化完毕，但页面还未显示");
-        },
-        beforeMount:function(){
-            console.log("组件挂载前，页面仍未展示，但虚拟dom已经配置");
-        },
-        mounted:function(){
-            console.log('type' + this.type)
-            console.log("组件挂载后，此方法执行后，页面显示");
-        },
-        beforeUpdate:function(){
-            console.log('type' + this.type)
-            console.log("组件更新前，页面仍未更新，但虚拟dom已经配置");
-        },
-        updated:function(){
-            console.log('type' + this.type)
-            console.log("组件更新，此方法执行后，页面显示");
-        },
+        // beforeCreate:function(){
+        //     console.log("组件实例化之前执行的函数");
+        // },
+        // created:function(){
+        //     console.log("组件实例化化完毕，但页面还未显示");
+        // },
+        // beforeMount:function(){
+        //     console.log("组件挂载前，页面仍未展示，但虚拟dom已经配置");
+        // },
+        // mounted:function(){
+        //     console.log('type' + this.type)
+        //     console.log("组件挂载后，此方法执行后，页面显示");
+        // },
+        // beforeUpdate:function(){
+        //     console.log('type' + this.type)
+        //     console.log("组件更新前，页面仍未更新，但虚拟dom已经配置");
+        // },
+        // updated:function(){
+        //     console.log('type' + this.type)
+        //     console.log("组件更新，此方法执行后，页面显示");
+        // },
 
         watch:{
             type(){
@@ -128,8 +127,8 @@
                     this.infoWindowsClass = 'infoWindowsClass4'
                     this.typeInfo = '事故救援'
                 }
-                console.log('1111111===' + JSON.stringify(this.topImgClass))
-                console.log('type' + this.type)
+                // console.log('1111111===' + JSON.stringify(this.topImgClass))
+                // console.log('type' + this.type)
                 this.url = '/lift/gov/#/detail?id=' + this.type
             }
         },
@@ -348,7 +347,7 @@
                             // console.log(_this.region)
                             // 当鼠标在当前区域移动时 不绘制绿色轮廓
                             if (err) {
-                                console.error(err);
+                                // console.error(err);
                                 return;
                             }
                             
@@ -539,7 +538,7 @@
                                         isLocating = false;
 
                                         if (err) {
-                                            console.error(err);
+                                            // console.error(err);
                                             return;
                                         }
                                        

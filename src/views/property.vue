@@ -2,19 +2,7 @@
     <div class="main-wrap">
         <!-- 地图 -->
         <chinaMap v-model="region"></chinaMap>
-        <!-- 搜索地图 -->
-         <!-- <table>
-            <tr>
-                <td>
-                    <label>请输入关键字：</label>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input id="tipinput"/>
-                </td>
-            </tr>
-        </table> -->
+   
         <div class="right">
            <div class="panel">
                <div class="sum-gradient"></div>
@@ -433,7 +421,7 @@
                     { label: '年', value: 365 }
                 ],
                 period:7,
-                value1:'2019-3',
+                value1:'2019-4',
                 selectValue:'',
                 options: [{
                     value: '440303',
@@ -627,9 +615,7 @@
             });
         },
         methods: {
-            // goDetail() {
-            //     console.log(11)
-            // },
+           
             formatter(row, column) {
                 return row.maintenanceNumber + '   /   ' + row.planNumber ;
             },
@@ -1074,15 +1060,11 @@
             drawBarChart4() {
                 var xData = function() {
                     var data = ['六月','七月','八月','九月','十月'];
-                    // for (var i = 0; i < 5; i++) {
-                    //     data.push(data[i]);
-                    // }
-                    // console.log('data:' + data)
+                    
                     return data;
                 }();
                 var data = [this.selectfrom(13, 30),this.selectfrom(13, 30), this.selectfrom(18, 40), this.selectfrom(30, 70), this.selectfrom(15, 40)]
                 var option = {
-                    // color: ['#F56F6F', '#FEC101', '#6B50D0', '#0DBA7F','#e5323e'],
                     color: ['#BC3535', '#FE7D01', '#6B50D0', '#0DBA7F','#e5323e'],
                     tooltip : {
                         trigger: 'axis',
@@ -1093,13 +1075,8 @@
                     legend: {
                         data:['40分钟以上','30-40分钟','20-30分钟','20分钟以下','搜索引擎','百度','谷歌','必应','其他'],
                         show: true,
-                        // itemGap: 30,
-                        // x : '90',
                         bottom : '0',
-                        // right:'-50',
-                        // top: '100',
                         orient: 'horizontal',
-                        // data:[{name:'鸡',icon:'circle'},{name:'猪',icon:'circle'},,{name:'牛',icon:'circle'}],
                         align: 'left',
                         textStyle: {
                             color: '#66667F',
@@ -1107,22 +1084,6 @@
                         },
                         icon: 'circle',
                         itemWidth:8,
-                        // 使用回调函数
-                        // formatter: function (value, key) {
-                        //     return 'Legend ' + value + key;
-                        // }
-                        // data:['30以上','25-30','cc'],
-                        // formatter: function(name) {
-                        //     var index = 0;
-                        //     var clientlabels = ['aa','bb','cc'];
-                        //     var clientcounts = [9,1,10];
-                        //     clientlabels.forEach(function(value,i){
-                        //         if(value == name){
-                        //             index = i;
-                        //         }
-                        //     });
-                        //     return name + "  " + clientcounts[index];
-                        // }
                     },
                     grid: {
                         top:'6%',
@@ -1141,16 +1102,10 @@
                                     width:1,//这里是为了突出显示加上的  
                                 }  
                             },
-                            //分割线
-                            // splitLine:{
-                            //     show:true,
-                            // },
-                            //X轴文字
                             axisLabel: {
                                 show: true,
                                 textStyle: {
                                     fontSize : 12,  
-                                    // fontFamily : '微软雅黑',  
                                     color:'#66667F'
                                 }
                             }
@@ -1175,7 +1130,6 @@
                                 // 使用深浅的间隔色
                                     color: '#3F3F49',
                                     type:'dashed',
-                                    // width:3,
                                 }
                             },
                             //Y轴文字
@@ -1183,7 +1137,6 @@
                                 show: true,
                                 textStyle: {
                                 fontSize : 12,  
-                                // fontFamily : '微软雅黑',  
                                 color:'#66667F'
                                 }
                             },
@@ -1237,10 +1190,7 @@
                         show: true,
                         x2 : '0',
                         y : 'center',
-                        // right:'-50',
-                        // top: '100',
                         orient: 'vertical',
-                        // data:[{name:'鸡',icon:'circle'},{name:'猪',icon:'circle'},,{name:'牛',icon:'circle'}],
                         align: 'left',
                         textStyle: {
                             color: '#66667F',
@@ -1252,15 +1202,9 @@
                                 },
                             },
                         },
-                        // itemGap:'10%',
                         padding: [20, 0],
                         icon: 'circle',
                         itemWidth:8,
-                        // 使用回调函数
-                        // formatter: function (value, key) {
-                        //     return 'Legend ' + value + key;
-                        // }
-                        // data:['30以上','25-30','cc'],
                         formatter: function(name) {
                             var index = 0;
                             var clientlabels = ['40分钟以上','30-40分钟','20-30分钟','20分钟以下'];
@@ -1293,45 +1237,19 @@
                         {
                             name:'维保人员维保梯数',
                             type:'pie',
-                            // radius : [36, 85],
                             radius : [45, 65],
                             center : ['27%', '50%'],
-                          
-                            // roseType : 'radius',
                             label: {
                                 normal: {
                                     show: false,
                                     color:'red'
                                 },
-                                // emphasis: {
-                                //     show: false,
-                                //     formatter: '{a}{c}{b}: {d}',
-                                //     position: 'inside', 
-                                // }
                             },
                             lableLine: {
                                 normal: {
-                                    // show: false
                                 },
-                                // emphasis: {
-                                //     show: true
-                                // }
+                            
                             },
-                            // itemStyle: {
-                            //     normal: {
-                            //         color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-
-
-                            //         // 0% 处的颜色   
-                            //         offset: 0, color: 'green'  },
-                            //     {
-                                    
-                            //         // 100% 处的颜色
-                            //     offset: 1, color: 'yellow' 
-                            //     }], false)
-                            //     }
-                            // },
-                            // data:this.chartpie3Data,
                             data:[{
                                 value:41,
                                 name:'40分钟以上',
@@ -1342,14 +1260,10 @@
                                         y: 0,
                                         x2: 0,
                                         y2: 1,
-                                        colorStops: [//{
-                                        //     offset: 0, color: 'red' // 0% 处的颜色
-                                        // }, 
+                                        colorStops: [
                                         {
                                             offset: 0.2, color: '#0CB77D' // 0% 处的颜色
                                         }, 
-                                        //  {offset: 0.5, color: 'green' // 0% 处的颜色
-                                        //  }, 
                                         {
                                             offset: 1, color: '#1A5F4F' // 100% 处的颜色
                                         }],
@@ -1369,15 +1283,6 @@
                                         offset: 1, color: 'rgba(109,81,212,1)' 
                                         }], false)
                                     },
-                                    // emphasis:{
-                                    //     color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                                    //         // 0% 处的颜色
-                                    //     offset: 0, color: '#000'},
-                                    //     {
-                                    //         // 100% 处的颜色
-                                    //     offset: 1, color: 'yellow' 
-                                    //     }], false)
-                                    // }
                                 },
                             }, {
                                 value:13, 
@@ -1387,24 +1292,13 @@
                                         color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
                                             // 0% 处的颜色
                                         offset: 0, 
-                                        // color: 'rgba(254,168,56,0.3)'},
                                         color: 'rgba(254,125,1,0.3)'},
                                         {
                                             // 100% 处的颜色
                                         offset: 1, 
-                                        // color: '#FEC101',
                                         color: 'rgba(254,125,1,1)',
                                         }], false)
                                     },
-                                    // emphasis:{
-                                    //     color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                                    //         // 0% 处的颜色
-                                    //     offset: 0, color: '#000'},
-                                    //     {
-                                    //         // 100% 处的颜色
-                                    //     offset: 1, color: 'yellow' 
-                                    //     }], false)
-                                    // }
                                 },
                             }, {
                                 value:19, 
@@ -1420,18 +1314,8 @@
                                         }], false)
                                     },
 
-                                    // emphasis:{
-                                    //     color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-                                    //         // 0% 处的颜色
-                                    //     offset: 0, color: '#000'},
-                                    //     {
-                                    //         // 100% 处的颜色
-                                    //     offset: 1, color: 'yellow' 
-                                    //     }], false)
-                                    // }
                                 },
                             }],
-                            // color: ['red','#24505D','#5FD1B7','#3787B7','#7b91bf','#b068b1','#6b68ad','#c02c3a']
                         },
                         
                     ]
@@ -1451,7 +1335,6 @@
                 legend: {
                     data:['A类','B类','C类','D类'],
                     itemGap: 20,
-                    // orient: 'vertical',  //垂直显示
                     y: 'bottom',    //延Y轴居中
                     x: 'center', //居右显示
                     textStyle:{
@@ -1462,8 +1345,6 @@
                     itemWidth: 8,
                     show:true,
                     icon:'circle',
-
-                    // backgroundColor:'red'
                 },
                 color:['#6B50D0','#738BD5','#027E73','#0DBA7F'],
                 //工具栏
@@ -1480,7 +1361,6 @@
                 grid: {
                     right: '3%', //相当于距离左边效果:padding-left
                     left:'3%',
-                    // y: '30%', //相当于距离上边效果:padding-top
                     bottom: '15%',
                     top: '10%',
                     containLabel: true
@@ -1500,7 +1380,6 @@
                         show: true,
                         textStyle: {
                             fontSize : 12,  
-                            // fontFamily : '微软雅黑',  
                             color:'#66667F'
                         }
                     }
@@ -1508,8 +1387,6 @@
                 yAxis : [
                     {
                     type : 'value',
-                    // min:0,
-                    // max:150,
                     axisLine:{  
                         lineStyle:{  
                             color:'#24242f',  
@@ -1523,7 +1400,6 @@
                         // 使用深浅的间隔色
                             color: '#3F3F49',
                             type:'dashed',
-                            // width:3,
                         }
                     },
                     //Y轴文字
@@ -1597,7 +1473,6 @@
                 legend: {
                     data:['A类','B类','C类','D类'],
                     itemGap: 20,
-                    // orient: 'vertical',  //垂直显示
                     y: 'bottom',    //延Y轴居中
                     x: 'center', //居右显示
                     textStyle:{
@@ -1609,7 +1484,6 @@
                     show:true,
                     icon:'circle',
                     itemWidth:8,
-                    // backgroundColor:'red'
                 },
                 color:['#6B50D0','#738BD5','#027E73','#0DBA7F'],
                 //工具栏
@@ -1626,7 +1500,6 @@
                 grid: {
                     right: '3%', //相当于距离左边效果:padding-left
                     left: '3%',
-                    // y: '30%', //相当于距离上边效果:padding-top
                     bottom: '15%',
                     top: '10%',
                     containLabel: true
@@ -1646,7 +1519,6 @@
                         show: true,
                         textStyle: {
                             fontSize : 12,  
-                            // fontFamily : '微软雅黑',  
                             color:'#66667F'
                         }
                     }
@@ -1654,8 +1526,6 @@
                 yAxis : [
                     {
                     type : 'value',
-                    // min:0,
-                    // max:150,
                     axisLine:{  
                         lineStyle:{  
                             color:'#24242f',  
@@ -1669,7 +1539,6 @@
                         // 使用深浅的间隔色
                             color: '#3F3F49',
                             type:'dashed',
-                            // width:3,
                         }
                     },
                     //Y轴文字
@@ -1736,10 +1605,6 @@
             drawBarChart5() {
                 var xData = function() {
                     var data = ['六月','七月','八月','九月','十月'];
-                    // for (var i = 0; i < 5; i++) {
-                    //     data.push(data[i]);
-                    // }
-                    // console.log('data:' + data)
                     return data;
                 }();
                 var data = [this.selectfrom(13, 30),this.selectfrom(13, 30), this.selectfrom(18, 40), this.selectfrom(30, 70), this.selectfrom(15, 40)]
@@ -1755,12 +1620,8 @@
                         data:['机房环境','控制柜','曳引机','限速器','制动器','轿厢','安全回路','门锁回路'],
                         show: true,
                         itemGap: 10,
-                        // x : '90',
                         bottom : '10',
-                        // right:'-50',
-                        // top: '100',
                         orient: 'horizontal',
-                        // data:[{name:'鸡',icon:'circle'},{name:'猪',icon:'circle'},,{name:'牛',icon:'circle'}],
                         align: 'left',
                         textStyle: {
                             color: '#66667F',
@@ -1768,22 +1629,6 @@
                         },
                         icon: 'circle',
                         itemWidth:8,
-                        // 使用回调函数
-                        // formatter: function (value, key) {
-                        //     return 'Legend ' + value + key;
-                        // }
-                        // data:['30以上','25-30','cc'],
-                        // formatter: function(name) {
-                        //     var index = 0;
-                        //     var clientlabels = ['aa','bb','cc'];
-                        //     var clientcounts = [9,1,10];
-                        //     clientlabels.forEach(function(value,i){
-                        //         if(value == name){
-                        //             index = i;
-                        //         }
-                        //     });
-                        //     return name + "  " + clientcounts[index];
-                        // }
                     },
                     grid: {
                         top:'6%',
@@ -1802,16 +1647,10 @@
                                     width:1,//这里是为了突出显示加上的  
                                 }  
                             },
-                            //分割线
-                            // splitLine:{
-                            //     show:true,
-                            // },
-                            //X轴文字
                             axisLabel: {
                                 show: true,
                                 textStyle: {
                                     fontSize : 12,  
-                                    // fontFamily : '微软雅黑',  
                                     color:'#66667F'
                                 }
                             }
@@ -1836,7 +1675,6 @@
                                 // 使用深浅的间隔色
                                     color: '#3F3F49',
                                     type:'dashed',
-                                    // width:3,
                                 }
                             },
                             //Y轴文字
@@ -1844,7 +1682,6 @@
                                 show: true,
                                 textStyle: {
                                 fontSize : 12,  
-                                // fontFamily : '微软雅黑',  
                                 color:'#66667F'
                                 }
                             },
@@ -1910,7 +1747,6 @@
                 legend: {
                     data:['异常入侵','风速','温湿度','门窗','排气扇','空调'],
                     itemGap: 10,
-                    // orient: 'vertical',  //垂直显示
                     y: 'bottom',    //延Y轴居中
                     x: 'center', //居右显示
                     textStyle:{
@@ -1921,9 +1757,7 @@
                     show:true,
                     icon:'circle',
                     itemWidth:8,
-                    // backgroundColor:'red'
                 },
-                // color:['#F9D562','#FB7027','#CB500F',' #F56F6F','#E22340','#5A39D5'],
                 color:['#FE7D01','#CB500F','#FEC101',' #F56F6F','#E22340','#5A39D5'],
                 //工具栏
                 toolbox: {
@@ -1958,7 +1792,6 @@
                         show: true,
                         textStyle: {
                             fontSize : 12,  
-                            // fontFamily : '微软雅黑',  
                             color:'#66667F'
                         }
                     }
@@ -1966,8 +1799,6 @@
                 yAxis : [
                     {
                     type : 'value',
-                    // min:0,
-                    // max:150,
                     axisLine:{  
                         lineStyle:{  
                             color:'#24242f',  
@@ -1981,7 +1812,6 @@
                         // 使用深浅的间隔色
                             color: '#3F3F49',
                             type:'dashed',
-                            // width:3,
                         }
                     },
                     //Y轴文字
@@ -2076,7 +1906,6 @@
                 legend: {
                     data:['双联维保开关','故障代码','接触器','平层状态'],
                     itemGap: 10,
-                    // orient: 'vertical',  //垂直显示
                     y: 'bottom',    //延Y轴居中
                     x: 'center', //居右显示
                     textStyle:{
@@ -2087,9 +1916,7 @@
                     show:true,
                     icon:'circle',
                     itemWidth: 8,
-                    // backgroundColor:'red'
                 },
-                // color:['#F9D562','#FB7027','#E22340','#6B50D0'],
                 color:['#FE7D01','#FEC101','#E22340','#6B50D0'],
                 //工具栏
                 toolbox: {
@@ -2103,8 +1930,8 @@
                     }
                 },
                 grid: {
-                    right: '3%', //相当于距离左边效果:padding-left
-                    left: '3%', //相当于距离上边效果:padding-top
+                    right: '3%', // 相当于距离左边效果:padding-left
+                    left: '3%', // 相当于距离上边效果:padding-top
                     bottom: '15%',
                     top: '10%',
                     containLabel: true
@@ -2117,7 +1944,7 @@
                     axisLine:{
                         lineStyle:{  
                             color:'#24242f',  
-                            width:1,//这里是为了突出显示加上的  
+                            width:1,// 这里是为了突出显示加上的  
                         }  
                     },
                     axisLabel: {
@@ -2132,8 +1959,6 @@
                 yAxis : [
                     {
                     type : 'value',
-                    // min:0,
-                    // max:150,
                     axisLine:{  
                         lineStyle:{  
                             color:'#24242f',  
@@ -2147,7 +1972,6 @@
                         // 使用深浅的间隔色
                             color: '#3F3F49',
                             type:'dashed',
-                            // width:3,
                         }
                     },
                     //Y轴文字
@@ -2221,7 +2045,6 @@
                 legend: {
                     data:['电压/电流','外壳温度','轴承振动'],
                     itemGap: 10,
-                    // orient: 'vertical',  //垂直显示
                     y: 'bottom',    //延Y轴居中
                     x: 'center', //居右显示
                     textStyle:{
@@ -2232,9 +2055,7 @@
                     itemWidth: 8,
                     show:true,
                     icon:'circle',
-                    // backgroundColor:'red'
                 },
-                // color:['#F9D562','#E22340','#6B50D0'],
                 color:['#FE7D01','#E22340','#6B50D0'],
                 //工具栏
                 toolbox: {
@@ -2277,8 +2098,6 @@
                 yAxis : [
                     {
                     type : 'value',
-                    // min:0,
-                    // max:150,
                     axisLine:{  
                         lineStyle:{  
                             color:'#24242f',  
@@ -2292,7 +2111,6 @@
                         // 使用深浅的间隔色
                             color: '#3F3F49',
                             type:'dashed',
-                            // width:3,
                         }
                     },
                     //Y轴文字
@@ -2355,7 +2173,6 @@
                 legend: {
                     data:['限速器'],
                     itemGap: 10,
-                    // orient: 'vertical',  //垂直显示
                     y: 'bottom',    //延Y轴居中
                     x: 'center', //居右显示
                     textStyle:{
@@ -2366,9 +2183,7 @@
                     itemWidth: 8,
                     show:true,
                     icon:'circle',
-                    // backgroundColor:'red'
                 },
-                // color:['#F9D562'],
                 color:['#FE7D01'],
                 //工具栏
                 toolbox: {
@@ -2382,8 +2197,8 @@
                     }
                 },
                 grid: {
-                    right: '3%', //相当于距离左边效果:padding-left
-                    left: '3%', //相当于距离上边效果:padding-top
+                    right: '3%', // 相当于距离左边效果:padding-left
+                    left: '3%', // 相当于距离上边效果:padding-top
                     bottom: '15%',
                     top: '10%',
                     containLabel: true
@@ -2396,14 +2211,13 @@
                     axisLine:{
                         lineStyle:{  
                             color:'#24242f',  
-                            width:1,//这里是为了突出显示加上的  
+                            width:1,// 这里是为了突出显示加上的  
                         }  
                     },
                     axisLabel: {
                         show: true,
                         textStyle: {
                             fontSize : 12,  
-                            // fontFamily : '微软雅黑',  
                             color:'#66667F'
                         }
                     }
@@ -2411,8 +2225,6 @@
                 yAxis : [
                     {
                     type : 'value',
-                    // min:0,
-                    // max:150,
                     axisLine:{  
                         lineStyle:{  
                             color:'#24242f',  
@@ -2426,7 +2238,6 @@
                         // 使用深浅的间隔色
                             color: '#3F3F49',
                             type:'dashed',
-                            // width:3,
                         }
                     },
                     //Y轴文字
@@ -2467,7 +2278,6 @@
                 legend: {
                     data:['线圈温度','刹车片温度','电压/电流','制动力'],
                     itemGap: 10,
-                    // orient: 'vertical',  //垂直显示
                     y: 'bottom',    //延Y轴居中
                     x: 'center', //居右显示
                     textStyle:{
@@ -2478,9 +2288,7 @@
                     itemWidth: 8,
                     show:true,
                     icon:'circle',
-                    // backgroundColor:'red'
                 },
-                // color:['#F9D562','#FB7027','#E22340','#6B50D0'],
                 color:['#FE7D01','#FEC101','#E22340','#6B50D0'],
                 //工具栏
                 toolbox: {
@@ -2494,8 +2302,8 @@
                     }
                 },
                 grid: {
-                    right: '3%', //相当于距离左边效果:padding-left
-                    left: '3%', //相当于距离上边效果:padding-top
+                    right: '3%', // 相当于距离左边效果:padding-left
+                    left: '3%', // 相当于距离上边效果:padding-top
                     bottom: '15%',
                     top: '10%',
                     containLabel: true
@@ -2508,14 +2316,13 @@
                     axisLine:{
                         lineStyle:{  
                             color:'#24242f',  
-                            width:1,//这里是为了突出显示加上的  
+                            width:1,// 这里是为了突出显示加上的  
                         }  
                     },
                     axisLabel: {
                         show: true,
                         textStyle: {
                             fontSize : 12,  
-                            // fontFamily : '微软雅黑',  
                             color:'#66667F'
                         }
                     }
@@ -2523,12 +2330,10 @@
                 yAxis : [
                     {
                     type : 'value',
-                    // min:0,
-                    // max:150,
                     axisLine:{  
                         lineStyle:{  
                             color:'#24242f',  
-                            width:1,//这里是为了突出显示加上的  
+                            width:1,// 这里是为了突出显示加上的  
                         }  
                     },
                     //分割线
@@ -2538,7 +2343,6 @@
                         // 使用深浅的间隔色
                             color: '#3F3F49',
                             type:'dashed',
-                            // width:3,
                         }
                     },
                     //Y轴文字
@@ -2613,7 +2417,6 @@
                 legend: {
                     data:['轿门','振动','位置','载荷'],
                     itemGap: 10,
-                    // orient: 'vertical',  //垂直显示
                     y: 'bottom',    //延Y轴居中
                     x: 'center', //居右显示
                     textStyle:{
@@ -2624,9 +2427,7 @@
                     itemWidth: 8,
                     show:true,
                     icon:'circle',
-                    // backgroundColor:'red'
                 },
-                // color:['#F9D562','#FB7027','#E22340','#6B50D0'],
                 color:['#FE7D01','#FEC101','#E22340','#6B50D0'],
                 //工具栏
                 toolbox: {
@@ -2640,8 +2441,8 @@
                     }
                 },
                 grid: {
-                    right: '3%', //相当于距离左边效果:padding-left
-                    left: '3%', //相当于距离上边效果:padding-top
+                    right: '3%', // 相当于距离左边效果:padding-left
+                    left: '3%', // 相当于距离上边效果:padding-top
                     bottom: '15%',
                     top: '10%',
                     containLabel: true
@@ -2654,14 +2455,13 @@
                     axisLine:{
                         lineStyle:{  
                             color:'#24242f',  
-                            width:1,//这里是为了突出显示加上的  
+                            width:1,// 这里是为了突出显示加上的  
                         }  
                     },
                     axisLabel: {
                         show: true,
                         textStyle: {
                             fontSize : 12,  
-                            // fontFamily : '微软雅黑',  
                             color:'#66667F'
                         }
                     }
@@ -2669,8 +2469,6 @@
                 yAxis : [
                     {
                     type : 'value',
-                    // min:0,
-                    // max:150,
                     axisLine:{  
                         lineStyle:{  
                             color:'#24242f',  
@@ -2684,7 +2482,6 @@
                         // 使用深浅的间隔色
                             color: '#3F3F49',
                             type:'dashed',
-                            // width:3,
                         }
                     },
                     //Y轴文字
@@ -2759,9 +2556,8 @@
                     data:['机房安全回路','轿顶安全回路','轿门安全回路','层门安全回路','底坑安全回路'],
                     itemGap: 10,
                     itemWidth:8,
-                    // orient: 'vertical',  //垂直显示
-                    y: 'bottom',    //延Y轴居中
-                    x: 'center', //居右显示
+                    y: 'bottom',    // 延Y轴居中
+                    x: 'center', // 居右显示
                     textStyle:{
                         fontSize : 12,  
                         fontFamily : 'Microsoft YaHei',  
@@ -2769,9 +2565,7 @@
                     },
                     show:true,
                     icon:'circle',
-                    // backgroundColor:'red'
                 },
-                // color:['#FEC101','#FB7027','#CB500F','#E22340','#6B50D0'],
                 color:['#FE7D01','#CB500F','#FEC101','#E22340','#6B50D0'],
                 //工具栏
                 toolbox: {
@@ -2785,9 +2579,8 @@
                     }
                 },
                 grid: {
-                    right: '3%', //相当于距离左边效果:padding-left
-                    left: '3%', //相当于距离上边效果:padding-top
-                    // bottom: '15%',
+                    right: '3%', // 相当于距离左边效果:padding-left
+                    left: '3%', // 相当于距离上边效果:padding-top
                     bottom: '20%',
                     top: '10%',
                     containLabel: true
@@ -2800,14 +2593,13 @@
                     axisLine:{
                         lineStyle:{  
                             color:'#24242f',  
-                            width:1,//这里是为了突出显示加上的  
+                            width:1,// 这里是为了突出显示加上的  
                         }  
                     },
                     axisLabel: {
                         show: true,
                         textStyle: {
                             fontSize : 12,  
-                            // fontFamily : '微软雅黑',  
                             color:'#66667F'
                         }
                     }
@@ -2815,22 +2607,19 @@
                 yAxis : [
                     {
                     type : 'value',
-                    // min:0,
-                    // max:150,
                     axisLine:{  
                         lineStyle:{  
                             color:'#24242f',  
-                            width:1,//这里是为了突出显示加上的  
+                            width:1,// 这里是为了突出显示加上的  
                         }  
                     },
-                    //分割线
+                    // 分割线
                     splitLine:{
                         show:true,
                         lineStyle: {
                         // 使用深浅的间隔色
                             color: '#3F3F49',
                             type:'dashed',
-                            // width:3,
                         }
                     },
                     //Y轴文字
@@ -2915,7 +2704,6 @@
                 legend: {
                     data:['层门门锁回路','轿门门锁回路'],
                     itemGap: 10,
-                    // orient: 'vertical',  //垂直显示
                     y: 'bottom',    //延Y轴居中
                     x: 'center', //居右显示
                     textStyle:{
@@ -2926,9 +2714,7 @@
                     itemWidth: 8,
                     show:true,
                     icon:'circle',
-                    // backgroundColor:'red'
                 },
-                // color:['#FEC101','#6B50D0'],
                 color:['#FE7D01','#6B50D0'],
                 //工具栏
                 toolbox: {
@@ -2942,9 +2728,8 @@
                     }
                 },
                 grid: {
-                    right: '3%', //相当于距离左边效果:padding-left
-                    left: '3%', //相当于距离上边效果:padding-top
-                    // bottom: '15%',
+                    right: '3%', // 相当于距离左边效果:padding-left
+                    left: '3%', // 相当于距离上边效果:padding-top
                     bottom: '20%',
                     top: '10%',
                     containLabel: true
@@ -2957,14 +2742,13 @@
                     axisLine:{
                         lineStyle:{  
                             color:'#24242f',  
-                            width:1,//这里是为了突出显示加上的  
+                            width:1,// 这里是为了突出显示加上的  
                         }  
                     },
                     axisLabel: {
                         show: true,
                         textStyle: {
                             fontSize : 12,  
-                            // fontFamily : '微软雅黑',  
                             color:'#66667F'
                         }
                     }
@@ -2972,8 +2756,6 @@
                 yAxis : [
                     {
                     type : 'value',
-                    // min:0,
-                    // max:150,
                     axisLine:{  
                         lineStyle:{  
                             color:'#24242f',  
@@ -2987,7 +2769,6 @@
                         // 使用深浅的间隔色
                             color: '#3F3F49',
                             type:'dashed',
-                            // width:3,
                         }
                     },
                     //Y轴文字
@@ -3040,7 +2821,6 @@
                 legend: {
                     data:['A类','全市参考范围'],
                     itemGap: 30,
-                    // orient: 'vertical',  //垂直显示
                     y: 'bottom',    //延Y轴居中
                     x: 'center', //居右显示
                     textStyle:{
@@ -3051,9 +2831,7 @@
                     itemWidth: 8,
                     show:true,
                     icon:'circle',
-                    // backgroundColor:'red'
                 },
-                // color:['#FEC101','#6B50D0'],
                 color:['#0DBA7F','#FE7D01'],
                 //工具栏
                 toolbox: {
@@ -3067,9 +2845,8 @@
                     }
                 },
                 grid: {
-                    right: '3%', //相当于距离左边效果:padding-left
-                    left: '3%', //相当于距离上边效果:padding-top
-                    // bottom: '15%',
+                    right: '3%', // 相当于距离左边效果:padding-left
+                    left: '3%', // 相当于距离上边效果:padding-top
                     bottom: '20%',
                     top: '10%',
                     containLabel: true
@@ -3082,14 +2859,13 @@
                     axisLine:{
                         lineStyle:{  
                             color:'#24242f',  
-                            width:1,//这里是为了突出显示加上的  
+                            width:1,// 这里是为了突出显示加上的  
                         }  
                     },
                     axisLabel: {
                         show: true,
                         textStyle: {
                             fontSize : 12,  
-                            // fontFamily : '微软雅黑',  
                             color:'#66667F'
                         }
                     }
@@ -3097,12 +2873,10 @@
                 yAxis : [
                     {
                     type : 'value',
-                    // min:0,
-                    // max:150,
                     axisLine:{  
                         lineStyle:{  
                             color:'#24242f',  
-                            width:1,//这里是为了突出显示加上的  
+                            width:1,// 这里是为了突出显示加上的  
                         }  
                     },
                     //分割线
@@ -3112,7 +2886,6 @@
                         // 使用深浅的间隔色
                             color: '#3F3F49',
                             type:'dashed',
-                            // width:3,
                         }
                     },
                     //Y轴文字
@@ -3159,9 +2932,8 @@
                     legend: {
                         data:['A类','全市参考范围'],
                         itemGap: 30,
-                        // orient: 'vertical',  //垂直显示
-                        y: 'bottom',    //延Y轴居中
-                        x: 'center', //居右显示
+                        y: 'bottom',  
+                        x: 'center',
                         textStyle:{
                             fontSize : 12,  
                             fontFamily : 'Microsoft YaHei',  
@@ -3170,9 +2942,7 @@
                         itemWidth: 8,
                         show:true,
                         icon:'circle',
-                        // backgroundColor:'red'
                     },
-                    // color:['#FEC101','#6B50D0'],
                     color:['#0DBA7F','#FE7D01'],
                     //工具栏
                     toolbox: {
@@ -3186,9 +2956,8 @@
                         }
                     },
                     grid: {
-                        right: '3%', //相当于距离左边效果:padding-left
-                        left: '3%', //相当于距离上边效果:padding-top
-                        // bottom: '15%',
+                        right: '3%', 
+                        left: '3%',
                         bottom: '20%',
                         top: '10%',
                         containLabel: true
@@ -3201,14 +2970,13 @@
                         axisLine:{
                             lineStyle:{  
                                 color:'#24242f',  
-                                width:1,//这里是为了突出显示加上的  
+                                width:1,
                             }  
                         },
                         axisLabel: {
                             show: true,
                             textStyle: {
                                 fontSize : 12,  
-                                // fontFamily : '微软雅黑',  
                                 color:'#66667F'
                             }
                         }
@@ -3216,12 +2984,10 @@
                     yAxis : [
                         {
                         type : 'value',
-                        // min:0,
-                        // max:150,
                         axisLine:{  
                             lineStyle:{  
                                 color:'#24242f',  
-                                width:1,//这里是为了突出显示加上的  
+                                width:1,
                             }  
                         },
                         //分割线
@@ -3231,7 +2997,6 @@
                             // 使用深浅的间隔色
                                 color: '#3F3F49',
                                 type:'dashed',
-                                // width:3,
                             }
                         },
                         //Y轴文字
@@ -3278,7 +3043,6 @@
                     legend: {
                         data:['B类','全市参考范围'],
                         itemGap: 30,
-                        // orient: 'vertical',  //垂直显示
                         y: 'bottom',    //延Y轴居中
                         x: 'center', //居右显示
                         textStyle:{
@@ -3289,9 +3053,7 @@
                         itemWidth: 8,
                         show:true,
                         icon:'circle',
-                        // backgroundColor:'red'
                     },
-                    // color:['#FEC101','#6B50D0'],
                     color:['#027E73','#FE7D01'],
                     //工具栏
                     toolbox: {
@@ -3305,9 +3067,8 @@
                         }
                     },
                     grid: {
-                        right: '3%', //相当于距离左边效果:padding-left
-                        left: '3%', //相当于距离上边效果:padding-top
-                        // bottom: '15%',
+                        right: '3%',
+                        left: '3%',
                         bottom: '20%',
                         top: '10%',
                         containLabel: true
@@ -3320,14 +3081,13 @@
                         axisLine:{
                             lineStyle:{  
                                 color:'#24242f',  
-                                width:1,//这里是为了突出显示加上的  
+                                width:1
                             }  
                         },
                         axisLabel: {
                             show: true,
                             textStyle: {
                                 fontSize : 12,  
-                                // fontFamily : '微软雅黑',  
                                 color:'#66667F'
                             }
                         }
@@ -3335,22 +3095,18 @@
                     yAxis : [
                         {
                         type : 'value',
-                        // min:0,
-                        // max:150,
                         axisLine:{  
                             lineStyle:{  
                                 color:'#24242f',  
-                                width:1,//这里是为了突出显示加上的  
+                                width:1
                             }  
                         },
                         //分割线
                         splitLine:{
                             show:true,
                             lineStyle: {
-                            // 使用深浅的间隔色
                                 color: '#3F3F49',
                                 type:'dashed',
-                                // width:3,
                             }
                         },
                         //Y轴文字
@@ -3396,9 +3152,8 @@
                     legend: {
                         data:['B类','全市参考范围'],
                         itemGap: 30,
-                        // orient: 'vertical',  //垂直显示
-                        y: 'bottom',    //延Y轴居中
-                        x: 'center', //居右显示
+                        y: 'bottom',
+                        x: 'center',
                         textStyle:{
                             fontSize : 12,  
                             fontFamily : 'Microsoft YaHei',  
@@ -3407,9 +3162,7 @@
                         itemWidth: 8,
                         show:true,
                         icon:'circle',
-                        // backgroundColor:'red'
                     },
-                    // color:['#FEC101','#6B50D0'],
                     color:['#027E73','#FE7D01'],
                     //工具栏
                     toolbox: {
@@ -3423,9 +3176,8 @@
                         }
                     },
                     grid: {
-                        right: '3%', //相当于距离左边效果:padding-left
-                        left: '3%', //相当于距离上边效果:padding-top
-                        // bottom: '15%',
+                        right: '3%',
+                        left: '3%',
                         bottom: '20%',
                         top: '10%',
                         containLabel: true
@@ -3436,28 +3188,25 @@
                         boundaryGap : false,
                         data : this.month,
                         axisLine:{
-                            lineStyle:{  
-                                color:'#24242f',  
-                                width:1,//这里是为了突出显示加上的  
+                            lineStyle: {  
+                                color: '#24242f',  
+                                width: 1,
                             }  
                         },
                         axisLabel: {
                             show: true,
                             textStyle: {
                                 fontSize : 12,  
-                                // fontFamily : '微软雅黑',  
                                 color:'#66667F'
                             }
                         }
                     }],
                     yAxis: [{
                         type : 'value',
-                        // min:0,
-                        // max:150,
                         axisLine:{
                             lineStyle:{  
                                 color:'#24242f',  
-                                width:1,//这里是为了突出显示加上的  
+                                width:1,
                             }  
                         },
                         //分割线
@@ -3467,7 +3216,6 @@
                             // 使用深浅的间隔色
                                 color: '#3F3F49',
                                 type:'dashed',
-                                // width:3,
                             }
                         },
                         //Y轴文字
@@ -3510,7 +3258,6 @@
                     legend: {
                         data:['C类','全市参考范围'],
                         itemGap: 30,
-                        // orient: 'vertical',  //垂直显示
                         y: 'bottom',    //延Y轴居中
                         x: 'center', //居右显示
                         textStyle:{
@@ -3521,9 +3268,7 @@
                         itemWidth: 8,
                         show:true,
                         icon:'circle',
-                        // backgroundColor:'red'
                     },
-                    // color:['#FEC101','#6B50D0'],
                     color:['#738BD6','#FE7D01'],
                     //工具栏
                     toolbox: {
@@ -3537,9 +3282,8 @@
                         }
                     },
                     grid: {
-                        right: '3%', //相当于距离左边效果:padding-left
-                        left: '3%', //相当于距离上边效果:padding-top
-                        // bottom: '15%',
+                        right: '3%', // 相当于距离左边效果:padding-left
+                        left: '3%', // 相当于距离上边效果:padding-top
                         bottom: '20%',
                         top: '10%',
                         containLabel: true
@@ -3566,12 +3310,10 @@
                     }],
                     yAxis : [{
                         type : 'value',
-                        // min:0,
-                        // max:150,
                         axisLine:{  
                             lineStyle:{  
                                 color:'#24242f',  
-                                width:1,//这里是为了突出显示加上的  
+                                width:1, // 这里是为了突出显示加上的  
                             }  
                         },
                         //分割线
@@ -3581,7 +3323,6 @@
                             // 使用深浅的间隔色
                                 color: '#3F3F49',
                                 type:'dashed',
-                                // width:3,
                             }
                         },
                         //Y轴文字
@@ -3627,7 +3368,6 @@
                 legend: {
                     data:['C类','全市参考范围'],
                     itemGap: 30,
-                    // orient: 'vertical',  //垂直显示
                     y: 'bottom',    //延Y轴居中
                     x: 'center', //居右显示
                     textStyle:{
@@ -3638,9 +3378,7 @@
                     itemWidth: 8,
                     show:true,
                     icon:'circle',
-                    // backgroundColor:'red'
                 },
-                // color:['#FEC101','#6B50D0'],
                 color:['#738BD6','#FE7D01'],
                 //工具栏
                 toolbox: {
@@ -3656,7 +3394,6 @@
                 grid: {
                     right: '3%', //相当于距离左边效果:padding-left
                     left: '3%', //相当于距离上边效果:padding-top
-                    // bottom: '15%',
                     bottom: '20%',
                     top: '10%',
                     containLabel: true
@@ -3668,15 +3405,14 @@
                     data : this.month,
                     axisLine:{
                         lineStyle:{  
-                            color:'#24242f',  
-                            width:1,//这里是为了突出显示加上的  
+                            color: '#24242f',  
+                            width: 1,//这里是为了突出显示加上的  
                         }  
                     },
                     axisLabel: {
                         show: true,
                         textStyle: {
                             fontSize : 12,  
-                            // fontFamily : '微软雅黑',  
                             color:'#66667F'
                         }
                     }
@@ -3684,8 +3420,6 @@
                 yAxis : [
                     {
                     type : 'value',
-                    // min:0,
-                    // max:150,
                     axisLine:{  
                         lineStyle:{  
                             color:'#24242f',  
@@ -3699,7 +3433,6 @@
                         // 使用深浅的间隔色
                             color: '#3F3F49',
                             type:'dashed',
-                            // width:3,
                         }
                     },
                     //Y轴文字
