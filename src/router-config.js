@@ -13,6 +13,11 @@ import dateContainer from './views/dateContainer'
 import property from './views/property'
 import FormAdd from './views/FormAdd'
 
+import maintenanceMap from './views/maintenanceMap'
+import maintenanceCal from './views/maintenanceCal'
+
+
+
 Vue.use(Router)
 
 export default new Router({
@@ -85,6 +90,22 @@ export default new Router({
       name: "FormAdd",
       component: FormAdd
     },
+    {
+      path: '/mainten-map',
+      name: 'maintenanceMap',
+      meta: {
+        title: '电梯维保监管战情室',
+      },
+      component: maintenanceMap
+    },
+    {
+      path: '/mainten-cal',
+      name: 'maintenanceCal',
+      meta: {
+        title: '电梯维保监管战情室',
+      },
+      component: maintenanceCal
+    }
    
   
   ]

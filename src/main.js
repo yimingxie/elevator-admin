@@ -7,11 +7,27 @@ import vuex from 'vuex'
 import store from './store/index'
 import i18nobject from 'vue-i18n'
 import VueForm from 'vue-form'
-import ElementUI from 'element-ui';
+// import ElementUI from 'element-ui';
+import { Button, Select, Table, TableColumn, DatePicker, Row, Col, Option, OptionGroup, Scrollbar } from 'element-ui';
+
 import 'element-ui/lib/theme-chalk/index.css';
 import echarts from 'echarts'
 
-Vue.use(ElementUI)
+// Vue.use(ElementUI)
+
+
+Vue.use(Button)
+Vue.use(Select)
+Vue.use(Table)
+Vue.use(TableColumn)
+Vue.use(DatePicker)
+Vue.use(Row);
+Vue.use(Col);
+Vue.use(Option);
+Vue.use(OptionGroup);
+Vue.use(Scrollbar);
+
+
 // 多语言配置文件
 import locales from './consts/locales/index'
 // 过滤器
