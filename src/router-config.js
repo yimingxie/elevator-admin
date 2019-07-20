@@ -51,6 +51,15 @@ const router = new Router({
       // component: ElevatorDetailNew
       component: (resolve) => require(['./views/xym/ElevatorDetailNew'], resolve),
     },
+    {
+      path: "/test-map2",
+      name: "TestMap2",
+      meta: {
+        title: '电梯运行详情',
+      },
+      // component: ElevatorDetailNew
+      component: (resolve) => require(['./views/xym/TestMap2'], resolve),
+    }
     // {
     //   path: "/detail-new",
     //   name: "ElevatorDetailNew",

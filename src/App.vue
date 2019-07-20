@@ -2,7 +2,7 @@
   <div id="page-container">
     <div id="header">
       <div class="header-logo">
-        <img src="./assets/images/unit_logo.png" alt="">
+        <!-- <img src="./assets/images/unit_logo.png" alt=""> -->
       </div>
       {{ $route.meta.title }}
     </div>
@@ -10,7 +10,7 @@
       <!-- <i class="headPic"></i> -->
       <!-- 只有详情页才展示 -->
       <span v-if="$route.meta.title == '电梯运行详情'"><img src="./assets/images/power.png" alt=""><i>|</i></span>
-      <span>版本号V1.6.7.5</span>
+      <span>版本号V1.6.7.6</span>
       <!-- <i class="split"></i>
       <i class="quit"></i> -->
     </span>
@@ -19,7 +19,8 @@
 
     <!-- 此处详情页不展示 -->
     <div class="power-by" v-if="$route.meta.title !== '电梯运行详情'">
-      <img src="./assets/images/power.png" alt="">
+      <!-- <img src="./assets/images/power.png" alt=""> -->
+      <img src="./assets/images/power2.png" alt="">
     </div>
 
 

@@ -78,6 +78,11 @@
     <div id="chart10" ref="chart10"></div>
     <div id="chart11" ref="chart11"></div>
 
+
+    <div id="chart12" ref="chart12"></div>
+
+
+
   </div>
 </template>
 
@@ -129,6 +134,11 @@ export default {
     setInterval(() => {
       this.drawChart11();
     }, 2000)
+
+    this.drawChart12();
+
+
+
 
     // 图表自适应
     let chart1 = this.$echarts.getInstanceByDom(
@@ -563,7 +573,7 @@ export default {
         markerList.push(marker);
       });
 
-      console.log(markerList);
+      // console.log(markerList);
       map.add(markerList);
 
       //鼠标点击marker弹出自定义的信息窗体
@@ -1275,7 +1285,7 @@ export default {
     drawChart10() {
 
       api.detail.getD1(this.dtID).then(res => {
-        console.log(res.data)
+        // console.log(res.data)
 
         // 组装xy数据
         let nowTimestamp = Date.now()
@@ -1286,7 +1296,7 @@ export default {
           arr2 = [second, item.value]
           dataArr.push(arr2)
         })
-        console.log(dataArr)
+        // console.log(dataArr)
 
 
 
@@ -1303,7 +1313,7 @@ export default {
               var date = Date.now()
               // var timestamp = date + value * 1000
               // var time = new Date(timestamp)
-              console.log(params)
+              // console.log(params)
               var key = params[0].data[0]
               var value = params[0].data[1]
 
@@ -1417,7 +1427,7 @@ export default {
       
       })
       .catch(err => {
-        console.log('err')
+        // console.log('err')
       })
 
 
@@ -1429,7 +1439,7 @@ export default {
     drawChart11() {
 
       api.detail.getD18(this.dtID).then(res => {
-        console.log(res.data)
+        // console.log(res.data)
 
         // 组装xy数据
         // let nowTimestamp = Date.now()
@@ -1448,6 +1458,7 @@ export default {
           let arr = [new Date(item.time).getTime(), item.value]
           dataValue.push(arr)
         })
+        // console.log(dataValue)
 
 
 
@@ -1581,11 +1592,99 @@ export default {
         console.log('err')
       })
 
-
-
-
-      
     },
+
+    drawChart12() {
+      let that = this
+      let lineChart12 = this.$echarts.init(document.getElementById("chart12"));
+      let dataArr = [
+        [1556765040122, 30],
+        [1556765042222, 40],
+        [1556765043333, 60],
+        [1556765044444, 100],
+        [1556765055555, 120],
+        [1556765066666, 130],
+        [1556765077777, 100],
+        [1556765088888, 160],
+        [1556765099999, 200],
+      ]
+
+      let dataArr2 = [
+        [1556765077777, 100],
+        [1556765088888, 160],
+        [1556765099999, 200],
+      ]
+
+
+      let options = {
+        xAxis: {
+          type: 'time',
+          // data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        },
+        yAxis: {
+          type: 'value'
+        },
+        series: [
+          {
+            data: dataArr,
+            type: 'line',
+            // smooth: true
+            markLine: {
+              label: {
+                show: false
+              },
+              symbol: 'none',
+              data: [
+                // {
+                //     // name: 'Y 轴值为 100 的水平线',
+                //     xAxis: 1556765055555
+                // },
+                // {
+                //     // name: 'Y 轴值为 100 的水平线',
+                //     xAxis: 1556765088888
+                // },
+   
+          
+              ]
+            }
+          },
+          {
+            data: dataArr2,
+            type: 'line',
+            // smooth: true
+          },
+        ]
+      };
+
+      lineChart12.setOption(options);
+
+      let highlightIndex = []
+      lineChart12.on('dblclick', function (params) {
+        console.log(params);
+        let obj = {
+          xAxis: params.data[0]
+        }
+
+        // TODO 索引处理，生成高亮线段
+        highlightIndex.push(params.dataIndex)
+        if (highlightIndex.length == 2) {
+          // dataArr2 = []
+          highlightIndex = []
+        }
+
+
+        options.series[0].markLine.data.push(obj)
+        lineChart12.setOption(options);
+
+        console.log('宿主', highlightIndex)
+        
+
+      });
+
+ 
+
+
+    }
   },
   components: {}
 };
@@ -1690,6 +1789,12 @@ export default {
   }
 
   #chart11 {
+    width: 800px;
+    height: 600px;
+    border: 1px solid red;
+  }
+
+  #chart12 {
     width: 800px;
     height: 600px;
     border: 1px solid red;
