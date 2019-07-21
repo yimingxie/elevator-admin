@@ -9,7 +9,8 @@
     <span class="right_header">
       <!-- <i class="headPic"></i> -->
       <!-- 只有详情页才展示 -->
-      <span v-if="$route.meta.title == '电梯运行详情'"><img src="./assets/images/power.png" alt=""><i>|</i></span>
+      <!-- <span v-if="$route.meta.title == '电梯运行详情'"><img src="./assets/images/power.png" alt=""><i>|</i></span> -->
+      <span v-if="$route.meta.title == '电梯运行详情'"><img src="./assets/images/power2.png" alt=""><i>|</i></span>
       <span>版本号V1.6.7.6</span>
       <!-- <i class="split"></i>
       <i class="quit"></i> -->
